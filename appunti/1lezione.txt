@@ -4,3 +4,6 @@ errori di rounding: approssimazione dovuta al fatto che il computer deve rappres
 errori di approssimazione: dipendono dal tipo di problema e dal tipo di algoritmo. Ad esempio, voelndo calcolare 
 l'esponenziale con la somma, bisogna troncare la serie. Questo è un tipo di errore in approssimazione. L'errore si
 indica con O.
+Uno può scrive exp(x) come exp(x1)exp(k*log2)= exp(x1)*2^k cioè riscrivendo x come x1+klog2.
+In questo modo è più comodo per il calcolatore, perchè x1 è sempre tra 0 e 1. Il calcolatore calcola sempre 
+l'esponenziale tra 0 e 1 con l'approssimazione esppnenziale e poi moltiblica il risultato per 2^(k)
