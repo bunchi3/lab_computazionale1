@@ -1,0 +1,6 @@
+Analisi numerica è una branca della matematica. Le soluzioni che si cercano sono approssimate. Ci sono due fonti 
+di errore: 
+errori di rounding: approssimazione dovuta al fatto che il computer deve rappresentare numeri reali
+errori di approssimazione: dipendono dal tipo di problema e dal tipo di algoritmo. Ad esempio, voelndo calcolare 
+l'esponenziale con la somma, bisogna troncare la serie. Questo è un tipo di errore in approssimazione. L'errore si
+indica con O.
