@@ -7,3 +7,41 @@ indica con O.
 Uno può scrive exp(x) come exp(x1)exp(k*log2)= exp(x1)*2^k cioè riscrivendo x come x1+klog2.
 In questo modo è più comodo per il calcolatore, perchè x1 è sempre tra 0 e 1. Il calcolatore calcola sempre 
 l'esponenziale tra 0 e 1 con l'approssimazione esppnenziale e poi moltiblica il risultato per 2^(k)
+
+Come vengono rappresentati i numeri su un computer?
+Il punto di partenza, prima del computer, è capire come rappresentare un numero. Bisogna decidere una base B, è i numeri si
+scrivono come una sommatoria di coefficienti (0, ... B-1) per la base elevata a una certa potenza.
+Sulle dispense è spiegato più nel dettaglio.
+I computer usano la base binaria. Il motivo è che bisogna fisicamente rappresentare due stati, tensione superiore
+o inferiore a un certo livello. E' più semplice fare così che distinguere fra dieci stati (bisogna definire dieci 
+valori di corrente).
+Vogliamo rappresentare numeri reali su un computer. La prima idea era rappresentare fix point rapresentation 
+(m  numeri prima della virgola, n dopo la virgola). Questo però limita il range, e si esce dal range con molta facilità.
+TUtti i calcolatori moderni usano floating point rapresentatio. Il punto della virgola si può muovere a piacere. 
+Si ha un x = a*B^b. Normalizzo la base per a. Poi si rappresenta la a e l'esponente b.
+Si chiamano allora f i numeri floating point, l'insieme dei numeri che rappresnetiamo in questo modo. Sono fatti così:
+x = (-1)^s(1+f)*2^b con s=0, 1. f diventa un numero rappresentato con una sommatoria, così come l'esponente.
+d e n, indici delle due sommatorie, rappresentano la precisione della rappresentazione.
+Per costruzione della mantissa l'intervallo 2^m e 2^(m+1) ha al suo interno 2^d numeri equidistanziati. Però 
+all'aumento di m la lunghezza dell'intervallo aumenta. Se d resta costante la distanza tra i numeri aumenta.
+Il motivo di questa scelta è che si vuole che la precisione relativa tra i numeri resti costante. 
+Come associamo a un numero reale il suo floating point? Definiamo una funzione che associ a un numero di R un numero
+nell'insieme floating point number (f.p.n.). 
+Sulle dispense è spiegata passo passo la costruzione della funzione. Si conclde che alla peggio il numero differisce da 
+quello calcolato per una valore che si può determinare (1/2 epsilon_mach)
+
+I due standard di precisione sono i single e double. Dipendono da quanti bit sono dedicati all'esponenete e quanti alla 
+mantissa.
+Double:
+64 bit. Un bit è assegnato al segno. 11 bit servono all'esponente. 52 bit servono per f, cioè d può andare fino a 52.
+2^-52 viene chiamato machine precision. Determina la precisione relativa con cui determiniamo i numeri. Esponente con
+11 bit vuol dire che il range in cui possiamo rappresentare i numeri va fino a 10^(-11). La metà però si usa per rappresentare
+numeri più piccoli di 1. 2^-1023 viene usato per definire lo zero, 2^1024 per definire l'infinito. I bit di f danno la separazione
+di numeri  in un range (risoluzione). I bit dell'esponente il range globale.
+Single:
+32 bit. Un bit per segno, 8 per esponente, 23 per f.
+epsilon_mach = 2^-23.
+
+Questa presentazione è semplificata, in realtà la sitaizione è più complessa. Esistono anche i numeri denormalizzati,
+agiscono nel background, per certi calcoli si riescono a usare numeri più piccoli dello zero definito in questa maniera.
+E' come se fossero numeri cuscinetto. Sulle dispense ci sono delle precisazioni.
