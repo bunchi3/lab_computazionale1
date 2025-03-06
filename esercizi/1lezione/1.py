@@ -6,9 +6,8 @@ import math
 def approx_exp(x, N):
     sum = 0
     for n in range(0, N):
-        add = (x**n)/math.factorial(n)
-        sum += add
-
+        sum += (x**n)/math.factorial(n)
+        
     return sum
 
 #Creo la funzione esatta
