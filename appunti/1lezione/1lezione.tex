@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+
+\title{Laboratorio computazionale \\[1ex] \large Appunti lezione 1}
+\author{Stefano Franceschina}
+\date{05/03/2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduzione}
+    L'Analisi numerica è una branca della matematica che si occupa di trovare soluzioni approssimate a problemi matematici, 
+    in cui gli errori computazionali e di modellazione giocano un ruolo fondamentale. Le principali fonti di errore sono:
+    \begin{itemize}
+        \item \textbf{Errori di rounding}: derivano dall'approssimazione necessaria perché il computer rappresenta i numeri 
+        reali con una precisione limitata.
+        \item \textbf{Errori di approssimazione}: dipendono dal tipo di problema e dall'algoritmo utilizzato. Ad esempio, 
+        nel calcolo dell'esponenziale tramite la somma della sua espansione in serie, è necessario un troncamento, 
+        introducendo un errore dovuto al tralasciare gli infiniti termini successivi. Tale errore viene indicato con $O$.
+    \end{itemize}
+
+\section{Rappresentazione dell'esponenziale}
+    Un esempio di errore di approssimazione è il calcolo dell'esponenziale tramite la sua espansione in serie di Taylor:
+    \[
+        \exp(x) = \sum_{n=0}^{\infty} \frac{x^n}{n!} = 1 + x + \frac{x^2}{2} + \frac{x^3}{6} + \ldots
+    \]
+    Per $x$ molto piccoli, ad esempio per $x \in [0, 1]$ la serie converge e l'errore di approssimazione è 
+    trascurabile. Tuttavia, per $x$ grandi, la serie diverge e perciò non è possibile utilizzarla per la 
+    rappresentazione dell'esponenziale. Per ovviare a questo problema, si possono adottare diverse strategie, 
+    come la riscrittura dell'esponenziale o l'utilizzo di metodi iterativi più 
+    stabili. Vediamo come riscrivere l'esponenziale. Si può esprimere $\exp(x)$ come:
+    \[
+        \exp(x) = \exp(x_1) \cdot \exp(k \cdot \log 2) = \exp(x_1) \cdot 2^k,
+    \]
+    ovvero, riscrivendo $x$ come $x_1 + k \log 2$, il calcolatore lavora sempre con un $x_1$ compreso tra 0 e 1, 
+    migliorando così la precisione nel calcolo.
+
+%Riparti da qui
+\section{Rappresentazione dei Numeri}
+    Prima dell'avvento dei computer è stato fondamentale comprendere come rappresentare un numero. Si sceglie una base $B$ 
+    e ogni numero viene scritto come una sommatoria di coefficienti (da 0 a $B-1$) moltiplicati per potenze di $B$. 
+    Nelle dispense si approfondisce come la scelta della base, e in particolare la normalizzazione del coefficiente, 
+    massimizzi la precisione della rappresentazione.
+
+    I computer, per motivi hardware, adottano la base binaria. Questo perché è più semplice rappresentare due stati fisici (ad esempio, alto o basso livello di tensione) rispetto a rappresentare dieci stati differenti.
+
+    \subsection{Floating Point Representation}
+        Per rappresentare i numeri reali si è passati dalla \textit{fixed-point representation} (con un numero fisso di cifre decimali o binarie prima e dopo la virgola) alla \textit{floating point representation}, che consente di rappresentare un range molto più ampio. In questo sistema un numero $x$ si scrive come:
+        \[
+            x = (-1)^s (1 + f) \cdot 2^b,
+        \]
+        dove:
+        \begin{itemize}
+            \item $s$ rappresenta il segno (0 per numeri positivi e 1 per numeri negativi),
+            \item $f$ è la mantissa, che rappresenta la parte frazionaria,
+            \item $b$ è l'esponente.
+        \end{itemize}
+        La normalizzazione (cioè l'assicurarsi che $1+f$ cada in un intervallo prestabilito, solitamente tra 1 e 2) è fondamentale per mantenere costante la precisione relativa tra i numeri, nonostante l'intervallo assoluto tra essi possa variare. Nelle dispense vengono illustrati in dettaglio i motivi di questa scelta, anche in relazione alla distribuzione degli errori.
+
+    \subsection{Standard di Precisione e IEEE 754}
+        Gli standard più comuni sono:
+        \begin{itemize}
+            \item \textbf{Double Precision}: 64 bit totali, suddivisi in 1 bit per il segno, 11 bit per l'esponente e 52 bit per la mantissa. La precisione macchina, ovvero il più piccolo incremento rappresentabile, è $2^{-52}$.
+            \item \textbf{Single Precision}: 32 bit totali, con 1 bit per il segno, 8 bit per l'esponente e 23 bit per la mantissa, e una precisione macchina pari a $2^{-23}$.
+        \end{itemize}
+
+        Lo standard IEEE 754 definisce non solo la rappresentazione ma anche le regole di arrotondamento (tipicamente ``round to nearest'') e il comportamento in presenza di eccezioni, come i numeri denormalizzati (che permettono di rappresentare numeri estremamente piccoli in modo graduale), infiniti e NaN (Not a Number). Le dispense offrono un’analisi approfondita di questi concetti, evidenziando come il design di IEEE 754 contribuisca a ridurre gli errori cumulativi nei calcoli numerici.
+
+\section{Approfondimenti e Informazioni dalle Dispense}
+    Le dispense forniscono ulteriori dettagli riguardo:
+    \begin{itemize}
+        \item \textbf{Analisi degli errori}: Oltre a distinguere tra errori di rounding e di approssimazione, si studia come questi errori possano propagarsi nelle operazioni aritmetiche e nei metodi iterativi. Un concetto chiave è l'\textit{epsilon di macchina} ($\epsilon_{\text{mach}}$), il più piccolo numero tale che $1+\epsilon \neq 1$, che fornisce un limite teorico alla precisione.
+        \item \textbf{Stabilità numerica}: Le dispense esaminano come alcuni algoritmi possano essere più o meno sensibili agli errori di approssimazione. Ad esempio, in metodi iterativi per la risoluzione di equazioni o sistemi lineari (come il metodo di Newton o la pivotazione nelle eliminazioni gaussiane), la scelta dell'algoritmo e delle tecniche di normalizzazione è determinante per ottenere risultati attendibili.
+        \item \textbf{Convergenza degli algoritmi}: Viene studiato il comportamento degli algoritmi iterativi e le condizioni necessarie affinché convergano verso una soluzione, anche in presenza di errori numerici.
+        \item \textbf{Applicazioni pratiche}: Tra gli argomenti trattati nelle dispense ci sono anche esempi pratici di calcolo numerico, come l'integrazione numerica (metodi dei trapezi e di Simpson), la risoluzione di equazioni differenziali e la decomposizione LU per sistemi lineari.
+    \end{itemize}
+
+    Questi approfondimenti sono essenziali per comprendere non solo la teoria, ma anche per sviluppare un senso critico sui metodi numerici e sulle potenziali fonti di errore nelle simulazioni e nei calcoli reali.
+
+\section{Conclusioni}
+Questa lezione offre una panoramica della rappresentazione numerica nei computer e degli errori che ne derivano. Le dispense, che approfondiscono gli aspetti teorici e pratici, rappresentano un ottimo strumento per approfondire la conoscenza degli algoritmi numerici e per capire come ridurre e gestire gli errori computazionali. Studi approfonditi permettono di affrontare problemi complessi con strumenti matematici e computazionali affidabili.
+
+\end{document}
