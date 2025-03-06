@@ -1,7 +1,13 @@
-\documentclass{article}
+\documentclass[letterpaper,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[italian]{babel}
 \usepackage{amsmath}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert} % per valore assoluto
+\usepackage{amssymb}
+\newcommand{\numberset}{\mathbb}
+\newcommand{\F}{\numberset{F}}
+\newcommand{\R}{\numberset{R}}
 
 \title{Laboratorio computazionale \\[1ex] \large Appunti lezione 1}
 \author{Stefano Franceschina}
@@ -38,47 +44,105 @@
     ovvero, riscrivendo $x$ come $x_1 + k \log 2$, il calcolatore lavora sempre con un $x_1$ compreso tra 0 e 1, 
     migliorando così la precisione nel calcolo.
 
-%Riparti da qui
 \section{Rappresentazione dei Numeri}
     Prima dell'avvento dei computer è stato fondamentale comprendere come rappresentare un numero. Si sceglie una base $B$ 
     e ogni numero viene scritto come una sommatoria di coefficienti (da 0 a $B-1$) moltiplicati per potenze di $B$. 
-    Nelle dispense si approfondisce come la scelta della base, e in particolare la normalizzazione del coefficiente, 
-    massimizzi la precisione della rappresentazione.
+    \[
+        x = \pm\sum_{i=-n}^{m} b_i \cdot B^i
+    \]  
 
-    I computer, per motivi hardware, adottano la base binaria. Questo perché è più semplice rappresentare due stati fisici (ad esempio, alto o basso livello di tensione) rispetto a rappresentare dieci stati differenti.
+    I computer, per motivi hardware, adottano la base binaria. Questo perché è più semplice rappresentare due stati fisici 
+    (ad esempio, alto o basso livello di tensione) rispetto a rappresentare dieci stati differenti.
+    Inizialmente si utilizzava la cosiddetta \textit{fixed-point representation}, in cui si fissavano valori di $n$ e $m$
+    e si rappresentavano i numeri come:
+    \[
+        x = \pm\sum_{i=-n}^{m} b_i \cdot 2^i
+    \]
+    Questo sistema ha però un range limitato e non permette di rappresentare numeri molto grandi o molto piccoli, in
+    particolare numeri $ \abs{x} \geq B^m $ o $\abs{x} < B^{-n}$.
 
     \subsection{Floating Point Representation}
-        Per rappresentare i numeri reali si è passati dalla \textit{fixed-point representation} (con un numero fisso di cifre decimali o binarie prima e dopo la virgola) alla \textit{floating point representation}, che consente di rappresentare un range molto più ampio. In questo sistema un numero $x$ si scrive come:
+        Per rappresentare i numeri reali si è passati dalla \textit{fixed-point representation} (con un numero fisso di 
+        cifre decimali o binarie prima e dopo la virgola) alla \textit{floating point representation}, che consente di 
+        rappresentare un range molto più ampio. L'idea è di scrivere un numero come prodotto di tre fattori: segno,
+        mantissa e esponente. In generale ci si basa sulla scomposizione:
         \[
-            x = (-1)^s (1 + f) \cdot 2^b,
+            x = \pm a \times B^b
         \]
+
+        Indicando con b il punto in cui si trova la virgola rispetto ad a. Ad esempio con $a = 0.123$ e $b = -2$ si ha,
+        in base 10, $x = 0.00123$. In base 2, si ha $x = 0.0101 = 1.01 \times 2^{-2}$, e in entrambi i casi $b = -2$ 
+        sposta la virgola di due posti verso sinistra. 
+    
+        All'interno di un calcolatore si sfrutta il \textit{sistema a virgola mobile} e perciò $x$ si scrive come:
+        \begin{equation}\label{eq:x_vm}
+            x = (-1)^s (1 + f) \cdot 2^b,
+        \end{equation}
         dove:
+
         \begin{itemize}
             \item $s$ rappresenta il segno (0 per numeri positivi e 1 per numeri negativi),
             \item $f$ è la mantissa, che rappresenta la parte frazionaria,
             \item $b$ è l'esponente.
         \end{itemize}
-        La normalizzazione (cioè l'assicurarsi che $1+f$ cada in un intervallo prestabilito, solitamente tra 1 e 2) è fondamentale per mantenere costante la precisione relativa tra i numeri, nonostante l'intervallo assoluto tra essi possa variare. Nelle dispense vengono illustrati in dettaglio i motivi di questa scelta, anche in relazione alla distribuzione degli errori.
 
+        Sia f che b vengono rappresentati in base binaria in questo modo:
+        \[
+            f = \sum_{i=0}^{d} b_i \cdot 2^{-i}, \quad b = \sum_{i=0}^{n-1} a_i \cdot 2^{i} - b_{offset},
+        \]
+        dove 
+        $d$ e $n$ sono alcuni interi fissi che determinano la precisione della rappresentazione, mentre 
+        $b_{offset} = 2^{n-1} -1 $ è un offset convenzionale per l'esponente. Nota in particolare che l'esponente 
+        $b$ può essere negativo. Ricordati che  con quella rappresentazione sia $f$ che $b$ rappresentabili come delle
+        sequenze di 0 e 1 e che la posizione che occupa la cifra è determinata dalla potenza di 2 corrispondente.
+
+        Dato che $f$ per definizione è una somma di potenze negative di 2, sappiamo che è un numero compreso tra 0 e 1.
+        Ciò implica che $1+f$ sia un numero compreso tra 1 e 2. Se riscriviamo f in questa maniera:
+        \[
+            f = \sum_{i=0}^{d} b_i \cdot 2^{-i} = 2^{-d} \sum_{i=0}^{d} b_i \cdot 2^{d-i} = 2^{-d}z,
+            \text{ con } z = [0, 1, 2, ..., 2^{d}-1].
+        \]
+
+        ci accorgiamo che le uniche possibilità per z di mantenere che $1+f$ sia compreso tra 1 e 2 sono 
+        $z = 0, 1, ..., 2^{d} - 1$.
+        In tal modo vediamo che gli z ammessi sono esattamente $2^{d}$, cioè $1+f$ ammette un numero finito di valori, pari
+        a $2^{d}$. Inserendo tale risultato in \eqref{eq:x_vm} otteniamo che le $x$ corrono tra $[2^b, 2^b+1)$, 
+        estremi ottenuti inserendo i valori estremi di $z$, e cioè di $f$. In più otteniamo solamente certi valori,
+        cioè $2^{d}$ valori, perchè gli z sono finiti, per di più equispaziati.
+        
+        Il valore $2^d$ viene definito come \textit{precisione macchina} ($\epsilon_{mach}$) e rappresenta il numero 
+        di valori rappresentati in un intervallo $[2^b, 2^b+1)$. 
+        
+        
+    
+    \subsection{Mappa $ \R \rightarrow \F$}
+        Scopo dell'informatica è quindi stabilire una mappa tra i numeri reali (insieme $\R$) e i numeri macchina (insieme $\F$), 
+        in modo da rappresentare il maggior numero possibile di numeri reali con un numero finito di numeri macchina. 
+        La mappa tra i numeri reali e i numeri macchina è una funzione che associa a ogni numero reale un numero macchina.
+        Questa mappa è una funzione a gradini, in quanto i numeri macchina sono finiti e quindi la mappa non è iniettiva.
+        Inoltre, la mappa non è suriettiva, in quanto i numeri reali sono infiniti e i numeri macchina sono finiti. 
+        Questo porta a un errore di rappresentazione, che è l'errore di approssimazione.
+        Di certo dovremo chiedere che, definendo la funzione $fl : \R \rightarrow \F$ per un numero $x \not\in \F$ si abbia:
+        \[
+            \abs{fl(x) - x} \leq \abs{fl(y) - g} \quad \forall g \in \F.
+        \]
+        In tal modo la distanza tra l'approssimazione $fl(x)$ e il numero reale $x$ è più piccola di quella tra $x$ 
+        stesso e qualsiasi altro numero macchina $g$. Sapendo che in un intervallo $[2^b, 2^b+1)$ ci sono $2^d$ numeri
+        macchina, possiamo dire che la distanza tra due numeri macchina successivi è $2^{b-d}$ e quindi qualunque numero 
+        reale $x$ in $[2^b, 2^b+1)$ avrà una distanza da $fl(x)$ al massimo di $\frac{2^{b-d}}{2}$.
+        Da qui si possono trarre conclusioni sull'approssimazione. Guarda le dispense per ulteriori dettagli..
+
+    
     \subsection{Standard di Precisione e IEEE 754}
         Gli standard più comuni sono:
         \begin{itemize}
-            \item \textbf{Double Precision}: 64 bit totali, suddivisi in 1 bit per il segno, 11 bit per l'esponente e 52 bit per la mantissa. La precisione macchina, ovvero il più piccolo incremento rappresentabile, è $2^{-52}$.
-            \item \textbf{Single Precision}: 32 bit totali, con 1 bit per il segno, 8 bit per l'esponente e 23 bit per la mantissa, e una precisione macchina pari a $2^{-23}$.
+            \item \textbf{Double Precision}: 64 bit totali, suddivisi in 1 bit per il segno, 11 bit per l'esponente e 
+            52 bit per la mantissa. La precisione macchina, ovvero il più piccolo incremento rappresentabile, è $2^{-52}$.
+            \item \textbf{Single Precision}: 32 bit totali, con 1 bit per il segno, 8 bit per l'esponente e 23 bit per 
+            la mantissa, e una precisione macchina pari a $2^{-23}$.
         \end{itemize}
 
         Lo standard IEEE 754 definisce non solo la rappresentazione ma anche le regole di arrotondamento (tipicamente ``round to nearest'') e il comportamento in presenza di eccezioni, come i numeri denormalizzati (che permettono di rappresentare numeri estremamente piccoli in modo graduale), infiniti e NaN (Not a Number). Le dispense offrono un’analisi approfondita di questi concetti, evidenziando come il design di IEEE 754 contribuisca a ridurre gli errori cumulativi nei calcoli numerici.
-
-\section{Approfondimenti e Informazioni dalle Dispense}
-    Le dispense forniscono ulteriori dettagli riguardo:
-    \begin{itemize}
-        \item \textbf{Analisi degli errori}: Oltre a distinguere tra errori di rounding e di approssimazione, si studia come questi errori possano propagarsi nelle operazioni aritmetiche e nei metodi iterativi. Un concetto chiave è l'\textit{epsilon di macchina} ($\epsilon_{\text{mach}}$), il più piccolo numero tale che $1+\epsilon \neq 1$, che fornisce un limite teorico alla precisione.
-        \item \textbf{Stabilità numerica}: Le dispense esaminano come alcuni algoritmi possano essere più o meno sensibili agli errori di approssimazione. Ad esempio, in metodi iterativi per la risoluzione di equazioni o sistemi lineari (come il metodo di Newton o la pivotazione nelle eliminazioni gaussiane), la scelta dell'algoritmo e delle tecniche di normalizzazione è determinante per ottenere risultati attendibili.
-        \item \textbf{Convergenza degli algoritmi}: Viene studiato il comportamento degli algoritmi iterativi e le condizioni necessarie affinché convergano verso una soluzione, anche in presenza di errori numerici.
-        \item \textbf{Applicazioni pratiche}: Tra gli argomenti trattati nelle dispense ci sono anche esempi pratici di calcolo numerico, come l'integrazione numerica (metodi dei trapezi e di Simpson), la risoluzione di equazioni differenziali e la decomposizione LU per sistemi lineari.
-    \end{itemize}
-
-    Questi approfondimenti sono essenziali per comprendere non solo la teoria, ma anche per sviluppare un senso critico sui metodi numerici e sulle potenziali fonti di errore nelle simulazioni e nei calcoli reali.
 
 \section{Conclusioni}
 Questa lezione offre una panoramica della rappresentazione numerica nei computer e degli errori che ne derivano. Le dispense, che approfondiscono gli aspetti teorici e pratici, rappresentano un ottimo strumento per approfondire la conoscenza degli algoritmi numerici e per capire come ridurre e gestire gli errori computazionali. Studi approfonditi permettono di affrontare problemi complessi con strumenti matematici e computazionali affidabili.
