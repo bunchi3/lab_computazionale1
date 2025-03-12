@@ -1,0 +1,38 @@
+Come quello che abbiamo visto si ripercuote sulle operazioni fondamentaali? Quando metto lo star si intende la somma 
+sul computer. viene definita così la somma.
+x+*y = fl(x+y) = x+y(1+epsilon_x)
+Il computer lavora con una precisione superiore, in modo che le operazioni possano avvenire. 
+x-*y = fl(x-y) = x-y(1+epsilon_x)
+x**y = fl(x*y) = x*y(1+epsilon_x)
+
+Sono evidentemente operazioni approssimate, l'insieme F (floating poin numbers) non è chiuso.
+UNo dei problemi è determinare la proprietà associativa del'addizione. Sulla dispensa c'è un esempio in cui invertendo
+l'ordine degli addendi ci sono due risultati leggermente diversi.
+1) a 1 sommo machine precision/2, lo approssimo, poi tolgo 1. Questo fa zero.
+2) A machine precision tolgo 1, poi sommo 1. Questo mi da un numero diverso da zero.
+Quando sommo due numeri con diverso esponenete, l'operazizone pè  di portarli ad avere stesso esponente, poi 
+sommo le mantisse.
+L'accuratezza dice quanto sono vicini il numero reale rispetto all sua rappresentazione f.p.n. La precisione è il numero
+d di digits della raappresentazione del numero. Non è detto quindi che un numero preciso sia accurato, perchè se 
+l'algoritmo non calcola bene può restituire molte cifre ma sbagliate.
+Si può rappresentare l'accuratezza relativa, anche prendendone il logaritmo.
+
+Algoritmi e propagazione degli errori:
+Abbiamo capiro che ci sono degli errori dovuti a rounding, troncamenti, ecc. Ma come gli errori si propagano all'interno 
+di un algoritmo? Descriviamo un algoritmo come una funzione
+ftilde : F-->F , cioò una funzione che prende un numeor macchina e restituisc eun altro numero macchina.
+Un algoritmo è una composizione di ftilde:
+x0tilde -->f0tilde(x0tilde) =x1tilde --> ... --> fN-1tilde(xN-1)tilde = xNtilde =ytilde
+dove ytilde è il risultato finale.
+Noi siamo interessati all'errore: deltay= ytilde - y
+Manipolando (i conti sono sulle dispense) si vede che l'errore è la somma di due errori. uno è la differenza
+della funzione esatta valutata nel valor vero e nel valore troncato. L'altra non ho fattoa a tempoa   scriverla.
+Ora entra in gicoo xtilde= x(1+epsilon_x) con espsilonx < epsilon_mach
+Con quella formula si può riscriveree deltay(f), e farne uno sviluppo di Taylor.
+Qui viene definitaa una quantità importante, il condition number. Tutte le formule sono sulle dispense. Il condition
+number da informazioni sulla propagazione degli errori.
+Per la fuznione x+c il condition number esplode per x=-c. è l'effetto di grande cancellazione, che avevamo visto prima.
+L'altro pezzo dell'errore era deltay(fl). ANche qui i i calcoli sono riportati sulle dispense. L'intuizione è che ci 
+sia un erore dato dall'effeto del troncamento della funzione, infatti è il prodotoo di y e epsilon_y
+
+Perciò l'errore totale è dato da due contibuti, uno dal condition number (errore dato dallinput) e uno dell'output.

@@ -146,5 +146,15 @@
 
 \section{Conclusioni}
 Questa lezione offre una panoramica della rappresentazione numerica nei computer e degli errori che ne derivano. Le dispense, che approfondiscono gli aspetti teorici e pratici, rappresentano un ottimo strumento per approfondire la conoscenza degli algoritmi numerici e per capire come ridurre e gestire gli errori computazionali. Studi approfonditi permettono di affrontare problemi complessi con strumenti matematici e computazionali affidabili.
+La cosa più importante da tenere a mente è la relazione 
+    \[
+        \frac{\abs{fl(x) - x}}{\abs(x)} \leq \frac{\epsilon_{mach}}{2}.
+    \]
+e cioè che la precisione relativa è sempre la stessa, limitata dalla precisione macchina.
+L'altra relazione importante è
+    \[
+        fl(x) = x(1+\epsilon_x), \quad {\epsilon_x} = \frac{f'-f}{1+f} 
+    \]
+
 
 \end{document}
