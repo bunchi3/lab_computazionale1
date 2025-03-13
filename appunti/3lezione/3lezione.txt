@@ -1,0 +1,20 @@
+Adesso cerchiamo di fare un passaggio in più, scrivendo ftilde come una composizione di due funzioni, f1tilde e f0tilde.
+Abbiamo x0, ci applichiamo f0tilde, che restituisce x1, poi applichimao f11tilde che dà la nostra y.
+Deltay0 sarà  la formula con il condition number, deltay1 sarà la formula con il conditionnumber. Per calcolare
+l'errore complesstivo dobbiamo sostituire la prima nella seconda. Semplicemente facciamo i prodotti e sviluppiamo. Alla
+fine si ha che Deltay1 è pari a ... L'errore dell'imput viene propagato nell'output, si propaga l'errore di troncamento. in
+più c'è  una propagazione dovuta agli step dell'algoritmo. Ci sono due pezzi imprescindibili, indipendenti dall'algoritmo.
+INdipendenemte dall'algoritmo ho degli errori. 
+L'algoritmo è stabile se gli step intermedi sono harmless. Un algoritmo è più affidabile di un altro se ...
+
+Vediamo un'applicazione: la soluzione di un'equazione quadratica. Per prima cosa la costruiamo nou, le radici sono r0 e r1.
+Se r0 è distante da r1: r0 >> r1:
+risolvendo le equazioni si vede che la radice grande viene esatta, mentre quella piccolaz non viene esatta. Se ne studiamo 
+l'accuratezza vediamo che il numero di digits è molto basso. Da dove nasce questo problema? Scomponiamo l'operazione
+di calcolo di r1 in operazioni elementari e calcoliammo il condition number di ogni operazione. Sulla dispensa c'è tutto
+il calcolo. Il condition numver è il prodotto dei conditionnumber. Parte persa, eri fuori da lezione
+Sulle dispense c'è il modo per sistemare questo problema
+
+r0 vinico a r1:
+entrambe le radici hanno problemi, perchè il problema sta nel discriminante. Risolvere questo problema è molto più 
+difficile, tant'è che non si è ancora riusciti a trovare un algoritmo stabile.
