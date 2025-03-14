@@ -50,9 +50,13 @@ Consideriamo il seguente esempio, sapendo che $e = \frac{\epsilon_{mach}}{2}$
     \item 1.0 + (e - 1.0)
 \end{enumerate}
 Ci si aspetta che entrambe le operazioni restituiscano lo stesso risultato, pari ad $e$ in particolare. Tuttavia, il 
-risultato ottenuto è diverso nei due casi. Ciò avviene perchè ... (completare).
-
-Questo fenomeno si verifica perché, nel sommare numeri con esponenti molto differenti, l'operazione richiede di allineare gli esponenti e sommare le mantisse, con conseguente perdita di significative cifre, un effetto noto come \emph{cancellazione catastrofica}.
+risultato ottenuto è diverso nei due casi, a causa del fatto che $\epsilon_{mach}$ è la precisione \textit{relativa}. 
+$\epsilon_{mach}$ è la distanza minima tra 1 e il floating
+point number successivo, e quindi la somma di $1.0 + e$, dove $e = \frac{\epsilon_{mach}}{2}$, è approssimata a 1.0. 
+Sottraendo 1.0 si ottiene un risultato nullo. Nell'altro caso, invece, sapendo che la distanza tra i numeri 
+$[\frac{1}{2}, 1)$ non è più $\epsilon_{mach}$ ma $\frac{\epsilon_{mach}}{2} $, la somma di $e - 1.0$ è approssimata a
+$-\frac{\epsilon_{mach}}{2}$, che sommato a 1.0 dà $e$.
+Questo esempio mostra come la cancellazione possa portare a risultati errati.
 
 \section*{Accuratezza e Precisione}
 
@@ -60,47 +64,58 @@ L'\textbf{accuratezza} indica quanto il valore calcolato si avvicini al valore r
 si riferisce al numero di cifre significative della rappresentazione in macchina. Non è detto che un numero rappresentato 
 con molte cifre (alta precisione) sia anche accurato, poiché un algoritmo mal progettato può produrre risultati con molte 
 cifre ma errati. L'accuratezza relativa può essere espressa anche in scala logaritmica per evidenziare le differenze 
-in termini di ordine di grandezza.
+in termini di ordine di grandezza. \\
+Esaminiamo meglio il concetto di accuratezza: intorduciamo il numero $x$ e la sua approssimazione $\tilde{x}$. 
+L'\textbf{accuratezza assoluta} di $\tilde{x}$ è definita come $\abs{x - \tilde{x}}$, mentre l'\textbf{accuratezza relativa}
+è data da $\frac{\abs{x - \tilde{x}}}{\abs{x}}$. \\
+Si può esprimere l'accuratezza relativa in scala logaritmica come $d = -\log_{10}\left|\frac{x - \tilde{x}}{x} \right|$.
+Sulle dispense sono riportati alcuni esempi di accuratezza relativa e di scala logaritmica.
 
 \section*{Algoritmi e Propagazione degli Errori}
+Abbiamo visto che due risoluzioni analoghe dal punto di vista aritmetico di uno stesso problema possono portare a risultati
+diversi una volta risolti in aritmetica in virgola mobile. \\
 
 Un algoritmo numerico può essere descritto come una funzione
 \[
-\tilde{f} : F \to F,
+\tilde{f} : \F^n \to \F^m,
 \]
-cioè una funzione che prende un numero macchina e ne restituisce un altro. In pratica, un algoritmo è una composizione di funzioni:
+cioè una funzione che prende un numero macchina e ne restituisce un altro. In pratica, un algoritmo è una composizione di 
+funzioni:
 \[
-\tilde{x}_0 \xrightarrow{f_0} \tilde{x}_1 \xrightarrow{f_1} \cdots \xrightarrow{f_{N-1}} \tilde{x}_N = \tilde{y},
+\tilde{x}_0 \xrightarrow{f_0} \tilde{y}_0 = \tilde{x}_1 \xrightarrow{f_1} \tilde{y}_1 = \tilde{x}_2 \xrightarrow{f_2} \cdots \xrightarrow{f_{N-1}} \tilde{x}_N = \tilde{y},
 \]
 dove $\tilde{y}$ è il risultato finale approssimato.
 
-Siamo interessati all'errore:
+Per snellire la notazione consideriamo la funzione $f$ come un solo passaggio dell'algoritmo, come se fosse una $f_i$. 
+Possiamo anche pensare come se l'algoritmo fosse composto da un solo passaggio. \\
+Siamo interessati all'errore, che possiamo manipolare come:
 \[
-\Delta y = \tilde{y} - y,
+\Delta y = \tilde{y} - y = \tilde{f}(\tilde{x}) - f(x) = [\tilde{f}(\tilde{x}) - f(\tilde{x})] + [f(\tilde{x}) - f(x)] = 
+ \Delta y_{\operatorname{fl}} + \Delta y_{\operatorname{f}},
 \]
-che, manipolando le espressioni (i conti sono riportati nelle dispense), risulta essere la somma di due contributi:
+In questa forma riconosciamo due contributi all'errore:
 \begin{itemize}
-    \item La differenza tra il valore esatto della funzione valutata nel valore reale e il valore ottenuto con la funzione troncata.
-    \item L'errore introdotto dal troncamento e dall'arrotondamento durante le operazioni.
+    \item L'arrotondamento del risultato dell'algoritmo: $\Delta y_{\operatorname{fl}}$.
+    \item L'approssimazione iniziale del valore di $x$: $\Delta y_{\operatorname{f}}$.
 \end{itemize}
-
-Utilizzando la relazione
+Analizziamo per prima cosa l'errore $\Delta y_{\operatorname{f}}$. Riscriviamo $\Delta y$ in funzione di $f$ 
+e sviluppiamo in serie di Taylor per analizzare l'effetto degli errori, questo è possibile in quanto 
+$\tilde{x} = x(1+\epsilon_x)$ con $\epsilon_x$ piccolo.
 \[
-\tilde{x} = x\,(1+\varepsilon_x) \quad \text{con } \varepsilon_x < \varepsilon_{\text{mach}},
+\Delta y_{\operatorname{f}} = f(\tilde{x}) - f(x) = f'(x)\,\Delta x\, + O(\varepsilon_x^2), \quad \text{con  } 
+\Delta x = \tilde{x} - x.
 \]
-è possibile riscrivere $\Delta y$ in funzione di $f$ e sviluppare una serie di Taylor per analizzare l'effetto degli errori.
 
-\section*{Il Numero di Condizionamento}
-
-Nel contesto dell'analisi degli errori, viene definita una quantità importante: il \textbf{numero di condizionamento} (\emph{condition number}). Esso fornisce informazioni su come gli errori nell'input si propaghino attraverso l'algoritmo. Ad esempio, per la funzione
+In questa maniera, ricordandoci che le precisioni relative di $x$ e $y$ sono $\varepsilon_x = \frac{\abs{\Delta x}}{\abs{x}}$ e
+$\varepsilon_y = \frac{\abs{\Delta y}}{\abs{y}} = \frac{f(\tilde{x}) - f(x)}{f(x)}$, e definendo 
+il numero di condizionamento $K_f$ della funzione $f$ come $ K_f = \left|\frac{x}{f(x)}\,f'(x)\right|$ possiamo scrivere 
+l'errore relativo di $y$ troncato al secondo ordine come:
 \[
-f(x) = x + c,
+\abs{\varepsilon_y} \approx K_f\,\abs{\varepsilon_x}.
 \]
-il numero di condizionamento tende ad esplodere per $x=-c$, a causa della cancellazione catastrofica già menzionata.
 
-L'altro contributo all'errore, indicato come $\Delta y_{\operatorname{fl}}$, è dovuto all'effetto del troncamento della funzione e può essere approssimato dal prodotto di $y$ per $\varepsilon_y$.
-
-Pertanto, l'errore totale è dato dalla somma di due contributi: uno legato al numero di condizionamento (cioè, l'errore relativo all'input) e uno dovuto agli effetti di arrotondamento e troncamento nell'output.
+%Aggiungere la parte di condizionamento su funzioni composte
+%Aggiungere la parte sul secondo contributo all'errore
 
 \section*{Ulteriori Considerazioni}
 
