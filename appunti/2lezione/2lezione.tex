@@ -113,9 +113,21 @@ l'errore relativo di $y$ troncato al secondo ordine come:
 \[
 \abs{\varepsilon_y} \approx K_f\,\abs{\varepsilon_x}.
 \]
-
-%Aggiungere la parte di condizionamento su funzioni composte
+\\
+É facile verificare che nel caso in cui la funzione $f$ sia composizione di funzioni, il numero di condizionamento
+della funzione composta è il prodotto dei numeri di condizionamento delle funzioni che la compongono.\\
 %Aggiungere la parte sul secondo contributo all'errore
+Adesso analizziamo l'errore $\Delta y_{\operatorname{fl}}$. Ci aspettiamo per il valore $\tilde{f(\tilde{x})}$ un errore
+di arrotondamento pari a $f(\tilde{x})(1+\epsilon_y)$. Ripercorrendo i passaggi precendenti, e cioè sviluppando in serie
+di Taylor, possiamo scrivere l'errore relativo $\Delta y_{\operatorname{fl}}$ come:
+\[
+    \Delta y_{\operatorname{fl}} = \epsilon_y f(x) = \epsilon_y y
+\]
+
+In questa maniera possiamo combianre i due errori per ottenere l'errore totale:
+\[
+    \Delta y = (\epsilon_y + K_f \epsilon_x) y
+\]
 
 \section*{Ulteriori Considerazioni}
 
