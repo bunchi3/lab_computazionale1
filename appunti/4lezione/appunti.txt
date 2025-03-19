@@ -1,0 +1,38 @@
+Parliamo di sistemi lineari. in generale vogliamo risolvere un set di n equazioni, che si può riscrivere come prodotto
+di una matrice per il vettore incognite.
+Dal punto di vista matematico il problema è legato al calcolo dell'invrsa di A, in modo da poterla applicare al sistema
+e ricavare il vettore delle incognite. Dal punnto di vista computazionale il calcolo dell'inversa non è una buona idea.
+Risovleremo i sistemi senza mai calcolare l'inversa.
+I sistemi più semplici sono i sistemi triangolari, quelli che hanno matrice con tutti zeri nella metà della diagonale 
+superiore. Il motivo per cui sono semplici è che si possono risolvere in maniera ricorsiva semplicemnte, si ricava la 
+prima incognita e poi le successive. Così si può scrivere un algoritmo che risolva questi sistemi in maniera molto semplice,
+basta procedere ricorsivamente. Il processo si chiama forward_substitution
+Lo stesso vale per una matrice upper diagonal. Il processo è backward_substitution.
+Cosa succede se uno degli elementi diagonali è zero? Non si può dividere. Però in quel caso il determinante è zero, perciò
+il sistema è singolare.
+
+Però il sistema più genereico non è quello trianoglare. Noi vederemo la rimozione di Gauss, che sono operazioni per riportare
+il sistema a uno triangolare.
+L'idea generale è definire una matrice aumentata [Ab], che mette insieme la matrice A e il vettore "sorgente", il termine
+noto del sistema, il vettore dei numeri che stanno a destra dell'uguale. Ai vari passaggi dell'algoritmo eliminiamo 
+le varie colonne sotto la diagonale tramite operazioni lineari che lasciano invariato il sistema. Le operazioni sono delle
+matrici G che vengono applicate alla matrice aumentata. E' facile moostrare che G ammette inverse ed è fatta con tutti i + 
+nelle sue entrate. Questo garantisce che il nuovo sistema ammette la stessa soluzione di prima. 
+A questo punto si itera l'operazione fino a che si ottiene una matrice upper diagonal. Domani vederemo nel dettaglio, Però
+l'idea è di interpretare questa operazione come una serie di operazioni sulla matrice A, identificate come un'unica operazione
+chiamta L, e rappresentate da una matrice. O meglio: L è il proddto delle iinverese delle matrici G (A = L U)
+Salta fuori che L è una matrice lower diagonal che ha per colonne le colonne dlle matrice G.
+
+Quello che vogliamo fare è scirvere le fattorizzazioni delle matrici (A = LU) in modo che possiamo riscrivere Ax=b come LUx=b
+che è come risolvere il sistema trianoglare Lu = b (con u = Ux). Quindi useremo due bacward substitution.
+Il vantaggio è quello di avere una fattorizzazione di A indipendente da b, e così, una volta fatta, posso risolvere tutti
+i sistemi che voglio, co vari b.
+
+Torniamo alla possibilità di avere elementi diagonali nulli, ma ora nel caso di eliminzaizione di Gauss. 
+Cosa succede? Perchè per quelli devo dividere. Si definisce 
+G in una maniera diversa. Si può dimostrare che ai fini di avere rounding errors piccoli conviene scegliere come elemento
+della colonna quello più grande. La seconda cosa è che la matrice G può essere costruita con permutazioni delle righe, 
+per evitare che si divida per 0.
+QUindi al processo di prima veine aggiunta una matrice P che scambia le righe: G3P3G2P2G1P1A=U.
+A quel punto la fattorizzazione non è A = LU ma vale PA = LU dove P = P3P2P1, e il processo di risoluzione successivo è analogo,
+con un'inversione di righe.
