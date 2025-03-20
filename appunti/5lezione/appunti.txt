@@ -1,0 +1,28 @@
+Ottenuto PA = LU  da Ax = b dobbiamo risolvere due sistemi triangolari Lu = Pb e Ux = u 
+Inoltre si ha che det(A) = det(PLU) =  det(P) det(L) det(U) = (-1)^s * 1 * (produttoria degli elementi diagonali di u)
+con s il numero di permutazioni di colonna. Questo è comodo perchè altrimenti il det di A scalerebbe con il fattoriale di n
+dove n è la dimensione della matrice.
+Lo scopo di oggi è creare un algoritmo che faccia questa fattorizzazione.
+Introduciamo il prodotto esterno tra due vettori. QUando scirvo u è un vettore colonna, vT è una riga.
+Il prodotto esterno è il prodotto riga colonna u*vT= a una matrice fatta come inndicato sulle dispense.
+Possiamo scrivere matrici come vettore di vettori riga e vettore di vettori colonna.
+Così possimao riscrivere il prodotto tra matrici A e B come la somma dei prodotti esterni della colonne di A e la riga di B.
+Guardiamo il caso particolare in cui A e B sono lower diagonal e upper diagonal.
+L è lower d, U è upper d. LU:
+si prende la prima colonna e la prima riga. Dato che ci sono tutti gli elementi questo prodotto da una matrice piena. 
+La seconda colonna e la seconda riga hanno entrambe il primo elemento nullo. Produce una matrice interna che ha prima riga 
+e prima collonna nulla. Si va avanti così.
+
+Ora, se moltiplico per vettore riga j della base canonica una matrice ottengo la riga j della matrice. 
+Consideriamo A = LU.
+Facendo e1T A si ottiene l11u1T. (1)
+Facendo A e1 si ottiene u11l1 (2)
+Quindi ora come operiamo? A = LU ed è un sistema di equazione. A ha n*n elementi, L ha n(n+1)/2, in totale n(n+1).
+Per avere soluzione unica fissimao le diagonali di L e U a 1. Così le variabili di LU sono n^2.
+(1) Dato che l11 = 1, data A U si può riempire la pruna riga con la prima riga di A. 
+(2) Si ottiene la primam colonna di L 
+Adesso siamo in grado di calcoloare l1u1T e possiamo sottrarlo ad A.
+A - l1u1T = l2u2T + l3u3T. l1u1T è matrice completa nelle entrate, con prima riga e prima colonna pari a quella di A, 
+così azzeriamo la prima riga e colonna di A. Ora ci focalizziamo sulla matrice ottenuta e ripetiamo la procedura con e2T e e2.
+Così costuriamo la seconda riga di U e la seconda colonna di L. Si ripetee il processo.
+Alla fine si riesce a costruire la matrice. 
