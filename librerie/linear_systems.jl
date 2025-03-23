@@ -1,3 +1,14 @@
+#Index of the file:
+#1. Error handling section: necessario per messaggi di errore
+#2. fw_sub(matrix, b) function: risolve un sistema lineare con matrice triangolare inferiore
+#3. bw_sub(matrix, b) function: risolve un sistema lineare con matrice triangolare superiore
+#4. outer_product(v, w) function: esegue il prodotto esterno tra due vettori
+#5. LU_dec(A) function: esegue la decomposizione di una matrice in trinagolare inferiore e superiore
+#6. diag_prod(squared_matr) function: calcola il prodotto degli elementi diagonali di una matrice n*n qualunque
+#7. tri_det(tri_matr) function: calcola il determinante di una matrice n*n triangolare tramite diag_prod()
+#8. my_det(A) function: calcola il determinante di una matrice tramite LU_dec() e tri_det()
+#9. solve_linear_system(A, b) function: risolve un sistema lineare Ax = b tramite LU_dec(), fw_sub() e bw_sub()
+#-----------------------------------------------------------------------------------------
 #Import section
 using LinearAlgebra
 #-----------------------------------------------------------------------------------------
@@ -9,12 +20,11 @@ end
 # Sovrascrivi il metodo show per MatriceSummary in modo che stampi solo le dimensioni
 Base.show(io::IO, s::MatriceSummary) = print(io, "matrix of dimension ", size(s.A))
 #-----------------------------------------------------------------------------------------
-
 #This function operates a forward substitution for lower diagonal matrices (vector of vectors and matrices)
 function fw_sub(matrix, b)
     #Mi accerto che la matrice e il vettore siano di tipo Float64
     matrix = convert(Matrix{Float64}, matrix)
-    b = convert(Matrix{Float64}, b)
+    b = convert(Vector{Float64}, b)
 
     n = size(matrix, 1)
     if n != length(b)
@@ -33,13 +43,12 @@ function fw_sub(matrix, b)
     return solution
 end
 #------------------------------------------------------------------------------------------------------------------------
-
 #This function operates a backward substitution for upper diagonal matrices (vector of vectors and matrices)
 function bw_sub(matrix, b)
 
     #Mi accerto che la matrice e il vettore siano di tipo Float64
     matrix = convert(Matrix{Float64}, matrix)
-    b = convert(Matrix{Float64}, b)
+    b = convert(Vector{Float64}, b)
 
     n = size(matrix, 1)
     if n != length(b)
@@ -58,9 +67,12 @@ function bw_sub(matrix, b)
     return solution
 end
 #---------------------------------------------------------------------------------------------------------------------
-
 #Funzione per il prodotto esterno. Restituisce una matrice a partire da due vettori
 function outer_product(v, w)
+    #Mi accerto che i vettori siano di tipo Float64
+    v = convert(Vector{Float64}, v)
+    w = convert(Vector{Float64}, w)
+    #Mi accerto che i vettori siano della stessa lunghezza
     if length(v) != length(w)
         throw(DomainError(MatriceSummary(v), "Dimension mismatch between the two arrays"))
     end
@@ -73,10 +85,13 @@ function outer_product(v, w)
     end
     return matrix
 end
-
+#---------------------------------------------------------------------------------------------------------------------
 #Esegue la decomposizione di una matrice in due matrici, una triangolare inferiore e l'altra triangolare superiore
 #NON INCLUDE ROW-PIVOTING
 function LU_dec(A)
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
     end
@@ -94,10 +109,12 @@ function LU_dec(A)
     end
     return L, U
 end
-
+#---------------------------------------------------------------------------------------------------------------------
 #Calcola il prodotto degli elementi diagonali di una matrice n*n 
 function diag_prod(squared_matr)
-    #I want to be sure that the given matrix is squared
+    #Mi accerto che la matrice sia di tipo Float64
+    squared_matr = convert(Matrix{Float64}, squared_matr)
+    #Mi accerto che la matrice sia quadrata
     if size(squared_matr, 1) != size(squared_matr, 2)
         throw(DomainError(MatriceSummary(squared_matr), "The given matrix isn't squared"))
     end
@@ -110,9 +127,11 @@ function diag_prod(squared_matr)
     
     return prod
 end
-
+#---------------------------------------------------------------------------------------------------------------------
 #Calcola il determinante di una matrice n*n tringolare (superiore o inferiore è indifferente, il det è il prodotto degli elementi diagonali)
 function tri_det(tri_matr)
+    #Mi accerto che la matrice sia di tipo Float64
+    tri_matr = convert(Matrix{Float64}, tri_matr)
     #I want to be sure that the given matrix is squared
     if size(tri_matr, 1) != size(tri_matr, 2)
         throw(DomainError(MatriceSummary(tri_matr), "The given matrix isn't squared"))
@@ -132,3 +151,34 @@ function tri_det(tri_matr)
 
     return det
 end
+#---------------------------------------------------------------------------------------------------------------------
+#Calcola il determinante di una matrice n*n
+function my_det(A)
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    #Mi accerto che la matrice sia quadrata
+    if size(A, 1) != size(A, 2)
+        throw(DomainError(MatriceSummary(A), "The given matrix isn't squared"))
+    end
+
+    L, U = LU_dec(A)
+    det = tri_det(L) * tri_det(U)
+    return det
+end
+#---------------------------------------------------------------------------------------------------------------------
+#Risolve un sistema lineare Ax = b
+function solve_linear_system(A, b)
+    #Mi accerto che la matrice e il vettore siano di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    b = convert(Vector{Float64}, b)
+    #Mi accerto che la matrice e il vettore siano della stessa lunghezza
+    if size(A, 1) != length(b)
+        throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
+    end
+
+    L, U = LU_dec(A)
+    y = fw_sub(L, b)
+    x = bw_sub(U, y)
+    return x
+end
+#---------------------------------------------------------------------------------------------------------------------
