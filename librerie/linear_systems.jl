@@ -66,7 +66,7 @@ function bw_sub(matrix, b)
     end
     return solution
 end
-#---------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------
 #Funzione per il prodotto esterno. Restituisce una matrice a partire da due vettori
 function outer_product(v, w)
     #Mi accerto che i vettori siano di tipo Float64
@@ -108,6 +108,34 @@ function LU_dec(A)
         B -= outer_product(L[:,i], U[i,:])       
     end
     return L, U
+end
+#-------------------------------------------------------------------------------------------------------------------------
+#Esegue la decomposizione di una matrice definita positiva in due matrici, triangolare inf e sup (Cholesky)
+#Restituisce solo la matrice triangolare superiore, l'altra è la trasposta 
+function chlsky_dec(A)
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    #Mi accerto che la matrice sia quadrata
+    if size(A,1) != size(A,2)
+        throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
+    end
+
+    n = size(A, 1)
+    RT = zeros(n, n)    #analogo di RT
+    R = zeros(n, n)     #analogo di U
+    #B matrice da usare per i calcoli intermedi
+    B = A
+    #i indice dell'iterazione. Faccio in modo di escludere gli zeri
+    for i in 1:n
+        if B[i,i] <= 0
+            throw(DomainError(MatriceSummary(A), "La matrice non è definita positiva."))
+        else
+            R[i, i:n] = B[i, i:n]/sqrt(B[i,i])
+            RT[i:n, i] = R[i, i:n]
+            B -= outer_product(RT[:,i], R[i,:])
+        end      
+    end
+    return R
 end
 #---------------------------------------------------------------------------------------------------------------------
 #Calcola il prodotto degli elementi diagonali di una matrice n*n 
@@ -182,3 +210,4 @@ function solve_linear_system(A, b)
     return x
 end
 #---------------------------------------------------------------------------------------------------------------------
+
