@@ -1,0 +1,47 @@
+La Lu decomposition si semplifica per matrici a banda, cioè diagonale e con elementi diagonali superiori o inferiori piene.
+Per il nostro interesse le matrici sono: A mat n*n con
+1. A = A^T
+2. Definita positiva x^T A x > 0 per ogni xin R^n
+
+Vale, tramite un teorema, che le matrici definite positive sono scomponibili in A=R^T*R con R upper diagonal.
+Si costruisce in maniera costruttiva. Sulle note c'è tutto l'algoritmo.
+Un metodo può essere quello di ripercorrere l'algoritmo per LU decomposition.
+
+Dimostrare che la matrice è definita positiva è la cosa difficle. Da definizione matematica su un computer è problematica.
+Per mostrarlo si usa la Cholensky decomposition. Se fallisce è o un problemma numerico (underflow o overflow) o non è
+definnita positiva. In generale i fisici lavorano sapendo per costruzione che le matrici sono definite positive.
+
+Conditioning per matrici:
+Ax = b caso reale, Axtilde = b caso numerico
+Vogliamo capire come stimare  l'errore Deltax.
+norma è un operatore lineare da Rn a R e deve:
+1. norma >=0
+2. norma = 0  allora il vettore è nullo
+3. la nroma di ax è a norma di x
+4. Disuguaglianza triangolare
+
+Esempi: norma euclidea, norma infinita (massimo del modulo degli xi), norma 1 (somma dei moduli degli elementi del vettore)
+
+Normalizzazione, convergenza in norma di vettori.
+Vale che: c norma a di x <= norma b di x <= C norma b di x
+
+Norme per matrici: ad esempio la norma froebnius. A noi interessano le nomre indotte, sono indotte da norme sui vettori
+Norma p di A: dispense
+Il senso è che il vettre x in norma è un cerchio di raggio 1, la norma di A è il raggio della sfera più piccola che include il
+vettori Ax.
+Si può mostrare che per queste norma vale: 
+1. norma AX <= norma A normax
+2. norma AB <= norma A normaB
+
+Due norme (indotte) che si usano:
+1. norma infinito: sommo sulle colonne, vedo il più grande tra le righe
+2. norma 1 sommo sulle righe e guardo il massimo sulle colonne.
+
+Torniamo al condition number:
+la differenza tra il caso reale e numerico è sempr eil discorso di rounding errors. Sia A che b possono essere già il risultato
+di arrotondamento. Per calcolare l'errore si usano le norme e le proprietà della norma. Viene fuori che il condition 
+number è la norma dell'inverso di A per la norma di A.
+Per costruzione il condition number è sempre maggiore di 1 (si vede a partire dalla norma dell'identità).
+
+C'è un modo per stimare l'errore, tramite l'errore residuo. Il condition number però deve essere piccolo, perchè se no il 
+meccanismo non è informativo.
