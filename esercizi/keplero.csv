@@ -1,0 +1,9 @@
+#Planet,   Distance from sun in Mkm,   Orbital period in days,  Mass in 1e23 kg            
+ Mercury,  57.59,                      87.99,                   3.29
+ Venus,    108.11,                     224.7,                   48.7
+ Earth,    149.57,                     365.26,                  59.7
+ Mars,     227.84,                     686.98,                  6.39
+ Jupiter,  778.14,                     4332.4,                  19000
+ Saturn,   1427,                       10759,                   5680
+ Uranus,   2870.3,                     30684,                   868
+ Neptune,  4499.9,                     60188,                   1020
