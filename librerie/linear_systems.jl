@@ -9,6 +9,8 @@
 #8. tri_det(tri_matr) function: calcola il determinante di una matrice n*n triangolare tramite diag_prod()
 #9. my_det(A) function: calcola il determinante di una matrice tramite LU_dec() e tri_det()
 #10. solve_linear_system(A, b) function: risolve un sistema lineare Ax = b tramite LU_dec(), fw_sub() e bw_sub()
+#11. sls_chlsky(A, b) function: risolve un sistema lineare Ax = b tramite chlsky_dec(), fw_sub() e bw_sub()
+#12. least_sq(A, b) function: calcola i coefficienti di un fit con metodo dei minimi quadrati
 #-----------------------------------------------------------------------------------------
 #Import section
 using LinearAlgebra
