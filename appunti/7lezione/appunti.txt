@@ -1,0 +1,41 @@
+Interpolazione
+Quando abbiamo una funzione abbiamo dei valori e delle costanti. Fisicamente misuriamo z e y, poi abbiamo una serie di 
+equazioni che dobbiamo risolvere. Per determinare n coefficienti servono n misure. Se prendo più misure il sistema dovrà
+essere tale da poter essere risolto univocamente. In generale i punti misurati non stanno esattamente sulla funzione.
+Come possiamo trovare la soluzione migliore?
+Il modello che si usa è la minimizzazione dello scarto quadratico medio. SI definisce una funzione che è la somma delle distanze 
+delle misure dal modello, al quadrato. SI vuole minimizzare questa funzione.
+Il caso più semplice è il fit lineare, la funzione f(z, c1, c2, ..., cn) = c1f1(z) + ... + cnfn(z). Ciascuna fi potrebbe 
+non essere lineare, ma la dipendenza lineare è dai parametri.
+Si definisce i vettore r = [y1, y2, ... yn]- A[c1, c2, ..., cn] . DOve A è la matrice delle funzioni calcolate in nelle 
+varie misure. Così R è la norma 2 quadra di r.
+Il vettore delle y è b, il vettore di c è x.
+A è una matrice m*n, b è vettore m con m>n. Vogliamo trovare x che minimizza la norma euclidea di b-Ax.
+Se m=n la soluzione che minimizza è Ax=b.
+Per m>n la soluzione che minimizza è x t.c. At(Ax-b) = 0. Dim:
+y in Rn, calcoliamo A(x+y)- b. Di questo calcoliamo il modulo quadro, facendo un po' di conti si ottiene che è il modulo quadro
+ddi Ax-b +il mdoulo quadro di Ay. Questo è maggiore uguale di modulo q. di Ax-b []
+
+La soluzione viene riscritta con AtAx= Atb cioè Nx=z con N =At*A e z=Atb. QUesto è un sistema che conosciamo perche N è n*N
+
+Prenddiamo A mat n*m. 
+1. Se costruscio At*A è simmetrica. 
+2.Inoltre AtA è singolare sse le colonne di A sono linearmente dip, cioè raango di A è minore di n
+3. Se AtA è non singolare, allora è positiva definita.
+
+Dim: 1. è banale
+Dim: 2. AtAz = 0 con z!=0. Quando succede?
+    0=ztAtAz = (Az)t(AZ = modulo q di AZ) e succede se e solo se Az =0
+dim: 3. prendiamo v != 0, calcoliamo vT(AtA)v = modulo q di Av > 0  per tutti i vettori, perchè l'unico per cui è zero è se v è zero
+        ma questa è la deinzione di definita positiva.
+
+Il primo passo è definire N 
+Il secondo è z = Atb
+Il terzo Nx = z
+
+Dato che N è definita positiva possiamo usare Cholesky?
+Si, anche se il condition number di N è il il quadrato di k(A). E un argomento naive, perchè se k(N) è grande lo era anche k(A),
+e gli altri algoritmi sono più costosi.
+
+In generale non mostreremo se le matrici sono singolari, nel pratico se N non è singolare si prova con Cholensy e se si rompe
+allora non andava bene. 
