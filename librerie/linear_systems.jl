@@ -4,10 +4,11 @@
 #3. bw_sub(matrix, b) function: risolve un sistema lineare con matrice triangolare superiore
 #4. outer_product(v, w) function: esegue il prodotto esterno tra due vettori
 #5. LU_dec(A) function: esegue la decomposizione di una matrice in trinagolare inferiore e superiore
-#6. diag_prod(squared_matr) function: calcola il prodotto degli elementi diagonali di una matrice n*n qualunque
-#7. tri_det(tri_matr) function: calcola il determinante di una matrice n*n triangolare tramite diag_prod()
-#8. my_det(A) function: calcola il determinante di una matrice tramite LU_dec() e tri_det()
-#9. solve_linear_system(A, b) function: risolve un sistema lineare Ax = b tramite LU_dec(), fw_sub() e bw_sub()
+#6. chlsky_dec(A) function: esegue la decomposizione di una matrice definita positiva in trinagolare inferiore e superiore
+#7. diag_prod(squared_matr) function: calcola il prodotto degli elementi diagonali di una matrice n*n qualunque
+#8. tri_det(tri_matr) function: calcola il determinante di una matrice n*n triangolare tramite diag_prod()
+#9. my_det(A) function: calcola il determinante di una matrice tramite LU_dec() e tri_det()
+#10. solve_linear_system(A, b) function: risolve un sistema lineare Ax = b tramite LU_dec(), fw_sub() e bw_sub()
 #-----------------------------------------------------------------------------------------
 #Import section
 using LinearAlgebra
@@ -210,4 +211,40 @@ function solve_linear_system(A, b)
     return x
 end
 #---------------------------------------------------------------------------------------------------------------------
+#Risolve un sistema lineare Ax = b usando Cholesky decomposition
+function sls_chlsky(A, b)
+    #Mi accerto che la matrice e il vettore siano di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    b = convert(Vector{Float64}, b)
+    #Mi accerto che la matrice e il vettore siano della stessa lunghezza
+    if size(A, 1) != length(b)
+        throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
+    end
 
+    R = chlsky_dec(A)
+    Rt = transpose(R)
+    y = fw_sub(Rt, b)
+    x = bw_sub(R, y)
+    return x
+end
+#---------------------------------------------------------------------------------------------------------------------
+#Calcola i coefficienti di un fit con metodo dei minimi quadrati
+#la matrice A è m*n, b è di dimensione n
+function least_sq(A, b)
+    #Mi accerto che la matrice e il vettore siano di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    b = convert(Vector{Float64}, b)
+    m = size(A, 1)
+    n = size(A, 2)
+    m_b = length(b)
+
+    if m != m_b
+        throw(DomainError(MatriceSummary(A), "The system is not well defined. The matrix's size is $m * $n while the vector is $m_b long."))
+    end
+
+    At = transpose(A)
+    N = At*A   
+    z = At*b
+    x = sls_chlsky(N, z)
+    return x
+end
