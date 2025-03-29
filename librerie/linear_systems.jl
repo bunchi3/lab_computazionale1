@@ -25,9 +25,17 @@ Base.show(io::IO, s::MatriceSummary) = print(io, "matrix of dimension ", size(s.
 #-----------------------------------------------------------------------------------------
 #This function operates a forward substitution for lower diagonal matrices (vector of vectors and matrices)
 function fw_sub(matrix, b)
+    if !(matrix isa AbstractMatrix) || !(b isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    end
+    
     #Mi accerto che la matrice e il vettore siano di tipo Float64
-    matrix = convert(Matrix{BigFloat}, matrix)
-    b = convert(Vector{BigFloat}, b)
+    matrix = convert(Matrix{Float64}, matrix)
+    b = convert(Vector{Float64}, b)
+
+    if !istril(matrix) 
+        throw(ArgumentError("The matrix must be lower triangular"))
+    end 
 
     n = size(matrix, 1)
     if n != length(b)
@@ -48,11 +56,16 @@ end
 #------------------------------------------------------------------------------------------------------------------------
 #This function operates a backward substitution for upper diagonal matrices (vector of vectors and matrices)
 function bw_sub(matrix, b)
+    if !(matrix isa AbstractMatrix) || !(b isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    end
 
     #Mi accerto che la matrice e il vettore siano di tipo Float64
-    matrix = convert(Matrix{BigFloat}, matrix)
-    b = convert(Vector{BigFloat}, b)
-
+    matrix = convert(Matrix{Float64}, matrix)
+    b = convert(Vector{Float64}, b)
+    if !istriu(matrix) 
+        throw(ArgumentError("The matrix must be upper triangular"))
+    end
     n = size(matrix, 1)
     if n != length(b)
         throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
@@ -72,9 +85,12 @@ end
 #------------------------------------------------------------------------------------------------------------------------
 #Funzione per il prodotto esterno. Restituisce una matrice a partire da due vettori
 function outer_product(v, w)
+    if !(v isa AbstractVector) || !(w isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a vector and the second one must be a vector"))
+    end
     #Mi accerto che i vettori siano di tipo Float64
-    v = convert(Vector{BigFloat}, v)
-    w = convert(Vector{BigFloat}, w)
+    v = convert(Vector{Float64}, v)
+    w = convert(Vector{Float64}, w)
     #Mi accerto che i vettori siano della stessa lunghezza
     if length(v) != length(w)
         throw(DomainError(MatriceSummary(v), "Dimension mismatch between the two arrays"))
@@ -92,12 +108,15 @@ end
 #Esegue la decomposizione di una matrice in due matrici, una triangolare inferiore e l'altra triangolare superiore
 #NON INCLUDE ROW-PIVOTING
 function LU_dec(A)
-    #Mi accerto che la matrice sia di tipo Float64
-    A = convert(Matrix{BigFloat}, A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be a matrix"))
+    end
     #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
     end
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
 
     n = size(A, 1)
     L = diagm(ones(n))
@@ -116,12 +135,16 @@ end
 #Esegue la decomposizione di una matrice definita positiva in due matrici, triangolare inf e sup (Cholesky)
 #Restituisce solo la matrice triangolare superiore, l'altra è la trasposta 
 function chlsky_dec(A)
-    #Mi accerto che la matrice sia di tipo Float64
-    A = convert(Matrix{Float64}, A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be a matrix"))
+    end
     #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
     end
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
+
     n = size(A, 1)
     RT = zeros(n, n)    #analogo di RT
     R = zeros(n, n)     #analogo di U
@@ -142,13 +165,16 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Calcola il prodotto degli elementi diagonali di una matrice n*n 
 function diag_prod(squared_matr)
-    #Mi accerto che la matrice sia di tipo Float64
-    squared_matr = convert(Matrix{BigFloat}, squared_matr)
+    if !(squared_matr isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be a matrix"))
+    end
     #Mi accerto che la matrice sia quadrata
     if size(squared_matr, 1) != size(squared_matr, 2)
         throw(DomainError(MatriceSummary(squared_matr), "The given matrix isn't squared"))
     end
-    
+    #Mi accerto che la matrice sia di tipo Float64
+    squared_matr = convert(Matrix{Float64}, squared_matr)
+
     n = size(squared_matr, 1)
     prod = 1.0
     for i in 1:n
@@ -160,12 +186,15 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Calcola il determinante di una matrice n*n tringolare (superiore o inferiore è indifferente, il det è il prodotto degli elementi diagonali)
 function tri_det(tri_matr)
-    #Mi accerto che la matrice sia di tipo Float64
-    tri_matr = convert(Matrix{BigFloat}, tri_matr)
+    if !(tri_matr isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be a matrix"))
+    end
     #I want to be sure that the given matrix is squared
     if size(tri_matr, 1) != size(tri_matr, 2)
         throw(DomainError(MatriceSummary(tri_matr), "The given matrix isn't squared"))
     end
+    #Mi accerto che la matrice sia di tipo Float64
+    tri_matr = convert(Matrix{Float64}, tri_matr)
 
     det = 0
     #I want to be sure that the matrix given is triangular
@@ -184,12 +213,15 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Calcola il determinante di una matrice n*n
 function my_det(A)
-    #Mi accerto che la matrice sia di tipo Float64
-    A = convert(Matrix{BigFloat}, A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be a matrix"))
+    end
     #Mi accerto che la matrice sia quadrata
     if size(A, 1) != size(A, 2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared"))
     end
+    #Mi accerto che la matrice sia di tipo Float64
+    A = convert(Matrix{Float64}, A)
 
     L, U = LU_dec(A)
     det = tri_det(L) * tri_det(U)
@@ -198,13 +230,16 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Risolve un sistema lineare Ax = b
 function solve_linear_system(A, b)
-    #Mi accerto che la matrice e il vettore siano di tipo Float64
-    A = convert(Matrix{BigFloat}, A)
-    b = convert(Vector{BigFloat}, b)
+    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    end
     #Mi accerto che la matrice e il vettore siano della stessa lunghezza
     if size(A, 1) != length(b)
         throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
     end
+    #Mi accerto che la matrice e il vettore siano di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    b = convert(Vector{Float64}, b)
 
     L, U = LU_dec(A)
     y = fw_sub(L, b)
@@ -214,13 +249,16 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Risolve un sistema lineare Ax = b usando Cholesky decomposition
 function sls_chlsky(A, b)
-    #Mi accerto che la matrice e il vettore siano di tipo Float64
-    A = convert(Matrix{Float64}, A)
-    b = convert(Vector{Float64}, b)
+    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    end
     #Mi accerto che la matrice e il vettore siano della stessa lunghezza
     if size(A, 1) != length(b)
         throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
     end
+    #Mi accerto che la matrice e il vettore siano di tipo Float64
+    A = convert(Matrix{Float64}, A)
+    b = convert(Vector{Float64}, b)
 
     R = chlsky_dec(A)
     Rt = transpose(R)
@@ -232,9 +270,13 @@ end
 #Calcola i coefficienti di un fit con metodo dei minimi quadrati
 #la matrice A è m*n, b è di dimensione n
 function least_sq(A, b)
+    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
+        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    end
     #Mi accerto che la matrice e il vettore siano di tipo Float64
     A = convert(Matrix{Float64}, A)
     b = convert(Vector{Float64}, b)
+
     m = size(A, 1)
     n = size(A, 2)
     m_b = length(b)
