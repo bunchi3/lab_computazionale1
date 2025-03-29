@@ -26,8 +26,8 @@ Base.show(io::IO, s::MatriceSummary) = print(io, "matrix of dimension ", size(s.
 #This function operates a forward substitution for lower diagonal matrices (vector of vectors and matrices)
 function fw_sub(matrix, b)
     #Mi accerto che la matrice e il vettore siano di tipo Float64
-    matrix = convert(Matrix{Float64}, matrix)
-    b = convert(Vector{Float64}, b)
+    matrix = convert(Matrix{BigFloat}, matrix)
+    b = convert(Vector{BigFloat}, b)
 
     n = size(matrix, 1)
     if n != length(b)
@@ -50,8 +50,8 @@ end
 function bw_sub(matrix, b)
 
     #Mi accerto che la matrice e il vettore siano di tipo Float64
-    matrix = convert(Matrix{Float64}, matrix)
-    b = convert(Vector{Float64}, b)
+    matrix = convert(Matrix{BigFloat}, matrix)
+    b = convert(Vector{BigFloat}, b)
 
     n = size(matrix, 1)
     if n != length(b)
@@ -73,8 +73,8 @@ end
 #Funzione per il prodotto esterno. Restituisce una matrice a partire da due vettori
 function outer_product(v, w)
     #Mi accerto che i vettori siano di tipo Float64
-    v = convert(Vector{Float64}, v)
-    w = convert(Vector{Float64}, w)
+    v = convert(Vector{BigFloat}, v)
+    w = convert(Vector{BigFloat}, w)
     #Mi accerto che i vettori siano della stessa lunghezza
     if length(v) != length(w)
         throw(DomainError(MatriceSummary(v), "Dimension mismatch between the two arrays"))
@@ -93,7 +93,7 @@ end
 #NON INCLUDE ROW-PIVOTING
 function LU_dec(A)
     #Mi accerto che la matrice sia di tipo Float64
-    A = convert(Matrix{Float64}, A)
+    A = convert(Matrix{BigFloat}, A)
     #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
@@ -122,7 +122,6 @@ function chlsky_dec(A)
     if size(A,1) != size(A,2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared."))
     end
-
     n = size(A, 1)
     RT = zeros(n, n)    #analogo di RT
     R = zeros(n, n)     #analogo di U
@@ -144,7 +143,7 @@ end
 #Calcola il prodotto degli elementi diagonali di una matrice n*n 
 function diag_prod(squared_matr)
     #Mi accerto che la matrice sia di tipo Float64
-    squared_matr = convert(Matrix{Float64}, squared_matr)
+    squared_matr = convert(Matrix{BigFloat}, squared_matr)
     #Mi accerto che la matrice sia quadrata
     if size(squared_matr, 1) != size(squared_matr, 2)
         throw(DomainError(MatriceSummary(squared_matr), "The given matrix isn't squared"))
@@ -162,7 +161,7 @@ end
 #Calcola il determinante di una matrice n*n tringolare (superiore o inferiore è indifferente, il det è il prodotto degli elementi diagonali)
 function tri_det(tri_matr)
     #Mi accerto che la matrice sia di tipo Float64
-    tri_matr = convert(Matrix{Float64}, tri_matr)
+    tri_matr = convert(Matrix{BigFloat}, tri_matr)
     #I want to be sure that the given matrix is squared
     if size(tri_matr, 1) != size(tri_matr, 2)
         throw(DomainError(MatriceSummary(tri_matr), "The given matrix isn't squared"))
@@ -186,7 +185,7 @@ end
 #Calcola il determinante di una matrice n*n
 function my_det(A)
     #Mi accerto che la matrice sia di tipo Float64
-    A = convert(Matrix{Float64}, A)
+    A = convert(Matrix{BigFloat}, A)
     #Mi accerto che la matrice sia quadrata
     if size(A, 1) != size(A, 2)
         throw(DomainError(MatriceSummary(A), "The given matrix isn't squared"))
@@ -200,8 +199,8 @@ end
 #Risolve un sistema lineare Ax = b
 function solve_linear_system(A, b)
     #Mi accerto che la matrice e il vettore siano di tipo Float64
-    A = convert(Matrix{Float64}, A)
-    b = convert(Vector{Float64}, b)
+    A = convert(Matrix{BigFloat}, A)
+    b = convert(Vector{BigFloat}, b)
     #Mi accerto che la matrice e il vettore siano della stessa lunghezza
     if size(A, 1) != length(b)
         throw(DomainError(MatriceSummary(b), "Dimension mismatch between the matrix and the vector of known terms"))
@@ -250,3 +249,6 @@ function least_sq(A, b)
     x = sls_chlsky(N, z)
     return x
 end
+
+#---------------------------------------------------------------------------------------------------------------------
+println("linear_systems.jl loaded correctly")
