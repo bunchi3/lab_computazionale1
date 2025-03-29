@@ -1,3 +1,8 @@
+#File's index:
+# 1. pol_expansion: polynomial series
+# 2. pol_fit: polynomial fit
+# 3. fourier_expansion: Fourier series
+# 4. fourier_fit: Fourier fit
 #import section
 using Markdown     #markdown visualization in display
 using LaTeXStrings
@@ -26,7 +31,6 @@ function pol_expansion(x, c)
     end
     return sum
 end
-
 #Polynomial fit. Requires x data, the y data, the number of coefficients you want from the fit
 function pol_fit(x, y, n_coeff)
     #Sezione di test iniziali
@@ -55,7 +59,7 @@ function pol_fit(x, y, n_coeff)
     c = least_sq(A, y)
     return c  
 end
-
+#-------------------------------------------------------------------------------------------------------------------------------
 #Fourier series. Requires x and the series coefficients
 #Returns an array with the truncation of the Fourier series evaluated at the x values
 function fourier_expansion(x, c)
@@ -84,7 +88,6 @@ function fourier_expansion(x, c)
     end
     return sum
 end
-
 #Goniometric functions fit. Requires x data, the y data, the number of coefficients you want from the fit
 function fourier_fit(x, y, n_coeff)
     #Sezione di test iniziali
@@ -120,6 +123,5 @@ function fourier_fit(x, y, n_coeff)
     c = least_sq(A, y_meas)
     return c  
 end
-
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")

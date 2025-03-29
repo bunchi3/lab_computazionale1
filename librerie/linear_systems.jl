@@ -1,4 +1,4 @@
-#Index of the file:
+#File's index
 #1. Error handling section: necessario per messaggi di errore
 #2. fw_sub(matrix, b) function: risolve un sistema lineare con matrice triangolare inferiore
 #3. bw_sub(matrix, b) function: risolve un sistema lineare con matrice triangolare superiore
