@@ -25,8 +25,15 @@ Base.show(io::IO, s::MatriceSummary) = print(io, "matrix of dimension ", size(s.
 #-----------------------------------------------------------------------------------------
 #This function operates a forward substitution for lower diagonal matrices (vector of vectors and matrices)
 function fw_sub(matrix, b)
-    if !(matrix isa AbstractMatrix) || !(b isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    if !(matrix isa AbstractMatrix) 
+        throw(ArgumentError("The first parameter must be an AbstractMatrix."))
+    end
+    if !(b isa AbstractVector)
+        if b isa AbstractMatrix
+            b = vec(b)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix."))
+        end    
     end
     
     #Mi accerto che la matrice e il vettore siano di tipo Float64
@@ -56,8 +63,15 @@ end
 #------------------------------------------------------------------------------------------------------------------------
 #This function operates a backward substitution for upper diagonal matrices (vector of vectors and matrices)
 function bw_sub(matrix, b)
-    if !(matrix isa AbstractMatrix) || !(b isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    if !(matrix isa AbstractMatrix) 
+        throw(ArgumentError("The first parameter must be an AbstractMatrix."))
+    end
+    if !(b isa AbstractVector)
+        if b isa AbstractMatrix
+            b = vec(b)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix."))
+        end    
     end
 
     #Mi accerto che la matrice e il vettore siano di tipo Float64
@@ -85,8 +99,19 @@ end
 #------------------------------------------------------------------------------------------------------------------------
 #Funzione per il prodotto esterno. Restituisce una matrice a partire da due vettori
 function outer_product(v, w)
-    if !(v isa AbstractVector) || !(w isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a vector and the second one must be a vector"))
+    if !(v isa AbstractVector) 
+        if v isa AbstractMatrix
+            v = vec(v)
+        else
+            throw(ArgumentError("The first parameter must be an AbstractVector or an AbstractMatrix"))
+        end
+    end 
+    if !(w isa AbstractVector)
+        if w isa AbstractMatrix
+            w = vec(w)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix"))
+        end    
     end
     #Mi accerto che i vettori siano di tipo Float64
     v = convert(Vector{Float64}, v)
@@ -109,7 +134,7 @@ end
 #NON INCLUDE ROW-PIVOTING
 function LU_dec(A)
     if !(A isa AbstractMatrix)
-        throw(ArgumentError("The parameter must be a matrix"))
+        throw(ArgumentError("The parameter must be an AbstractMatrix"))
     end
     #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
@@ -136,7 +161,7 @@ end
 #Restituisce solo la matrice triangolare superiore, l'altra è la trasposta 
 function chlsky_dec(A)
     if !(A isa AbstractMatrix)
-        throw(ArgumentError("The parameter must be a matrix"))
+        throw(ArgumentError("The parameter must be an AbstractMatrix"))
     end
     #Mi accerto che la matrice sia quadrata
     if size(A,1) != size(A,2)
@@ -166,7 +191,7 @@ end
 #Calcola il prodotto degli elementi diagonali di una matrice n*n 
 function diag_prod(squared_matr)
     if !(squared_matr isa AbstractMatrix)
-        throw(ArgumentError("The parameter must be a matrix"))
+        throw(ArgumentError("The parameter must be an AbstractMatrix"))
     end
     #Mi accerto che la matrice sia quadrata
     if size(squared_matr, 1) != size(squared_matr, 2)
@@ -187,7 +212,7 @@ end
 #Calcola il determinante di una matrice n*n tringolare (superiore o inferiore è indifferente, il det è il prodotto degli elementi diagonali)
 function tri_det(tri_matr)
     if !(tri_matr isa AbstractMatrix)
-        throw(ArgumentError("The parameter must be a matrix"))
+        throw(ArgumentError("The parameter must be an AbstractMatrix"))
     end
     #I want to be sure that the given matrix is squared
     if size(tri_matr, 1) != size(tri_matr, 2)
@@ -214,7 +239,7 @@ end
 #Calcola il determinante di una matrice n*n
 function my_det(A)
     if !(A isa AbstractMatrix)
-        throw(ArgumentError("The parameter must be a matrix"))
+        throw(ArgumentError("The parameter must be an AbstractMatrix"))
     end
     #Mi accerto che la matrice sia quadrata
     if size(A, 1) != size(A, 2)
@@ -230,8 +255,15 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Risolve un sistema lineare Ax = b
 function solve_linear_system(A, b)
-    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The first parameter must be an AbstractMatrix."))
+    end
+    if !(b isa AbstractVector)
+        if b isa AbstractMatrix
+            b = vec(b)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix."))
+        end    
     end
     #Mi accerto che la matrice e il vettore siano della stessa lunghezza
     if size(A, 1) != length(b)
@@ -249,8 +281,15 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #Risolve un sistema lineare Ax = b usando Cholesky decomposition
 function sls_chlsky(A, b)
-    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The first parameter must be an AbstractMatrix."))
+    end
+    if !(b isa AbstractVector)
+        if b isa AbstractMatrix
+            b = vec(b)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix."))
+        end    
     end
     #Mi accerto che la matrice e il vettore siano della stessa lunghezza
     if size(A, 1) != length(b)
@@ -270,9 +309,17 @@ end
 #Calcola i coefficienti di un fit con metodo dei minimi quadrati
 #la matrice A è m*n, b è di dimensione n
 function least_sq(A, b)
-    if !(A isa AbstractMatrix) || !(b isa AbstractVector)
-        throw(ArgumentError("The first parameter must be a matrix and the second one must be a vector"))
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The first parameter must be an AbstractMatrix."))
     end
+    if !(b isa AbstractVector)
+        if b isa AbstractMatrix
+            b = vec(b)
+        else
+            throw(ArgumentError("The second parameter must be an AbstractVector or an AbstractMatrix."))
+        end    
+    end
+    
     #Mi accerto che la matrice e il vettore siano di tipo Float64
     A = convert(Matrix{Float64}, A)
     b = convert(Vector{Float64}, b)
