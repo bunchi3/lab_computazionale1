@@ -1,0 +1,46 @@
+Il problema che studiamo è trovare r che annulla una funzione generica: f(r) = 0. (comprende g(x)-h(x)=0)
+Nei sistemi lineari in un numeor finito di operazioni si arriva alla soluzione esatta (a meno di rounding error).
+In questi problemi, per arrivare alla soluzione, ci vogliono un numero infinito di operazioni. 
+In questo caso l'input è la funzione. Vediamo come un errore nella funzione si propaga nella radice.
+COìome cerchiamo il condition number? In generale la funzione è ftilde=f+delta. Immaginimao delta come costante. 
+L'errore in f implicherà errore nella root rtilde=r+epsilon t.c. ftilde(rtilde)=0.
+Il condition number è il modulo di epsilon/delta nel limite per delta che va a 0.
+Con conti si ottiene un condition number che è il modulo di 1/derivata di f. E' un condition n assoluto, perchè è già relativo
+allo zero della funzione. L'implicazione è che più e piatta la funzione vicino alla root (derivata prima di f = 0)
+più sarà difficile trovare la root, perchè il condition number diventa sempre più grande.
+Cosa succede se è esattamente 0 nella root?
+Introduciamo la molteplicità: r ha molteplicità n se il limite r che va a 0 ... controlla le dispense.
+La precisione sulla root diventa ...
+
+Fixed point iteration:
+E' una funzione con cui generiamo una sequenza di valori: xn+1 = phi(xn) con x0= initial condition.
+se il limite per n che va a inf di questa xn esiste ed è r, allora si ha che lo è anche di xn+1, ed è il limite di phi
+e quindi vale phi(r). Perciò r è il punto fisso.
+Si possono mettere in corrispndenza f(x)=0 e x=phi(x) tramite conti sulle dispense.
+Ci sono molti teoremi a riguardo, ne veidamo uno:
+Ipotesi:
+x0, ... xn+1=phi(xn) successione
+definiamo un intorno I degli x t.c. |x-x0|<rho
+dati s, t appartenenti a I, |phi(s)-phi(t)| <= L|s-t| (cioè questoa funzione è una mappa di contrazione, se applico la funzione
+i due punti si avvicinano).
+Se |x0-x1|<=(1-L)rho allora:
+1) x=phi(x) ha unica soluzione r in i
+2) limite degli xn = r
+3) |xk - r| <= |xk-xk-1|L/(1-L)<= ...
+
+Cioè ci dice che c'è un'unica soluzione, come si ottinee, e la stima di quanto siamo lontani dalla soluzione vera.
+Praticamente è poco utile, ma ci dà un'intuizione: il teorema funziona se parti abbastanza vicino alla root: è una fregatura
+perchè la root la voglio conoscere. Per noi va bene perchè la funzione la conosciamo, vogliamo migliorare il calcolo della
+root. Oppure altri algoritmi più grossoloni determinano circa dove sta. Poi si cambia algoritmo.
+
+Ordine di convergenza:
+data una successione convergente generata dall'iteratore phi, ha ordine di convergenzaa q se (condizione sulle dispense)
+se definisco il numero di digit dn com -log10|xn-r| la condizione dice hce il numero di digit di dn+1 è ...
+dn+1/dn per n che va a infito scala come q.  Perciò più è alto q più velocemente si arriva alla soluzione.
+
+Coefficiente di efficienza:
+m unità di lavoro. Se è un algoritmo di ordnie q chiamo coefficiente di efficienza E = q^(1/m).
+
+Metodo di bisezione:
+Non è di iterazione nel senso che non usa mappa iterativa, ma contiene iterazioni. Si basa sul teorema del valore intermedio
+
