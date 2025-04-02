@@ -43,4 +43,5 @@ m unità di lavoro. Se è un algoritmo di ordnie q chiamo coefficiente di effici
 
 Metodo di bisezione:
 Non è di iterazione nel senso che non usa mappa iterativa, ma contiene iterazioni. Si basa sul teorema del valore intermedio
-
+Si può pensare la tolleranza sia a livello dell'intervallo (l'intervallo deve essere sufficientemente piccolo), sia a 
+livello della funzione, deve essere sufficientemente vicino a 0. Oppure si può mettere un numero di iterazioni massimo.

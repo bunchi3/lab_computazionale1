@@ -1,0 +1,75 @@
+#File's index
+
+#--------------------------------------------------------------------------------------------------------------------------
+#Import section
+
+#--------------------------------------------------------------------------------------------------------------------------
+#Calculates a function's zero with bisection method. bis_met_rec is a recursive function. INCOMPLETE
+#The problem of the recursive method is in escaping the recursion: the condition needs the intial values of a, and b.
+function bis_met_rec(func, a, b)
+    #making sure the interval (a, b) is well defined
+    if (a==b)
+        throw(ArgumentError("a and b must be different"))
+    elseif (b < a)
+        c = b
+        b = a
+        a = c
+    end
+    
+    #m is the middle point of the interval, it is defined so because of rounding errors
+    m = a + (b-a)/2.0
+    func0 = func(m)
+    
+    #If the interval is small enough the function returns the middle point
+    if (b-a) < 2^(-16)*(maximum([abs(a), abs(b)]))
+        return func0
+    end
+
+    if func(m)*func(a) > 0
+        bis_met(func, m, b)
+    else
+        bis_met(func, a, m)
+    end
+end
+#--------------------------------------------------------------------------------------------------------------------------
+#Calculates a function's zero with bisection method. 
+function bis_met(func, A, B)
+    #making sure the interval (A, B) is well defined
+    if (A==B)
+        throw(ArgumentError("a and b must be different"))
+    elseif (B < A)
+        c = B
+        B = A
+        A = c
+    end
+
+    iter_max = 1000     #massimo di iterazioni
+    I_length = B-A      #lunghezza dell'intervallo inziale
+
+    #estremi iniziali dell'intervallo
+    b=B
+    a=A
+    iter = 0
+
+    while I_length > 10^(-16)*(maximum([abs(a), abs(b)]))
+        m = a + abs(b-a)/2.0       #middle point, defined so because of rounding errors
+        if func(m)*func(a) > 0
+            a = m
+        elseif func(m)*func(a) < 0
+            b = m
+        else
+            return m
+        end  
+
+        #updating data
+        I_length = abs(b -a)
+        iter += 1
+        
+        if iter == iter_max
+            break
+        end
+    end
+    return m
+end
+#--------------------------------------------------------------------------------------------------------------------------
+println("non_linear_roots.jl loaded correctly")

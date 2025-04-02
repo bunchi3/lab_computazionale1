@@ -13,10 +13,10 @@ include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\
 function pol_expansion(x, c)
     # Verifica che x e c siano vettori
     if !(x isa AbstractVector)
-        throw(ArgumentError("Il parametro x deve essere un vettore, ma è di tipo $(typeof(x))"))
+        throw(ArgumentError("Il parametro x deve essere un AbstractVector, ma è di tipo $(typeof(x))"))
     end
     if !(c isa AbstractVector)
-        throw(ArgumentError("Il parametro c deve essere un vettore, ma è di tipo $(typeof(c))"))
+        throw(ArgumentError("Il parametro c deve essere un AbstractVector, ma è di tipo $(typeof(c))"))
     end
     # Verifica che la lunghezza di c sia minore o uguale alla lunghezza di x
     if length(c) > length(x)
@@ -36,10 +36,10 @@ function pol_fit(x, y, n_coeff)
     #Sezione di test iniziali
     # Verifica che x e y siano vettori
     if !(x isa AbstractVector)
-        throw(ArgumentError("Il parametro x deve essere un vettore, ma è di tipo $(typeof(x))"))
+        throw(ArgumentError("Il parametro x deve essere un AbstractVector, ma è di tipo $(typeof(x))"))
     end
     if !(y isa AbstractVector)
-        throw(ArgumentError("Il parametro c deve essere un vettore, ma è di tipo $(typeof(c))"))
+        throw(ArgumentError("Il parametro c deve essere un AbstractVector, ma è di tipo $(typeof(c))"))
     end
     # Verifica che la lunghezza di x e y siano uguali
     if length(x) != length(y)
@@ -65,10 +65,10 @@ end
 function fourier_expansion(x, c)
     # Verifica che x e c siano vettori
     if !(x isa AbstractVector)
-        throw(ArgumentError("Il parametro x deve essere un vettore, ma è di tipo $(typeof(x))"))
+        throw(ArgumentError("Il parametro x deve essere un AbstractVector, ma è di tipo $(typeof(x))"))
     end
     if !(c isa AbstractVector)
-        throw(ArgumentError("Il parametro c deve essere un vettore, ma è di tipo $(typeof(c))"))
+        throw(ArgumentError("Il parametro c deve essere un AbstractVector, ma è di tipo $(typeof(c))"))
     end
     # Verifica che la lunghezza di c sia minore o uguale alla lunghezza di x
     if length(c) > length(x)
@@ -93,10 +93,10 @@ function fourier_fit(x, y, n_coeff)
     #Sezione di test iniziali
     # Verifica che x e y siano vettori
     if !(x isa AbstractVector)
-        throw(ArgumentError("Il parametro x deve essere un vettore, ma è di tipo $(typeof(x))"))
+        throw(ArgumentError("Il parametro x deve essere un AbstractVector, ma è di tipo $(typeof(x))"))
     end
     if !(y isa AbstractVector)
-        throw(ArgumentError("Il parametro c deve essere un vettore, ma è di tipo $(typeof(c))"))
+        throw(ArgumentError("Il parametro c deve essere un AbstractVector, ma è di tipo $(typeof(c))"))
     end
     # Verifica che la lunghezza di x e y siano uguali
     if length(x) != length(y)
