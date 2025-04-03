@@ -323,7 +323,7 @@ function least_sq(A, b)
     #Mi accerto che la matrice e il vettore siano di tipo Float64
     A = convert(Matrix{Float64}, A)
     b = convert(Vector{Float64}, b)
-
+    
     m = size(A, 1)
     n = size(A, 2)
     m_b = length(b)

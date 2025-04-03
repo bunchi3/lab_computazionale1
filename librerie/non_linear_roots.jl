@@ -21,7 +21,7 @@ function bis_met_rec(func, a, b)
     func0 = func(m)
     
     #If the interval is small enough the function returns the middle point
-    if (b-a) < 2^(-16)*(maximum([abs(a), abs(b)]))
+    if (b-a) < 2^(-16)*max(abs(a), abs(b))
         return func0
     end
 
@@ -43,15 +43,15 @@ function bis_met(func, A, B)
         A = c
     end
 
-    iter_max = 1000     #massimo di iterazioni
-    I_length = B-A      #lunghezza dell'intervallo inziale
+    iter_max = 1000     #maximum number of iterations
+    I_length = B-A      #length of the initial interval
 
-    #estremi iniziali dell'intervallo
+    #initial interval endpoints
     b=B
     a=A
     iter = 0
 
-    while I_length > 10^(-16)*(maximum([abs(a), abs(b)]))
+    while I_length > 10^(-16)*max(abs(a), abs(b))
         m = a + abs(b-a)/2.0       #middle point, defined so because of rounding errors
         if func(m)*func(a) > 0
             a = m
@@ -70,6 +70,49 @@ function bis_met(func, A, B)
         end
     end
     return m
+end
+#--------------------------------------------------------------------------------------------------------------------------
+#Returns the function's zero and the steps required for achieving the function's zero
+function bis_met_steps(func, A, B)
+    #making sure the interval (A, B) is well defined
+    if (A==B)
+        throw(ArgumentError("a and b must be different"))
+    elseif (B < A)
+        c = B
+        B = A
+        A = c
+    end
+
+    iter_max = 1000     #maximum number of iterations
+    I_length = B-A      #length of the initial interval
+
+    #initial interval endpoints
+    b=B
+    a=A
+    iter = 0
+    step_vector = Float64[]        #will contain all the values of m, the successive approximations of the function's root
+
+    while I_length > 10^(-16)*max(abs(a), abs(b))
+        m = a + abs(b-a)/2.0       #middle point, defined so because of rounding errors
+        push!(step_vector, m)
+        if func(m)*func(a) > 0
+            a = m
+        elseif func(m)*func(a) < 0
+            b = m
+        else                        #if i find exactly the function's zero, I return the step_vector
+            return m, step_vector
+        end  
+
+        #updating data
+        I_length = abs(b -a)
+        iter += 1
+        
+        if iter == iter_max
+            break
+        end
+    end
+    
+    return m, step_vector
 end
 #--------------------------------------------------------------------------------------------------------------------------
 println("non_linear_roots.jl loaded correctly")

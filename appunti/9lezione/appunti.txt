@@ -1,0 +1,58 @@
+Nel metodo di bisezione non è garantito che l'errore scenda in modo monotono. Questo perchè restringiamo l'intervallo,
+ma non sappiamo esattamente dove stia. In media il trend è in discesa.
+Metodo di Newton:
+l'idea è quella di sapere dov'è all'incirca lo zero. Si approssima la funzione con la sua tangete (esapnsione taylor al 
+primo termine). Così si calcola lo zero della tangente. L'ingrediente principale è conoscere la derivata della funzione.
+Dal nuovo punto si calcola ancora la derivata, la tangente e poi lo zero della tangente. 
+
+In questo caso fermiamo l'algoritmo quando la distanza tra due iterazioni è minore di una tolleranza e la funzione 
+calcolata nell'ultima iterazione è minore di una certa tolleranza sulla funzione.
+Per noi xtol è circa come ftol dell'ordine di 100*epsiolonmach
+In piuù se k > k max fermiamo l'algoritmo, serve perchè se le altre condizioni sono troppo stringenti almeno si ferma l'algoritmo
+
+Convergenza
+La convergenza locale: l'algoritmo converge se siamo abbastanza vicini alla root (non ben definita come cosa).
+Lavoriamo nell'intorno della radice e l'errore ek è la differneza tra xk e r.
+e(k+1) = ek - f(ek)/f'(ek). Dato che ek <<1 si può espandere in serie l'errore e(k+1).
+L'espansione completa garantisce che se all'inizio siamo abbastanza vicini il processo converge.
+Inoltre ci dà esplicitamente il rate di convergenza, sia il valore 2 che il valore di C.
+Il fatto che converga quadraticamente non è una sorpesa perchè avevamo già detto nella lezione di ieri.
+
+Si potrebbe approssimare la funzione oltre che con la parte lineare anche con la parte quadratica. A quel punto il passo
+successivo è che il termine quadratico sia zero. La soluzione diventa più complicata perchè ci sono condizioni sulla derivata
+seconda. Inoltre non è detto che sia piu efficiente dal punto di vista numerico, perchè c'è da calcolare la derivata seconda.
+
+Per root con molteplicità maggiore di 1 si mostra che il processo è più lento.
+Ci sono due soluzioni a questo problema:
+old fashioned: sapendo a priori la molteplicità si può ridefinire un metodo di Newton inserendo la molteplicità nella funzione
+Come capisco la molteplicità? Faccio girare Newton nomrmale, ottengo la molteplicità capendo da come si impallae poi 
+faccio girare newtnon di nuovo
+Secondo metodo: definisco un Newton per una funzione u che è il rapporto tra f e la sua derivata (che scala come x-r)
+
+Global convergence:
+Ci sono criteri per cui qualunque siano le condizioni di partenza Newton converge? Si ma non sono pratici da usare. 
+Bisogna essere in una situazione tipo bisezione. Poi ci sono due condizione di rapporto sulla derivata. SOno i primi passi
+di Newton se uno partisse da a o da b. La condizione dice che se arto da a devo rimanere nell'intervallo, o se parto da b
+devo rimanere nell'intervallo.
+
+Così si può mischiare Newton e bisezzione, perchè la bisezione sceglie un intervallo che va bene per newton, e poi si itera
+
+
+Lo svantaaggio di Newton è la conoscenza della derivata prima. In generale può essere un problema. f potrebbe non essere analitica
+f potrebbe essere l'autovalore di una matrice. Per queste situazioni c'è l'algortimo della secante.
+Algoritmo della secante
+L'idea è la stessa, ma all'inizio si prendono due valori della funzione e si fa passare una retta, approsimando la tangente.
+Ci si aspetta che converga peggio di Newton, e in effetti facendo la stessa analisi di prima si può dimostrare che 
+l'errore sul passo k+1 dipende dall'errore ai due passi precedenti.
+C'è comunque unn fatto da considerare, nel capire se usare Newton o secante, che è l'indice di efficienza.
+E = q(1/m) dove m è il numero di funzioni da calcolarsi
+In Newton m = 2,
+Per la secante devo calcolare solo una funzione, nonostante quella si debba valutare in più punti.
+Perciò in Secante m = 1
+
+La secante tende ad avere problema perchè tende a far uscire dall'intervallo in cui ci aspettiamo la root più spesso di 
+Newton, questo perchè non usa la tangente ma un'approssimazione. Per risolvere si usa una combianzione di bisezione con 
+la secante.
+
+Ci sono molti problemi che possono essere rimappati nel calcolo degli zeri. Ad esempio il calcolo della funzione inversa, 
+f(x) = y => f(x) -y =0, cerco l'y che risolve f(x)
