@@ -10,6 +10,15 @@ using ForwardDiff
 #Calculates a function's zero with bisection method. bis_met_rec is a recursive function. INCOMPLETE
 #The problem of the recursive method is in escaping the recursion: the condition needs the intial values of a, and b.
 function bis_met_rec(func, a, b)
+    if !(func isa Function)
+        throw(ArgumentError("The first parameter should be a Function, instead is a $(typeof(func))"))
+    end
+    if !(a isa Number)
+        throw(ArgumentError("The second parameter should be a Number, instead is a $(typeof(a))"))
+    end
+    if !(b isa Number)
+        throw(ArgumentError("The third parameter should be a Number, instead is a $(typeof(b))"))
+    end
     #making sure the interval (a, b) is well defined
     if (a==b)
         throw(ArgumentError("a and b must be different"))
@@ -37,6 +46,15 @@ end
 #--------------------------------------------------------------------------------------------------------------------------
 #Calculates a function's zero with bisection method. 
 function bis_met(func, A, B)
+    if !(func isa Function)
+        throw(ArgumentError("The first parameter should be a Function, instead is a $(typeof(func))"))
+    end
+    if !(A isa Number)
+        throw(ArgumentError("The second parameter should be a Number, instead is a $(typeof(A))"))
+    end
+    if !(B isa Number)
+        throw(ArgumentError("The third parameter should be a Number, instead is a $(typeof(B))"))
+    end
     #making sure the interval (A, B) is well defined
     if (A==B)
         throw(ArgumentError("a and b must be different"))
@@ -78,6 +96,15 @@ end
 #--------------------------------------------------------------------------------------------------------------------------
 #Returns the function's zero and the steps required for achieving the function's zero
 function bis_met_steps(func, A, B)
+    if !(func isa Function)
+        throw(ArgumentError("The first parameter should be a Function, instead is a $(typeof(func))"))
+    end
+    if !(A isa Number)
+        throw(ArgumentError("The second parameter should be a Number, instead is a $(typeof(A))"))
+    end
+    if !(B isa Number)
+        throw(ArgumentError("The third parameter should be a Number, instead is a $(typeof(B))"))
+    end
     #making sure the interval (A, B) is well defined
     if (A==B)
         throw(ArgumentError("a and b must be different"))
@@ -123,6 +150,16 @@ end
 #Calculates the steps for finding a function's zero with Newton's method. Requires the function, the starting point, the root's multiplicity.
 #The first step is x1
 function newt_met_steps(f, x1, q)
+    if !(f isa Function)
+        throw(ArgumentError("The first parameter should be a Function, instead is a $(typeof(f))"))
+    end
+    if !(x1 isa Number)
+        throw(ArgumentError("The second parameter should be a Number, instead is a $(typeof(x1))"))
+    end
+    if !(q isa Number)
+        throw(ArgumentError("The third parameter should be a Number, instead is a $(typeof(q))"))
+    end
+
     x = Float64[x1]
     df = x -> ForwardDiff.derivative(f, x)
     
