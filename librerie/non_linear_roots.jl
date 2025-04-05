@@ -177,6 +177,7 @@ function newt_met_steps(f, x1, q)
         end
         if iter > iter_max
             println("newt_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+            return x[iter], x
         end
         push!(x, x[iter] - q * f(x[iter])/df(x[iter]))
         iter += 1
@@ -185,4 +186,36 @@ function newt_met_steps(f, x1, q)
     return x[iter], x
 end
 #--------------------------------------------------------------------------------------------------------------------------
+#Calculates the steps for finding a function's zero with the secant's method. Requires the function, the starting points, the root's multiplicity.
+#The first step is x1
+function secant_met_steps(f, x1, x2)
+    if x1==x2
+        throw(ArgumentError("The initial interval must be non degenerate."))
+    end
+    #I must be sure that x1 and x2 are in the right order
+    if x1 > x2
+        a=x2
+        x2=x1
+        x1=a
+    end
+
+    x = [x1, x2]
+    x_tol = 1.0e-15
+    y_tol = 1.0e-15
+    iter = 1
+    iter_max = 1000
+
+    while abs(x[iter+1] - x[iter]) > x_tol && abs(f(x[iter+1])) > y_tol 
+        if iter > iter_max
+            println("secant_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+            return x[iter], x
+        end
+        
+        m = (f(x[iter+1]) - f(x[iter])) / (x[iter+1] - x[iter])
+        push!(x, x[iter+1] - f(x[iter+1]/m))
+        iter+=1
+    end
+    return x[iter], x
+end
+#---------------------------------------------------------------------------------------------------------------------------
 println("non_linear_roots.jl loaded correctly")
