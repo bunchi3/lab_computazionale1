@@ -2,7 +2,7 @@
 
 #--------------------------------------------------------------------------------------------------------------------------
 #Import section
-
+using ForwardDiff
 #--------------------------------------------------------------------------------------------------------------------------
 #Calculates a function's zero with bisection method. bis_met_rec is a recursive function. INCOMPLETE
 #The problem of the recursive method is in escaping the recursion: the condition needs the intial values of a, and b.
@@ -66,7 +66,8 @@ function bis_met(func, A, B)
         iter += 1
         
         if iter == iter_max
-            break
+            println("bis_met says: iterations' maximum number reached. Found zero could be inaccurate.")
+            return m, step_vector
         end
     end
     return m
@@ -108,11 +109,40 @@ function bis_met_steps(func, A, B)
         iter += 1
         
         if iter == iter_max
-            break
+            println("bis_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+            return m, step_vector
         end
     end
     
     return m, step_vector
+end
+#--------------------------------------------------------------------------------------------------------------------------
+#Calculates the steps for finding a function's zero with Newton's method. Requires the function and the starting point.
+#The first step is x1
+function newt_met_steps(f, x1)
+    x = Float64[x1]
+    df = x -> ForwardDiff.derivative(f, x)
+    
+    x_tol = 1.0e-14
+    y_tol = 1.0e-14
+    iter_max = 1000
+    iter = 1
+
+    while abs(f(x[iter])) >= y_tol
+        #This if statement could not be integrated in while because it could access x[0] (undefined)
+        if iter>=2
+            if abs(x[iter] - x[iter-1]) <=  x_tol
+                return x[iter], x
+            end
+        end
+        if iter > iter_max
+            println("newt_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+        end
+        push!(x, x[iter] - f(x[iter])/df(x[iter]))
+        iter += 1
+    end
+
+    return x[iter], x
 end
 #--------------------------------------------------------------------------------------------------------------------------
 println("non_linear_roots.jl loaded correctly")
