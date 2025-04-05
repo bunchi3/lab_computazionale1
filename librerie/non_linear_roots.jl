@@ -1,5 +1,8 @@
 #File's index
-
+#1. bis_met_rec(func, a, b) function: calculates recursevly function's zero with bisection method. INCOMPLETE
+#2. bis_met(func, A, B) function: calculates a function's zero with bisection method.
+#3. bis_met_steps(func, A, B) function: returns the function's zero and the steps required 
+#4. newt_met_steps(f, x1) function: calculates the steps required to find a function's zero with Newton's method. 
 #--------------------------------------------------------------------------------------------------------------------------
 #Import section
 using ForwardDiff
