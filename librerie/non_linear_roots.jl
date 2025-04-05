@@ -120,14 +120,14 @@ function bis_met_steps(func, A, B)
     return m, step_vector
 end
 #--------------------------------------------------------------------------------------------------------------------------
-#Calculates the steps for finding a function's zero with Newton's method. Requires the function and the starting point.
+#Calculates the steps for finding a function's zero with Newton's method. Requires the function, the starting point, the root's multiplicity.
 #The first step is x1
-function newt_met_steps(f, x1)
+function newt_met_steps(f, x1, q)
     x = Float64[x1]
     df = x -> ForwardDiff.derivative(f, x)
     
-    x_tol = 1.0e-14
-    y_tol = 1.0e-14
+    x_tol = 1.0e-15
+    y_tol = 1.0e-15
     iter_max = 1000
     iter = 1
 
@@ -141,7 +141,7 @@ function newt_met_steps(f, x1)
         if iter > iter_max
             println("newt_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
         end
-        push!(x, x[iter] - f(x[iter])/df(x[iter]))
+        push!(x, x[iter] - q * f(x[iter])/df(x[iter]))
         iter += 1
     end
 
