@@ -3,6 +3,7 @@
 #2. bis_met(func, A, B) function: calculates a function's zero with bisection method.
 #3. bis_met_steps(func, A, B) function: returns the function's zero and the steps required 
 #4. newt_met_steps(f, x1) function: calculates the steps required to find a function's zero with Newton's method. 
+#5. secant_met_steps(f, x1, x2) function: calculates the steps required to find a function's zero with the secant's method.
 #--------------------------------------------------------------------------------------------------------------------------
 #Import section
 using ForwardDiff
@@ -189,6 +190,15 @@ end
 #Calculates the steps for finding a function's zero with the secant's method. Requires the function, the starting points, the root's multiplicity.
 #The first step is x1
 function secant_met_steps(f, x1, x2)
+    if !(f isa Function)
+        throw(ArgumentError("The first parameter should be a Function, instead is a $(typeof(f))"))
+    end
+    if !(x1 isa Number)
+        throw(ArgumentError("The second parameter should be a Number, instead is a $(typeof(x1))"))
+    end
+    if !(x2 isa Number)
+        throw(ArgumentError("The third parameter should be a Number, instead is a $(typeof(x2))"))
+    end
     if x1==x2
         throw(ArgumentError("The initial interval must be non degenerate."))
     end
@@ -212,7 +222,7 @@ function secant_met_steps(f, x1, x2)
         end
         
         m = (f(x[iter+1]) - f(x[iter])) / (x[iter+1] - x[iter])
-        push!(x, x[iter+1] - f(x[iter+1]/m))
+        push!(x, x[iter+1] - f(x[iter+1])/m)
         iter+=1
     end
     return x[iter], x
