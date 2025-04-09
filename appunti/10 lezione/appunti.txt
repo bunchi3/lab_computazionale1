@@ -1,0 +1,56 @@
+Andaare avanti con i termini di Newton è impratico, anche perchè oltre l'rdine quarto è dimostrato che non sempre ic sono zeri.
+Per ovviare l'idea è di approssimare la fuznione inversa. g=f^-1
+f(g(y)) = y 
+g(f(x))=x g(0) = r f(r) = 0
+Le stime della radice sono gli xk, e g(f(xj)) = xj
+Vogliamo trovar eun polnomio q tc q(f(xj)) = xj e considerarlo come la funzione inversa.
+Con newton approssimavamo la funzione con una retta. In eulero con un polinomio quadratico. Però dati dei punti possiamo
+trovare un polinomio che passi per quei punti. Facendo la funzione inversa si ha il vantaggio che si deve calcolare tale
+funzione in zero.
+
+Interpolazioni
+Sono fit in cui il numero di parametri è uguale al numero di punti da fittare.
+C'è una funzione che dipende da x e da n parametri, noi abbiamo dei punti (xi fi), vogliamo trovare i coefficienti in modo che 
+questa funzione calcolata in xi dia fi
+Noi avevamo trovato la solzuione migliore t.c la norma sia minimizzata. Qui non pensiamo a dati sperimentali e basta, 
+possiamo pensare a funzioni analitiche, e vogliamo risolvere questo sistema.
+La funzioen phi dipende linearmente dai parametri. Può essere che le funzioni di x che moltiplicano i parametri non siano
+lineari. Vediamo tree classi: polinomiali, trigonometriche, rapporti di polinomi.
+I rapporti di polinomi sono molto importanti ma gli algoritmi sono complicati, servono ad esempio a calcolare certe funzioni.
+Pn spazio dei polinomi di ordine strettamente inferiore di n. Il problema di interpolazione è definito dati da valori di xi 
+con fi  è trovare il polinomio che passi per tutti i punti.
+Si può dimostrare che questo problema di interpolazione ha sempre soluzione ed è unica (xi!=xj e i!=j)
+Dim:
+unicità: due polinomi in Pn (al max ordine n-1) p e q.
+p(x)-q(x) = r(x) appartiene a Pn . ma allora r(xi)=0 per tutti gli xi, da 1 a n. Ma un polinomio che in pn ha al max n-1 zeri,
+percio r(x) =0
+Esistenza: p(x) si scrive come combinazione lineare di polinomi pj che appartengono a pn.
+p(xi) perciò si riscrivere sulla base.
+Introduciamo una matrice [Pn]ij come pj(xi), un vettore f= (f1, ...fn).
+Il problema di interpolazione è Pn c = f con c i coefficienti. Nella base pj = x^j-1 la matrice diventa: ...
+
+Questa matrice si chiama di Vandermonde (Vn). Il suo determinante è ...
+Ild et è diverso da zero, perciò la mat ammette inversa è c'è soluzione al problema.
+
+Con due basi posso passare dall'una all'altra tramite una matrice invertibile, che chiamo S.
+posso legare il sistema di interpolazione in due basi diverse.
+Il punto è che la matrice di Vandermonde ha un condition number molto elevato. Bisogna sviluppare dei modi per aggirare questo 
+problema.
+
+Il metodo più efficiente per interpolazioni è fare un cambio di base, base di lagrange.
+Lagrange polynomials lj in Pn (n-1)
+Dati i dati da inteprolare: x1 ... xn i polinoiìmi di lagr lj con j 1:..n-1
+lj = [(x-x1)...(x-xj-1)(x-xj+1)...(x-xn)]/[(xj-x1)...(xj-xj-1)(xj-xj+1)...(xj-xn)]
+si possono riscrive come phin(x)/[(x-xj)(phi(xj))'] con phin che è il prodotto di tutti, a denominatore c'è la derivata.
+Il vantaggio è che hanno la proprietà cardinale lj(xi) = deltaij.
+e così si riscrive il polinomio interpolante facilemnte. Computazionalmente però è terribile.Il calcolo di ogni polinomio:
+hai n termini del prodotto, poi n volte per la somma. Per di più ci sono sottrazioni, quindi instabile nel caso di rounding errors
+però si può sistemare.
+phin è il prodotto. wj è l'inversio dei prodotti xj-xi. Così sii riscrive p(x):
+phin(x) somme da j 01 a n di wj/(x-xj) f(xj) così wj lo calcolo una volta sola. Così il calcolo di n^2 si fa una volta sola. 
+Ora posso anche togliere phin(x): se decido di interpolare la fuznione identità la formula diventa facile, si chiama 
+formula baricentrica, che ad oggi è la più stabile per l'interpolazione. E' una specie di media pesata della funzione. 
+La cosa che si può dimostrare è che l'errore di cancellazione al denominatore si cancella quasi esattamente con l'errore
+di cancellazione al numeratore. Se capita x=xj bisogna forzare il polinnomio a essere fj.
+
+Cosa succede se voglio dei punti in più? Si riesce al costo di n
