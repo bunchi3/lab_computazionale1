@@ -1,0 +1,28 @@
+Una formula interpolatoria famosa usa la base di Newton.
+Base di Newton:
+p1=1; pj=(x-x1)(x-x2) ... (x-x(j-1))
+So può mostrare che è linearmente indipendente, che è una base.
+Così p = c1p1+c2p2+...
+Il sistema di interpolazione è Ln c=f. (Ln = Vn S)
+E' interessante perhè è una matrice triangolare inferiore, per costruzione. E' meglio della vandermonde, ma comunque è troppo
+Bisogna usare l'approccio delle divided differences:
+Si parte con un polinomio in base di Newton. Il problema è trovare gli c.
+Si scrive fx = px + Anx(x-x1)(x-x2)...(x-xn)
+Se prendo x=x1 trovo c1.
+Operatore divided difference: [x1, x]f = (f(x)-f(x1))/(x-x1)
+Si ottiene che c2 = [x1, x2]f.
+In genere la divided difference è definita ricorsivamente.
+La soluzione del problema interpolatorio si può scrivere come una somma di ck (che sono le divided differnece)
+moltiplicata per funzioni phi (definite ricorsivamente come ...)
+La divided difference è simile a una derivata finita. Vedremo poi un'estensione.
+
+Si usano delle tavole per le divided differences, sono comode per capire lo sviluppo  dell'algoritmo
+Svantaggi:
+Calcolarsi i ck costa n^2 (n(n-1)/2), si vede dalla tavola.
+I coefficienti dipendono da f
+I ck dipendono dall'ordine dei punti. La cosa migliore è averla ordinata, per evitare errori di cancellazioni. Nel caso di 
+lagrange si può mostrare che si possono ordinare i punti come si vuole.
+
+Vantaggi: 
+si possono interpolare derivate della funzioni
+un'altro che non ho capito
