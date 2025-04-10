@@ -187,7 +187,7 @@ function newt_met_steps(f, x1, q)
     return x[iter], x
 end
 #--------------------------------------------------------------------------------------------------------------------------
-#Calculates the steps for finding a function's zero with the secant's method. Requires the function, the starting points, the root's multiplicity.
+#Calculates the steps for finding a function's zero with the secant's method (without bracketing). Requires the function, the starting points, the root's multiplicity.
 #The first step is x1
 function secant_met_steps(f, x1, x2)
     if !(f isa Function)
