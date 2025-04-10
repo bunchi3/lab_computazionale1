@@ -11,6 +11,10 @@
 #10. solve_linear_system(A, b) function: risolve un sistema lineare Ax = b tramite LU_dec(), fw_sub() e bw_sub()
 #11. sls_chlsky(A, b) function: risolve un sistema lineare Ax = b tramite chlsky_dec(), fw_sub() e bw_sub()
 #12. least_sq(A, b) function: calcola i coefficienti di un fit con metodo dei minimi quadrati
+#13. norm1(A) function: calcola la norma 1 di una matrice
+#14. norminfty(A) function: calcola la norma infinito di una matrice
+#15. k1norm(A) function: calcola il condizionamento di una matrice con norma 1
+#16. kinftynorm(A) function: calcola il condizionamento di una matrice con norma infinito
 #-----------------------------------------------------------------------------------------
 #Import section
 using LinearAlgebra
@@ -338,6 +342,69 @@ function least_sq(A, b)
     x = sls_chlsky(N, z)
     return x
 end
+#---------------------------------------------------------------------------------------------------------------------
+#Computes 1-norm of a matrix
+function norm1(A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be an AbstractMatrix."))
+    end
+    if size(A, 1) != size(A, 2)
+        throw(DomainError(MatriceSummary(A), "The parameter must be a n*n matrix"))
+    end
+    A = convert(Matrix{Float64}, A)
 
+    n = size(A, 1)
+    row_sum = []
+    for j in 1:1:n
+        push!(row_sum, sum(abs.(A[:, j])))
+    end
+    return maximum(row_sum)
+end
+#---------------------------------------------------------------------------------------------------------------------
+#Computes infty-norm of a matrix
+function norminfty(A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be an AbstractMatrix."))
+    end
+    if size(A, 1) != size(A, 2)
+        throw(DomainError(MatriceSummary(A), "The parameter must be a n*n matrix"))
+    end
+    A = convert(Matrix{Float64}, A)
+
+    n = size(A, 1)
+    column_sum = []
+    for i in 1:1:n
+        push!(column_sum, sum(abs.(A[i, :])))
+    end
+    return maximum(column_sum)
+end
+#---------------------------------------------------------------------------------------------------------------------
+#Computes condition number of a matrix with 1-norm
+function k1norm(A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be an AbstractMatrix."))
+    end
+    if size(A, 1) != size(A, 2)
+        throw(DomainError(MatriceSummary(A), "The parameter must be a n*n matrix"))
+    end
+    A = convert(Matrix{Float64}, A)
+
+    Ainv = inv(A)
+    return norm1(A)*norm1(Ainv)
+end
+#---------------------------------------------------------------------------------------------------------------------
+#Computes condition number of a matrix with infty-norm
+function kinftynorm(A)
+    if !(A isa AbstractMatrix)
+        throw(ArgumentError("The parameter must be an AbstractMatrix."))
+    end
+    if size(A, 1) != size(A, 2)
+        throw(DomainError(MatriceSummary(A), "The parameter must be a n*n matrix"))
+    end
+    A = convert(Matrix{Float64}, A)
+
+    Ainv = inv(A)
+    return norminfty(A)*norminfty(Ainv)
+end
 #---------------------------------------------------------------------------------------------------------------------
 println("linear_systems.jl loaded correctly")
