@@ -3,6 +3,9 @@
 # 2. pol_fit: polynomial fit
 # 3. fourier_expansion: Fourier series
 # 4. fourier_fit: Fourier fit
+# 5. wj: support coefficients for lagrangian interpolation
+# 6. lag_fit: lagrangian interpolation
+#-------------------------------------------------------------------------------------------------------------------------------
 #import section
 using Markdown     #markdown visualization in display
 using LaTeXStrings
@@ -122,6 +125,64 @@ function fourier_fit(x, y, n_coeff)
     end
     c = least_sq(A, y_meas)
     return c  
+end
+#-------------------------------------------------------------------------------------------------------------------------------
+#Returns support coefficients for lagrangian interpolation
+function wj(j, xn)
+    
+    if !(j isa Int)
+        throw(TypeError(:wj, :xj, Int, xj))
+    end
+    if !(xn isa AbstractVector)
+        throw(TypeError(:wj, :x, AbstractVector, xn))
+    end
+
+    n = length(xn)
+    prod=1
+    for i in 1:1:n 
+        if xn[i] != xn[j]
+            prod *= xn[j] -xn[i]
+        end
+    end
+
+    return 1/prod
+end
+#lag_fit calculates p(x), the y values of the polynomial passing trough the nodes (xn, yn), given the x values
+function lag_fit(x_domain, xn, yn)
+    if !(x_domain isa AbstractVector)
+        throw(TypeError(:lag_fit, :x_domain, AbstractVector, x_domain))
+    end
+    if !(xn isa AbstractVector)
+        throw(TypeError(:lag_fit, :xn, AbstractVector, xn))
+    end
+    if !(yn isa AbstractVector)
+        throw(TypeError(:lag_fit, :yn, AbstractVector, yn))
+    end
+    if length(xn) != length(yn)
+        throw(ArgumentError("xn and yn must have same length, instead they contain $(length(xn)) and $(length(yn)) 
+                            elements respectively."))
+    end
+
+    n = length(xn)
+    num = zeros(length(x_domain))
+    den = zeros(length(x_domain))
+    
+    x_position = 1
+    for x in x_domain
+        for j in 1:1:n
+            num[x_position] += (wj(j, xn) * yn[j])./(x .-xn[j])       
+        end
+        x_position += 1
+    end
+    x_position = 1
+    for x in x_domain
+        for j in 1:1:n
+            den[x_position] += wj(j, xn)./(x .-xn[j])       
+        end
+        x_position += 1
+    end
+
+    return num ./ den
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
