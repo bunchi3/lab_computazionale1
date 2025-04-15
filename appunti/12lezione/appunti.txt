@@ -1,0 +1,29 @@
+Errore sui fit
+Il fit è dato dalla formula baricentrica di lagrange
+Ci chiediamo la distanza tra f e il polinomio interpolante. COme stima dell'errore prendiamo la norma infinito della 
+differenza, ovvero il massimo.
+In generale vediamo che con l'aumentare dei punti inizialmente la distanza tra le due diminuisce, ma poi comincia ad aumentare
+Scopo: capire che errore commettiamo quando interpoliamo. Useremo una matematica non molto precisa, ma che ci da un'idea.
+x1,...xn punti da interpolare in intervallo [a, b], interpoliamo f una funziione continua , appart. a cn[a, b], spazio fz continue.
+p che interpoliamo è in pn.
+fx-px = ... guarda dispense. Dimostrazione
+Definiamo gx(s) = phin(s)[f(x)-p(x)] - phin(x)[f(s)-p(s)]
+gx(xi) = 0
+gx(x) = 0 cioè g ha n+1 zeri.
+Teo ROlle: se ha n+1 zero, ci sono n+1 punti in cui la derivata è zero.
+gx(n) = 0 dovrà avere uno zero.
+phi è monic: la pontenza più alta ha coefficiente pari a 1. 
+Ultimi conti sulle dispense.
+
+Segue che la norma inf della differenza traa f e p è <= massimo della derivata n di f e su n! per il max di phin(x), che sono
+le due norme.
+In generale agli estremi dell'intervallo non riesco a interpolare bene.
+Le cuspidi nei grafici ci sono perchè lì il polinomio passa esattamente per la funzione. 
+Per la funzione di Runge non si vaa sotto il machine precision, ma soprattutto a n che aumenta ai bordi l'errore si alza.
+E' il graffico iniziale delle dispense. Questo fenomeno dipende unicamente dalla scelta dei punti, in questo caso 
+equidistanziati.
+la soluzione a questo problema è scegliere una distriubuzione di punti che ha maggiore densità nel mezzo e minore agli 
+estremi. Nodi di Chebyshev. Si può mostrare mate che questi nodi minimizzano la norma infinita di phin(x).
+
+COn Chebyshev i pesi a questo punto sono noti analiticamente. La differenza dei nodi di Chevìb tra primo e secondo tipo 
+dipende da se vogliamo includere o no gli estremi.
