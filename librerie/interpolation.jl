@@ -4,7 +4,8 @@
 # 3. fourier_expansion: Fourier series
 # 4. fourier_fit: Fourier fit
 # 5. wj: support coefficients for lagrangian interpolation
-# 6. lag_fit: lagrangian interpolation
+# 6. lag_fit: Lagrangian interpolation
+
 #-------------------------------------------------------------------------------------------------------------------------------
 #import section
 using Markdown     #markdown visualization in display
@@ -128,15 +129,12 @@ function fourier_fit(x, y, n_coeff)
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #Returns support coefficients for lagrangian interpolation
-function wj(j, xn)
-    
-    if !(j isa Int)
-        throw(TypeError(:wj, :xj, Int, xj))
-    end
-    if !(xn isa AbstractVector)
-        throw(TypeError(:wj, :x, AbstractVector, xn))
-    end
+#Has two methods:
+# 1. wj(j::Int, xn::AbstractVector) for generic nodes
+# 2. wj(j::Int, n::Int; pt_type="unif") for uniform or Chebyshev points
 
+#where xn is the x values
+function wj(j::Int, xn::AbstractVector)
     n = length(xn)
     prod=1
     for i in 1:1:n 
@@ -147,12 +145,33 @@ function wj(j, xn)
 
     return 1/prod
 end
-#lag_fit calculates a function p(x), given the x values
-function lag_fit(xn, f::Function)
-    if !(xn isa AbstractVector)
-        throw(TypeError(:lag_fit, :xn, AbstractVector, xn))
+#where n is the number of nodes, pt_type is the type of points (uniform or Chebyshev)
+function wj(j::Int, n::Int; pt_type="unif")
+    if pt_type!="unif" && pt_type!="c1"&& pt_type != "c2"
+        throw(DomainError(pt_type, "Must be 'unif' or 'c1' or 'c2'"))
     end
+    if pt_type == "unif"
+        return (-1)^(j+1)*factorial(n)/(factorial(j)*factorial(n-j)) 
+    end
+    if pt_type == "c1"
+        return (-1)^j*sin(pi*(2j-1)/2n)
+    end
+    if pt_type == "c2"
+        if j==1 || j==n
+            return 0.5
+        else 
+            return (-1)^(j-1)
+        end
+    end
+end
+#-------------------------------------------------------------------------------------------------------------------------------
+#lag_fit calculates a function p(x), approximating the function f(x) in the nodes xn, using Lagrangian interpolation.
+#Has two methods:
+# 1. lag_fit(xn::AbstractVector, f::Function) for generic nodes
+# 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String) for uniform or Chebyshev points
 
+#xn is the x values, f is the function to be interpolated, n is the number of nodes, a and b are the extrema of the interval, pt_type is the type of points (uniform or Chebyshev)
+function lag_fit(xn::AbstractVector, f::Function)
     yn = f.(xn)
 
     #nodes' number
@@ -174,6 +193,49 @@ function lag_fit(xn, f::Function)
     end
 
     return p
+end
+#where n is the number of nodes, a and b are the extrema of the interval, f is the function to be interpolated and pt_type is the type of points (uniform or Chebyshev)
+function lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String)
+    if a>b
+        c=a
+        a=b
+        b=c        
+    end
+    #Case of uniform points 
+    if pt_type == "unif"
+        xn = [a + (j-1)*(b-a)/(n-1) for j in 1:1:n]
+        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+    #Case of first kind Chebyshev points (endpoints escluded)
+    elseif pt_type == "c1"
+        #change of coordinates inside xn declaration
+        xn = [a + (b-a)*((cos((2j-1)pi/(2n)))+1)/2 for j in 1:1:n]
+        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+    #Case of second kind Chebyshev points (including endpoints)
+    elseif pt_type == "c2"
+        #change of coordinates inside xn declaration
+        xn = [a + (b-a)*((cos((j-1)pi/(n-1)))+1)/2 for j in 1:1:n]
+        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+    else
+        throw(DomainError(pt_type, "Non valid pt_type. Must be 'unif' or 'c1' or 'c2'"))
+    end
+
+    yn = f.(xn) 
+    
+    p = function(x)
+        num = 0.0
+        den = 0.0
+        for j in 1:1:n
+            if x != xn[j]
+                num += weights[j]*yn[j]/(x-xn[j])
+                den += weights[j]/(x-xn[j])
+            else
+                return yn[j]
+            end
+        end
+        return num/den
+    end
+
+    return p, xn, yn
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
