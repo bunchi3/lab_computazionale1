@@ -147,11 +147,8 @@ function wj(j, xn)
 
     return 1/prod
 end
-#lag_fit calculates p(x), the y values of the polynomial passing trough the nodes (xn, yn), given the x values
-function lag_fit(x_domain, xn, yn)
-    if !(x_domain isa AbstractVector)
-        throw(TypeError(:lag_fit, :x_domain, AbstractVector, x_domain))
-    end
+#lag_fit calculates a function p(x), given the x values
+function lag_fit(xn, yn)
     if !(xn isa AbstractVector)
         throw(TypeError(:lag_fit, :xn, AbstractVector, xn))
     end
@@ -163,26 +160,25 @@ function lag_fit(x_domain, xn, yn)
                             elements respectively."))
     end
 
+    #nodes' number
     n = length(xn)
-    num = zeros(length(x_domain))
-    den = zeros(length(x_domain))
+    weights = [wj(j, xn) for j in 1:1:n]
     
-    x_position = 1
-    for x in x_domain
+    function p(x)
+        num = 0.0
+        den = 0.0
         for j in 1:1:n
-            num[x_position] += (wj(j, xn) * yn[j])./(x .-xn[j])       
+            if x != xn[j]
+                num += weights[j]*yn[j]/(x-xn[j])
+                den += weights[j]/(x-xn[j])
+            else
+                return yn[j]
+            end
         end
-        x_position += 1
-    end
-    x_position = 1
-    for x in x_domain
-        for j in 1:1:n
-            den[x_position] += wj(j, xn)./(x .-xn[j])       
-        end
-        x_position += 1
+        return num/den
     end
 
-    return num ./ den
+    return p
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
