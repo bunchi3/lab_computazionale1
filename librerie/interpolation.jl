@@ -148,17 +148,12 @@ function wj(j, xn)
     return 1/prod
 end
 #lag_fit calculates a function p(x), given the x values
-function lag_fit(xn, yn)
+function lag_fit(xn, f::Function)
     if !(xn isa AbstractVector)
         throw(TypeError(:lag_fit, :xn, AbstractVector, xn))
     end
-    if !(yn isa AbstractVector)
-        throw(TypeError(:lag_fit, :yn, AbstractVector, yn))
-    end
-    if length(xn) != length(yn)
-        throw(ArgumentError("xn and yn must have same length, instead they contain $(length(xn)) and $(length(yn)) 
-                            elements respectively."))
-    end
+
+    yn = f.(xn)
 
     #nodes' number
     n = length(xn)
