@@ -1,0 +1,38 @@
+Le funzioni chhe usiamo nel computer sono approssimazioni delle funzioni esatte. 
+L'interpolazione si fa per approssimare funzioni con funzioni più semplici, e poterne studiare con maggiore 
+semplicità le proprieta (derivate, integrali, ...)
+
+Approssimazione di Hermite
+E' un caso generale di quello che abbiamo già visto, perchè imponiamo che anche le  derivate corrispondano.
+C'è l'analogo di Vandermonde, Newton, Lagrange per poter fare in modo che le derivate corrispondano in ciascuno di questi casi.
+Si può mostrare che il problema di Hermite ammette soluzione, unica se i punti sono distinti. Si vede guardando il determinantee
+della matrice Vandermonde. Il det non è nullo (ammesso che i punti siano distinti), perciò la soluzione esiste. Poi 
+ripetendo la dimostrazione si vede che è unica.
+Lagrange: la formula generalizzata inserisce anche le derivate che vogliamo interpolare, con polinomi di Lagrange 
+generalizzati.
+
+Interpolare così è un problema ill-conditioned, infatti abbiamo usato chebyshev. L'idea può essere, invece che interpolare un 
+intervallo intero, spezzare tale intervallo e interpolare punti a pezzi. Poi si usa hermite per raccordare 
+la funzione. Sono piece-wise interpolation, interpolazioni a pezzi. 
+Spline: qui l'idea è simile (ma otteniamo anche derivata seconda continua), si definiscono una serie di polinomi cubici Sk e si impongono diverse equazioni, 
+richiedendo che Sk ottenuto sia continuo. Impongo la continuità sul polinomio, ma ciò non garantisce che la sua derivata
+coincida con quella della funzione. Si impone solo che sia continua.
+
+Interpolazione trigonometrica
+funzioni 2-periodiche: f(x)=f(x+2)
+E' per funzioni che hanno una certa periodicità. 
+Il motivo per chui Chebischev funziona così bene è che trasforma un'interpolazione trigonometrica in una polinomiale.
+Ciò che facciamo ora è l'equivalente di Chebischev per interpolazioni trigonometriche.  Questa è la base per 
+l'algoritmo più potente mai inventato, che è la fast Fourier transform.
+L'idea è di interpolare funzioni con polinomi hce siano combinazione di seni e coseni. Prendiammo un numero di punti dispari
+per averne n da una parte, n dall'altra e lo 0. Sono punti equidistnati, ma non danno problema (si può dimostrare).
+Chebischev mappa questi punti di funzioni trigonometriche. 
+Funzioni cardinali (kernel di DIrichelet) tau:
+tau è trigonometrico
+tau è periodico
+tau(xk)=0 per tutti i k!=0
+limx->0tau(x) =1
+Il polinomio inteprolante si può riscrivere in forma complessa. Poi l'interpolazione si può riformulare con un sistema
+lineare Fc = f con c i coefficienti, f i valori della funzione e F la matrice di Vandermonde corrispondente. Si può risolvere
+il sistema con F-1 perchè è semplicemnte il complesso coniugato. Si può mostrare addirittura che il sistema non è 
+ill-conditioned. Poi sfruttando certe proprietà si mostra che la fast Fourier transform scala come N.
