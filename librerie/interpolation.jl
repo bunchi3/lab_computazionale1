@@ -151,16 +151,16 @@ function wj(j::Int, n::Int; pt_type="unif")
         throw(DomainError(pt_type, "Must be 'unif' or 'c1' or 'c2'"))
     end
     if pt_type == "unif"
-        return (-1)^(j+1)*factorial(n)/(factorial(j)*factorial(n-j)) 
+        return (-1)^(j+1)*factorial(big(n))/(factorial(big(j))*factorial(big(n-j))) 
     end
     if pt_type == "c1"
         return (-1)^j*sin(pi*(2j-1)/2n)
     end
     if pt_type == "c2"
         if j==1 || j==n
-            return 0.5
+            return 0.5(-1)^j
         else 
-            return (-1)^(j-1)
+            return (-1)^j
         end
     end
 end
@@ -236,6 +236,23 @@ function lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String)
     end
 
     return p, xn, yn
+end
+#-------------------------------------------------------------------------------------------------------------------------------
+#Error indication function
+function ErrIndFunc(xn::AbstractArray)
+    n = length(xn)
+    f = function(x)
+        prod=1.0
+        for i in 1:1:n
+            if x!=xn[i]
+                prod *= (x - xn[i])
+            else
+                return 0.0
+            end
+        end
+        return prod
+    end
+    return f
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
