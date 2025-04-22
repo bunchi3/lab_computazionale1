@@ -128,12 +128,50 @@ function fourier_fit(x, y, n_coeff)
     return c  
 end
 #-------------------------------------------------------------------------------------------------------------------------------
+#CHANGE OF VARIABLES
+#Change of variable for finite intervals
+#Requires the values between [-1, 1] and the interval extrema
+function ChangeOfVar(xn::AbstractVector{<:Real}, a::Number, b::Number)
+    mn, mx = minimum(xn), maximum(xn) 
+    if mx>1 || mn<-1
+        throw(DomainError(:xn, "xn must contain values between [-1, 1]. In $(:xn) found min=$mn and max=$mx."))
+    end
+    if b < a
+        change = b
+        b = a
+        a = change
+        display("ChangeOfVar says: the interval extrema were swapped!")
+    end
+    xn_ab = [a + (b-a)*(x+1)/2 for x in xn]
+    return xn_ab
+end
+#Change of variable for the entire real line
+#Requires the values between [-1, 1]
+function ChangeOfVar(x::Number)
+    if x>=1 || x<=-1
+        throw(DomainError(:x, "x must be a value between (-1, 1). $(:x) was $x."))
+    end
+    return 2x/(1-x^2) 
+end
+#Inverse:
+function ChangeOfVarInvFinite(xn::AbstractVector{<:Real})
+    a, b = minimum(xn), maximum(xn) 
+    if a == b
+        throw(DomainError(:xn, "xn must contain non constant values. In $(:xn) found inferior bound a=$a and upper bound b=$b."))
+    end
+    x = 2 .* (xn .- a)./(b-a) .- 1
+    return x
+end
+function ChangeOfVarInvInfinite(x::Number)
+    return (-1 + sqrt(1 + x^2)) / x
+end
+#-------------------------------------------------------------------------------------------------------------------------------
 #Returns support coefficients for lagrangian interpolation
 #Has two methods:
 # 1. wj(j::Int, xn::AbstractVector) for generic nodes
 # 2. wj(j::Int, n::Int; pt_type="unif") for uniform or Chebyshev points
 
-#where xn is the x values
+#where xn are the x values
 function wj(j::Int, xn::AbstractVector)
     n = length(xn)
     prod=1
@@ -146,17 +184,17 @@ function wj(j::Int, xn::AbstractVector)
     return 1/prod
 end
 #where n is the number of nodes, pt_type is the type of points (uniform or Chebyshev)
-function wj(j::Int, n::Int; pt_type="unif")
-    if pt_type!="unif" && pt_type!="c1"&& pt_type != "c2"
-        throw(DomainError(pt_type, "Must be 'unif' or 'c1' or 'c2'"))
+function wj(j::Int, n::Int, pt_type::Symbol)
+    if !(pt_type in (:unif, :c1, :c2))
+        throw(DomainError(pt_type, "Must be :unif, :c1, :c2. Inserted $pt_type"))
     end
-    if pt_type == "unif"
+    if pt_type == :unif
         return (-1)^(j+1)*factorial(big(n))/(factorial(big(j))*factorial(big(n-j))) 
     end
-    if pt_type == "c1"
+    if pt_type == :c1
         return (-1)^j*sin(pi*(2j-1)/2n)
     end
-    if pt_type == "c2"
+    if pt_type == :c2
         if j==1 || j==n
             return 0.5(-1)^j
         else 
@@ -168,7 +206,8 @@ end
 #lag_fit calculates a function p(x), approximating the function f(x) in the nodes xn, using Lagrangian interpolation.
 #Has two methods:
 # 1. lag_fit(xn::AbstractVector, f::Function) for generic nodes
-# 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String) for uniform or Chebyshev points
+# 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String) for uniform or Chebyshev points in a finite domain
+# 3. lag_fit(n::Int, f::Function) for interpolation on the real line. It is used and explained in 4_4_4.ipynb
 
 #xn is the x values, f is the function to be interpolated, n is the number of nodes, a and b are the extrema of the interval, pt_type is the type of points (uniform or Chebyshev)
 function lag_fit(xn::AbstractVector, f::Function)
@@ -195,28 +234,29 @@ function lag_fit(xn::AbstractVector, f::Function)
     return p
 end
 #where n is the number of nodes, a and b are the extrema of the interval, f is the function to be interpolated and pt_type is the type of points (uniform or Chebyshev)
-function lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String)
+function lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::Symbol)
     if a>b
         c=a
         a=b
-        b=c        
+        b=c 
+        display("lag_fit says: the interval extrema were swapped.")       
     end
     #Case of uniform points 
-    if pt_type == "unif"
-        xn = [a + (j-1)*(b-a)/(n-1) for j in 1:1:n]
-        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+    if pt_type == :unif
+        xn = ChangeOfVar(range(-1, 1, length=n), a, b)
+        weights = [wj(j, n, pt_type) for j in 1:1:n]
     #Case of first kind Chebyshev points (endpoints escluded)
-    elseif pt_type == "c1"
+    elseif pt_type == :c1
         #change of coordinates inside xn declaration
-        xn = [a + (b-a)*((cos((2j-1)pi/(2n)))+1)/2 for j in 1:1:n]
-        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+        xn = ChangeOfVar([cos((2j-1)pi/(2n)) for j in 1:1:n], a, b)
+        weights = [wj(j, n, pt_type) for j in 1:1:n]
     #Case of second kind Chebyshev points (including endpoints)
-    elseif pt_type == "c2"
+    elseif pt_type == :c2
         #change of coordinates inside xn declaration
-        xn = [a + (b-a)*((cos((j-1)pi/(n-1)))+1)/2 for j in 1:1:n]
-        weights = [wj(j, n, pt_type=pt_type) for j in 1:1:n]
+        xn = ChangeOfVar([cos((j-1)pi/(n-1)) for j in 1:1:n], a, b)
+        weights = [wj(j, n, pt_type) for j in 1:1:n]
     else
-        throw(DomainError(pt_type, "Non valid pt_type. Must be 'unif' or 'c1' or 'c2'"))
+        throw(DomainError(pt_type, "Non valid pt_type. Must be :unif or :c1 or :c2. Inserted $pt_type."))
     end
 
     yn = f.(xn) 
@@ -236,6 +276,35 @@ function lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String)
     end
 
     return p, xn, yn
+end
+#Where n is the nodes number, f is the function on the real line
+function lag_fit(n::Int, f::Function)
+    #Using first kind Chebyshev nodes to avoid possible infinities
+    #change of coordinates inside xn declaration
+    xn = [cos((2j-1)pi/(2n)) for j in 1:1:n]
+    zn = ChangeOfVar(xn)
+    weights = [wj(j, n, :c1) for j in 1:1:n]
+
+    yn = f.(zn) 
+    
+    #Performing the fit exploiting the fact that xn is between [-1, 1]
+    #P accepts value on the entire real line, but the function changes them between (-1, 1) and performs the fit
+    p = function(z)
+        x = ChangeOfVarInvInfinite(z) 
+        num = 0.0
+        den = 0.0
+        for j in 1:1:n
+            if x != xn[j]
+                num += weights[j]*yn[j]/(x-xn[j])
+                den += weights[j]/(x-xn[j])
+            else
+                return yn[j]
+            end
+        end
+        return num/den
+    end
+
+    return p, xn, zn, yn
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #Error indication function
