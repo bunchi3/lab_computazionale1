@@ -327,4 +327,29 @@ function ErrIndFunc(xn::AbstractArray)
     return f
 end
 #-------------------------------------------------------------------------------------------------------------------------------
+#CARDINAL FUNCTIONS
+#x is the variable of the cardinal function, xk is the k-th node, N is the nodes' number
+function tau_k(x::Number, xk::Number, N::Int)
+    return sin(N*pi*(x-xk) / 2) / (N * sin(pi*(x - xk) / 2))
+end
+#-------------------------------------------------------------------------------------------------------------------------------
+#TRIGONOMETRIC INTERPOLATION
+#This function interpolates between [-1, 1] the f function. Needs n, from which we can find N = 2n + 1 number of nodes.
+function tri_fit(n::Int, f::Function)
+    N = 2n+1
+    xn = [2k/N for k in -n:1:n]
+    yn = f.(xn)
+
+    p = function(x)
+        sum = 0.0
+        for k in 1:1:N
+            sum += yn[k]*tau_k(x, xn[k], N)
+        end
+        
+        return sum
+    end
+
+    return p
+end
+#-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
