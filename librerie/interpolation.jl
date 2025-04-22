@@ -1,10 +1,10 @@
 #File's index:
-# 1. pol_expansion: polynomial series
-# 2. pol_fit: polynomial fit
-# 3. fourier_expansion: Fourier series
-# 4. fourier_fit: Fourier fit
-# 5. wj: support coefficients for lagrangian interpolation
-# 6. lag_fit: Lagrangian interpolation
+# 1. POLYNOMIAL FIT  WITH LEAST SQUARES METHOD
+# 2. FOURIER FIT  WITH LEAST SQUARES METHOD
+# 3. CHANGE OF VARIABLES
+# 4. SUPPORT COEFFICIENTS FOR LAGRANGIAN INTERPOLATION
+# 5. LAGRANGIAN INTERPOLATION
+# 6. ERROR INDICATION FUNCTION
 
 #-------------------------------------------------------------------------------------------------------------------------------
 #import section
@@ -12,6 +12,7 @@ using Markdown     #markdown visualization in display
 using LaTeXStrings
 include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\linear_systems.jl")
 #-------------------------------------------------------------------------------------------------------------------------------
+#POLYNOMIAL FIT  WITH LEAST SQUARES METHOD
 #Polynomial series. Requires x and the series coefficients
 #Returns an array with the polynomial evaluated at the x values
 function pol_expansion(x, c)
@@ -64,6 +65,7 @@ function pol_fit(x, y, n_coeff)
     return c  
 end
 #-------------------------------------------------------------------------------------------------------------------------------
+#FOURIER FIT  WITH LEAST SQUARES METHOD
 #Fourier series. Requires x and the series coefficients
 #Returns an array with the truncation of the Fourier series evaluated at the x values
 function fourier_expansion(x, c)
@@ -166,7 +168,7 @@ function ChangeOfVarInvInfinite(x::Number)
     return (-1 + sqrt(1 + x^2)) / x
 end
 #-------------------------------------------------------------------------------------------------------------------------------
-#Returns support coefficients for lagrangian interpolation
+#SUPPORT COEFFICIENTS FOR LAGRANGIAN INTERPOLATION
 #Has two methods:
 # 1. wj(j::Int, xn::AbstractVector) for generic nodes
 # 2. wj(j::Int, n::Int; pt_type="unif") for uniform or Chebyshev points
@@ -203,10 +205,11 @@ function wj(j::Int, n::Int, pt_type::Symbol)
     end
 end
 #-------------------------------------------------------------------------------------------------------------------------------
+#LAGRANGIAN INTERPOLATION
 #lag_fit calculates a function p(x), approximating the function f(x) in the nodes xn, using Lagrangian interpolation.
-#Has two methods:
+#Has three methods:
 # 1. lag_fit(xn::AbstractVector, f::Function) for generic nodes
-# 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::String) for uniform or Chebyshev points in a finite domain
+# 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::Symbol) for uniform or Chebyshev points in a finite domain
 # 3. lag_fit(n::Int, f::Function) for interpolation on the real line. It is used and explained in 4_4_4.ipynb
 
 #xn is the x values, f is the function to be interpolated, n is the number of nodes, a and b are the extrema of the interval, pt_type is the type of points (uniform or Chebyshev)
