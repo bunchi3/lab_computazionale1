@@ -4,7 +4,9 @@
 # 3. CHANGE OF VARIABLES
 # 4. SUPPORT COEFFICIENTS FOR LAGRANGIAN INTERPOLATION
 # 5. LAGRANGIAN INTERPOLATION
-# 6. ERROR INDICATION FUNCTION
+# 6. ERROR ANALYSIS
+# 7. CARDINAL FUNCTIONS
+# 8. TRIGONOMETRIC INTERPOLATION
 
 #-------------------------------------------------------------------------------------------------------------------------------
 #import section
