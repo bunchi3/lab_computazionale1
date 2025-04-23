@@ -310,6 +310,7 @@ function lag_fit(n::Int, f::Function)
     return p, xn, zn, yn
 end
 #-------------------------------------------------------------------------------------------------------------------------------
+#ERROR ANALYSIS
 #Error indication function
 function ErrIndFunc(xn::AbstractArray)
     n = length(xn)
@@ -325,6 +326,10 @@ function ErrIndFunc(xn::AbstractArray)
         return prod
     end
     return f
+end
+#infinite norm. Computes the infinite distance between two functions in a given x domain
+function InftyNorm(approx::Function, f::Function, x::AbstractVector)
+    return maximum(abs.(f.(x)-approx.(x)))    
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #CARDINAL FUNCTIONS
@@ -350,6 +355,28 @@ function tri_fit(n::Int, f::Function)
     end
 
     return p
+end
+#It's the same function as before but returns various p, each one for a different node's number, contained in n::AbstractVector
+function tri_fit(n::Vector{Int}, f::Function)
+    
+    polynomials = []
+    for i in 1:1:length(n)
+        N = 2n[i]+1
+        xn = [2k/N for k in -n[i]:1:n[i]]
+        yn = f.(xn)
+
+        p = function(x)
+            sum = 0.0
+            for k in 1:1:N
+                sum += yn[k]*tau_k(x, xn[k], N)
+            end
+            
+            return sum
+        end
+        push!(polynomials, p)
+    end
+
+    return polynomials
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("interpolation.jl loaded correctly")
