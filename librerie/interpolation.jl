@@ -193,7 +193,7 @@ function wj(j::Int, n::Int, pt_type::Symbol)
         throw(DomainError(pt_type, "Must be :unif, :c1, :c2. Inserted $pt_type"))
     end
     if pt_type == :unif
-        return (-1)^(j+1)*factorial(big(n))/(factorial(big(j))*factorial(big(n-j))) 
+        return (-1)^(j+1)*j*factorial(big(n))/(factorial(big(j))*factorial(big(n-j))) 
     end
     if pt_type == :c1
         return (-1)^j*sin(pi*(2j-1)/2n)
