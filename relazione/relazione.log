@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  7 MAY 2025 13:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  7 MAY 2025 14:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -540,7 +540,7 @@ Package hyperref Info: Link coloring OFF on input line 71.
 \tf@toc=\write4
 \openout4 = `relazione.toc'.
 
-<infn-art-science-universita-degli-studi-di-milano-bicocca-maintainer-universita-studi-milano-bicocca.png, id=33, 501.875pt x 401.5pt>
+<infn-art-science-universita-degli-studi-di-milano-bicocca-maintainer-universita-studi-milano-bicocca.png, id=68, 501.875pt x 401.5pt>
 File: infn-art-science-universita-degli-studi-di-milano-bicocca-maintainer-universita-studi-milano-bicocca.png Graphic file (type png)
 <use infn-art-science-universita-degli-studi-di-milano-bicocca-maintainer-universita-studi-milano-bicocca.png>
 Package pdftex.def Info: infn-art-science-universita-degli-studi-di-milano-bicocca-maintainer-universita-studi-milano-bicocca.png  used on input line 87.
@@ -561,20 +561,20 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `relazione.out' has not changed.
-(rerunfilecheck)             Checksum: 300B76C3F64B593EE9EFD25E9C80D83C;950.
+(rerunfilecheck)             Checksum: 74CAE2435B76633A2F63B2F1F3CDA20A;1611.
  ) 
 Here is how much of TeX's memory you used:
- 17119 strings out of 474485
- 334700 string characters out of 5745622
- 1932542 words of memory out of 5000000
- 39210 multiletter control sequences out of 15000+600000
- 564312 words of font info for 57 fonts, out of 8000000 for 9000
+ 17165 strings out of 474485
+ 335246 string characters out of 5745622
+ 1936542 words of memory out of 5000000
+ 39236 multiletter control sequences out of 15000+600000
+ 569886 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,15n,80p,392b,902s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on relazione.pdf (2 pages, 133505 bytes).
+Output written on relazione.pdf (2 pages, 139440 bytes).
 PDF statistics:
- 77 PDF objects out of 1000 (max. 8388607)
- 10 named destinations out of 1000 (max. 500000)
- 54 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 113 PDF objects out of 1000 (max. 8388607)
+ 17 named destinations out of 1000 (max. 500000)
+ 110 words of extra memory for PDF output out of 10000 (max. 10000000)
 

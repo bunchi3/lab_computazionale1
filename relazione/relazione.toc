@@ -1,6 +1,13 @@
 \contentsline {section}{\numberline {1}Analisi dell'errore}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Teoria}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Esercizio 1.0.1}{2}{subsection.1.2}%
 \contentsline {section}{\numberline {2}Sistemi lineari}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Teoria}{2}{subsection.2.1}%
 \contentsline {section}{\numberline {3}Radici di equazioni non lineari}{2}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Teoria}{2}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Interpolazioni}{2}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Teoria}{2}{subsection.4.1}%
 \contentsline {section}{\numberline {5}Integrazione numerica}{2}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Teoria}{2}{subsection.5.1}%
 \contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{2}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Teoria}{2}{subsection.6.1}%
