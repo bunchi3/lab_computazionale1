@@ -1,0 +1,47 @@
+Integrazione numerica
+Noi abbiamo  una funzione e la approssimiamo con funzioni più semplici tramite interpolazione. Così sviluppiamo
+integrazione di polinomi e così integriamo cose più difficili. 
+Integrazione di Newton è approssimazione con nodi equidistanti, ma si può fare anche con Chebyshev.
+
+I[f] è l'integrale definito che vorremo risolvere in modo numerico. Il motivo  è che spesso è difficile trovare una 
+forma chiusa che possa risolvere analiticamente, e se anche si trova potrebbe essere molto complicata.
+Ci sono i nodi che sono gli xi e i pesi che sono i wi.
+Partiamo con il fissare i punti e poi trovare i pesi.
+Ordine di accuratezza: diremo che una formula di quadratura ha ordine di precisione d se integra tutti i 
+polinomi che ppartengono allo spazio dei polinomi P_{d+1}
+Lo introduciamo perchè approssimiamo l'integrale della funzione con l'integrale del polinomio interpolante. 
+Le regole di quadratura sono costruite in modo tale che integrino polinomi fino a un certo ordine.
+Trapezoidal rule:
+funzione f, x0 =a e x1=b, fda integrare tra a e b.
+Prendiamo il polinomio interpolante:
+p(a) = f(a) +(x-a)(f(b)-f(a))/(b-a)
+Adesso l'integrazione è banale e risulta I = (b-a)(f(a)+f(b))/2
+Cioè la regola del trapezio ha In[f] con n = 1, i pesi sono w0=w1=(b-a)/2 con x0=a e x1=b.
+Questa formula si può applicare a ogni integrale polinomiale e lo fa esattamente
+Se invece f è generica? Analizzo un errore che èè la differenza tra l'integrale esatto e quello della fz polinomiale.
+Avevamo visto che f(x)-pn(x) = f^(n)(\csi(x)) phi(x) /n!   
+L'errore R:
+Rt = integ ...
+Questa stima dell'errore suppone che la funzione sia derivabile due volte.
+Rt è una forma chiusa perchè glie stemi vengono usati nella forma di quadratura. 
+Midpoint rule:
+approssimo la funzione con il polinomio costante, il valore della funzione nel punto medio dell'intervallo.
+Questa approssimazione in realtà non è male.
+Per l'errore si fa lo sviluppo di Taylor attorno al punto medio. Se l'ultima derivata la calcolo in un certo csi
+ottengo l'approssimazione esatta. 
+Si ottiene una formual dell'errore comparabile con quella del trapezio, e si chaima aperta perchè non si usano gli estremi.
+
+Potrei ottenere una stima migliore facendo una sorta di media tra il trapezio e la midpoint rule, perchè gli errori
+sono paragonabili, quindi mi aspetto una certa cancellazione.
+Si ottiene la formula di Simpsons.
+
+Ora, noi sappiamo che il polinomio interpolante si ottiene con la formula di lagrange. I pesi per l'integrazione
+sono esattamente lintegrale del polinomio di lagrange, da un confronto tra le varie formule.
+Per ora vediamo se sono  punti equidistanti
+
+Se i pesi sono di segno opposto c'è pericolo di cancellazione. Ciò che è più importante è che per n che aumenta le
+interpolazioni peggiorano, infatti per la formula di newton non vale che il limite per n che va a inf l'integrale della
+funzione polinom tende all'integrale esatto. Cosa ce ne facciamo di queste formule di integrazione? Si spezza 
+l'intervallo con ordine basso. In questo caso si può mostrare che c'è convergenza quando la lunghezza del sottointervallo
+va a zero.
+Vedremo metodi in cui gli integrali convergono a n che aumenta (ad esempio interpolando con Chebyshev).

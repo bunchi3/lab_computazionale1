@@ -214,7 +214,7 @@ end
 # 2. lag_fit(n::Int, a::Number, b::Number, f::Function, pt_type::Symbol) for uniform or Chebyshev points in a finite domain
 # 3. lag_fit(n::Int, f::Function) for interpolation on the real line. It is used and explained in 4_4_4.ipynb
 
-#xn is the x values, f is the function to be interpolated, n is the number of nodes, a and b are the extrema of the interval, pt_type is the type of points (uniform or Chebyshev)
+#xn is the x values, f is the function to be interpolated
 function lag_fit(xn::AbstractVector, f::Function)
     yn = f.(xn)
 
@@ -287,7 +287,7 @@ function lag_fit(n::Int, f::Function)
     #Using first kind Chebyshev nodes to avoid possible infinities
     #change of coordinates inside xn declaration
     xn = [cos((2j-1)pi/(2n)) for j in 1:1:n]
-    zn = ChangeOfVar(xn)
+    zn = ChangeOfVar.(xn)
     weights = [wj(j, n, :c1) for j in 1:1:n]
 
     yn = f.(zn) 
