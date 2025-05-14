@@ -1,0 +1,23 @@
+Ora vediamo l'equivalente della soluzione di problemi overdetermined per funzioni.
+
+Spazi con prodotto interno: è definito uno scalare che è risultato di un'operazione tra due funzioni dello spazio e che 
+gode di certe proprietà (di linearità).
+Noi usiamo lo spazio delle funzioni continue tra (a, b). Useremo molti prodotti scalari.
+I nostri prodotti scalari sono del tipo: integrale tra a e b del prodotto f(x)g(x)*\omega(x)
+con omega che soddisfa certe proprietà. Definendo così si ottiene:
+(xf,g) =(f, xg).
+
+La formula di rodrigues lega i polinomi della base a omega.
+
+Polinomi di Legendre: sono quelli definiti con omega =1
+Polinomi di Chebyshev: sono definito da omega =  1/sqrt(1-x^2)
+    sono identificati da Tn(x). Le radici dei polinomi di Chebyschev sono i nodi che avevamo usato per le interpolazioni
+Polinomi di Laguerre: omega= x^alpha e^-x
+Polinomi di Hermite: omega=e^(-x^2)
+
+Si dice che servono per fare integrazione tra 0 e inf, tra -inf e inf (laguerre e Hermite). In realtà ci sono metodi
+molto più efficienti.
+
+Tutto ciò ci è servito per approssimare le funzioni, per poi integrarle.
+
+Teorema 5.11: il risultato del teorema dipende da gamma, e  cioè dai nodi.
