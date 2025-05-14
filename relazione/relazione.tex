@@ -71,8 +71,8 @@
 \begin{document}
 
 
-\title{{\small Università degli studi Milano Bicocca - Dipartimento di Fisica - Esperimentazioni di Fisica Computazionale }\\
-	Esperienza Ottica}
+\title{{\small Università degli studi Milano Bicocca - Dipartimento di Fisica}\\
+	Esperimentazioni di Fisica Computazionale}
 \author{S. Franceschina}
 \date{\today}
 \maketitle
@@ -88,9 +88,23 @@
 
 \section{Analisi dell'errore}
 \subsection{Teoria}
-
+Nella presente sezione analizziamo le due principali fonti di errore in contesti computazionali: 
+\begin{enumerate}
+    \item Errori di arrotondamento: dovuti alla rappresentazione di numeri reali con numero finito di digits.
+    \item Errori di approssimazione: dovuti alla modalità stessa con cui affrontiamo il problema, 
+          per questo motivo sono presenti anche nel caso ideale. 
+\end{enumerate}
 
 \subsection{Esercizio 1.0.1}
+L'esercizio richiede di studiare $f(x)=e^x$ nell'intervallo $x\in [0,1]$, calcolando numericamente il suo sviluppo in 
+serie: $g_N(x)=\sum_{n=0}^N \frac{x^n}{n}$
+
+In particolare bisogna mostrare che
+\begin{center}
+\begin{equation}
+    \Delta=|f(x)-g_N(x)| \approx \frac{x^{N+1}}{(N+1)!}
+\end{equation}
+\end{center}
 
 \section{Sistemi lineari}
 \subsection{Teoria}
