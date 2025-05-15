@@ -1,0 +1,5 @@
+wi sono i pesi della quadratura gaussiana, ma non sono i pesi w(x).
+Il fatto che i pesi siano sempre positivi esclude cancellazione di tipo numerico dovuto ai pesi.
+Le formule di quadratura di lag e hermi si vede che non sono utili dai pesi, perchè all'aumento di n i pesi vanno 
+sotto machine precision. In teoria l'integrale converge, ma il computer calcola un'iniziale convergenza e poi 
+si assesta.
