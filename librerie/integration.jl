@@ -7,10 +7,10 @@
 #-------------------------------------------------------------------------------------------------------------------------------
 #NEWTON-COTES INTEGRATION RULES
 #=  
--IntegralTrap calculates the integral with the trapezoidal rule.
-Requires the function f, the integration interval extrema (a, b), and the number of intervals 
--IntegralSim calculates the integral with Simpson's rule.
-Requires the function f, the integration interval extrema (a, b), and the number of intervals 
+-IntegralTrap: returns the integral with the trapezoidal rule.
+               Requires the function f, the integration interval extrema (a, b), and the number of intervals 
+-IntegralSim: returns the integral with Simpson's rule.
+              Requires the function f, the integration interval extrema (a, b), and the number of intervals 
 =#
 
 function IntegralTrap(f::Function, a::Number, b::Number, m::Integer)
@@ -55,6 +55,8 @@ function IntegralSim(f::Function, a::Number, b::Number, m::Integer)
 
     return (h/3)*(f(a) + f(b) + 4*sum1 + 2*sum2)
 end
+#---------------------------------------------------------------------------------------------------------------------
+#GAUSS QUADRATURE
 
 #---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
