@@ -186,6 +186,33 @@ function newt_met_steps(f, x1, q)
 
     return x[iter], x
 end
+#Calculates the steps for finding a function's zero with Newton's method. Requires the function, its derivative, the starting point, the roots multiplicity
+#The first step is x_start
+function newt_met_steps(f::Function, df::Function, x_start::Number, q::Int)
+    x = Float64[x_start]
+    
+    x_tol = 1.0e-15
+    y_tol = 1.0e-15
+    iter_max = 1000
+    iter = 1
+
+    while abs(f(x[iter])) >= y_tol
+        #This if statement could not be integrated in while because it could access x[0] (undefined)
+        if iter>=2
+            if abs(x[iter] - x[iter-1]) <=  x_tol
+                return x[iter], x
+            end
+        end
+        if iter > iter_max
+            println("newt_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+            return x[iter], x
+        end
+        push!(x, x[iter] - q * f(x[iter])/df(x[iter]))
+        iter += 1
+    end
+
+    return x[iter], x
+end
 #--------------------------------------------------------------------------------------------------------------------------
 #Calculates the steps for finding a function's zero with the secant's method (without bracketing). Requires the function, the starting points, the root's multiplicity.
 #The first step is x1

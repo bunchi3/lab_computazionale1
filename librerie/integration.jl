@@ -3,7 +3,8 @@
 # 2.  #NEWTON-COTES INTEGRATION RULES
 #-------------------------------------------------------------------------------------------------------------------------------
 #IMPORT SECTION
-
+include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\non_linear_roots.jl")
+include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\polynomials.jl")
 #-------------------------------------------------------------------------------------------------------------------------------
 #NEWTON-COTES INTEGRATION RULES
 #=  
@@ -56,7 +57,59 @@ function IntegralSim(f::Function, a::Number, b::Number, m::Integer)
     return (h/3)*(f(a) + f(b) + 4*sum1 + 2*sum2)
 end
 #---------------------------------------------------------------------------------------------------------------------
-#GAUSS QUADRATURE
+#GAUSS-LEGENDRE QUADRATURE
+#= 
+-wk: returns the weight for a certain root of a legendre polynomial
+     requires n, the polynomial degree
+=#
 
+function w(n::Int)
+    pl, dpl = all_leg_pol(n) 
+
+    P = pl[n+1]
+    dP = dpl[n+1]
+
+    #calculating legendre roots----------------------------------------
+    roots = Float64[]
+    if n%2 == 0
+        for k in 1:1:(n/2)
+            x0_k = cos(pi*(4k-1)/(4n+2))
+            r, r_steps = newt_met_steps(P, dP, x0_k, 1)
+            push!(roots, r)
+        end
+    else
+        for k in 1:1:((n+1)/2)
+            x0_k = cos(pi*(4k-1)/(4n+2))
+            r, r_steps = newt_met_steps(P, dP, x0_k, 1)
+            push!(roots, r)
+        end
+    end
+    #calculating legendre roots----------------------------------------
+    
+    #calculating the weights-------------------------------------------
+    w = ones(n)
+    if n%2 == 0
+        for k in 1:1:length(roots)
+            xk = roots[k]
+            wk = 2/((1-xk^2)*(dP(xk))^2)
+            w[k] = wk
+            w[end-k+1] = wk
+        end
+    else
+        for k in 1:1:length(roots)
+            xk = roots[k]
+            wk = 2/((1-xk^2)*(dP(xk))^2)
+            if k == length(roots)
+                w[k] = wk
+            else
+                w[k] = wk
+                w[end-k+1] = wk
+            end
+        end
+    end
+    #calculating the weights-------------------------------------------
+    
+    return w
+end
 #---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
