@@ -59,8 +59,12 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #GAUSS-LEGENDRE QUADRATURE
 #= 
--wk: returns the weight for a certain root of a legendre polynomial
+-w: returns the weights for every root of a legendre polynomial
      requires n, the polynomial degree
+     even though it returns every weight, since the roots are symmetric it just computes half of them and then
+     duplicates them.
+-IntegralGaussLegendre: returns the value of the integral between -1, 1
+                        requires f (the function to be integrated), n, the integration precision
 =#
 
 function w(n::Int)
@@ -110,6 +114,17 @@ function w(n::Int)
     #calculating the weights-------------------------------------------
     
     return w
+end
+
+function IntegralGaussLegendre(f::Function, n::Int)
+    weight_arr = w(n)
+    xk_arr = leg_roots(n)
+    sum = 0.0
+
+    for i in 1:1:n
+        sum += f(xk_arr[i])*weight_arr[i]
+    end
+    return sum
 end
 #---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")

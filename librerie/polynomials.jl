@@ -16,9 +16,9 @@
 -all_leg_pol: returns two vector containing both legendre polynomials and their derivative, as functions, up to n-th order
               requires n, which is the maximum polynomial order
               useful when you need both legendre polynomials and their derivative.
--roots: return a vector containing the zeros of legendre polynomial of n-th order.
-        requires n, which is the polynomial degree.
-        just return the positive zeros, the others are symmetric.
+-leg_roots: return a vector containing the zeros of legendre polynomial of n-th order.
+            requires n, which is the polynomial degree.
+            just return the positive zeros, the others are symmetric.
 
 Please note: using a certain n will return a vector of lenght n+1 because of polynomial of 0-th order. Polynomial of
              n-th order will be stored in n+1 position because of Julia arrays ordering
@@ -71,19 +71,23 @@ function leg_roots(n::Int)
     P = pl[n+1]
     dP = dpl[n+1]
 
-    roots = Float64[]
-
+    roots = ones(n)
+    
     if n%2 == 0
-        for k in 1:1:(n/2)
+        for k in 1:1:Int(n/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
             r, r_steps = newt_met_steps(P, dP, x0_k, 1)
-            push!(roots, r)
+            roots[k] = r
+            roots[end-k+1] = -r
         end
     else
-        for k in 1:1:((n+1)/2)
+        for k in 1:1:Int((n+1)/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
             r, r_steps = newt_met_steps(P, dP, x0_k, 1)
-            push!(roots, r)
+            roots[k] = r
+            if k != length(roots)
+                roots[end-k+1] = -r
+            end
         end
     end
     return roots
