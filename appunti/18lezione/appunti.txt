@@ -1,0 +1,23 @@
+Nella quadratura con nodi preassegnati la regola è simile, perchè r e s ricalcano un po'phi.
+L'integrale di wrsp = 0 sembra un prodotto scalare pesato con wr, ma mostreremo che non è garantito che esista s
+che annulla l'integrale.
+Si può mostrare quant'è il resto, e coincide con il caso di Gauss per m =0.
+Tutte le considerazioni dipendono dalla scelta di omega e dei punti assegnati.
+
+Gauss-Lobatto:
+E' simile a legendre, ma si impone come nodi fissi il calcolo della funzione agli estremi. 
+In legendre non c'erano gli estremi
+
+Gauss-Radau:
+Si fissa il peso a un estremo.
+
+Gauss-Konrod:
+Se le formule di Gauss sono le più efficienti, hanno lo svantaggio che, integrando per un certo numero di punti, 
+se faccio un diverso numero di punti ogni volta bisogna ricalcolare tutto, per di più con i nuovi punti che sono diversi.
+Konrod permette di riutilizzare certi punti.
+
+Quadratura con nodi di Chebychev
+I chebychev di gauss non sono quelli che stiamo facendo ora. Ora facciamo un integrale il cui peso è 1, e poi
+si valuta in chebychev.
+
+
