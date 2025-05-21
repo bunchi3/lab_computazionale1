@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  20 MAY 2025 15:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  21 MAY 2025 09:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -417,7 +417,7 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 )
 \Hy@SectionHShift=\skip70
 )
-Package hyperref Info: Option `colorlinks' set `false' on input line 58.
+Package hyperref Info: Option `colorlinks' set `false' on input line 31.
  (C:\Users\i\AppData\Local\Programs\MiKTeX\tex/latex/blindtext\blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
  (C:\Users\i\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
@@ -442,7 +442,7 @@ Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 \c@blind@pangramcount=\count336
 \c@blind@pangrammax=\count337
 )
-Package translations Info: No language package found. I am going to use `english' as default language. on input line 71.
+Package translations Info: No language package found. I am going to use `english' as default language. on input line 44.
  (C:\Users\i\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count338
@@ -450,24 +450,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 ) (relazione.aux)
 \openout1 = `relazione.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 71.
-LaTeX Font Info:    ... okay on input line 71.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
  (C:\Users\i\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count339
@@ -489,7 +489,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 )) (C:\Users\i\AppData\Local\Programs\MiKTeX\tex/latex/translations/dicts\translations-basic-dictionary-english.trsl
 File: translations-basic-dictionary-english.trsl (english translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 71.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `english'. on input line 44.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen266
@@ -531,7 +531,7 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 71.
+Package hyperref Info: Link coloring OFF on input line 44.
 (relazione.out) (relazione.out)
 \@outlinefile=\write3
 \openout3 = `relazione.out'.
@@ -543,7 +543,7 @@ Package hyperref Info: Link coloring OFF on input line 71.
 <logo_bicocca.png, id=68, 501.875pt x 401.5pt>
 File: logo_bicocca.png Graphic file (type png)
 <use logo_bicocca.png>
-Package pdftex.def Info: logo_bicocca.png  used on input line 87.
+Package pdftex.def Info: logo_bicocca.png  used on input line 60.
 (pdftex.def)             Requested size: 85.35826pt x 68.28471pt.
 
 
@@ -559,7 +559,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 <immagini/1011.png, id=83, 803.0pt x 602.25pt>
 File: immagini/1011.png Graphic file (type png)
 <use immagini/1011.png>
-Package pdftex.def Info: immagini/1011.png  used on input line 114.
+Package pdftex.def Info: immagini/1011.png  used on input line 87.
 (pdftex.def)             Requested size: 375.80544pt x 281.86288pt.
 
 
@@ -568,7 +568,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 <immagini/1211.pdf, id=84, 602.25pt x 401.5pt>
 File: immagini/1211.pdf Graphic file (type pdf)
 <use immagini/1211.pdf>
-Package pdftex.def Info: immagini/1211.pdf  used on input line 121.
+Package pdftex.def Info: immagini/1211.pdf  used on input line 94.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -582,10 +582,10 @@ Package rerunfilecheck Info: File `relazione.out' has not changed.
 (rerunfilecheck)             Checksum: 74CAE2435B76633A2F63B2F1F3CDA20A;1611.
  ) 
 Here is how much of TeX's memory you used:
- 17205 strings out of 474485
- 335470 string characters out of 5745622
+ 17182 strings out of 474485
+ 335003 string characters out of 5745622
  1936542 words of memory out of 5000000
- 39270 multiletter control sequences out of 15000+600000
+ 39247 multiletter control sequences out of 15000+600000
  569886 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,15n,80p,392b,902s stack positions out of 10000i,1000n,20000p,200000b,200000s
