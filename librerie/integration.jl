@@ -127,4 +127,49 @@ function IntegralGaussLegendre(f::Function, n::Int)
     return sum
 end
 #---------------------------------------------------------------------------------------------------------------------
+#CLENSHAW-CURTIS QUADRATURE
+#= 
+-w_CC_even: returns the weights for Clenshaw-Curtis integration, with even n
+            requires n, the number of weights, and k, the weight's index
+-IntegralCC_even: returns the value of the integral between -1, 1, having even n.
+                  requires f (the function to be integrated), n, the number of weights.
+=#
+
+function w_CC_even(n::Int, k::Int)
+    if n%2 == 1
+        throw(DomainError(n, "w_CC_even says: n must be even."))
+    end
+
+    wk = 0.0
+    n1 = Int(n/2)
+    b = [2 for j in 1:1:(n1-1)]
+    push!(b, 1)
+    ck = 2.0
+    if k == 0 || k == n
+        ck = 1.0        
+    end
+    
+    sum = 0.0
+    for j in 1:1:n1
+        sum += b[j]*(cos(2*j*k*pi/n))/(4*j^2 - 1)
+    end
+    wk = (ck/n)*(1-sum)
+
+    return wk
+end
+
+function IntegralCC_even(f::Function, n::Int)
+    if n%2 == 1
+        throw(DomainError(n, "IntegralCC_even says: n must be even."))
+    end
+
+    sum = 0.0
+    for k in 0:1:n
+        xk = cos(k*pi/n)
+        sum += w_CC_even(n, k)*f(xk)        
+    end
+
+    return sum
+end
+#---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
