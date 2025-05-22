@@ -7,4 +7,9 @@ Se non è analitica c'è un teorema che da il resto, con un risultato tipo trape
 perchè se la funzione è analiticail resto converge più velocemente di qualunque polinomio, e quindi come un esponenziale.
 
 Per integrali da -infty a +infty:
-Si suppone che f sia analitica in una striscia nel piano complesso da -a ad a
+Si suppone che f sia analitica in una striscia nel piano complesso da -a ad a.
+
+Il fatto che il trapezio sia accurato tra -infty a +infty può essere usato per integrare funzioni in intervalli 
+finiti. Si utilizza una trasformazione per andare sulla retta e si fa l'integrazione. SI guarda qual è  l'errore
+e si studia la trasformazione in modo che l'errore sia minimizzato. La trasformazione che si ottiene è
+phi(t) = tanh(pi/2 sinh(t))
