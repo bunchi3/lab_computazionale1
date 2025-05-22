@@ -135,7 +135,7 @@ end
                   requires f (the function to be integrated), n, the number of weights.
 =#
 
-function w_CC_even(n::Int, k::Int)
+function w_CC_even(n::Int64, k::Int)
     if n%2 == 1
         throw(DomainError(n, "w_CC_even says: n must be even."))
     end

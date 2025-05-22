@@ -1,0 +1,10 @@
+La formula del trapezio ha un errore che scala con ordine quadratico.
+Ora ci occupiamo di funzioni periodiche di periodo T, integrate sul periodo.
+Integrare con il trapezio una funzione periodica ha convergenza esponenziale. Il teorema è:
+Se f è periodica in una striscia sul piano complesso ed è limitata, allora vale che per N >= 1
+|I(f) - In(f) | <= (2TM)/(e^(2pia/h) - 1) cioè decresce esponenzialmente.
+Se non è analitica c'è un teorema che da il resto, con un risultato tipo trapezio. Non sono in contraddizione
+perchè se la funzione è analiticail resto converge più velocemente di qualunque polinomio, e quindi come un esponenziale.
+
+Per integrali da -infty a +infty:
+Si suppone che f sia analitica in una striscia nel piano complesso da -a ad a
