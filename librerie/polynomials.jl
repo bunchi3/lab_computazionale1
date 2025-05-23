@@ -65,9 +65,7 @@ function all_leg_pol(n::Int)
 
     return pol_vec, der_vec
 end
-function leg_roots(n::Int)
-    pl, dpl = all_leg_pol(n) 
-
+function leg_roots(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     P = pl[n+1]
     dP = dpl[n+1]
 

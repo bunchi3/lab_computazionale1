@@ -3,8 +3,13 @@
 # 2.  #NEWTON-COTES INTEGRATION RULES
 #-------------------------------------------------------------------------------------------------------------------------------
 #IMPORT SECTION
+using Dates
 include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\non_linear_roots.jl")
 include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\polynomials.jl")
+function mean(x::Vector)
+    n = length(x)
+    return sum(x)/n
+end
 #-------------------------------------------------------------------------------------------------------------------------------
 #NEWTON-COTES INTEGRATION RULES
 #=  
@@ -59,48 +64,55 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #GAUSS-LEGENDRE QUADRATURE
 #= 
--w: returns the weights for every root of a legendre polynomial
-     requires n, the polynomial degree
-     even though it returns every weight, since the roots are symmetric it just computes half of them and then
-     duplicates them.
--IntegralGaussLegendre: returns the value of the integral between -1, 1
-                        requires f (the function to be integrated), n, the integration precision
+-w(Int): returns the weights for every root of a legendre polynomial
+         requires n, the polynomial degree
+         even though it returns every weight, since the roots are symmetric it just computes half of them and then
+         duplicates them.
+-IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
+                                       requires f (the function to be integrated), n, the integration precision
 =#
 
-function w(n::Int)
-    pl, dpl = all_leg_pol(n) 
-
+function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     P = pl[n+1]
     dP = dpl[n+1]
-
+    
     #calculating legendre roots----------------------------------------
-    roots = Float64[]
+    roots = ones(n)
     if n%2 == 0
-        for k in 1:1:(n/2)
+        for k in 1:1:Int(n/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
             r, r_steps = newt_met_steps(P, dP, x0_k, 1)
-            push!(roots, r)
+            roots[k] = r
+            roots[end-k+1] = -r
+
         end
     else
-        for k in 1:1:((n+1)/2)
+        for k in 1:1:Int((n+1)/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
             r, r_steps = newt_met_steps(P, dP, x0_k, 1)
-            push!(roots, r)
+            roots[k] = r
+            if k != length(roots)
+                roots[end-k+1] = -r
+            end
         end
     end
+    
     #calculating legendre roots----------------------------------------
     
     #calculating the weights-------------------------------------------
+    
     w = ones(n)
+    
     if n%2 == 0
-        for k in 1:1:length(roots)
+        for k in 1:1:Int((length(roots))/2)
             xk = roots[k]
             wk = 2/((1-xk^2)*(dP(xk))^2)
             w[k] = wk
             w[end-k+1] = wk
         end
+    
     else
-        for k in 1:1:length(roots)
+        for k in 1:1:Int((length(roots)+1)/2)
             xk = roots[k]
             wk = 2/((1-xk^2)*(dP(xk))^2)
             if k == length(roots)
@@ -111,19 +123,20 @@ function w(n::Int)
             end
         end
     end
-    #calculating the weights-------------------------------------------
     
-    return w
+    #calculating the weights-------------------------------------------
+
+    return w, roots
 end
 
 function IntegralGaussLegendre(f::Function, n::Int)
-    weight_arr = w(n)
-    xk_arr = leg_roots(n)
+    pl, dpl = all_leg_pol(n)
+    weight_arr, xk_arr = w(n, pl, dpl)
     sum = 0.0
-
     for i in 1:1:n
         sum += f(xk_arr[i])*weight_arr[i]
     end
+    
     return sum
 end
 #---------------------------------------------------------------------------------------------------------------------
