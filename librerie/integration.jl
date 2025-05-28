@@ -71,25 +71,60 @@ end
 -IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
                                        requires f (the function to be integrated), n, the integration precision
 =#
+function newt_met_steps(f::Function, df::Function, x_start::Number)
+    x_tol::Float64 = 1.0e-15
+    y_tol::Float64 = 1.0e-15
+    iter_max::Int = 1000
+    iter::Int = 0
+    x = Vector{Float64}(undef, iter_max)
+    x[1] = x_start
+
+    t2 = 0.0
+    result = nothing
+    t1 = @elapsed begin
+        for i in 2:iter_max
+            t2 += @elapsed x[i] = x[i-1] - f(x[i-1])/df(x[i-1])
+            if abs(f(x[i])) < y_tol
+                result = (x[i], x)
+                break
+            end
+            if abs(x[i] - x[i-1]) < x_tol
+                result = (x[i], x)
+                break
+            end
+            if i >= iter_max
+                println("newt_met_steps says: iterations' maximum number reached. Found zero could be inaccurate.")
+                result = (x[i], x)
+                break
+            end
+            iter += i
+        end
+    end
+    #println(t1)
+    println("newt_met_steps step: ", t2)
+    println("Step number:         ", iter)
+    return result
+end
 
 function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     P = pl[n+1]
     dP = dpl[n+1]
-    
+
     #calculating legendre roots----------------------------------------
     roots = ones(n)
     if n%2 == 0
-        for k in 1:1:Int(n/2)
+        t1 = @elapsed for k in 1:1:Int(n/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
-            r, r_steps = newt_met_steps(P, dP, x0_k, 1)
+            r, r_steps = newt_met_steps(P, dP, x0_k)
+            println("Root found:          ", r)
+            println()
             roots[k] = r
             roots[end-k+1] = -r
-
         end
     else
         for k in 1:1:Int((n+1)/2)
             x0_k = cos(pi*(4k-1)/(4n+2))
-            r, r_steps = newt_met_steps(P, dP, x0_k, 1)
+            r, r_steps = newt_met_steps(P, dP, x0_k)
             roots[k] = r
             if k != length(roots)
                 roots[end-k+1] = -r
@@ -104,7 +139,7 @@ function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     w = ones(n)
     
     if n%2 == 0
-        for k in 1:1:Int((length(roots))/2)
+        t2 = @elapsed for k in 1:1:Int((length(roots))/2)
             xk = roots[k]
             wk = 2/((1-xk^2)*(dP(xk))^2)
             w[k] = wk
@@ -125,18 +160,20 @@ function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     end
     
     #calculating the weights-------------------------------------------
-
+    println("Inside w: time sum of every call of newt_met_steps: ", t1)
+    println("Inside w: time sum of calculating the weights: ", t2)
     return w, roots
 end
 
 function IntegralGaussLegendre(f::Function, n::Int)
-    pl, dpl = all_leg_pol(n)
-    weight_arr, xk_arr = w(n, pl, dpl)
-    sum = 0.0
+    t1 = @elapsed pl, dpl = all_leg_pol(n)
+    t2 = @elapsed weight_arr, xk_arr = w(n, pl, dpl)
+    sum::Float64 = 0.0
     for i in 1:1:n
         sum += f(xk_arr[i])*weight_arr[i]
     end
-    
+    println("Function all_leg_pol: ", t1)
+    println("Function w: ", t2)
     return sum
 end
 #---------------------------------------------------------------------------------------------------------------------
