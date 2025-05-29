@@ -1,0 +1,34 @@
+Equazioni differenziali ordinarie
+Noi ci occuperemo di quelle ai valori iniziali, cioè le evoluzioni temporali dell'equazione differenziale.
+Initial value problem (IVP)
+Cominiciamo con un'equazione al primo ordine.
+Equazioni differenziali oridnnarie si risolvono con la formula degli esponenziali di integrali.
+Ordini superiori si possono risolvere riscrivendoli come sistemi di equazioni del primo ordine.
+
+Ci si chiede se soluzioni esistono e se la soluzione è unica. 
+COndizione sufficiente per soluzione unica:
+Se la derivata df/du esiste e il suo modulo è limitato per ogni valore di tempo nell'intervallo e per ogni u, 
+la soluzione di u' = f(t, u) esiste ed è unica.
+
+Conditioning of IVP
+E' chiedersi quanto la soluzione è sensibile agli errori dei dati iniziali.
+Se esiste la derivata df/du ed è limitata per tutti gli t, allora la soluzione in (t, u0 + delta), cioè la soluzione
+un po' spostata dal valore iniziale, differisce in norma inf dalla solzuione meno di |delta| e ^(L(b-a)).
+Quando si scrivono dei bound bisogna stare attenti: l'errore non può essere più grande ma potrebbe essere molto più
+piccolo.
+
+u' = u
+u' = -u
+
+Sono due esempi per mostrare che la banda di errore, pur avendo lo stesso upper bound, in un caso aumenta, nell'altro
+diminuisce.
+
+Ora vediamo sistemi di n equazioni differenziali, ciascuna con f che dipende dalle altre u.
+Dal punto di vista numerico non è molto più difficile del caso scalare.
+Costruiamo vettori che contangano le u e le sue derivate, e le funzioni.
+
+Metodo di Eulero
+Da adesso in poi sulle dispense le cose sono scritte come scalari, anche se in teoria sono vettori.
+La prima cosa che si fa è discretizzare l'intervallo. 
+Vogliamo che la pendenza del polinomio interpolante sia approssimata dalla funzione nota. DI base il metodo di Eulero
+è un approssimare la derivata a pezzi.
