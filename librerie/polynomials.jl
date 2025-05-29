@@ -22,6 +22,10 @@
 
 Please note: using a certain n will return a vector of lenght n+1 because of polynomial of 0-th order. Polynomial of
              n-th order will be stored in n+1 position because of Julia arrays ordering
+-legforintegration: returns two numbers, the value of legendre polynomial of n-th order evaluated in a specific x,
+                    and the value of its derivative evaluated in the same x.
+                    requires n, which is the polynomial degree, and the point in which evaluate the polynomial and 
+                    its derivative.
 =#
 
 function leg_pol(n::Int)
@@ -89,6 +93,22 @@ function leg_roots(n::Int, pl::Vector{Function}, dpl::Vector{Function})
         end
     end
     return roots
+end
+function legforintegration(n::Int, x::Float64)
+    p0 = 1
+    p1 = x
+    ptemp = 0.0
+    pder = 0.0
+
+    for m in 1:1:(n-1)
+        ptemp = p1
+        p1 = ((2m+1)*x*ptemp - m*p0)/(m+1)
+        p0 = ptemp
+    end
+
+    pder = n*(x*p1 - p0)/(x^2-1)
+
+    return p1, pder
 end
 #---------------------------------------------------------------------------------------------------------------------
 println("polynomials.jl loaded correctly")

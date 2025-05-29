@@ -62,7 +62,8 @@ function IntegralSim(f::Function, a::Number, b::Number, m::Integer)
     return (h/3)*(f(a) + f(b) + 4*sum1 + 2*sum2)
 end
 #---------------------------------------------------------------------------------------------------------------------
-#GAUSS-LEGENDRE QUADRATURE
+#GAUSS-LEGENDRE QUADRATURE FIRST VERSION
+#NB: this version actually works, but is too slow.
 #= 
 -w(Int): returns the weights for every root of a legendre polynomial
          requires n, the polynomial degree
@@ -71,7 +72,7 @@ end
 -IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
                                        requires f (the function to be integrated), n, the integration precision
 =#
-function newt_met_steps(f::Function, df::Function, x_start::Number)
+#= function newt_met_steps(f::Function, df::Function, x_start::Number)
     x_tol::Float64 = 1.0e-15
     y_tol::Float64 = 1.0e-15
     iter_max::Int = 1000
@@ -175,7 +176,75 @@ function IntegralGaussLegendre(f::Function, n::Int)
     println("Function all_leg_pol: ", t1)
     println("Function w: ", t2)
     return sum
+end =#
+#---------------------------------------------------------------------------------------------------------------------
+#GAUSS-LEGENDRE QUADRATURE
+#= 
+-w(Int): returns the weights for every root of a legendre polynomial
+         requires n, the polynomial degree
+         even though it returns every weight, since the roots are symmetric it just computes half of them and then
+         duplicates them.
+-IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
+                                       requires f (the function to be integrated), n, the integration precision
+=#
+function w(n::Int)
+    x_tol::Float64 = 1.0e-15
+    y_tol::Float64 = 1.0e-15
+    iter_max::Int = 1000
+    roots = ones(n)
+    weight = ones(n)
+
+    for k in 1:1:Int(floor(n/2))
+        iter::Int = 1
+        xk::Float64 = cos(pi*(4k-1)/(4n+2))
+        dx::Float64 = 1.0
+        p0::Float64 = 1.0
+        while abs(dx) > x_tol && abs(p0) > y_tol
+            p0, p0der = legforintegration(n, xk) 
+            dx = p0/p0der
+            xk = xk - dx  
+            iter += 1
+            if iter > iter_max
+                println("w says: iterations' maximum number reached. Found zero could be inaccurate.")
+                if abs(p0) > y_tol
+                    throw(DomainError(n, "w says: the function calculated in the estimated root is not close enoughto zero."))  
+                elseif abs(dx > x_tol)
+                    throw(DomainError(n, "w says: the root could not be found with the required precision."))
+                else
+                    println("w says: the root is: ", xk)
+                end
+            end 
+        end
+        roots[k] = xk
+        roots[end-k+1] = -xk
+
+        wk = 2/((1-xk^2)*(p0der)^2)
+        weight[k] = wk
+        weight[end-k+1] = wk
+    end
+
+    #Adding the middle root if n is odd
+    if n%2 == 1
+        xk = 0.0
+        middle_index::Int = Int((n+1)/2)
+        roots[middle_index] = xk
+        p0, p0der = legforintegration(n, xk)
+        weight[middle_index] = 2/((1-xk^2)*(p0der)^2)
+    end
+
+    return roots, weight
 end
+
+#n is the polynomial order
+function IntegralGaussLegendre(f::Function, n::Int)
+    sum::Float64 = 0.0
+    root, weight = w(n)
+    for k in 1:1:n
+        sum += f(root[k])*weight[k]
+    end
+    return sum
+end
+
 #---------------------------------------------------------------------------------------------------------------------
 #CLENSHAW-CURTIS QUADRATURE
 #= 
