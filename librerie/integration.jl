@@ -6,13 +6,9 @@
 using Dates
 include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\non_linear_roots.jl")
 include("c:\\ALL\\Stefano\\Bicocca\\3terzo_anno\\lab_comp\\lab_computazionale1\\librerie\\polynomials.jl")
-function mean(x::Vector)
-    n = length(x)
-    return sum(x)/n
-end
 #-------------------------------------------------------------------------------------------------------------------------------
 #NEWTON-COTES INTEGRATION RULES
-#=  
+#=   
 -IntegralTrap: returns the integral with the trapezoidal rule.
                Requires the function f, the integration interval extrema (a, b), and the number of intervals 
 -IntegralSim: returns the integral with Simpson's rule.
@@ -65,11 +61,11 @@ end
 #GAUSS-LEGENDRE QUADRATURE FIRST VERSION
 #NB: this version actually works, but is too slow.
 #= 
--w(Int): returns the weights for every root of a legendre polynomial
+-w_slow(Int): returns the weights for every root of a legendre polynomial
          requires n, the polynomial degree
          even though it returns every weight, since the roots are symmetric it just computes half of them and then
          duplicates them.
--IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
+-IntegralGaussLegendre_slow(Function, Int): returns the value of the integral between -1, 1
                                        requires f (the function to be integrated), n, the integration precision
 =#
 #= function newt_met_steps(f::Function, df::Function, x_start::Number)
@@ -107,7 +103,7 @@ end
     return result
 end
 
-function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
+function w_slow(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     P = pl[n+1]
     dP = dpl[n+1]
 
@@ -166,9 +162,9 @@ function w(n::Int, pl::Vector{Function}, dpl::Vector{Function})
     return w, roots
 end
 
-function IntegralGaussLegendre(f::Function, n::Int)
+function IntegralGaussLegendre_slow(f::Function, n::Int)
     t1 = @elapsed pl, dpl = all_leg_pol(n)
-    t2 = @elapsed weight_arr, xk_arr = w(n, pl, dpl)
+    t2 = @elapsed weight_arr, xk_arr = w_slow(n, pl, dpl)
     sum::Float64 = 0.0
     for i in 1:1:n
         sum += f(xk_arr[i])*weight_arr[i]
@@ -187,7 +183,7 @@ end =#
 -IntegralGaussLegendre(Function, Int): returns the value of the integral between -1, 1
                                        requires f (the function to be integrated), n, the integration precision
 =#
-function w(n::Int)
+function wGL(n::Int)
     x_tol::Float64 = 1.0e-15
     y_tol::Float64 = 1.0e-15
     iter_max::Int = 1000
@@ -236,13 +232,18 @@ function w(n::Int)
 end
 
 #n is the polynomial order
-function IntegralGaussLegendre(f::Function, n::Int)
+function IntegralGaussLegendre(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
+    a, b = min(a, b), max(a, b)
     sum::Float64 = 0.0
-    root, weight = w(n)
+    norm::Float64 = (b-a)/2
+    root, weight = wGL(n)
+    
+    g = x -> f(0.5*((b-a)*x + (a+b)))
+
     for k in 1:1:n
-        sum += f(root[k])*weight[k]
+        sum += g(root[k])*weight[k]
     end
-    return sum
+    return norm*sum
 end
 
 #---------------------------------------------------------------------------------------------------------------------
@@ -277,15 +278,17 @@ function w_CC_even(n::Int64, k::Int)
     return wk
 end
 
-function IntegralCC_even(f::Function, n::Int)
+function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
     if n%2 == 1
         throw(DomainError(n, "IntegralCC_even says: n must be even."))
     end
-
+    a, b = min(a, b), max(a, b)
+    g = x -> f(0.5*((b-a)*x + (a+b)))
     sum = 0.0
+
     for k in 0:1:n
         xk = cos(k*pi/n)
-        sum += w_CC_even(n, k)*f(xk)        
+        sum += w_CC_even(n, k)*g(xk)        
     end
 
     return sum
