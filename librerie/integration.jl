@@ -283,15 +283,16 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
         throw(DomainError(n, "IntegralCC_even says: n must be even."))
     end
     a, b = min(a, b), max(a, b)
-    g = x -> f(0.5*((b-a)*x + (a+b)))
+    norm::Float64 = (b-a)/2
     sum = 0.0
 
     for k in 0:1:n
         xk = cos(k*pi/n)
-        sum += w_CC_even(n, k)*g(xk)        
+        xk = 0.5*((b-a)*xk + (a+b))
+        sum += w_CC_even(n, k)*f(xk)        
     end
 
-    return sum
+    return norm*sum
 end
 #---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
