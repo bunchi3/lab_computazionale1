@@ -295,4 +295,30 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
     return norm*sum
 end
 #---------------------------------------------------------------------------------------------------------------------
+#DOUBLE EXPONENTIAL QUADRATURE
+function Integral_DE(f::Function, N::Int)
+    Φ = t -> tanh(pi * sinh(t) / 2)
+    Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2)
+    g = t -> f(Φ(t)) * Φ_der(t)
+    tM = 0.0
+    t_prec = 10.0^(-5)
+    sum = 0.0
+    
+
+    while abs(g(-tM)) > eps() || abs(g(tM)) > eps()
+        tM +=  t_prec
+    end
+
+    h = tM/N
+
+    for k in -N:1:N
+        sum += f(Φ(k*h)) * Φ_der(k*h)       
+    end
+
+    return h*sum
+end
+
+
+
+#---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
