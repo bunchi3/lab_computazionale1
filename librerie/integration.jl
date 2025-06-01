@@ -297,13 +297,16 @@ end
 #---------------------------------------------------------------------------------------------------------------------
 #DOUBLE EXPONENTIAL QUADRATURE
 function Integral_DE(f::Function, N::Int)
-    Φ = t -> tanh(pi * sinh(t) / 2)
-    Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2)
+    #= Φ = t -> tanh(pi * sinh(t) / 2)
+    Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2) =#
+
+    Φ = t -> sinh((pi/2) * sinh(t))
+    Φ_der = t -> pi/2 * cosh(t) * cosh(pi/2 * sinh(t))
+
     g = t -> f(Φ(t)) * Φ_der(t)
     tM = 0.0
     t_prec = 10.0^(-5)
     sum = 0.0
-    
 
     while abs(g(-tM)) > eps() || abs(g(tM)) > eps()
         tM +=  t_prec
