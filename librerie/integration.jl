@@ -296,12 +296,16 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
 end
 #---------------------------------------------------------------------------------------------------------------------
 #DOUBLE EXPONENTIAL QUADRATURE
-function Integral_DE(f::Function, N::Int)
+function Integral_DE(f::Function, N::Int; a = :linf, b = :rinf)
+    
     #= Φ = t -> tanh(pi * sinh(t) / 2)
     Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2) =#
 
-    Φ = t -> sinh((pi/2) * sinh(t))
-    Φ_der = t -> pi/2 * cosh(t) * cosh(pi/2 * sinh(t))
+    if a == :linf && b == :rinf
+        Φ = t -> sinh((pi/2) * sinh(t))
+        Φ_der = t -> pi/2 * cosh(t) * cosh(pi/2 * sinh(t))
+    end
+    
 
     g = t -> f(Φ(t)) * Φ_der(t)
     tM = 0.0
