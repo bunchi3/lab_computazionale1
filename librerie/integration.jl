@@ -296,21 +296,40 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
 end
 #---------------------------------------------------------------------------------------------------------------------
 #DOUBLE EXPONENTIAL QUADRATURE
-function Integral_DE(f::Function, N::Int; a = :lone, b = :rone, e = :false)
-    δ = 10^(-15.0)
-    sum = 0.0
+function Integral_DE(f::Function, N::Int, a::Number, b::Number)
+    a, b = min(a, b), max(a, b)
+    norm = (b-a)/2.0
 
-    if a == :lone && b == :rone
-        Φ = t -> tanh(pi * sinh(t) / 2)
-        Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2)
-    end
+    g = x -> f(0.5*((b-a)*x + a + b))
+    I = Integral_DE(g, N)
     
+    return norm*I
+end
+
+function Integral_DE(f::Function, N::Int; a::Symbol=:lone, b::Symbol=:rone, e::Bool=false)
+    if (a != :zero && a != :linf && a != :lone)
+        throw(DomainError(a, "Integral_DE says: the first parameter must be one of the following: :zero, :linf, :rone"))
+    end
+    if (b != :rinf && b != :rone)
+        throw(DomainError(b, "Integral_DE says: the second parameter must be the following: :rinf, :rone"))
+    end
+    if N <= 0
+        throw(DomainError(N, "Integral_DE says: the last parameter is the intervals' number, can't be negative or zero"))
+    end
+
+    sum = 0.0
+    
+    if a == :lone && b == :rone
+        Φ = t -> tanh(pi/2 * sinh(t))
+        Φ_der = t -> (pi/2 * cosh(t))/(cosh(pi/2 * sinh(t)))^2    
+    end
+
     if a == :zero && b == :rinf
         Φ = t -> exp(pi/2 * sinh(t))
         Φ_der = t -> pi/2 * exp(pi/2 * sinh(t)) * cosh(t)
     end
 
-    if a == :zero && b == :rinf && e == :true
+    if a == :zero && b == :rinf && e == true
         Φ = t -> exp(t - exp(-t))
         Φ_der = t -> exp(-exp(-t)) * (exp(t) + 1)
     end
@@ -340,7 +359,7 @@ function Integral_DE(f::Function, N::Int; a = :lone, b = :rone, e = :false)
     h = tM/N
 
     for k in -N:1:N
-        sum += f(Φ(k*h)) * Φ_der(k*h)       
+        sum += g(k*h)      
     end
 
     return h*sum
