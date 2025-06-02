@@ -296,24 +296,45 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
 end
 #---------------------------------------------------------------------------------------------------------------------
 #DOUBLE EXPONENTIAL QUADRATURE
-function Integral_DE(f::Function, N::Int; a = :linf, b = :rinf)
+function Integral_DE(f::Function, N::Int; a = :lone, b = :rone, e = :false)
+    δ = 10^(-15.0)
+    sum = 0.0
+
+    if a == :lone && b == :rone
+        Φ = t -> tanh(pi * sinh(t) / 2)
+        Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2)
+    end
     
-    #= Φ = t -> tanh(pi * sinh(t) / 2)
-    Φ_der = t -> ((pi/2) * cosh(t))/((cosh((pi/2) * sinh(t)))^2) =#
+    if a == :zero && b == :rinf
+        Φ = t -> exp(pi/2 * sinh(t))
+        Φ_der = t -> pi/2 * exp(pi/2 * sinh(t)) * cosh(t)
+    end
+
+    if a == :zero && b == :rinf && e == :true
+        Φ = t -> exp(t - exp(-t))
+        Φ_der = t -> exp(-exp(-t)) * (exp(t) + 1)
+    end
 
     if a == :linf && b == :rinf
         Φ = t -> sinh((pi/2) * sinh(t))
         Φ_der = t -> pi/2 * cosh(t) * cosh(pi/2 * sinh(t))
     end
-    
 
     g = t -> f(Φ(t)) * Φ_der(t)
-    tM = 0.0
-    t_prec = 10.0^(-5)
-    sum = 0.0
 
-    while abs(g(-tM)) > eps() || abs(g(tM)) > eps()
+    #I start with a big tM already (and not tM=0.0)
+    tM = 2.0
+    t_prec = 10.0^(-5)
+    iter::Int = 0
+    iter_max::Int = 10^6
+
+    while (abs(g(-tM)) > eps() || abs(g(tM)) > eps()) && iter < iter_max
         tM +=  t_prec
+        iter += 1
+    end
+    
+    if iter >= iter_max
+        display("Integral_DE says: finding tM was too long. Integral found could be inaccurate.")     
     end
 
     h = tM/N
