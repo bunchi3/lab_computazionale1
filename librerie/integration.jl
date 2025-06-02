@@ -1,6 +1,10 @@
 #File's index
 # 1.  #IMPORT SECTION
 # 2.  #NEWTON-COTES INTEGRATION RULES
+# 3.  #GAUSS-LEGENDRE QUADRATURE FIRST VERSION
+# 4.  #GAUSS-LEGENDRE QUADRATURE
+# 5.  #CLENSHAW-CURTIS QUADRATURE
+# 6.  #DOUBLE EXPONENTIAL QUADRATURE
 #-------------------------------------------------------------------------------------------------------------------------------
 #IMPORT SECTION
 using Dates
@@ -296,6 +300,17 @@ function IntegralCC_even(f::Function, n::Int; a::Number = -1.0, b::Number = 1.0)
 end
 #---------------------------------------------------------------------------------------------------------------------
 #DOUBLE EXPONENTIAL QUADRATURE
+#= 
+-Integral_DE: has two methods
+    1: returns the value of the integral of a function f in a finite interval, using the double exponential method
+       requires the function f to be integrated; N which is half of the points of the polynomial approximation;
+       a and b which are the interval boundaries.
+    2: returns the value of the integral of a function f in a infinite interval and in [-1, 1], using the double 
+       exponential method
+       requires the function f to be integrated; N which is half of the points of the polynomial approximation;
+       a and b which specify the boundaries (l is for left, r is for right, e.g.: lone = left one = -1 ); 
+       e specifies if in the function there is e^-x. 
+=#
 function Integral_DE(f::Function, N::Int, a::Number, b::Number)
     a, b = min(a, b), max(a, b)
     norm = (b-a)/2.0
@@ -364,8 +379,5 @@ function Integral_DE(f::Function, N::Int; a::Symbol=:lone, b::Symbol=:rone, e::B
 
     return h*sum
 end
-
-
-
 #---------------------------------------------------------------------------------------------------------------------
 println("integration.jl loaded correctly")
