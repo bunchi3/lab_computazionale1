@@ -1,0 +1,27 @@
+One step IVP
+Sono tutti della forma u_{i+1} = u_{i} + hphi(ti, ui, h)
+Dove phi è la funzione f
+L'errore di troncamento locale per tutti gli oone step si definisce come ...
+
+L'errore globale è un vettore delle differenze della soluzione esatta con quella numerica per tutti i tempi.
+Interessante è guadare l'errore al tempo massimo. A seconda del tipo di equazione differenziale l'errore
+aumenta o diminuisce al procedere delle integrazioni.
+
+Per gli errori sulle equazioni differenziali bisogna considerare che ci sono errori che si propagano. Ci sono sia
+errori locali ma anche errori che sono stati fatti in passato che si propagano in futuro.
+
+
+bisogna scegliere h in una regione che rende l'algoritmo stabile, così le soluzioni trovate sono stabili. Poi in
+quella regione si sceglie un h per averre un certo errore.
+
+Per risolvere eulero all'indietro devo risolvere un problema di ricerca degli zeri. Lo starting point del
+metodo di newton è il punto calcolato con eulero dritto.
+Il motivo pper cui complichiamo così è che, nonostante questo algoritmo costi di più, è più stabile.
+In generale i metodi impliciti sono più stabili.
+Gli algoritmi impliciti con le tecniche di questo laboratorio non riescono aa risolvere sistemi di equazioni, 
+perchè non abbiamo algoritmi che trovano zeri di sistemi non lineari. Questo è un problema nostro, l'algoritmo di 
+Newton-Rapson risolve sistemi di equazioni non lineari.
+
+Gli errori di eulero dritto sono ordine h, di all'indietro è ordine -h. Se ne faccio la media trovo un'errore 
+di ordine superiore perchè i contributi si cancellano. Comunque a noi interessa poco perchè vedremo algoritmo che 
+scalano con ordine superiore più efficienti.
