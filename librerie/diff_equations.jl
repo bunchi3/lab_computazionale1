@@ -21,7 +21,7 @@ function euler_ode(f::Function, u0::Number, n::Number, a::Number, b::Number)
     return u
 end
 
-function euler_ode(f::Vector{Function}, u0::Vector{Number}, n::Int, a::Number, b::Number)
+function euler_ode(f::Vector, u0::Vector, n::Int, a::Number, b::Number)
     m = length(f)
     if m != length(u0)
         throw(DomainError(u0, "euler_ode says: the two parameters must be of the same length."))
@@ -41,7 +41,7 @@ function euler_ode(f::Vector{Function}, u0::Vector{Number}, n::Int, a::Number, b
         #Defining a vector containing all the entries for the known function      
         v = [u[j][i] for j in 1:1:m]
         for j in 1:1:m
-            u[j][i+1] = u[j][i] + h*f[j](ti, v)             
+            u[j][i+1] = u[j][i] + h*f[j](ti, v...)             
         end
     end
 
