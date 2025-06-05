@@ -72,9 +72,9 @@ Nella presente sezione analizziamo le due principali fonti di errore in contesti
 \subsection{Esercizio 1.0.1}
 Considera la funzione $f(x)=e^x$ nell'intervallo $x\in [0,1]$. Scrivi un programma che calcoli la serie approssimante:
 
-$$
+\begin{equation}
     g_N(x)=\sum_{n=0}^N \frac{x^n}{n!}\,.
-$$
+\end{equation}
 
 \begin{enumerate}
     \item Verifica che l'errore assoluto $\Delta=|f(x)-g_N(x)|$ scala approssimativamente come $x^{N+1}/(N+1)!$ per $N=1,2,3,4$.
@@ -106,14 +106,14 @@ cioè che l'errore scali come un polinomio di ordine $N+1$.
 \subsection{Esercizio 1.2.1}
 Calcolare la seguente somma
 
-$$
+\begin{equation}
     \sum_{n=1}^\infty \frac{1}{n^2}=\frac{\pi^2}{6}
     =\lim_{N\to\infty} S(N)
     \quad
     \text{con}
     \quad
     S(N)=\sum_{n=1}^N \frac{1}{n^2}
-$$
+\end{equation}
 
 \begin{enumerate}
     \item Calcolare la somma in single precision utilizzando l'ordinamento normale,\\
@@ -191,6 +191,41 @@ quando vengono sommati numeri dell'ordine di $\epsilon_{mach}$ per double precis
  $\frac{1}{N^2} \simeq 2^{-52}$.
 
 \subsection{Esercizio 1.4.1}
+**(a)** In statistics, we define the variance of a sample of values $x_1,\ldots,x_n$ by
+  
+\begin{equation}
+    \sigma^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2,
+    \qquad 
+    \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i.
+\end{equation}
+
+Write a function that takes as input a vector $x$ of any length and returns $\sigma^2$ as calculated by the formula. 
+You should test your function with $x=[1,1,\ldots,1]$ and some random vectors.
+
+**(b)** One drawback of the naive formula is that you must first compute a sum for $\overline{x}$ before performing 
+the sum to compute $\sigma^2$. This means that we have to pass twice through the data. 
+This is undesirable for large data sets or when the sample variance is to be computed as the data is generated. 
+Some textbooks quote a single-loop formula:
+  
+\begin{equation}
+    \sigma^2 = \frac{1}{n-1} \left( u - \frac{1}{n}v^2 \right),\\
+    u  = \sum_{i=1}^n x_i^2, 
+    \qquad
+    v = \sum_{i=1}^n x_i.    
+\end{equation}
+
+Try both formulas for the datasets below, each of which has a variance exactly equal to 1. 
+Do this in both single and double precision.
+
+x = [ 1e3, 1+1e3, 2+1e3 ] \
+x = [ 1e6, 1+1e6, 2+1e6 ] \
+x = [ 1e7, 1+1e7, 2+1e7 ] \
+x = [ 1e8, 1+1e8, 2+1e8 ] 
+
+Can you explain the results?
+
+\subsubsection{Soluzione}
+
 
 \section{Sistemi lineari}
 \label{sistemi_lineari}
