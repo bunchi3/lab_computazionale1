@@ -1,0 +1,9 @@
+Metodi RUnge Kutta
+
+Si esetende il metodo di eulero a ordine superiore.
+E' un metodo chimaato multi-staged, perchè per fare il passo ci sono due stadi.
+SI possono usare i teoremi di ieri sugli errori. 
+In base ai valori di b2 ci sono classificazioni del metodo di eulero.
+
+Per andare a ordine superiore si integra l'equazione differenziale, si fa un cambio di variabile e la 
+quadratura gaussiana. 
