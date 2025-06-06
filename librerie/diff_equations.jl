@@ -4,7 +4,39 @@
 #3. RUNGE-KUTTA METHOD
 #-------------------------------------------------------------------------------------------------------------------------------
 #IMPORT SECTION
+#-------------------------------------------------------------------------------------------------------------------------------
+#STEP SIZE FINDING
+function h_bool(u1::Vector, u2::Vector, err_tol::Number)
+    if length(u1) != length(u2)
+        throw(DomainError(u1, "h says: the two parameters must be of the same length."))
+    end
+    norm_inf = maximum(abs.(u1 .- u2))
+    if norm_inf > err_tol
+        println("Norma infinito: ", norm_inf)
+        return false
+    else
+        println("Norma infinito: ", norm_inf)
+        return true
+    end
+end
 
+function h_search(ODE_func1::Function, ODE_func2::Function, f::Vector, u0::Vector, n::Number, a::Number, b::Number; err_tol::Number = 1e-6)
+    stability = false
+    iter = 1
+    u1 = ODE_func1(f, u0, n, a, b)[1]
+    while stability == false && iter < 10
+        u2 = ODE_func2(f, u0, 2^(iter)*n, a, b)[1]
+        u2_comparison = [u2[i] for i in 1:2:length(u2)]
+        stability = h_bool(u1, u2_comparison, err_tol)
+        iter += 1
+        u1 = u2         #I use u2 as the new u1 for the next iteration
+    end
+    println("Iterations: ", iter)
+    if stability == false && iter == 10
+        throw(DomainError(n, "h_search says: the two methods are not stable."))
+    end
+    return abs((b - a)/n)
+end
 #-------------------------------------------------------------------------------------------------------------------------------
 #EULER'S METHOD
 function euler_ode(f::Function, u0::Number, n::Number, a::Number, b::Number)
@@ -86,14 +118,16 @@ function RK4(f::Vector, u0::Vector, n::Int, a::Number, b::Number)
     end
 
     h = (b-a)/n
-    u = [Vector{Number}(undef, n+1) for _ in 1:1:m]
+    u = [Vector{Number}(undef, n+1) for _ in 1:1:m]     #n+1 because we need to include the initial point
 
     #j will be used as index for the diff_equations
     #i will be used as index for the points of the single equation
+    #for loop for the initial point
     for j in 1:1:m
         u[j][1] = u0[j]        
     end
 
+    #for loop for the rest of the points, starting from the first one, excluding the known value (u0)
     for i in 1:1:n
         ti = a + (i-1)*h  
         #Defining a vector containing all the entries for the known function      
@@ -110,6 +144,7 @@ function RK4(f::Vector, u0::Vector, n::Int, a::Number, b::Number)
         end
     end
 
+    #u contains m vectors, each of length n+1
     return u
 end
 #-------------------------------------------------------------------------------------------------------------------------------
