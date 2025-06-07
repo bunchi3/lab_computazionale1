@@ -191,41 +191,125 @@ quando vengono sommati numeri dell'ordine di $\epsilon_{mach}$ per double precis
  $\frac{1}{N^2} \simeq 2^{-52}$.
 
 \subsection{Esercizio 1.4.1}
-**(a)** In statistics, we define the variance of a sample of values $x_1,\ldots,x_n$ by
-  
+\paragraph{(a)} In statistica, definiamo la varianza di un campione di valori $x_1,\ldots,x_n$ come
+
 \begin{equation}
     \sigma^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2,
     \qquad 
     \overline{x} = \frac{1}{n} \sum_{i=1}^n x_i.
+    \label{eq:varianza_naive}
 \end{equation}
 
-Write a function that takes as input a vector $x$ of any length and returns $\sigma^2$ as calculated by the formula. 
-You should test your function with $x=[1,1,\ldots,1]$ and some random vectors.
+Scrivi una funzione che prenda in input un vettore $x$ di lunghezza arbitraria e restituisca $\sigma^2$ calcolata 
+con la formula sopra. 
+Dovresti testare la funzione con $x=[1,1,\ldots,1]$ e con alcuni vettori casuali.
 
-**(b)** One drawback of the naive formula is that you must first compute a sum for $\overline{x}$ before performing 
-the sum to compute $\sigma^2$. This means that we have to pass twice through the data. 
-This is undesirable for large data sets or when the sample variance is to be computed as the data is generated. 
-Some textbooks quote a single-loop formula:
-  
+\paragraph{(b)} Uno svantaggio della formula "naive" è che bisogna prima calcolare una somma per $\overline{x}$ prima di eseguire la somma per calcolare $\sigma^2$. 
+Questo significa che bisogna scorrere due volte i dati. 
+Ciò è indesiderabile per grandi insiemi di dati o quando la varianza campionaria deve essere calcolata mentre i dati vengono generati. 
+Alcuni libri di testo riportano una formula a singolo ciclo:
+
 \begin{equation}
     \sigma^2 = \frac{1}{n-1} \left( u - \frac{1}{n}v^2 \right),\\
     u  = \sum_{i=1}^n x_i^2, 
     \qquad
-    v = \sum_{i=1}^n x_i.    
+    v = \sum_{i=1}^n x_i.  
+    \label{eq:varianza_eff}  
 \end{equation}
 
-Try both formulas for the datasets below, each of which has a variance exactly equal to 1. 
-Do this in both single and double precision.
+Prova entrambe le formule per i seguenti dataset, ciascuno dei quali ha varianza esattamente uguale a 1. 
+Esegui i calcoli sia in single che in double precision. \\
+$ x_1 = [ 1e3, 1+1e3, 2+1e3 ]$ \\
+$ x_2 = [ 1e6, 1+1e6, 2+1e6 ]$ \\
+$ x_3 = [ 1e7, 1+1e7, 2+1e7 ]$ \\
+$ x_4 = [ 1e8, 1+1e8, 2+1e8 ]$ 
 
-x = [ 1e3, 1+1e3, 2+1e3 ] \
-x = [ 1e6, 1+1e6, 2+1e6 ] \
-x = [ 1e7, 1+1e7, 2+1e7 ] \
-x = [ 1e8, 1+1e8, 2+1e8 ] 
-
-Can you explain the results?
+Sai spiegare i risultati?
 
 \subsubsection{Soluzione}
+\paragraph{(a) } Si è testato il codice che implementa la formula \ref{eq:varianza_naive} su tre vettori contenenti
+elementi di tipo Float64. Il primo contiene solo numeri $1$, il secondo contiene numeri generati a partire 
+da una distribuzione uniforme, il terzo numeri generati a partiere da una distribuzione normale. I valori sono 
+riportati in tabella \ref{tab:varianza_test}.
 
+\begin{table}[h!]
+\centering
+\caption{Risultati del test della formula \ref{eq:varianza_naive} su tre vettori di tipo Float64}
+\label{tab:varianza_test}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Vettore} & \textbf{Lunghezza}   & \textbf{Varianza attesa} & \textbf{Varianza (output)} \\
+\hline
+Solo uno         & $10^3$               & 0.000                    & 0.000                       \\
+Uniforme         & $10^8$               & 0.083                    & 0.083                       \\
+Normale          & $10^8$               & 1.000                    & 1.000                       \\
+\hline
+\end{tabular}
+\end{table}
+
+I risultati di tabella \ref{tab:varianza_test} mostrano che l'implementazione del codice è corretta.
+
+\paragraph{(b) }
+Si è testato il codice che implementa la formula \ref{eq:varianza_eff} su quattro vettori contenenti
+elementi di tipo Float32, Float64 e Long Double. I risultati sono riportati in tabella \ref{tab:varianza_precisioni}.
+
+\begin{table}[h!]
+\centering
+\caption{Valori di varianza. Metodo 1: equazione \ref{eq:varianza_naive}. Metodo 2: equazione \ref{eq:varianza_eff}.}
+\label{tab:varianza_precisioni}
+\begin{tabular}{|l|c|cc|cc|cc|}
+\hline
+\textbf{Set} & \textbf{$\sigma^2$ attesa} 
+& \multicolumn{2}{c|}{\textbf{Float32}} 
+& \multicolumn{2}{c|}{\textbf{Float64}} 
+& \multicolumn{2}{c|}{\textbf{Long Double}} \\
+\cline{3-8}
+      &     & Metodo 1 & Metodo 2  & Metodo 1 & Metodo 2 & Metodo 1 & Metodo 2 \\
+\hline
+$x_1$ & 1.0 & 1.0      & 1.0       & 1.0      & 1.0      & 1.0      & 1.0 \\
+$x_2$ & 1.0 & 1.0      & -131072.0 & 1.0      & 1.0      & 1.0      & 1.0 \\
+$x_3$ & 1.0 & 1.0      & 0.0       & 1.0      & 1.0      & 1.0      & 1.0 \\
+$x_4$ & 1.0 & 0.0      & 0.0       & 1.0      & 0.0      & 1.0      & 1.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+I risultati di tabella \ref{tab:varianza_precisioni} mostrano che il calcolo della varianza con la formula 
+\ref{eq:varianza_eff} è più affetto dalla mancanza di precisione della rappresentazione dei numeri durante il calcolo.
+Infatti, mano a mano che la la precisione dei numeri aumenta, il risultato della formula \ref{eq:varianza_eff} 
+si avvicina a quello atteso. \\
+C'è da notare che anche la formula \ref{eq:varianza_naive} è affetta dalla stessa problematica, ma in maniera meno
+evidente. Basti osservare il risultato del metodo 1 per il vettore $x_4$ in Float32, che è $0.0$, contro l'atteso 
+$1.0$. \\
+L'origine del problema è la cancellazione numerica. Infatti, per valori degli elementi del vettore molto grandi,
+la differenza tra il quadrato della sommma e la somma dei quadrati è molto piccola e incorre in problema di
+cancellazione. Per verificare questa affermazione, si riportano in tabella \ref{tab:errore_varianza} i valori della 
+differenza \( u - \frac{v^2}{n} \)
+per la formula \ref{eq:varianza_eff}.
+
+\begin{table}[h!]
+\centering
+\caption{Differenza \( u - \frac{v^2}{n} \) per ciascun dataset.}
+\label{tab:errore_varianza}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Dataset} & \textbf{Single} & \textbf{Double} & \textbf{Long Double} \\
+\hline
+$x_1$ & 2.0       & 2.0 & 2.0 \\
+$x_2$ & -262144.0 & 2.0 & 2.0 \\
+$x_3$ & 0.0       & 2.0 & 2.0 \\
+$x_4$ & 0.0       & 0.0 & 2.0 \\
+\hline
+\end{tabular}
+\end{table}
+
+Leggendo la tabella \ref{tab:errore_varianza} possiamo notare che per il dataset $x_1$ la differenza è esattamente
+$2.0$, che è il risultato atteso. Per il dataset $x_2$ la differenza è molto grande, $-262144.0$, il che indica un
+significativo problema di cancellazione numerica. Per il dataset $x_3$ e $x_4$, la differenza è $0.0$, indice 
+del fatto che i singoli valori \( u - \frac{v^2}{n} \) sono vicini tra loro meno di $\epsilon_mach$, e perciò la 
+loro differenza è zero. \\
+Per concludere, possiamo dire che la formula \ref{eq:varianza_eff} è più efficiente in termini di tempo di calcolo,
+ma è più affetta da errori numerici rispetto alla formula \ref{eq:varianza_naive}.
 
 \section{Sistemi lineari}
 \label{sistemi_lineari}

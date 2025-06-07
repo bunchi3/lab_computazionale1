@@ -7,14 +7,18 @@
 \contentsline {paragraph}{Single precision:}{3}{section*.3}%
 \contentsline {paragraph}{Double precision:}{5}{section*.5}%
 \contentsline {subsection}{\numberline {1.4}Esercizio 1.4.1}{5}{subsection.1.4}%
+\contentsline {paragraph}{(a)}{5}{section*.7}%
+\contentsline {paragraph}{(b)}{6}{section*.8}%
 \contentsline {subsubsection}{\numberline {1.4.1}Soluzione}{6}{subsubsection.1.4.1}%
-\contentsline {section}{\numberline {2}Sistemi lineari}{6}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Teoria}{6}{subsection.2.1}%
-\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Teoria}{6}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Interpolazioni}{6}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Teoria}{6}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Integrazione numerica}{6}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Teoria}{6}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{6}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Teoria}{6}{subsection.6.1}%
+\contentsline {paragraph}{(a) }{6}{section*.9}%
+\contentsline {paragraph}{(b) }{6}{section*.11}%
+\contentsline {section}{\numberline {2}Sistemi lineari}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Teoria}{8}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{8}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Teoria}{8}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Interpolazioni}{8}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Teoria}{8}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Integrazione numerica}{8}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Teoria}{8}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Teoria}{8}{subsection.6.1}%
