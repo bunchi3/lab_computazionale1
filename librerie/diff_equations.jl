@@ -8,7 +8,7 @@
 #STEP SIZE FINDING
 function h_bool(u1::Vector, u2::Vector, err_tol::Number)
     if length(u1) != length(u2)
-        throw(DomainError(u1, "h says: the two parameters must be of the same length."))
+        throw(DomainError(u1, "h_bool says: the two parameters must be of the same length."))
     end
     norm_inf = maximum(abs.(u1 .- u2))
     if norm_inf > err_tol
@@ -21,21 +21,52 @@ function h_bool(u1::Vector, u2::Vector, err_tol::Number)
 end
 
 function h_search(ODE_func1::Function, ODE_func2::Function, f::Vector, u0::Vector, n::Number, a::Number, b::Number; err_tol::Number = 1e-6)
-    stability = false
+    m = length(f)
+    if m != length(u0)
+        throw(DomainError(u0, "h_search says: f and u must be of the same length."))
+    end
+    stability = fill(false, m)
     iter = 1
-    u1 = ODE_func1(f, u0, n, a, b)[1]
-    while stability == false && iter < 10
-        u2 = ODE_func2(f, u0, 2^(iter)*n, a, b)[1]
-        u2_comparison = [u2[i] for i in 1:2:length(u2)]
-        stability = h_bool(u1, u2_comparison, err_tol)
+    u1 = ODE_func1(f, u0, n, a, b)
+    while all(!x for x in stability) && iter < 10
+        u2 = ODE_func2(f, u0, 2^(iter)*n, a, b)
+        for j in 1:1:m
+            u2_comparison = [u2[j][i] for i in 1:2:length(u2[j])]
+            println("$j ° solution: ")
+            stability[j] = h_bool(u1[j], u2_comparison, err_tol)
+        end
+        
         iter += 1
         u1 = u2         #I use u2 as the new u1 for the next iteration
     end
     println("Iterations: ", iter)
-    if stability == false && iter == 10
+    if all(!x for x in stability) && iter == 10
         throw(DomainError(n, "h_search says: the two methods are not stable."))
     end
-    return abs((b - a)/n)
+    return abs((b - a)/(2^(iter)*n))
+end
+#-------------------------------------------------------------------------------------------------------------------------------
+#SOLUTION LONG STEADY STATE
+function l_t_steady(t::Vector, u::Vector; err_tol::Number = 10^-9)
+    n = length(t)
+    if n != length(u)
+        throw(DomainError(u, "l_t_steady says: the two parameters must be of the same length."))
+    end
+    if n < 2
+        throw(DomainError(t, "l_t_steady says: the two parameters must have at least two elements."))
+    end
+    #Check if the time vector is sorted
+    if !issorted(t)
+        throw(DomainError(t, "l_t_steady says: the time vector must be sorted."))
+    end
+
+    for i in Int(floor(n/2)):1:n-1
+        if abs(u[i] - u[i+1]) < err_tol
+            return t[i]
+        else
+            throw(DomainError(t, "l_t_steady says: the steady state was not reached."))
+        end
+    end
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #EULER'S METHOD
