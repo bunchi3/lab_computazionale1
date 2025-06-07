@@ -311,10 +311,148 @@ loro differenza è zero. \\
 Per concludere, possiamo dire che la formula \ref{eq:varianza_eff} è più efficiente in termini di tempo di calcolo,
 ma è più affetta da errori numerici rispetto alla formula \ref{eq:varianza_naive}.
 
+\subsection{Esercizio 1.4.2}
+Sia $f(x) = \frac{e^x-1}{x}$.
+  
+(a) Trova il numero di condizionamento $\kappa_f(x)$. Qual è il massimo di $\kappa_f(x)$ nell'intervallo $-1\le x \le 1$?
+  
+(b) Usa l'algoritmo "naive"
+
+\begin{equation}
+    f(x)= \frac{e^x-1}{x}
+\end{equation}
+
+per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
+
+(c) Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Maclaurin, cioè
+
+\begin{equation}
+    p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
+\end{equation}
+
+Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ fin dall'inizio?
+
+(d) Confronta i risultati delle due implementazioni in funzione di $x$. Quale algoritmo pensi sia più accurato, e perché?
+
+\subsubsection{Soluzione}
+
+\paragraph{(a) } Il numero di condizionamento di una funzione $f$ è definito come:
+\begin{equation}
+    \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right|\,.
+\end{equation}
+
+Per la funzione $f(x) = \frac{e^x-1}{x}$, calcoliamo la derivata:
+\begin{equation}
+    f'(x) = \frac{e^x x - (e^x - 1)}{x^2} = \frac{e^x (x-1) + 1}{x^2}\,.
+\end{equation}
+Quindi il numero di condizionamento diventa:
+\begin{equation}
+    \kappa_f(x) = \left| \frac{x \left( \frac{e^x (x-1) + 1}{x^2} \right)}{\frac{e^x - 1}{x}} \right| = \left| \frac{e^x (x-1) + 1}{(e^x - 1)x} \right| = \left| \frac{e^x x}{(e^x - 1)} - 1 \right|\,.
+\end{equation}
+La derivata di $k_f(x)$ non si annulla mai nell'intervallo $-1 \leq x \leq 1$, e $\kappa_f(0) = 0$. Dato che
+$\kappa_f(x)$ è monotona crescente per $x \geq 0$ e monotona decrescente per $x < 0$, il massimo si ha in $x = 1$,
+dove assume il valore $\kappa_f(1) = 0.58198$.
+
+\paragraph{(b)-(c): } Si riportano in figura \ref{fig:es1_4_2_1} i risultati dei due algoritmi. La dicitura $f(x)$ 
+si riferisce alla funzione calcolata con l'algoritmo "naive", mentre $p_n(x)$ si riferisce alla funzione calcolata 
+con la serie di Maclaurin, fino al termine $n$.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1421.pdf}
+    \caption{Confronto tra $f(x)$ e $p_n(x)$ al variare di $x$.}
+    \label{fig:es1_4_2_1}
+\end{figure}
+
+Per uno studio più accurato, si riporta in figura \ref{fig:es1_4_2_2} un ingrandimento per piccoli valori di x 
+(range $[10^{-15}, 10^{-14}]$) della figura \ref{fig:es1_4_2_1} e in figura \ref{fig:es1_4_2_3} un ingrandimento 
+per valori di x (range $[10^{-2}, 10^{-1}]$) della figura \ref{fig:es1_4_2_1}.
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1422.pdf}
+    \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per piccoli valori di x.}
+    \label{fig:es1_4_2_2}
+\end{figure}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1423.pdf}
+    \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per valori di x nell'intervallo $[10^{-2}, 10^{-1}]$.}
+    \label{fig:es1_4_2_3}
+\end{figure}
+
+%Commentare le due figure e i risultati ottenuti.
+%Attenzione che la figura 1422 non risponde tanto al punto (c) dell'esercizio, ma al punto (d). Va bene messo lì 
+%perchè è la richiesta di (b), ma poi può essere commentato anche in (d).
+
+\paragraph{(d): } Come confronto tra i due algoritmi si riporta in figura \ref{fig:es1_4_2_4} il grafico 
+dell'errore tra i due algoritmi, cioè
+\begin{equation}
+    \Delta(x) = \left| f(x) - p_n(x) \right|\,.
+\end{equation}
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1424.pdf}
+    \caption{Distanza tra $f(x)$ e $p_n(x)$.}
+    \label{fig:es1_4_2_4}
+\end{figure}
+
 \section{Sistemi lineari}
 \label{sistemi_lineari}
 \subsection{Teoria}
 
+\subsection{Esercizi 2.1.1, 2.1.2, 2.1.3, 2.1.4}
+Scrivi una funzione che esegua la sostituzione in avanti su una matrice triangolare inferiore $n\times n$.
+
+2. Testa il tuo codice sui seguenti sistemi lineari:
+     
+    (a) $\; \begin{bmatrix}
+        -2 & 0 & 0 \\
+        1 & -1 & 0 \\
+        3 & 2 & 1 
+      \end{bmatrix} 
+      \mathbf{x} = \begin{bmatrix}
+        -4 \\ 2 \\ 1
+      \end{bmatrix}\qquad$
+
+    (b) $\;\begin{bmatrix}
+        4 & 0 & 0 & 0 \\
+        1 & -2 & 0 & 0 \\
+        -1 & 4 & 4 & 0 \\
+        2 & -5 & 5 & 1
+      \end{bmatrix} 
+      \mathbf{x} = \begin{bmatrix}
+        -4 \\ 1 \\ -3 \\ 5
+      \end{bmatrix}$
+
+Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{L}\mathbf{x}$ e sottraendo $\mathbf{b}$.
+
+3. Scrivi una funzione che esegua la sostituzione all'indietro su una matrice triangolare superiore $n\times n$.
+
+4. Testa il tuo codice sui seguenti sistemi lineari:
+
+    (a) $\;\begin{bmatrix}
+      3 & 1 & 0  \\
+      0 & -1 & -2  \\
+      0 & 0 & 3  \\
+    \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+      1 \\ 1 \\ 6
+    \end{bmatrix}\qquad$
+
+    (b) $\;\begin{bmatrix}
+      3 & 1 & 0 & 6 \\
+      0 & -1 & -2 & 7 \\
+      0 & 0 & 3 & 4 \\
+      0 & 0 & 0 & 5
+    \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+      4 \\ 1 \\ 1 \\ 5
+    \end{bmatrix}$
+
+Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{U}\mathbf{x}$ e sottraendo $\mathbf{b}$.
+
+\subsubsection{Soluzione}
+Per risolvere i sistemi lineari proposti, si sono implementate le funzioni di sostituzione in avanti e all'indietro. 
+Di seguito sono riportati i risultati delle soluzioni.
 
 
 \section{Radici di equazioni non lineari}
