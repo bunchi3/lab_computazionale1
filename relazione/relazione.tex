@@ -281,7 +281,7 @@ si avvicina a quello atteso. \\
 C'è da notare che anche la formula \ref{eq:varianza_naive} è affetta dalla stessa problematica, ma in maniera meno
 evidente. Basti osservare il risultato del metodo 1 per il vettore $x_4$ in Float32, che è $0.0$, contro l'atteso 
 $1.0$. \\
-L'origine del problema è la cancellazione numerica. Infatti, per valori degli elementi del vettore molto grandi,
+Parte del problema risiede nella cancellazione numerica. Infatti, per valori degli elementi del vettore molto grandi,
 la differenza tra il quadrato della sommma e la somma dei quadrati è molto piccola e incorre in problema di
 cancellazione. Per verificare questa affermazione, si riportano in tabella \ref{tab:errore_varianza} i valori della 
 differenza \( u - \frac{v^2}{n} \)
@@ -314,6 +314,8 @@ ma è più affetta da errori numerici rispetto alla formula \ref{eq:varianza_nai
 \section{Sistemi lineari}
 \label{sistemi_lineari}
 \subsection{Teoria}
+
+
 
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
