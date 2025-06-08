@@ -34,11 +34,19 @@
 \contentsline {paragraph}{(c) }{16}{section*.29}%
 \contentsline {subsection}{\numberline {2.5}Esercizi 2.4.1, 2.4.2}{16}{subsection.2.5}%
 \contentsline {subsubsection}{\numberline {2.5.1}Soluzione}{16}{subsubsection.2.5.1}%
-\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{17}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Teoria}{17}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Interpolazioni}{17}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Teoria}{17}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Integrazione numerica}{17}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Teoria}{17}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{17}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Teoria}{17}{subsection.6.1}%
+\contentsline {subsection}{\numberline {2.6}Esercizio 2.5.1}{17}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Soluzione}{17}{subsubsection.2.6.1}%
+\contentsline {paragraph}{(a) }{17}{section*.30}%
+\contentsline {paragraph}{(b) }{17}{section*.31}%
+\contentsline {paragraph}{(c) }{18}{section*.32}%
+\contentsline {paragraph}{(e) }{18}{section*.33}%
+\contentsline {paragraph}{(f) }{18}{section*.34}%
+\contentsline {paragraph}{(g) }{18}{section*.35}%
+\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{19}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Teoria}{19}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Interpolazioni}{19}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Teoria}{19}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Integrazione numerica}{19}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Teoria}{19}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Teoria}{19}{subsection.6.1}%

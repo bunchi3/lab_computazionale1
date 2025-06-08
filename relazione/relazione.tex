@@ -856,6 +856,146 @@ Si riportano i risultati delle decomposizioni giunte a termine, con i dovuti arr
     \end{minipage}
 \end{center}
 
+\subsection{Esercizio 2.5.1}
+Consideriamo la matrice:
+\[
+\mathbf{A} =
+\begin{bmatrix}
+-\epsilon &  1 \\
+        1 & -1
+\end{bmatrix}
+\]
+
+Se $\epsilon=0$, la fattorizzazione LU senza pivoting parziale fallisce per $\mathbf{A}$. Ma se $\epsilon\neq 0$, 
+possiamo procedere senza pivoting, almeno in linea di principio. \\
+(a) Costruisci $\mathbf{b}=\mathbf{Ax}$ prendendo $\epsilon=10^{-12}$ per la matrice $\mathbf{A}$ e 
+$\mathbf{x}=[1,1]$ come soluzione. \\
+(b) Fattorizza la matrice usando la decomposizione LU senza pivoting e risolvi numericamente per $\mathbf{x}$. 
+Quanto è accurato il risultato? \\
+(c) Verifica la fattorizzazione LU calcolando $\mathbf{A}-\mathbf{LU}$. Funziona? \\
+(d) Ripeti per $\epsilon=10^{-20}$. Quanto è accurato ora il risultato? \\
+(e) Calcola il numero di condizionamento della matrice $\mathbf{A}$; puoi scegliere la norma che preferisci. 
+Il sistema $\mathbf{Ax}=\mathbf{b}$ è mal condizionato? \\
+(f) Calcola le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di $\mathbf{A}=\mathbf{LU}$ a mano. \\
+(g) Calcola i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$. I sistemi triangolari 
+$\mathbf{L}\mathbf{z}=\mathbf{b}$ e $\mathbf{U}\mathbf{x}=\mathbf{z}$ sono mal condizionati? \\
+
+\subsubsection{Soluzione}
+Per poter operare un confronto tra i risultati ottenuti con $\epsilon = 10^{-12}$ e $\epsilon = 10^{-20}$, si è
+scelto di trattare il punto (d) insieme ai punti (a), (b) e (c). Il pedice 1 è legato al caso $\epsilon = 10^{-12}$,
+il pedice 2 al caso $\epsilon = 10^{-20}$. \\
+
+\paragraph{(a) } Si è calcolato il prodotto tra la matrice $\mathbf{A}$ e il vettore $\mathbf{x}$, ottenendo, 
+a meno di arrotondamenti, i vettori:
+\begin{equation}
+    \mathbf{b_1} = \begin{bmatrix}
+         1.0 \\
+         0.0
+    \end{bmatrix}.
+\qquad
+    \mathbf{b_2} = \begin{bmatrix}
+         1.0\\
+         0.0
+    \end{bmatrix}.
+\end{equation}
+
+\paragraph{(b) } \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
+\begin{equation}
+    \mathbf{L_1} = \begin{bmatrix}
+    1.0      &  0.0 \\
+    -1.0 \cdot 10^{12}  &  1.0 
+    \end{bmatrix}, \qquad
+    \mathbf{U_1} = \begin{bmatrix}
+    -1.0 \cdot 10^{-12}  &  1.0               \\
+     0.0                 &  1.0 \cdot 10^{12}
+    \end{bmatrix},
+\end{equation}
+\begin{equation}
+    \mathbf{L_2} = \begin{bmatrix}
+    1.0                 &  0.0 \\
+    -1.0 \cdot 10^{20}  &  1.0
+    \end{bmatrix}, \qquad
+    \mathbf{U_2} = \begin{bmatrix}
+    -1.0 \cdot 10^{-20}  &  1.0 \\
+     0.0                 &  1.0 \cdot 10^{20}
+    \end{bmatrix}.
+\end{equation}
+
+Si è risolto il sistema $\mathbf{Ax} = \mathbf{b}$ utilizzando le sostituzioni triangolari, ottenendo:
+\begin{equation}
+    \mathbf{x_1} = \begin{bmatrix}
+        1.0 \\
+        1.0
+    \end{bmatrix}, 
+    \qquad
+    \mathbf{x_2} = \begin{bmatrix}
+        0.0 \\
+        1.0
+    \end{bmatrix}.
+\end{equation}
+
+\paragraph{(c) } Si è calcolato il prodotto tra le matrici $\mathbf{L}$ e $\mathbf{U}$, in seguito lo si è 
+sottratto ad $\mathbf{A}$ ottenendo:
+\begin{equation}
+    \mathbf{A_1} - \mathbf{(LU)_1} = \begin{bmatrix}
+        0.0 & 0.0 \\
+        0.0 & 0.0
+    \end{bmatrix}, 
+    \qquad
+    \mathbf{A_2} - \mathbf{(LU)_2} = \begin{bmatrix}
+        0.0 & 0.0 \\
+        0.0 & 1.0
+    \end{bmatrix}.
+\end{equation}
+
+È evidente che il risultato per $\epsilon = 10^{-12}$ è accurato, al contrario del risultato ottenuto per
+$\epsilon = 10^{-20}$, in cui sia la soluzione che la verifica della fattorizzazione LU sono
+affette da errori numerici.
+
+\paragraph{(e) } Si è calcolato $\kappa(A)$, utilizzando sia la norma 1 che la norma infinito, ottenendo lo stesso
+numero a causa della natura simmetrica della matrice $\mathbf{A}$. La formula generale per il numero di
+condizionamento della matrice $\mathbf{A}$ presa in esame è $ \kappa(A) = \frac{4}{1 - \epsilon}$.
+\begin{equation}
+    \kappa_1(A) = \kappa_\infty(A) =  4.000000000004\,,
+    \qquad
+    \kappa_1(A) = \kappa_\infty(A) =  4.0\,.
+\end{equation}
+
+Come si può notare, in entrambi i casi il numero di condizionamento non è molto grande, quindi il sistema
+$\mathbf{Ax} = \mathbf{b}$ non è mal condizionato. 
+
+\paragraph{(f) } Si sono calcolate a mano le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di
+$\mathbf{A}$ per ciascun valore di $\epsilon$. I calcoli dettagliati sono disponibili nella cartella git
+\verb|lab\computazionale1\esercizi\pen_and_paper|, il cui link è stato fornito in precedenza. Ad ogni modo le 
+matrici ottenute sono già state riportate al punto \ref{par:fattorizzazione_LU}. \\
+
+\paragraph{(g) } Si sono calcolati i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$, utilizzando sia 
+la norma 1 che la norma infinito, ancora una volta ottenendo lo stesso numero. \\
+Le forumle generali per il numero di condizionamento delle matrici $\mathbf{L}$ e $\mathbf{U}$ sono:
+\begin{equation}
+    \kappa_1(L) = \kappa_\infty(L) = \left(1 + \frac{1}{\epsilon}\right)^2\,,
+    \qquad
+    \kappa_1(U) = \kappa_\infty(U) = \frac{1}{\epsilon^2}\,.
+\end{equation}
+
+In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
+
+\begin{table}[h!]
+\centering
+\caption{Valori dei parametri \( L \) e \( U \) per diverse tolleranze \( \varepsilon \)}
+\label{tab:LU_epsilon}
+\begin{tabular}{|c|c|c|}
+\hline
+ & \( \varepsilon = 10^{-12} \) & \( \varepsilon = 10^{-20} \) \\
+\hline
+\( L \) & $1.0 \cdot 10^{24}$ & $1.0 \cdot 10^{40}$ \\
+\( U \) & $1.0 \cdot 10^{24}$ & $1.0 \cdot 10^{40}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+%Aggiungere la conclusione LU mal condizionate e smerdano il calcolo, anche se A e ben condizionata
+
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
 
