@@ -1033,6 +1033,66 @@ ottenendo:
     \end{bmatrix}.
 \end{equation}
 
+\subsection{Esercizio 2.6.2}
+Keplero ha scoperto che il periodo orbitale $\tau$ di un pianeta dipende dalla sua distanza media $R$ dal Sole 
+secondo la legge $\tau = c R^{\alpha}$, dove $\alpha$ è un semplice numero razionale.
+(a) Esegui un fit lineare ai minimi quadrati utilizzando la tabella \ref{tab:pianeti} per determinare il valore 
+più probabile e semplice di $\alpha$. \\
+Il risultato è in accordo con le tue aspettative? 
+[Suggerimento: ricorda le leggi del moto planetario di Keplero.] \\
+(b) Realizza un grafico dei dati e del risultato del fit.
+
+\subsubsection{Soluzione}
+\paragraph{(a) } Il metodo dei minimi quadrati che è stato sviluppato durante il corso è adatto a risolvere
+problemi lineari, in cui le costanti che si vogliono determinare sono coefficienti lineari di funzioni dei dati.
+Non è il caso del problema proposto, dato che $\alpha$ si trova ad esponente. Per risolvere la questione si 
+è scelto di linearizzare il problema tramite il logaritmo naturale. In formule:
+\begin{equation}
+    \ln(\tau) = \ln(c) + \alpha \ln(R).
+\end{equation}
+Da qui in poi si è implementato il metodo dei minimi quadrati, applicando la scomposizione di Cholesky alla 
+matrice $n \times n$ ottenuta dal prodotto della matrice di design e la sua trasposta. Per chiarezza si riporta
+la matrice di design:
+\begin{equation}
+    \mathbf{A} = \begin{bmatrix}
+        1 & \ln(57.59) \\
+        1 & \ln(108.11) \\
+        1 & \ln(149.57) \\
+        1 & \ln(227.84) \\
+        1 & \ln(778.14) \\
+        1 & \ln(1427) \\
+        1 & \ln(2870.3) \\
+        1 & \ln(4499.9)
+    \end{bmatrix}.
+\end{equation}
+La matrice di design è stata costruita in modo che la prima colonna fosse composta da 1, per poter calcolare
+il termine noto della retta di regressione, e la seconda colonna fosse composta dai logaritmi naturali delle
+distanze dei pianeti dal Sole. \\
+È necessario un ultimo commento sulla legge di Keplero, prima di riportare i risultati. Fino ad ora abbiamo
+assunto che la costante $c$ fosse indipendente dal pianeta, ma in realtà la sua espressione è:
+\begin{equation}
+    c = \frac{2\pi}{\sqrt{G (M+m)}}\,,
+\end{equation}
+dove $G$ è la costante di gravitazione universale, $M$ è la massa del Sole, $m$ è la massa del pianeta. \\
+Consideriamo Giove, il pianeta più massivo di quelli presi in esame ($m \approx 1.90 \cdot 10^{27} \, \text{kg}$). Si ha:
+\begin{equation}
+    c_1 = \frac{2\pi}{\sqrt{G (M+m)}} = 5.47 \cdot 10^{-10} \frac{sec}{m^{3/2}}\,,
+    \qquad
+    c_2 = \frac{2\pi}{\sqrt{G (M)}}   = 5.47 \cdot 10^{-10} \frac{sec}{m^{3/2}}\,,
+    \qquad
+    \frac{c_1}{c_2} \approx 1.0\,.
+\end{equation}
+
+Possiamo quindi affermare che la costante $c$ è indipendente dalla massa del pianeta, entro la precisione 
+necessaria per il nostro scopo. \\
+Si è quindi calcolato il valore di $\alpha$ e della costante $c$, ottenendo:
+\begin{equation}
+    c = 0.206
+    \qquad
+    \alpha = 1.499
+\end{equation}
+
+%Riprendi dal capire c quant'è
 
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
@@ -1047,5 +1107,25 @@ ottenendo:
 \subsection{Teoria}
 
 \section{Appendice}
+\subsection{Dati}
+\begin{table}[h!]
+\centering
+\caption{Distanza dal Sole e periodo orbitale dei pianeti del Sistema Solare}
+\label{tab:pianeti}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Pianeta} & \textbf{Distanza dal Sole [Mkm]} & \textbf{Periodo orbitale [giorni]} \\
+\hline
+Mercurio & 57.59   & 87.99   \\
+Venere   & 108.11  & 224.7   \\
+Terra    & 149.57  & 365.26  \\
+Marte    & 227.84  & 686.98  \\
+Giove    & 778.14  & 4332.4  \\
+Saturno  & 1427    & 10759   \\
+Urano    & 2870.3  & 30684   \\
+Nettuno  & 4499.9  & 60188   \\
+\hline
+\end{tabular}
+\end{table}
 
 \end{document}
