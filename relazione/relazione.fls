@@ -217,7 +217,6 @@ INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbsy10.tfm
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy8.tfm
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmbsy6.tfm
-OUTPUT relazione.toc
 INPUT .\immagini\logo_bicocca.png
 INPUT .\immagini\logo_bicocca.png
 INPUT .\immagini\logo_bicocca.png
@@ -225,6 +224,7 @@ INPUT .\immagini\logo_bicocca.png
 INPUT .\immagini\logo_bicocca.png
 INPUT .\immagini\logo_bicocca.png
 INPUT C:\Users\i\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
+OUTPUT relazione.toc
 INPUT .\immagini\1011.pdf
 INPUT .\immagini\1011.pdf
 INPUT .\immagini\1011.pdf
@@ -266,6 +266,7 @@ INPUT .\immagini\1425.pdf
 INPUT .\immagini\1425.pdf
 INPUT .\immagini\1425.pdf
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
+INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
 INPUT relazione.aux
 INPUT .\relazione.out
 INPUT .\relazione.out
@@ -297,3 +298,5 @@ INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cm
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt12.pfb
+INPUT C:\Users\i\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmtt12.pfb

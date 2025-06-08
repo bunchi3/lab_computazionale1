@@ -528,6 +528,220 @@ Risolvendo i sistemi a mano, i valori sono:
 \end{itemize}
 I risultati confermano la correttezza delle implementazioni delle funzioni di sostituzione in avanti e all'indietro.
 
+\subsection{Esercizi 2.3.1, 2.3.2, 2.3.4}
+1. Scrivi una funzione che esegua la fattorizzazione LU di una matrice $n\times n$.
+
+2. Per ciascuna matrice, calcola la fattorizzazione LU e verifica la correttezza.
+
+    \begin{center}
+    \begin{minipage}{0.32\textwidth}
+    \centering
+    (a)
+    \[
+    \begin{bmatrix}
+    2 & 3 & 4 \\
+    4 & 5 & 10 \\
+    4 & 8 & 2
+    \end{bmatrix}
+    \]
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+    \centering
+    (b)
+    \[
+    \begin{bmatrix}
+    6 & -2 & -4 & 4\\
+    3 & -3 & -6 & 1 \\
+    -12 & 8 & 21 & -8 \\
+    -6 & 0 & -10 & 7
+    \end{bmatrix}
+    \]
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.32\textwidth}
+    \centering
+    (c)
+    \[
+    \begin{bmatrix}
+    1 & 4 & 5 & -5 \\
+    -1 & 0 & -1 & -5 \\
+    1 & 3 & -1 & 2 \\
+    1 & -1 & 5 & -1 
+    \end{bmatrix}
+    \]
+    \end{minipage}
+    \end{center}
+
+4. Calcola il determinante delle matrici dell'Esercizio 2 utilizzando la loro fattorizzazione LU.
+
+\subsubsection{Soluzione}
+\paragraph{(Punti 1 e 2: )} Si sono implementati gli algoritmi di fattorizzazione LU, e si sono testati 
+sui tre sistemi proposti. \\
+Le scomposizioni ottenute sono le seguenti: \newline
+    \begin{center}
+    
+    \[
+    \textbf{(A)    }
+    \mathbf{L}_A =
+    \begin{bmatrix}
+    1.0  & 0.0 & 0.0 \\
+    2.0  & 1.0 & 0.0 \\
+    2.0  & -2.0 & 1.0
+    \end{bmatrix}
+    \qquad
+    \mathbf{U}_A =
+    \begin{bmatrix}
+    2.0 &  3.0  & 4.0 \\
+    0.0  & -1.0  & 2.0 \\
+    0.0  & 0.0   & -2.0
+    \end{bmatrix}
+    \qquad
+    \]
+
+    \[
+    \textbf{(B)   }
+    \mathbf{L}_B =
+    \begin{bmatrix}
+    1.0  & 0.0   & 0.0  & 0.0 \\
+    0.5  & 1.0   & 0.0  & 0.0 \\
+    -2.0  & -2.0  & 1.0  & 0.0 \\
+    -1.0  & 1.0   & -2.0 & 1.0 \\
+    \end{bmatrix}
+    \qquad
+    \mathbf{U}_B =
+    \begin{bmatrix}
+    6.0  & -2.0  & -4.0  & 4.0  \\
+    0.0  & -2.0  & -4.0  & -1.0 \\
+    0.0  & 0.0   & 5.0   & -2.0 \\
+    0.0  & 0.0   & 0.0   & 8.0  \\
+    \end{bmatrix}
+    \qquad
+    \]
+
+    \[
+    \textbf{(C)   }
+    \mathbf{L}_C =
+    \begin{bmatrix}
+    1.0  & 0.0   & 0.0  & 0.0 \\
+    -1.0  & 1.0   & 0.0  & 0.0 \\
+    1.0  & -0.25 & 1.0  & 0.0 \\
+    1.0  & -1.25 & -1.0 & 1.0 
+    \end{bmatrix}
+    \qquad
+    \mathbf{U}_C =
+    \begin{bmatrix}
+    1.0  & 4.0   & 5.0  & -5.0 \\
+    0.0  & 4.0   & 4.0  & -10.0 \\
+    0.0  & 0.0   & -2.0 & 6.0 \\
+    0.0  & 0.0   & 0.0  & 2.0 
+    \end{bmatrix}
+    \qquad
+    \]
+    \end{center}
+
+Per verificare la correttezza delle scomposizioni, si è calcolato il prodotto $\mathbf{L}\mathbf{U}$ per ciascuna 
+matrice e lo si è sottratto alla matrice originale. Si sono ottenute matrici di zeri, in tutti i casi, 
+confermando la correttezza dell'algoritmo.
+
+\paragraph{(Punto 4: )} Si è calcolato il determinante delle matrici dell'esercizio 2 utilizzando la loro
+fattorizzazione LU. Ricordando le proprietà del determinante e che la matrice $\mathbf{L}$ è triangolare inferiore 
+con elementi diagonali unitari, si ha che:
+
+\begin{equation}
+    \det(M) = det(LU) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
+\end{equation}
+
+Per il calcolo del determinante delle matrici proposte si è eseguito il prodotto degli elementi della diagonale
+principale della matrice $\mathbf{U}$. A titolo di confronto si è calcolato il determinante delle matrici con 
+la funzione \texttt{det} di Julia. I risultati sono riportati in tabella \ref{tab:determinanti}.
+\begin{table}[h!]
+\centering
+\caption{Determinanti delle matrici dell'esercizio 2.}
+\label{tab:determinanti}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Matrice} & \textbf{Determinante (LU)} & \textbf{Determinante (Julia)} \\
+\hline
+A                & 4.0                        & 4.0 \\
+B                & -480.0                     & -480.0 \\
+C                & 80.0                       & 80.0  \\
+\hline
+\end{tabular}
+\end{table}
+
+Si ottengono risultati identici.
+
+\subsection{Esercizio 2.3.3}
+Le matrici
+\[
+\mathbf{T}(x,y) = \begin{bmatrix}
+    1 & 0 & x \\ 
+    0 & 1 & y \\ 
+    0 & 0 & 1
+\end{bmatrix},\qquad
+\mathbf{R}(\theta) = \begin{bmatrix}
+    \cos\theta & \sin \theta & 0 \\ 
+    -\sin\theta & \cos \theta & 0 \\
+    0 & 0 & 1
+\end{bmatrix}
+\]
+sono usate per rappresentare traslazioni e rotazioni di punti del piano in computer grafica. Per quanto segue, sia
+\[
+\mathbf{A} = \mathbf{T}(3,-1)\,\mathbf{R}(\pi/5)\,\mathbf{T}(-3,1), \qquad 
+\mathbf{z} = \begin{bmatrix}
+    2 \\ 2 \\ 1
+\end{bmatrix}.
+\]
+
+\begin{enumerate}
+        \item[(a)] Calcolare $\mathbf{b} = \mathbf{A}\mathbf{z}$.
+        \item[(b)] Trovare la fattorizzazione LU di $\mathbf{A}$.
+        \item[(c)] Usare i fattori e le sostituzioni triangolari per risolvere $\mathbf{A}\mathbf{x} = \mathbf{b}$ 
+                   e calcolare $\mathbf{x} - \mathbf{z}$.
+\end{enumerate}
+
+\subsubsection{Soluzione}
+\paragraph{(a) } Si calcola il prodotto tra le matrici $\mathbf{A}$ e $\mathbf{z}$, ottenendo:
+\begin{equation}
+    \mathbf{b} = \mathbf{A}\mathbf{z} = \begin{bmatrix}
+        3.95 \\
+        2.01 \\
+        1.0
+    \end{bmatrix}. 
+\end{equation}
+\paragraph{(b) } Si calcola la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
+\begin{equation}
+    \mathbf{L} = \begin{bmatrix}
+        1.0  &     0.0  & 0.0 \\
+        -0.8  &  1.0  & 0.0 \\
+        0.0  &  0.0  &  1.0
+    \end{bmatrix}, \qquad
+    \mathbf{U} = \begin{bmatrix}
+        0.81  &  0.59  &  1.16 \\
+        0.0       &  1.24   &  2.42 \\
+        0.0       &  0.0       &  1.0
+    \end{bmatrix}.
+\end{equation}
+\paragraph{(c) } Si risolve il sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ utilizzando le sostituzioni triangolari.
+Si ottiene, con le dovute approssimazioni:
+\begin{equation}
+    \mathbf{x} = \begin{bmatrix}
+        2.0 \\ 
+        2.0 \\ 
+        1.0
+    \end{bmatrix}.
+\end{equation}
+La differenza tra $\mathbf{x}$ e $\mathbf{z}$ è:
+\begin{equation}
+    \mathbf{x} - \mathbf{z} = \begin{bmatrix}
+        -2.22 \cdot 10^{-16}  \\
+        -4.44 \cdot 10^{-16}  \\
+        0.0
+    \end{bmatrix}.
+\end{equation}
+
+
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
 
