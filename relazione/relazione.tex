@@ -449,54 +449,84 @@ Scrivi una funzione che esegua la sostituzione in avanti su una matrice triangol
 
 2. Testa il tuo codice sui seguenti sistemi lineari:
      
-    (a) $\; \begin{bmatrix}
-        -2 & 0 & 0 \\
-        1 & -1 & 0 \\
-        3 & 2 & 1 
-      \end{bmatrix} 
-      \mathbf{x} = \begin{bmatrix}
-        -4 \\ 2 \\ 1
-      \end{bmatrix}\qquad$
+    \begin{minipage}{0.48\textwidth}
+        (a) $\; \begin{bmatrix}
+            -2 & 0 & 0 \\
+            1 & -1 & 0 \\
+            3 & 2 & 1 
+          \end{bmatrix} 
+          \mathbf{x} = \begin{bmatrix}
+            -4 \\ 2 \\ 1
+          \end{bmatrix}$
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        (b) $\;\begin{bmatrix}
+            4 & 0 & 0 & 0 \\
+            1 & -2 & 0 & 0 \\
+            -1 & 4 & 4 & 0 \\
+            2 & -5 & 5 & 1
+          \end{bmatrix} 
+          \mathbf{x} = \begin{bmatrix}
+            -4 \\ 1 \\ -3 \\ 5
+          \end{bmatrix}$
+    \end{minipage}
 
-    (b) $\;\begin{bmatrix}
-        4 & 0 & 0 & 0 \\
-        1 & -2 & 0 & 0 \\
-        -1 & 4 & 4 & 0 \\
-        2 & -5 & 5 & 1
-      \end{bmatrix} 
-      \mathbf{x} = \begin{bmatrix}
-        -4 \\ 1 \\ -3 \\ 5
-      \end{bmatrix}$
-
-Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{L}\mathbf{x}$ e sottraendo $\mathbf{b}$.
+Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{L}\mathbf{x} - \mathbf{b}$.
 
 3. Scrivi una funzione che esegua la sostituzione all'indietro su una matrice triangolare superiore $n\times n$.
 
 4. Testa il tuo codice sui seguenti sistemi lineari:
 
-    (a) $\;\begin{bmatrix}
-      3 & 1 & 0  \\
-      0 & -1 & -2  \\
-      0 & 0 & 3  \\
-    \end{bmatrix} \mathbf{x} = \begin{bmatrix}
-      1 \\ 1 \\ 6
-    \end{bmatrix}\qquad$
+    \begin{minipage}{0.48\textwidth}
+        (a) $\;\begin{bmatrix}
+            3 & 1 & 0  \\
+            0 & -1 & -2  \\
+            0 & 0 & 3  \\
+            \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+            1 \\ 1 \\ 6
+            \end{bmatrix}$
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\textwidth}
+        (b) $\;\begin{bmatrix}
+            3 & 1 & 0 & 6 \\
+            0 & -1 & -2 & 7 \\
+            0 & 0 & 3 & 4 \\
+            0 & 0 & 0 & 5
+            \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+            4 \\ 1 \\ 1 \\ 5
+            \end{bmatrix}$
+    \end{minipage}
 
-    (b) $\;\begin{bmatrix}
-      3 & 1 & 0 & 6 \\
-      0 & -1 & -2 & 7 \\
-      0 & 0 & 3 & 4 \\
-      0 & 0 & 0 & 5
-    \end{bmatrix} \mathbf{x} = \begin{bmatrix}
-      4 \\ 1 \\ 1 \\ 5
-    \end{bmatrix}$
+Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{U}\mathbf{x} - \mathbf{b}$.
 
-Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{U}\mathbf{x}$ e sottraendo $\mathbf{b}$.
+
 
 \subsubsection{Soluzione}
 Per risolvere i sistemi lineari proposti, si sono implementate le funzioni di sostituzione in avanti e all'indietro. 
 Di seguito sono riportati i risultati delle soluzioni.
-
+\paragraph{Sostituzione in avanti:}
+\begin{itemize}
+    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} -4.0 & 2.0 & 1.0 \end{bmatrix}$.
+    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} -4.0 & 1.0 & -3.0 & 5.0 \end{bmatrix}$.
+\end{itemize}
+Risolvendo i sistemi a mano, i valori sono:
+\begin{itemize}
+    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} -4 & 2 & 1 \end{bmatrix}$.
+    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} -4 & 1 & -3 & 5 \end{bmatrix}$.
+\end{itemize}
+\paragraph{Sostituzione all'indietro:}
+\begin{itemize}
+    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} 1.0 & 1.0 & 6.0 \end{bmatrix}$.
+    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} 4.0 & 1.0 & 1.0 & 5.0 \end{bmatrix}$.
+\end{itemize}
+Risolvendo i sistemi a mano, i valori sono:
+\begin{itemize}
+    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} 1 & 1 & 6 \end{bmatrix}$.
+    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} 4 & 1 & 1 & 5 \end{bmatrix}$.
+\end{itemize}
+I risultati confermano la correttezza delle implementazioni delle funzioni di sostituzione in avanti e all'indietro.
 
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}

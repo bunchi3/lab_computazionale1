@@ -1,7 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1749367173.52792 "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" "relazione.pdf" "relazione" 1749367175.72156 0
+["pdflatex"] 1749370457.99483 "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" "relazione.pdf" "relazione" 1749370459.65999 0
   "C:/Users/i/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749153702 82507 a9eef8696c92627b87e9975edea03b2a ""
+  "C:/Users/i/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1716560345 14064 803ae188d0850707522a14983c3626d2 ""
   "C:/Users/i/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1713034034 24223199 15d92d282e7146bb281755c7a54dd0e6 ""
+  "C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1233951848 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1233951848 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1233951848 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -116,7 +118,7 @@
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" 1749367172 24067 d3c5f1aee4e8dd3622394e0488d5e823 ""
+  "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" 1749370457 25644 2d84985c7224a25b10dc7d8a46e8a182 ""
   "immagini/1011.pdf" 1748508215 51309 00ae035fd6a438054b37d598f0afa9ae ""
   "immagini/1211.pdf" 1748953682 76902 04710feee21a171bebfcfa20e3337602 ""
   "immagini/1212.pdf" 1748953695 320732 baa420ed4442086413237e5315e85c20 ""
@@ -126,10 +128,10 @@
   "immagini/1424.pdf" 1749366779 18942 07310e4c402ebdaabd6b1d0c12ce4e8e ""
   "immagini/1425.pdf" 1749366780 21872 bd33e0f4e294e7072482beb8e689ea3f ""
   "immagini/logo_bicocca.png" 1716552458 70070 66efddb9bac550368f3253e55585dd8f ""
-  "relazione.aux" 1749367175 7503 687ecb291f3c076f09a5adbe977f91d4 "pdflatex"
-  "relazione.out" 1749367175 2829 58b08f182988d8395f34319796a552f2 "pdflatex"
-  "relazione.tex" 1749367172 24067 d3c5f1aee4e8dd3622394e0488d5e823 ""
-  "relazione.toc" 1749367175 2230 909c0da7caadf358bf11a53ec10f587d "pdflatex"
+  "relazione.aux" 1749370459 7726 f74f7b3d8caad70e9898024580983bf4 "pdflatex"
+  "relazione.out" 1749370459 2829 58b08f182988d8395f34319796a552f2 "pdflatex"
+  "relazione.tex" 1749370457 25644 2d84985c7224a25b10dc7d8a46e8a182 ""
+  "relazione.toc" 1749370459 2371 814aa06941654eba82c07b5a1448f771 "pdflatex"
   (generated)
   "relazione.aux"
   "relazione.log"
