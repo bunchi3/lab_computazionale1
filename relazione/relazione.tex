@@ -994,7 +994,14 @@ In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 \end{tabular}
 \end{table}
 
-%Aggiungere la conclusione LU mal condizionate e smerdano il calcolo, anche se A e ben condizionata
+\subsubsection{Conclusioni}
+L'esercizio ha mostrato come il numero di condizionamento di una matrice non sia un indicatore sufficiente per
+valutare l'esattezza della risoluzione del sistema lineare associato. Infatti, sebbene il numero di condizionamento
+della matrice $\mathbf{A}$ sia relativamente basso, la risoluzione del sistema richiede il calcolo delle matrici
+$\mathbf{L}$ e $\mathbf{U}$, il cui numero di condizionamento potrebbe risultare elevato. È questo il caso
+con $\epsilon = 10^{-20}$, in cui $\kappa(A) =  4.0$ ma $\kappa(L) = 1.0 \cdot 10^{40}$ e 
+$\kappa(U) = 1.0 \cdot 10^{40}$. Dato che l'algoritmo utilizza le matrici $\mathbf{L}$ e $\mathbf{U}$ 
+per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle stesse.
 
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}

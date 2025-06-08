@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  8 JUN 2025 19:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  8 JUN 2025 20:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,7 +536,7 @@ Package hyperref Info: Link coloring OFF on input line 45.
 \openout3 = `relazione.out'.
 
  (relazione.toc
-<immagini/logo_bicocca.png, id=149, 501.875pt x 401.5pt>
+<immagini/logo_bicocca.png, id=153, 501.875pt x 401.5pt>
 File: immagini/logo_bicocca.png Graphic file (type png)
 <use immagini/logo_bicocca.png>
 Package pdftex.def Info: immagini/logo_bicocca.png  used on input line 49.
@@ -548,13 +548,13 @@ Package pdftex.def Info: immagini/logo_bicocca.png  used on input line 49.
 \openout4 = `relazione.toc'.
 
  [2]
-<immagini/1011.pdf, id=172, 803.0pt x 602.25pt>
+<immagini/1011.pdf, id=177, 803.0pt x 602.25pt>
 File: immagini/1011.pdf Graphic file (type pdf)
 <use immagini/1011.pdf>
 Package pdftex.def Info: immagini/1011.pdf  used on input line 90.
 (pdftex.def)             Requested size: 375.80544pt x 281.86288pt.
  [3]
-<immagini/1211.pdf, id=193, 602.25pt x 401.5pt>
+<immagini/1211.pdf, id=198, 602.25pt x 401.5pt>
 File: immagini/1211.pdf Graphic file (type pdf)
 <use immagini/1211.pdf>
 Package pdftex.def Info: immagini/1211.pdf  used on input line 139.
@@ -565,35 +565,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 144--172
  []
 
 [4 <./immagini/1011.pdf>] [5 <./immagini/1211.pdf>]
-<immagini/1212.pdf, id=215, 602.25pt x 401.5pt>
+<immagini/1212.pdf, id=220, 602.25pt x 401.5pt>
 File: immagini/1212.pdf Graphic file (type pdf)
 <use immagini/1212.pdf>
 Package pdftex.def Info: immagini/1212.pdf  used on input line 182.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
  [6 <./immagini/1212.pdf>] [7] [8]
-<immagini/1421.pdf, id=266, 602.25pt x 401.5pt>
+<immagini/1421.pdf, id=271, 602.25pt x 401.5pt>
 File: immagini/1421.pdf Graphic file (type pdf)
 <use immagini/1421.pdf>
 Package pdftex.def Info: immagini/1421.pdf  used on input line 364.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
-<immagini/1422.pdf, id=271, 602.25pt x 401.5pt>
+<immagini/1422.pdf, id=276, 602.25pt x 401.5pt>
 File: immagini/1422.pdf Graphic file (type pdf)
 <use immagini/1422.pdf>
 Package pdftex.def Info: immagini/1422.pdf  used on input line 374.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
-<immagini/1423.pdf, id=272, 602.25pt x 401.5pt>
+<immagini/1423.pdf, id=277, 602.25pt x 401.5pt>
 File: immagini/1423.pdf Graphic file (type pdf)
 <use immagini/1423.pdf>
 Package pdftex.def Info: immagini/1423.pdf  used on input line 380.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
  [9 <./immagini/1421.pdf>] [10 <./immagini/1422.pdf> <./immagini/1423.pdf>]
-<immagini/1424.pdf, id=301, 602.25pt x 401.5pt>
+<immagini/1424.pdf, id=306, 602.25pt x 401.5pt>
 File: immagini/1424.pdf Graphic file (type pdf)
 <use immagini/1424.pdf>
 Package pdftex.def Info: immagini/1424.pdf  used on input line 411.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
  [11 <./immagini/1424.pdf>]
-<immagini/1425.pdf, id=311, 602.25pt x 401.5pt>
+<immagini/1425.pdf, id=316, 602.25pt x 401.5pt>
 File: immagini/1425.pdf Graphic file (type pdf)
 <use immagini/1425.pdf>
 Package pdftex.def Info: immagini/1425.pdf  used on input line 429.
@@ -639,20 +639,20 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `relazione.out' has not changed.
-(rerunfilecheck)             Checksum: 6F085888CF27C4B999AFBA27169304B1;3929.
+(rerunfilecheck)             Checksum: 138755ACB8C032D178A1CC01C86ADAA9;4052.
  ) 
 Here is how much of TeX's memory you used:
- 17392 strings out of 474485
- 338667 string characters out of 5745622
+ 17394 strings out of 474485
+ 338707 string characters out of 5745622
  1951542 words of memory out of 5000000
- 39360 multiletter control sequences out of 15000+600000
+ 39361 multiletter control sequences out of 15000+600000
  570392 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,15n,80p,392b,1038s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,16n,80p,392b,1038s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\i\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on relazione.pdf (19 pages, 889498 bytes).
+Output written on relazione.pdf (19 pages, 890772 bytes).
 PDF statistics:
- 481 PDF objects out of 1000 (max. 8388607)
- 118 named destinations out of 1000 (max. 500000)
- 286 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 486 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 294 words of extra memory for PDF output out of 10000 (max. 10000000)
 

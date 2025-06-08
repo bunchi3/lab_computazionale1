@@ -42,6 +42,7 @@
 \contentsline {paragraph}{(e) }{18}{section*.33}%
 \contentsline {paragraph}{(f) }{18}{section*.34}%
 \contentsline {paragraph}{(g) }{18}{section*.35}%
+\contentsline {subsubsection}{\numberline {2.6.2}Conclusioni}{18}{subsubsection.2.6.2}%
 \contentsline {section}{\numberline {3}Radici di equazioni non lineari}{19}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Teoria}{19}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Interpolazioni}{19}{section.4}%
