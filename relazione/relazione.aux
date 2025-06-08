@@ -32,6 +32,8 @@
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Differenza \( u - \frac  {v^2}{n} \) per ciascun dataset.}}{7}{table.caption.13}\protected@file@percent }
 \newlabel{tab:errore_varianza}{{3}{7}{Differenza \( u - \frac {v^2}{n} \) per ciascun dataset}{table.caption.13}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.5}Esercizio 1.4.2}{7}{subsection.1.5}\protected@file@percent }
+\newlabel{eq:algoritmo_naive}{{5}{7}{Esercizio 1.4.2}{equation.1.5}{}}
+\newlabel{eq:algoritmo_maclaurin}{{6}{7}{Esercizio 1.4.2}{equation.1.6}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {1.5.1}Soluzione}{8}{subsubsection.1.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{(a) }{8}{section*.14}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{(b)-(c): }{8}{section*.15}\protected@file@percent }
@@ -41,20 +43,22 @@
 \newlabel{fig:es1_4_2_2}{{5}{9}{Ingrandimento di $f(x)$ e $p_n(x)$ per piccoli valori di x}{figure.caption.17}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Ingrandimento di $f(x)$ e $p_n(x)$ per valori di x nell'intervallo $[10^{-2}, 10^{-1}]$.}}{9}{figure.caption.18}\protected@file@percent }
 \newlabel{fig:es1_4_2_3}{{6}{9}{Ingrandimento di $f(x)$ e $p_n(x)$ per valori di x nell'intervallo $[10^{-2}, 10^{-1}]$}{figure.caption.18}{}}
-\@writefile{toc}{\contentsline {paragraph}{(d): }{9}{section*.19}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distanza tra $f(x)$ e $p_n(x)$.}}{10}{figure.caption.20}\protected@file@percent }
-\newlabel{fig:es1_4_2_4}{{7}{10}{Distanza tra $f(x)$ e $p_n(x)$}{figure.caption.20}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {2}Sistemi lineari}{10}{section.2}\protected@file@percent }
-\newlabel{sistemi_lineari}{{2}{10}{Sistemi lineari}{section.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Teoria}{10}{subsection.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Esercizi 2.1.1, 2.1.2, 2.1.3, 2.1.4}{10}{subsection.2.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Soluzione}{11}{subsubsection.2.2.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{11}{section.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Teoria}{11}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Interpolazioni}{11}{section.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Teoria}{11}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Integrazione numerica}{11}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Teoria}{11}{subsection.5.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{11}{section.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Teoria}{11}{subsection.6.1}\protected@file@percent }
-\gdef \@abspage@last{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Distanza tra $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$.}}{10}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:es1_4_2_4}{{7}{10}{Distanza tra $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$}{figure.caption.19}{}}
+\@writefile{toc}{\contentsline {paragraph}{(d): }{11}{section*.20}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Distanza tra $f(x)$ e $p_n(x)$.}}{11}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:es1_4_2_5}{{8}{11}{Distanza tra $f(x)$ e $p_n(x)$}{figure.caption.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Sistemi lineari}{11}{section.2}\protected@file@percent }
+\newlabel{sistemi_lineari}{{2}{11}{Sistemi lineari}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Teoria}{11}{subsection.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Esercizi 2.1.1, 2.1.2, 2.1.3, 2.1.4}{11}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Soluzione}{12}{subsubsection.2.2.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Radici di equazioni non lineari}{12}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Teoria}{12}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Interpolazioni}{12}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Teoria}{12}{subsection.4.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Integrazione numerica}{12}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Teoria}{12}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{12}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Teoria}{12}{subsection.6.1}\protected@file@percent }
+\gdef \@abspage@last{12}

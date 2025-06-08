@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  7 JUN 2025 22:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  8 JUN 2025 09:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -573,25 +573,31 @@ Package pdftex.def Info: immagini/1212.pdf  used on input line 182.
 <immagini/1421.pdf, id=222, 602.25pt x 401.5pt>
 File: immagini/1421.pdf Graphic file (type pdf)
 <use immagini/1421.pdf>
-Package pdftex.def Info: immagini/1421.pdf  used on input line 362.
+Package pdftex.def Info: immagini/1421.pdf  used on input line 364.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
 <immagini/1422.pdf, id=227, 602.25pt x 401.5pt>
 File: immagini/1422.pdf Graphic file (type pdf)
 <use immagini/1422.pdf>
-Package pdftex.def Info: immagini/1422.pdf  used on input line 372.
+Package pdftex.def Info: immagini/1422.pdf  used on input line 374.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
 <immagini/1423.pdf, id=228, 602.25pt x 401.5pt>
 File: immagini/1423.pdf Graphic file (type pdf)
 <use immagini/1423.pdf>
-Package pdftex.def Info: immagini/1423.pdf  used on input line 378.
+Package pdftex.def Info: immagini/1423.pdf  used on input line 380.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
- [8 <./immagini/1421.pdf>]
-<immagini/1424.pdf, id=243, 602.25pt x 401.5pt>
+ [8 <./immagini/1421.pdf>] [9 <./immagini/1422.pdf> <./immagini/1423.pdf>]
+<immagini/1424.pdf, id=257, 602.25pt x 401.5pt>
 File: immagini/1424.pdf Graphic file (type pdf)
 <use immagini/1424.pdf>
-Package pdftex.def Info: immagini/1424.pdf  used on input line 395.
+Package pdftex.def Info: immagini/1424.pdf  used on input line 411.
 (pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
- [9 <./immagini/1422.pdf> <./immagini/1423.pdf>] [10 <./immagini/1424.pdf>] [11] (relazione.aux)
+ [10 <./immagini/1424.pdf>]
+<immagini/1425.pdf, id=267, 602.25pt x 401.5pt>
+File: immagini/1425.pdf Graphic file (type pdf)
+<use immagini/1425.pdf>
+Package pdftex.def Info: immagini/1425.pdf  used on input line 429.
+(pdftex.def)             Requested size: 375.80544pt x 250.54478pt.
+ [11 <./immagini/1425.pdf>] [12] (relazione.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -600,17 +606,17 @@ Package rerunfilecheck Info: File `relazione.out' has not changed.
 (rerunfilecheck)             Checksum: 58B08F182988D8395F34319796A552F2;2829.
  ) 
 Here is how much of TeX's memory you used:
- 17310 strings out of 474485
- 337357 string characters out of 5745622
+ 17326 strings out of 474485
+ 337680 string characters out of 5745622
  1943542 words of memory out of 5000000
- 39325 multiletter control sequences out of 15000+600000
+ 39338 multiletter control sequences out of 15000+600000
  569886 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,15n,80p,392b,1038s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on relazione.pdf (11 pages, 817602 bytes).
+Output written on relazione.pdf (12 pages, 843223 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 73 named destinations out of 1000 (max. 500000)
- 217 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 358 PDF objects out of 1000 (max. 8388607)
+ 76 named destinations out of 1000 (max. 500000)
+ 222 words of extra memory for PDF output out of 10000 (max. 10000000)
 

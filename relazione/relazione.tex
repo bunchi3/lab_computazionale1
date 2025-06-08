@@ -320,6 +320,7 @@ Sia $f(x) = \frac{e^x-1}{x}$.
 
 \begin{equation}
     f(x)= \frac{e^x-1}{x}
+    \label{eq:algoritmo_naive}
 \end{equation}
 
 per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
@@ -328,6 +329,7 @@ per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
 
 \begin{equation}
     p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
+    \label{eq:algoritmo_maclaurin}
 \end{equation}
 
 Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ fin dall'inizio?
@@ -380,9 +382,41 @@ per valori di x (range $[10^{-2}, 10^{-1}]$) della figura \ref{fig:es1_4_2_1}.
     \label{fig:es1_4_2_3}
 \end{figure}
 
-%Commentare le due figure e i risultati ottenuti.
-%Attenzione che la figura 1422 non risponde tanto al punto (c) dell'esercizio, ma al punto (d). Va bene messo lì 
-%perchè è la richiesta di (b), ma poi può essere commentato anche in (d).
+Per quanto riguarda il comportamento della funzione $f(x)$ calcolata con l'algoritmo \ref{eq:algoritmo_naive},
+possiamo notare che per valori di $x$ piccoli, in particolare nella regione rappresentata in figura 
+\ref{fig:es1_4_2_2}, la funzione assume valori non corretti, nonostante $\kappa_f(x)$ abbia un massimo non molto
+grande e peraltro non assunto nell'intorno di zero. La spiegazione di questo fenomeno è che l'algoritmo
+\ref{eq:algoritmo_naive}, nonostante non abbia $\kappa_f(x)$ complessivo molto grande, è affetto da errori 
+di cancellazione numerica a causa della forma in cui è scritta la funzione, ma non a causa del fatto che 
+il problema sia intrinsecamente instabile. Di fatto possiamo intuire che esista una possibile riscrittura
+della funzione che non sia affetta da cancellazione numerica, e che sia più stabile, proprio perchè 
+sappiamo che il massimo di $\kappa_f(x)$ non è molto grande. Tale riscrittura è quella che utilizza la
+serie di Maclaurin, implementata nell'algoritmo $p_n(x)$. \\
+Possiamo notare che l'algoritmo \ref{eq:algoritmo_maclaurin}, per valori di $x$ piccoli, restituisce il 
+valore corretto, dato che non è affetto da cancellazione numerica. Al contrario, nella regione ingradita di 
+figura \ref{fig:es1_4_2_3}, l'algoritmo \ref{eq:algoritmo_maclaurin} comincia a restituire valori errati
+perchè ci allontaniamo dalla regione di convergenza della serie di Maclaurin. \\
+Osservando la figura \ref{fig:es1_4_2_3}, notiamo che, per valori di $x$ fissati, l'algoritmo 
+\ref{eq:algoritmo_maclaurin} è stabile, cioè le curve che descrivono i valori di $p_n(x)$ sono sempre più 
+vicine tra loro all'aumentare di $n$, fino a sovrapporsi. Per stimare un buon valore di $n$ da utilizzare
+per calcolare $p_n(x)$, possiamo osservare che la serie di Maclaurin è tanto meno stabile quanto più ci si
+allontana da zero. Nel caso di studio valutiamo la distanza tra i valori di $p_n(x)$ al variare di $n$,
+fissato $x = 0.1$. Si è rappresentato in figura \ref{fig:es1_4_2_4} l'andamento della distanza tra i valori
+di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
+\begin{equation}
+    \Delta_n = |p_n(0.1) - p_{n+1}(0.1)|\,.
+\end{equation}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{1424.pdf}
+    \caption{Distanza tra $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$.}
+    \label{fig:es1_4_2_4}
+\end{figure}
+
+Ai fini di questo esercizio possiamo dire che $n = 2$ è già un buon valore perchè le distanze tra i 
+polinomi successivi non sono apprezzabili nel range $[1, 1.06]$, caratteristico della figura \ref{fig:es1_4_2_3}.
+È chiaro che volendo raggiungere precisione massima occorrerà scegliere $n = 10$, dato che $\Delta_n$ 
+corrispondente è più piccolo di $\epsilon{mach}$
 
 \paragraph{(d): } Come confronto tra i due algoritmi si riporta in figura \ref{fig:es1_4_2_4} il grafico 
 dell'errore tra i due algoritmi, cioè
@@ -392,10 +426,19 @@ dell'errore tra i due algoritmi, cioè
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.8\textwidth]{1424.pdf}
+    \includegraphics[width=0.8\textwidth]{1425.pdf}
     \caption{Distanza tra $f(x)$ e $p_n(x)$.}
-    \label{fig:es1_4_2_4}
+    \label{fig:es1_4_2_5}
 \end{figure}
+
+La figura \ref{fig:es1_4_2_5} mostra una evidente differenza tra i due algoritmi nella regione di instabilità
+numerica di dell'algoritmo \ref{eq:algoritmo_naive}, cioè per valori di $x$ piccoli. E' interessante notare che 
+la distanza tra i due algoritmi diminuisce all'aumentare di $x$, ma torna ad aumentare a partire da
+$x = 10^{-5}$, laddove l'algoritmo \ref{eq:algoritmo_maclaurin} esce dalla regione di convergenza della 
+serie di Maclaurin. \\
+In conclusione, possiamo affermare che l'algoritmo \ref{eq:algoritmo_maclaurin} è più accurato
+per valori di $x$ piccoli, mentre l'algoritmo \ref{eq:algoritmo_naive} è più accurato per valori di $x$
+grandi.
 
 \section{Sistemi lineari}
 \label{sistemi_lineari}
