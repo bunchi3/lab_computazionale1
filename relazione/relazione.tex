@@ -1003,6 +1003,37 @@ con $\epsilon = 10^{-20}$, in cui $\kappa(A) =  4.0$ ma $\kappa(L) = 1.0 \cdot 1
 $\kappa(U) = 1.0 \cdot 10^{40}$. Dato che l'algoritmo utilizza le matrici $\mathbf{L}$ e $\mathbf{U}$ 
 per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle stesse.
 
+\subsection{Esercizio 2.6.1}
+(a) Scrivi un programma che prenda in input una matrice $\mathbf{A}$ e un vettore $\mathbf{b}$ e risolva 
+il problema dei minimi quadrati $\text{argmin}\| \mathbf{b}- \mathbf{A} \mathbf{x}\|_2$ utilizzando la decomposizione di Cholesky.\\
+(b) Per verificare il funzionamento del tuo codice, calcola la soluzione ai minimi quadrati quando
+\begin{center}
+    \begin{minipage}{0.48\textwidth}
+    \centering
+    \[
+    \mathbf{A} = \begin{bmatrix}
+      2 & -1 \\
+      0 & 1 \\
+      -2 & 2
+    \end{bmatrix}, \qquad
+    \mathbf{b} = \begin{bmatrix}
+      1 \\ -5 \\ 6
+    \end{bmatrix}
+    \]
+    \end{minipage}
+\end{center}
+
+\subsubsection{Soluzione}
+Si è implementato l'algoritmo per il metodo dei minimi quadrati e lo si è testato sulle matrici proposte, 
+ottenendo:
+\begin{equation}
+    \mathbf{x} = \begin{bmatrix}
+        -2.0 \\
+        -1.0
+    \end{bmatrix}.
+\end{equation}
+
+
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
 
@@ -1014,5 +1045,7 @@ per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle
 
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
+
+\section{Appendice}
 
 \end{document}
