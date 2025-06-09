@@ -1277,9 +1277,9 @@ avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il gr
 \end{figure}
 Il fit ha restituito i seguenti valori:
 \begin{equation}
-    C = 0.5 \pm 0.01,
+    C = 0.5,
     \qquad
-    A = -0.1 \pm 0.01.
+    A = -0.1.
 \end{equation}
 Si osserva che il valore di $C$ è in accordo con quanto atteso, mentre il valore di $A$ non è significativo.
 
@@ -1289,6 +1289,210 @@ si riescono a ottenere i valori di $q$ e $C$ in un colpo solo. I risultati otten
 di quelli ottenuti  con i metodi precedenti, pertanto non sono riportati. Si rimanda alla cartella git
 \verb|lab\computazionale1\esercizi\3_2_2.ipynb| per i dettagli.
 
+\subsection{Esercizi 3.3.1, 3.3.2}
+1. Scrivi un programma che implementi il metodo di Newton.\\
+2. Per ciascuna delle seguenti funzioni, esegui i seguenti passi.\\  
+(a) Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$, e calcola $f'(x)$. \\
+(b) Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti nell'intervallo. \\
+(c) Usa il metodo di Newton per trovare ciascuna radice. \\
+(d) Studia l'errore nella sequenza di Newton per determinare numericamente se la convergenza è approssimativamente quadratica per la radice trovata. \\
+Suggerimento: Studia $d_{n+1}/d_{n}$ con $d_n=-\log_{10}|x_n-r|$ per verificare il tasso di convergenza $q$. Una volta stabilito, prova a stimare la costante d'errore asintotica $C$. \\
+\begin{itemize}
+    \item $x^2=e^{-x}$, su $[-2,2]$ \\
+    \item $2x = \tan x$, su $[-0.2,1.4]$ \\
+    \item $e^{x+1}=2+x$, su $[-2,2]$ \\
+\end{itemize}
+    
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementato il metodo di Newton, e si è testato con la funzione $f(x)=e^x - 1$ con valore
+iniziale $x_0 = 10$. Il metodo ha restituito il valore $-6.68 \cdot 10^{-17}$ in 16 iterazioni. 
+Valore atteso: $x = 0$. \\
+
+\paragraph{(2a) } Le funzioni in forma di ricerca degli zeri sono:
+\begin{itemize}
+    \item $f_1(x) = x^2 - e^{-x}$, con $f_1'(x) = 2x + e^{-x}$, su $[-2,2]$.
+    \item $f_2(x) = 2x - \tan x$, con $f_2'(x) = 2 - \tan^2 x$, su $[-0.2,1.4]$.
+    \item $f_3(x) = e^{x+1} - 2 - x$, con $f_3'(x) = e^{x+1} - 1$, su $[-2,2]$.
+\end{itemize}
+
+\paragraph{(2b) } I grafici delle funzioni sono riportati in figura \ref{fig:es3_3_2_1}, da cui si evince che:
+\begin{itemize}
+    \item $f_1$ ha una radice nell'intervallo $[-2,2]$.
+    \item $f_2$ ha due radici nell'intervallo $[-0.2,1.4]$.
+    \item $f_3$ ha una radice nell'intervallo $[-2,2]$.
+\end{itemize}
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3321.pdf}
+        \caption*{(a)}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3322.pdf}
+        \caption*{(b)}
+    \end{minipage}
+
+    \vspace{0.5cm}
+
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3323.pdf}
+        \caption*{(c)}
+    \end{minipage}
+    \caption{Grafici delle funzioni $f_1$, $f_2$ e $f_3$.}
+    \label{fig:es3_3_2_1}
+\end{figure}
+
+\paragraph{(2c) } L'algoritmo di Newton è stato applicato alle tre funzioni, con i seguenti risultati:
+\begin{itemize}
+    \item $f_1$: radice $x = -0.703$, in 8 iterazioni.
+    \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, entrambe in 7 iterazioni.
+    \item $f_3$: radice $x = -1.000$ in 29 iterazioni.
+\end{itemize}
+
+\paragraph{(2d) - Prima funzione}
+Scopo dello studio dell'errore è verificare se i valori di $q$ e $C$ sono in accordo con quanto atteso.
+In particolare ci aspettiamo che il metodo di Newton per questo particolare zero abbia $q = 2$ e 
+$C = {\frac{1}{2}}\bigg|{\frac{f''(r)}{f'(r)}}\bigg| = 0.396$. Per determinare i valori di $q$, qui e nelle altre funzioni,
+si fa riferimento alla formula \ref{eq:convergenza_bisezione_log}, e si calcola il rapporto tra i valori di 
+$d_n$ e $d_{n+1}$; per determinare $C$, qui e nelle altre funzioni, si fa riferimento alla relazione 
+$\lim_{n\to\infty} {\frac{|x_{n+1}-r|}{|x_n-r|^q}}= \lim_{n\to\infty} {\frac{|\epsilon_{n+1}|}{|\epsilon_n|^q}}=C$ \\
+Si riportano i due grafici in figura \ref{fig:es3_3_2_2}.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3321_q.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3321_C.pdf}
+    \end{minipage}
+    \caption{Studio del valore di $q$ e $C$ per $f_1$.}
+    \label{fig:es3_3_2_2}
+\end{figure}
+
+Per le stime di $q$ e $C$ si è scelto di considerare l'ultimo punto della successione corrispondete, a causa
+del numero limitato di iterazioni. Si ottiene:
+\begin{equation}
+    q = 2.084,
+    \qquad
+    C = 0.396.
+\end{equation}
+Si osserva che i valori ottenuti sono in accordo con quanto atteso, e quindi si può concludere che il metodo di
+Newton converge in modo quadratico per la radice trovata.
+
+\paragraph{(2d) - Seconda funzione}
+\subparagraph{Prima radice, $x = 0.0$: }
+È importante notare che la funzione $f_2$ in zero ha un andamento lineare, e perciò la sua derivata seconda è 
+nulla. Questo implica che i valori di $q$ e $C$ non sono determinati dalle formule precedenti, perchè tali 
+formule sono ricavate a partire da un'espansione di Taylor al secondo ordine. Per ovviare al problema 
+si è scelto di ricavare le formule già utilizzate ma a ordine 3. I calcoli sono riportati nella cartella git
+\verb|lab\computazionale1\esercizi\pen_and_paper.| \\
+Di seguito sono riportati i valori per $q$ e $C$ con le dovute correzioni:
+\begin{equation}
+    q = 3,
+    \qquad
+    C = \frac{ f'''(r)}{3 f'(r)} = 0.667.
+\end{equation}
+
+In figura \ref{fig:es3_3_2_3} si riportano i grafici delle successioni $q_n$ e $C_n$ per la prima radice di $f_2$.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3322_q1.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3322_C1.pdf}
+    \end{minipage}
+    \caption{Studio del valore di $q$ e $C$ per $f_2$., prima radice.}
+    \label{fig:es3_3_2_3}
+\end{figure}
+
+Si ottengono i seguenti valori:
+\begin{equation}
+    q = 3.065,
+    \qquad
+    C = 0.667.
+\end{equation}
+
+Ci si può chiedere cosa succede se, non conoscendo l'andamento della funzione, si utilizzano le formule
+precedenti. In particolare cosa succede se si fissa $q = 2$ e si stima $C$ come l'ultimo elemento della successione
+$C_n = \frac{|x_{n+1}-r|}{|x_n-r|^2}$. L'aspettativa è che $C$ risulti nullo, dato che la derivata seconda
+è nulla. Il grafico corrispondente può essere trovato nella cartella git
+\verb|lab\computazionale1\esercizi\3_3_2.ipynb|, e mostra che il valore di $C$ è effettivamente nullo. \\ 
+
+\subparagraph{Seconda radice, $x = 1.166$: } la seconda radice di $f_2$ non presenta problemi, così le formule
+sono quelle viste inizialmente. I valori attesi sono $q = 2$ e $C = 3.383$. 
+Si riportano i grafici delle successioni $q_n$ e $C_n$ in figura \ref{fig:es3_3_2_4}.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3322_q2.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3322_C2.pdf}
+    \end{minipage}
+    \caption{Studio del valore di $q$ e $C$ per $f_2$, seconda radice.}
+    \label{fig:es3_3_2_4}
+\end{figure}
+Si ottengono i seguenti valori:
+\begin{equation}
+    q = 2.000,
+    \qquad
+    C = \frac{ f''(r)}{2 f'(r)} = 3.382.
+\end{equation}
+In accordo con quanto atteso, il metodo di Newton converge in modo quadratico per la radice trovata.
+
+\paragraph{(2d) - Terza funzione}
+Osservando il grafico della funzione $f_3$ si nota che la radice è un punto di minimo, e quindi ha una molteplicità
+$m$. D'altra parte, possiamo intuire che la radice di $f_3$ ha una molteplicità anche dal numero di iterazioni,
+molto elevato rispetto alle altre funzioni. \\
+Come è noto dalla teoria, il metodo di Newton in caso di radici multiple converge linearmente, e nella formula
+$ \epsilon_{n+1} = C (\epsilon_n)^q $ ci aspettiamo $q = 1$. Inoltre in caso di radici multiple
+la costante d'errore asintotica diviene $(1-{\frac{1}{m}})$. \\
+
+Il primo passo è verificare il valore di $q$. Si riporta in figura \ref{fig:es3_3_2_5} il grafico 
+della successione $q_n$, da cui possiamo confermare stimare $q = 1.067$. \\
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3323_q.pdf}
+    \caption{Studio del valore di $q$ per $f_3$.}
+    \label{fig:es3_3_2_5}
+\end{figure}
+
+Si riportano in figura \ref{fig:es3_3_2_6} i grafici della successione $C_n$, una volta senza considerare 
+la molteplicità della radice, e una volta considerando la molteplicità della radice.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3323_C1.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{3323_C2.pdf}
+    \end{minipage}
+    \caption{Studio del valore di $C$ per $f_3$.}
+    \label{fig:es3_3_2_6}
+\end{figure}
+
+Come si può notare da \ref{fig:es3_3_2_6}, non avendo considerato la molteplictà della radice, il valore di $C$
+si discosta molto da quello calcolato con la solita formula $C = \frac{ f''(r)}{2 f'(r)}$. Invece, nel secondo 
+grafico della stessa figura si osserva che i valori successivi di $C_n$ si stabilizzano attorno al valore 
+$C = 0.5$, per poi calare nuovamente a causa di errori di cancellazione numerica. \\
+Scegliendo $C = C_{15}$ come stima del plateau si ottengono i seguenti valori:
+\begin{equation}
+    C = 0.500,
+    \qquad
+    m = 2.000,
+    \qquad
+\end{equation}
+in accordo con quanto atteso. \\
 \section{Interpolazioni}
 \subsection{Teoria}
 
