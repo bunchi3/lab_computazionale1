@@ -85,7 +85,7 @@ Considera la funzione $f(x)=e^x$ nell'intervallo $x\in [0,1]$. Scrivi un program
 Al fine dell'esercizio vengono rappresentati nel grafico \ref{fig:es1_0_1_1} le funzioni $\Delta$ e $\frac{x^{N+1}}{(N+1)!}$, con 
 $N=1,2,3, 4$, al variare di $x$ nell'intervallo $[0,1]$. 
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1011.pdf}
     \caption{Confronto tra $\Delta$ e $\frac{x^{N+1}}{(N+1)!}$ per $N=1,2,3, 4$.}
@@ -134,7 +134,7 @@ Si riportano in figura \ref{fig:es1_2_1_1} gli errori di troncamento della serie
 $\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
 con variabili di tipo Float32 (single precision).
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1211.pdf}
     \caption{$S(N)=\sum_{n=1}^N \frac{1}{n^2}$ in single precision}
@@ -177,7 +177,7 @@ Si riporta in figura \ref{fig:es1_2_1_2} un ingrandimento del grafico degli erro
 $\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
 con variabili di tipo Float64 (double precision).
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1212.pdf}
     \caption{Ingrandimento di $S(N)=\sum_{n=1}^N \frac{1}{n^2}$ in double precision}
@@ -359,7 +359,7 @@ dove assume il valore $\kappa_f(1) = 0.58198$.
 si riferisce alla funzione calcolata con l'algoritmo "naive", mentre $p_n(x)$ si riferisce alla funzione calcolata 
 con la serie di Maclaurin, fino al termine $n$.
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1421.pdf}
     \caption{Confronto tra $f(x)$ e $p_n(x)$ al variare di $x$.}
@@ -369,13 +369,13 @@ con la serie di Maclaurin, fino al termine $n$.
 Per uno studio più accurato, si riporta in figura \ref{fig:es1_4_2_2} un ingrandimento per piccoli valori di x 
 (range $[10^{-15}, 10^{-14}]$) della figura \ref{fig:es1_4_2_1} e in figura \ref{fig:es1_4_2_3} un ingrandimento 
 per valori di x (range $[10^{-2}, 10^{-1}]$) della figura \ref{fig:es1_4_2_1}.
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1422.pdf}
     \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per piccoli valori di x.}
     \label{fig:es1_4_2_2}
 \end{figure}
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1423.pdf}
     \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per valori di x nell'intervallo $[10^{-2}, 10^{-1}]$.}
@@ -406,7 +406,7 @@ di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
 \begin{equation}
     \Delta_n = |p_n(0.1) - p_{n+1}(0.1)|\,.
 \end{equation}
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1424.pdf}
     \caption{Distanza tra $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$.}
@@ -424,7 +424,7 @@ dell'errore tra i due algoritmi, cioè
     \Delta(x) = \left| f(x) - p_n(x) \right|\,.
 \end{equation}
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{1425.pdf}
     \caption{Distanza tra $f(x)$ e $p_n(x)$.}
@@ -1035,7 +1035,7 @@ ottenendo:
 
 \subsection{Esercizio 2.6.2}
 Keplero ha scoperto che il periodo orbitale $\tau$ di un pianeta dipende dalla sua distanza media $R$ dal Sole 
-secondo la legge $\tau = c R^{\alpha}$, dove $\alpha$ è un semplice numero razionale.
+secondo la legge $\tau = c R^{\alpha}$, dove $\alpha$ è un semplice numero razionale. \\
 (a) Esegui un fit lineare ai minimi quadrati utilizzando la tabella \ref{tab:pianeti} per determinare il valore 
 più probabile e semplice di $\alpha$. \\
 Il risultato è in accordo con le tue aspettative? 
@@ -1068,31 +1068,45 @@ la matrice di design:
 La matrice di design è stata costruita in modo che la prima colonna fosse composta da 1, per poter calcolare
 il termine noto della retta di regressione, e la seconda colonna fosse composta dai logaritmi naturali delle
 distanze dei pianeti dal Sole. \\
-È necessario un ultimo commento sulla legge di Keplero, prima di riportare i risultati. Fino ad ora abbiamo
+La legge di Keplero prevista è la seguente:
+\begin{equation}
+    \label{eq:keplero}
+    \tau = c R^{3/2}\,,
+\end{equation}
+dove $\alpha = 3/2$. \\
+È necessario un ulteriore commento su \ref{eq:keplero}, prima di riportare i risultati. Fino ad ora abbiamo
 assunto che la costante $c$ fosse indipendente dal pianeta, ma in realtà la sua espressione è:
 \begin{equation}
     c = \frac{2\pi}{\sqrt{G (M+m)}}\,,
 \end{equation}
 dove $G$ è la costante di gravitazione universale, $M$ è la massa del Sole, $m$ è la massa del pianeta. \\
 Consideriamo Giove, il pianeta più massivo di quelli presi in esame ($m \approx 1.90 \cdot 10^{27} \, \text{kg}$). Si ha:
-\begin{equation}
-    c_1 = \frac{2\pi}{\sqrt{G (M+m)}} = 5.47 \cdot 10^{-10} \frac{sec}{m^{3/2}}\,,
-    \qquad
-    c_2 = \frac{2\pi}{\sqrt{G (M)}}   = 5.47 \cdot 10^{-10} \frac{sec}{m^{3/2}}\,,
-    \qquad
-    \frac{c_1}{c_2} \approx 1.0\,.
-\end{equation}
+\begin{align}
+    c_1 &= \frac{2\pi}{\sqrt{G (M+m)}} = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}  \\
+    c_2 &= \frac{2\pi}{\sqrt{G M}}   = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}    \\
+    \frac{c_1}{c_2} &\approx 1.0
+\end{align}
 
 Possiamo quindi affermare che la costante $c$ è indipendente dalla massa del pianeta, entro la precisione 
 necessaria per il nostro scopo. \\
 Si è quindi calcolato il valore di $\alpha$ e della costante $c$, ottenendo:
 \begin{equation}
-    c = 0.206
+    c = 0.206 \frac{days}{Mkm^{3/2}}
     \qquad
     \alpha = 1.499
 \end{equation}
+I risultati sono in accordo con quanto atteso.
 
-%Riprendi dal capire c quant'è
+\paragraph{(b) } Si riporta in figura \ref{fig:es2_6_2_1} il grafico dei dati e relativo fit.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{2621.pdf}
+    \caption{Fit lineare ai minimi quadrati dei dati dei pianeti del Sistema Solare.}
+    \label{fig:es2_6_2_1}
+\end{figure}
+
+\subsection{Esercizio 2.6.3}
 
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
@@ -1108,7 +1122,7 @@ Si è quindi calcolato il valore di $\alpha$ e della costante $c$, ottenendo:
 
 \section{Appendice}
 \subsection{Dati}
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Distanza dal Sole e periodo orbitale dei pianeti del Sistema Solare}
 \label{tab:pianeti}

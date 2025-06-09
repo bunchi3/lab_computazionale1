@@ -48,6 +48,8 @@
 \contentsline {subsection}{\numberline {2.8}Esercizio 2.6.2}{19}{subsection.2.8}%
 \contentsline {subsubsection}{\numberline {2.8.1}Soluzione}{19}{subsubsection.2.8.1}%
 \contentsline {paragraph}{(a) }{19}{section*.37}%
+\contentsline {paragraph}{(b) }{20}{section*.38}%
+\contentsline {subsection}{\numberline {2.9}Esercizio 2.6.3}{21}{subsection.2.9}%
 \contentsline {section}{\numberline {3}Radici di equazioni non lineari}{21}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Teoria}{21}{subsection.3.1}%
 \contentsline {section}{\numberline {4}Interpolazioni}{21}{section.4}%
