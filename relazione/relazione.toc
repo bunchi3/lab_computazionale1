@@ -54,11 +54,19 @@
 \contentsline {subsubsection}{\numberline {2.9.2}Conclusioni}{22}{subsubsection.2.9.2}%
 \contentsline {section}{\numberline {3}Radici di equazioni non lineari}{23}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Teoria}{23}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Interpolazioni}{23}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Teoria}{23}{subsection.4.1}%
-\contentsline {section}{\numberline {5}Integrazione numerica}{23}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Teoria}{23}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{23}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Teoria}{23}{subsection.6.1}%
-\contentsline {section}{\numberline {7}Appendice}{23}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Dati}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {3.2}Esercizi 3.2.1, 3.2.2}{23}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Soluzione}{23}{subsubsection.3.2.1}%
+\contentsline {paragraph}{(1) }{23}{section*.41}%
+\contentsline {paragraph}{(2a) }{23}{section*.42}%
+\contentsline {paragraph}{(2b) }{23}{section*.44}%
+\contentsline {subparagraph}{Stima di $q$}{24}{section*.45}%
+\contentsline {subparagraph}{Stima di $C$}{25}{section*.47}%
+\contentsline {subparagraph}{Commento: }{25}{section*.49}%
+\contentsline {section}{\numberline {4}Interpolazioni}{26}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Teoria}{26}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Integrazione numerica}{26}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Teoria}{26}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{26}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Teoria}{26}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Appendice}{26}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dati}{26}{subsection.7.1}%

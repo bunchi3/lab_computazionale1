@@ -121,7 +121,7 @@ function bis_met_steps(func, A, B)
     #initial interval endpoints
     b=B
     a=A
-    iter = 0
+    iter = 1
     step_vector = Float64[]        #will contain all the values of m, the successive approximations of the function's root
 
     while I_length > 10^(-16)*max(abs(a), abs(b))

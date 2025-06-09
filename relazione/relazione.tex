@@ -845,12 +845,12 @@ Si riportano i risultati delle decomposizioni giunte a termine, con i dovuti arr
     \begin{minipage}{0.32\textwidth}
     \centering
     \[
-    \mathbf{R_C} =
+    \mathbf{R_D} =
     \begin{bmatrix}
-    2.5  &  0.8 &  0.4  &  0.0 \\
-    0.0  &  2.3 &  0.7  &  0.4 \\
-    0.0  &  0.0 &  2.1  &  0.8 \\
-    0.0  &  0.0 &  0.0  &  1.8
+    2.45 & 0.82 & 0.41 & 0.00 \\
+    0.00 & 2.29 & 0.73 & 0.41 \\
+    0.00 & 0.00 & 2.06 & 0.82 \\
+    0.00 & 0.00 & 0.00 & 1.84
     \end{bmatrix}
     \]
     \end{minipage}
@@ -1178,6 +1178,117 @@ solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il m
 \section{Radici di equazioni non lineari}
 \subsection{Teoria}
 
+\subsection{Esercizi 3.2.1, 3.2.2}
+1. Implementa il metodo di bisezione e testalo con una funzione semplice, ad esempio $f(x)=x$. \\
+2. (a) Usa il metodo di bisezione per trovare le soluzioni di $x^3 - 7x^2 + 14x - 6 = 0$ su $[0,1]$.\\
+   (b) Studia la convergenza del metodo di bisezione rispetto alla radice trovata in (a). 
+   (Puoi prendere come approssimazione per la radice $r=m_{n_{\rm max}}$, dove $n_{\rm max}$ è 
+   l'indice corrispondente all'ultima iterazione di bisezione.) \\
+   Qual è il suo ordine di convergenza $q$? Puoi stimare la costante d'errore asintotica $C$? \\
+   Suggerimento: Studia $d_n=-\log_{10}|x_{n}-r|$ come funzione di $n$.
+
+%Riguarda i conti teorici. Sono giusti ma vanno formalizzati
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementato il metodo di bisezione, e si è testato con la funzione $f(x)=x$ per due 
+intervalli: $[-1.0, 1.0]$ e $[-5.0, 1.0]$. Il motivo della scelta di questi due intervalli è che ci aspettiamo che
+il metodo restituisca $x = 0$ come soluzione e nel caso di intervallo simmetrico il numero di iterazioni 
+è pari ad 1. Con un intervallo asimmetrico il test è più efficiente perchè il numero di iterazioni aumenta. \\
+Il metodo si interrompe quando la distanza tra gli estremi risulta minore di $\max(|a|,|b|) \cdot 10^{-16}$,
+dove $a$ e $b$ sono gli estremi dell'intervallo. Il metodo ha prodotto i seguenti risultati:
+\begin{itemize}
+    \item Intervallo $[-1.0, 1.0]$: $x = 0.0$ in 1 iterazione.
+    \item Intervallo $[-5.0, 1.0]$: $x = 1.1 \cdot 10^{-162}$ in 539 iterazioni.
+\end{itemize}
+
+\paragraph{(2a) } Si è implementato il metodo di bisezione per la funzione $f(x) = x^3 - 7x^2 + 14x - 6$. \\
+Il metodo ha restituito un valore della radice $r = 0.5857864376269051$ con $f(r) = 0.0$, in $50$ iterazioni. In
+figura \ref{fig:es3_2_2_1} si riporta il grafico della funzione e delle radici successive trovate.
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{3221.pdf}
+    \caption{Grafico della funzione $f(x) = x^3 - 7x^2 + 14x - 6$ e della radice trovata con il metodo di bisezione.}
+    \label{fig:es3_2_2_1}
+\end{figure} 
+
+\paragraph{(2b) } Per studiare la convergenza del metodo di bisezione bisogna fare alcune considerazioni 
+preliminari. \\
+È noto che per il metodo di bisezione vale la relazione $ |m_n-r|< 2^{-(n+1)} (b_0-a_0) $, dove $m_n$ è 
+la stima della radice al passo $n$, $r$ è la radice cercata, $a_0$ e $b_0$ sono gli estremi dell'intervallo 
+iniziale. \\
+Ad ogni iterazione l'intervallo viene dimezzato, in modo che al passo successivo la stima della radice si trovi
+in una delle due metà dell'intervallo nella quale si trovava la stima precedente. In formule: 
+$|m_{n+1}-r| <\frac{|m_n-r|}{2}$. \\
+Unendo le due relazioni presentate sopra si ricava $\frac{|m_{n+1}-r|}{|m_n-r|} < \frac{1}{2}$, e passando al 
+limite: 
+\begin{equation}
+    \label{eq:convergenza_bisezione}
+    \lim_{n\to\infty} \frac{|m_{n+1}-r|}{|m_n-r|} = \frac{1}{2}, 
+\end{equation}
+da cui si ottiene che $q$, ordine di convergenza, 
+è 1, mentre C, la costante di errore asintotico, vale $\frac{1}{2}$. \\
+Verifichiamolo numericamente, ricordando le relazioni: 
+
+Per verificare i valori teorici di $q$ e $C$ è necessario tenere a mente le seguenti relazioni. La prima si ottiene
+applicando il logaritmo decimale alla \ref{eq:convergenza_bisezione}:
+\begin{equation}
+    \label{eq:convergenza_bisezione_log}
+    d_{n+1} \approx q\, d_n - \log_{10}|C|
+    \quad\Rightarrow\quad
+    \frac{d_{n+1}}{d_n} \approx q - \frac{\log_{10}|C|}{d_n}
+    \overset{n\to\infty}{\longrightarrow} q
+\end{equation}
+
+dove $d_n = -\log_{10}|m_n - r|$. \\
+La seconda si ottiene iterando la relazione  $ |x_{k+1} - r|= C |x_{k} - r|$:
+\begin{equation}
+    |x_{k+1} - r|= C^{k+1} |x_{0} - r|
+\end{equation}
+
+\subparagraph{Stima di $q$} Per stimare $q$ si è calcolato il rapporto tra i valori di $d_n$ e $d_{n+1}$ e lo si
+è messo in grafico in funzione di $n$, ottenendo la figura \ref{fig:es3_2_2_2}, in cui è presente un ingrandimento
+per i valori più alti di n.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3222.pdf}
+    \caption{Rapporto tra i valori di $d_n$ e $d_{n+1}$ in funzione di $n$.}
+    \label{fig:es3_2_2_2}
+\end{figure}
+
+Il rapporto tende a 1, come atteso. Si vuole ora quantificare tale valore. \\
+La relazione \ref{eq:convergenza_bisezione_log} vale per $n\to\infty$. Ciò significa che la stima di $q$
+dovrebbe essere calcolata per l'$n$ più grande possibile. Ciononostante si
+è deciso di stimare il valore di $q$ tramite l'interpolazione con funzione costante perchè il valore di $q$ 
+fluttua attorno a 1, ed è possibile che per $n$ maggiori di quelli disponibili il valore cercato continui a 
+fluttuare attorno a 1. Per l'interpolazione si sono considerati gli ultimi 20 punti della serie, riportati 
+nell'ingrandimento di \ref{fig:es3_2_2_2}. Il fit su tali punti restituisce
+un valore di $q = 1.02$. \\  
+
+\subparagraph{Stima di $C$}
+Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello:
+\begin{equation}
+    log |x_{k+1}-r| = (k+1)log(C) + log|x_0 - r|   \rightarrow   y(x) = x log(C) + A ,
+\end{equation}
+avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il grafico del fit in figura \ref{fig:es3_2_2_3}.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3223.pdf}
+    \caption{Fit lineare del logaritmo decimale della distanza tra la radice e le stime successive.}
+    \label{fig:es3_2_2_3}
+\end{figure}
+Il fit ha restituito i seguenti valori:
+\begin{equation}
+    C = 0.5 \pm 0.01,
+    \qquad
+    A = -0.1 \pm 0.01.
+\end{equation}
+Si osserva che il valore di $C$ è in accordo con quanto atteso, mentre il valore di $A$ non è significativo.
+
+\subparagraph{Commento: } È possibile stimare i valori di $q$ e $C$ anche in modo diverso, e con un solo fit.
+Interpolando la relazione \ref{eq:convergenza_bisezione_log} con un'iperbole, e ignorando il limite, 
+si riescono a ottenere i valori di $q$ e $C$ in un colpo solo. I risultati ottenuti hanno una precisione minore 
+di quelli ottenuti  con i metodi precedenti, pertanto non sono riportati. Si rimanda alla cartella git
+\verb|lab\computazionale1\esercizi\3_2_2.ipynb| per i dettagli.
+
 \section{Interpolazioni}
 \subsection{Teoria}
 
@@ -1189,24 +1300,24 @@ solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il m
 
 \section{Appendice}
 \subsection{Dati}
-\begin{table}[!ht]
-\centering
-\caption{Distanza dal Sole e periodo orbitale dei pianeti del Sistema Solare}
-\label{tab:pianeti}
-\begin{tabular}{|l|c|c|}
-\hline
-\textbf{Pianeta} & \textbf{Distanza dal Sole [Mkm]} & \textbf{Periodo orbitale [giorni]} \\
-\hline
-Mercurio & 57.59   & 87.99   \\
-Venere   & 108.11  & 224.7   \\
-Terra    & 149.57  & 365.26  \\
-Marte    & 227.84  & 686.98  \\
-Giove    & 778.14  & 4332.4  \\
-Saturno  & 1427    & 10759   \\
-Urano    & 2870.3  & 30684   \\
-Nettuno  & 4499.9  & 60188   \\
-\hline
-\end{tabular}
-\end{table}
 
+\begin{table}[!ht]
+    \centering
+    \caption{Distanza dal Sole e periodo orbitale dei pianeti del Sistema Solare}
+    \label{tab:pianeti}
+        \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Pianeta} & \textbf{Distanza dal Sole [Mkm]} & \textbf{Periodo orbitale [giorni]} \\
+        \hline
+        Mercurio & 57.59   & 87.99   \\
+        Venere   & 108.11  & 224.7   \\
+        Terra    & 149.57  & 365.26  \\
+        Marte    & 227.84  & 686.98  \\
+        Giove    & 778.14  & 4332.4  \\
+        Saturno  & 1427    & 10759   \\
+        Urano    & 2870.3  & 30684   \\
+        Nettuno  & 4499.9  & 60188   \\
+        \hline
+        \end{tabular}
+\end{table}
 \end{document}
