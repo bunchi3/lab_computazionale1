@@ -1492,7 +1492,55 @@ Scegliendo $C = C_{15}$ come stima del plateau si ottengono i seguenti valori:
     m = 2.000,
     \qquad
 \end{equation}
-in accordo con quanto atteso. \\
+in accordo con quanto atteso. 
+
+\subsection{Esercizio 3.3.3}
+Traccia la funzione $f(x)=x^{-2} - \sin x$ nell'intervallo $x \in [0.5,10]$.  
+Per ciascun valore iniziale $x_1=1,\, x_1=2,\,\ldots,\, x_1=7$, applica il metodo di Newton a $f$  
+e realizza una tabella che mostri $x_1$ e la radice trovata dal metodo.  
+In quale caso l'iterazione converge a una radice diversa da quella più vicina al valore iniziale?  
+Usa il grafico per spiegare perché ciò è accaduto.
+
+\subsubsection{Soluzione}
+Si riporta in figura \ref{fig:es3_3_3_1} il grafico della funzione $f(x)=x^{-2} - \sin x$ nell'intervallo
+$[0.5,10]$, con i punti di partenza del metodo di Newton. 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3331.pdf}
+    \caption{Grafico della funzione $f(x)=x^{-2} - \sin x$ nell'intervallo $[0.5,10]$.}
+    \label{fig:es3_3_3_1}
+\end{figure}
+
+Applicando il metodo di Newton con i valori iniziali, non sempre si ottengono le radici più vicine al valore
+di partenza. \\
+Si riportano i risultati in tabella \ref{tab:es3_3_3_1}.
+
+\begin{table}[!ht]
+\centering
+\caption{Valori relativi ai punti \( x_1, \dots, x_7 \)}
+\label{tab:es3_3_3_1}
+\begin{tabularx}{\textwidth}{|l!{\vrule width 2pt}*{7}{>{\centering\arraybackslash}X|}}
+\hline
+ & \( x_1 = 1 \) & \cellcolor{orange}\( x_2 = 2 \) & \( x_3 = 3 \) & \( x_4 = 4 \) & \cellcolor{orange}\( x_5 = 5 \) & \( x_6 = 6 \) & \( x_7 = 7 \) \\
+\specialrule{.1em}{0em}{0em}  % linea più spessa
+\( x_{\text{start}} \) & 1.0 & \cellcolor{orange}2.0 & 3.0 & 4.0 & \cellcolor{orange}5.0 & 6.0 & 7.0 \\
+\hline
+\( x_{\text{root}} \)  & 1.1 & \cellcolor{orange}6.3 & 3.0 & 3.0 & \cellcolor{orange}9.4 & 6.3 & 6.3 \\
+\hline
+\( f'(x) \)            & -2.5 & \cellcolor{orange}0.2 & 0.9 & 0.6 & \cellcolor{orange}-0.3 & -0.9 & -0.8 \\
+\hline
+\end{tabularx}
+\end{table}
+
+Le due colonne evidenziate in arancione sono i punti iniziali che non convergono alla radice più vicina. 
+Osservando il grafico della funzione è facile osservare che i punti iniziali $x_2$ e $x_5$ sono vicini a
+un minimo e a un massimo locali, rispettivamente. In effetti la derivata prima in questi punti è vicina a zero,
+come riportato in tabella. Non è esattamente zero, altrimenti il caso sarebbe quello della seconda funzione 
+all'esercizio 3.3.2, ma è comunque piccola: ciò significa che il metodo di Newton converge quadraticamente, ma
+non necessariamente alla radice più vicina. \\
+
+\subsection{Esercizio 3.3.4}
+
 \section{Interpolazioni}
 \subsection{Teoria}
 
