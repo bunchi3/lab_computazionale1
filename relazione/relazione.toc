@@ -98,9 +98,11 @@
 \contentsline {paragraph}{(2b) }{39}{section*.82}%
 \contentsline {subsection}{\numberline {4.4}Esercizio 4.4.3}{39}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Soluzione}{40}{subsubsection.4.4.1}%
-\contentsline {section}{\numberline {5}Integrazione numerica}{40}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Teoria}{40}{subsection.5.1}%
-\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{40}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Teoria}{40}{subsection.6.1}%
-\contentsline {section}{\numberline {7}Appendice}{40}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Dati}{40}{subsection.7.1}%
+\contentsline {subsection}{\numberline {4.5}Esercizio 4.4.4}{40}{subsection.4.5}%
+\contentsline {subsubsection}{\numberline {4.5.1}Soluzione}{41}{subsubsection.4.5.1}%
+\contentsline {section}{\numberline {5}Integrazione numerica}{42}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Teoria}{42}{subsection.5.1}%
+\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{42}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Teoria}{42}{subsection.6.1}%
+\contentsline {section}{\numberline {7}Appendice}{42}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dati}{42}{subsection.7.1}%

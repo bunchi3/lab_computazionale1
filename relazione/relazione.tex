@@ -1788,6 +1788,46 @@ il grafico ottenuto con $n=40$ nodi di Chebyshev, per la funzione $f(z) = \cosh(
     \label{fig:es4_4_3_1}
 \end{figure}
 
+\subsection{Esercizio 4.4.4}
+Siano $x_1,\ldots,x_n$ i punti di Chebyshev standard. Questi vengono mappati nella variabile $z$ come 
+$z_i=\phi(x_i)$ per ogni $i$, dove $\phi$ è una trasformazione sulla retta reale. Supponiamo che $f(z)$ 
+sia una funzione data, il cui dominio è l'intera retta reale. Allora i valori della funzione $y_i=f(z_i)$ 
+possono essere associati ai nodi di Chebyshev $x_i$, portando a un polinomio interpolante $p(x)$. 
+Questo implica a sua volta una funzione interpolante sulla retta reale, definita come
+\begin{equation}
+    q(z)=p\bigl(\phi^{-1}(z)\bigr) = p(x)\,.
+\end{equation}
+Implementa questa idea per tracciare un interpolante di $f(z)=(z^2-2z+2)^{-1}$ usando $n=30$. 
+Il tuo grafico deve mostrare $q(z)$ valutato in 1000 punti equispaziati in $[-6,6]$, 
+con marcatori sui valori nodali (quelli che ricadono nella finestra $[-6,6]$). \\
+Suggerimento: se preferisci evitare di gestire potenziali infiniti considera l'uso dei nodi di Chebyshev di 
+prima specie.
+
+\subsubsection{Soluzione}
+Il cambio di variabile utilizzato è il seguente: 
+\begin{equation}
+    \label{eq:change_of_var2}
+    z = \phi(x) = \frac{2x}{1 - x^2},
+\end{equation}
+La funzione Julia implementata tiene conto di questo cambio di variabile. In particolare calcola i nodi 
+di Chebyshev del secondo tipo nell'intervallo $[-1, 1]$, che vengono denotati come $x_i$, e li trasformati 
+con \ref{eq:change_of_var2} per ottenere i nodi di Chebyshev $z_i$, ora distribuiti sull'intera retta reale. 
+I punti per i quali passa il polinomio vengono indicati con $y_i = f(z_i)$. \\
+La funzione restituisce il polinomio interpolante $q(z)$. Per calcolarlo si utilizza la trasformazione inversa
+di \ref{eq:change_of_var2} portare i punti $z$ in cui verrà calcolato il polinomio $q$ nell'intervallo $[-1, 1]$.
+A questo punto avviene l'interpolazione con i nodi di Chebyshev $x_i$ e i valori $y_i$, e così il polinomio
+restituito interpola su tutto l'asse reale avendo calcolato l'interpolazione su un intervallo finito. \\
+Si riporta in figura \ref{fig:es4_4_4_1} il grafico della funzione $f(z)=(z^2-2z+2)^{-1}$ e della sua interpolazione
+con $n=30$ nodi di Chebyshev. Per motivi di rappresentazione grafica l'intervallo è stato limitato a $[-6, 6]$, 
+si noti infatti che il numero di nodi in grafico è pari a venti: i dieci restanti sono al di fuori dell'intervallo.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4441.pdf}
+    \caption{Grafico della funzione $f(z)=(z^2-2z+2)^{-1}$ e della sua interpolazione con $n=30$ nodi di Chebyshev.}
+    \label{fig:es4_4_4_1}
+\end{figure}
+
+
 \section{Integrazione numerica}
 \subsection{Teoria}
 
