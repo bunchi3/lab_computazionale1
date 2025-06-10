@@ -1495,6 +1495,7 @@ Scegliendo $C = C_{15}$ come stima del plateau si ottengono i seguenti valori:
 in accordo con quanto atteso. 
 
 \subsection{Esercizio 3.3.3}
+\label{sec:333}
 Traccia la funzione $f(x)=x^{-2} - \sin x$ nell'intervallo $x \in [0.5,10]$.  
 Per ciascun valore iniziale $x_1=1,\, x_1=2,\,\ldots,\, x_1=7$, applica il metodo di Newton a $f$  
 e realizza una tabella che mostri $x_1$ e la radice trovata dal metodo.  
@@ -1628,6 +1629,44 @@ $q_{atteso} = 1.618$.
     \caption{Studio del valore di $q$ per la radice di $f_1$.}
     \label{fig:es3_4_2_1}
 \end{figure}
+
+\subsection{Esercizio 3.4.3}
+Utilizza un grafico per localizzare approssimativamente tutte le radici di $f(x)=x^{-2}-\sin(x)$ 
+nell'intervallo $[0.5,10]$. 
+Poi trova una coppia di punti iniziali per ciascuna radice tale che il metodo della secante converga 
+a quella radice.
+
+\subsubsection{Soluzione}
+Si riporta in figura \ref{fig:es3_4_3_1} il grafico della funzione $f(x)=x^{-2}-\sin(x)$ nell'intervallo
+$[0.5,10]$, da cui si evince che la funzione ha 4 radici nell'intervallo. In figura sono riportate anche
+le radici stimate.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3431.pdf}
+    \caption{Grafico della funzione $f(x)=x^{-2}-\sin(x)$ nell'intervallo $[0.5,10]$.}
+    \label{fig:es3_4_3_1}
+\end{figure}
+
+Si riportano in tabella \ref{tab:es3_4_3_1} le radici stimate, i punti iniziali scelti e il numero di iterazioni
+necessarie per la convergenza.
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Radice} & \textbf{Radice stimata} & \textbf{Punti iniziali} & \textbf{Numero di iterazioni} \\
+        \hline
+        $r_1$ & $1.068$  & $[1.0,\,2.0]$   & 11  \\
+        $r_2$ & $3.033$  & $[2.0,\,4.0]$   & 8  \\
+        $r_3$ & $6.308$  & $[6.0,\,7.0]$   & 7  \\
+        $r_4$ & $9.413$  & $[9.0,\,10.0]$  & 7  \\
+        \hline
+    \end{tabular}
+    \caption{Radici stimate e punti iniziali per il metodo della secante.}
+    \label{tab:es3_4_3_1}
+\end{table}
+Possiamo osservare che le radici trovate sono in accordo con quelle stimate nell'esercizio \ref{sec:333} 
+con metodo di Newton.
+
 
 \section{Interpolazioni}
 \subsection{Teoria}
