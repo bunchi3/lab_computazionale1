@@ -1667,9 +1667,43 @@ necessarie per la convergenza.
 Possiamo osservare che le radici trovate sono in accordo con quelle stimate nell'esercizio \ref{sec:333} 
 con metodo di Newton.
 
-
 \section{Interpolazioni}
 \subsection{Teoria}
+
+%Se hai tempo inserisci l'esercizio 4.1.1, matrice di Vandermonde.
+
+\subsection{Esercizi 4.2.1, 4.2.2}
+1. Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange 
+    per nodi in posizioni generiche. \\
+2. In ciascun caso, interpola la funzione data usando $n$ nodi equispaziati nell'intervallo indicato.
+    Rappresenta graficamente ciascuna funzione interpolante insieme alla funzione esatta. \\
+(a) $f(x) = \ln (x), \quad n = 2,3,4, \quad x\in [1,10]$ \\ 
+(b) $f(x) = \tanh (x), \quad n = 2,3,4, \quad x \in [-3,2]$ \\
+(c) $f(x) = \cosh (x), \quad n = 2,3,4, \quad x \in [-1,3]$ \\
+(d) $f(x) = |x|, \quad n = 3,5,7, \quad x \in [-2,1]$ \\
+
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementata la formula baricentrica dell'interpolazione di Lagrange 
+per nodi in posizioni generiche, e la si è testata nell'esercizio 4.2.2.
+\paragraph{(2) } In questo esercizio, nonostante sia data la possibilità di utilizzare la formula baricentrica
+semplificata dai nodi equispaziati, si è scelto di utilizzare la formula baricentrica per nodi generici, come
+test dell'implementazione dell'esercizio precedente. In esercizi successivi sarà richiesto di implementare
+la formula baricentrica per nodi di Chebyshev, e in tale contesto si è sviluppata una funzione Julia che
+chiede la natura dei nodi e restituisce la funzione baricentrica corrispondente, anche per il caso equispaziato. \\
+Si riportano i grafici delle funzioni interpolanti in figura \ref{fig:es4_2_2_1}.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4221.pdf}
+    \caption{Grafici delle funzioni interpolanti per i vari casi.}
+    \label{fig:es4_2_2_1}
+\end{figure}
+
+Come si può notare, all'aumentare del numero di nodi l'interpolazione migliora. Il grafico della funzione $|x|$
+però richiede un numero di nodi maggiore per essere interpolato con una certa accuratezza, ciò è dovuto alla
+non derivabilità della funzione in $x=0$. Il problema è che si sta cercando di interpolare una funzione
+non derivabile con un polinomio, che notoriamente è derivabile in ogni punto.
+
+
 
 \section{Integrazione numerica}
 \subsection{Teoria}
