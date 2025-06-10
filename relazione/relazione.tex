@@ -1827,6 +1827,90 @@ si noti infatti che il numero di nodi in grafico è pari a venti: i dieci restan
     \label{fig:es4_4_4_1}
 \end{figure}
 
+\subsection{Esercizio 4.6.1} 
+Ognuna delle seguenti funzioni è 2-periodica. Scrivi una funzione che esegua l'interpolazione trigonometrica 
+su $[-1,1]$ e traccia la funzione insieme ai suoi interpolanti trigonometrici per $n=3,6,9$. 
+Poi, per $n=2,3,\ldots,30$, calcola l'errore in norma $\infty$ dell'interpolante trigonometrico campionando 
+in almeno $1000$ punti, e realizza un grafico di convergenza in scala semi-logaritmica. \\
+(a) $f(x) = e^{\sin (2\pi x)}\qquad$ \\
+(b) $f(x) = \log [2+ \sin (3 \pi x ) ]\qquad$ \\
+(c) $f(x) = \cos^{12}[\pi (x-0.2)]$ \\
+
+\subsubsection{Soluzione}
+Ai fini dell'esercizio si è sviluppata una funzione Julia che calcola l'interpolazione trigonometrica
+su un intervallo $[-1, 1]$ per una funzione $f(x)$, e restituisce il polinomio interpolante. Dato che le funzioni
+sono 2-periodiche le si è interpolate correttamente sull'intervalo $[-1, 1]$. Per poter interpolare funzioni 
+T-periodiche bisogna inserire nell'algoritmo un cambio di variabile, proprio come per l'esercizio 4.4.3.
+\paragraph{(a) } Si riporta in figura \ref{fig:es4_6_1_1} il grafico della funzione $f(x) = e^{\sin (2\pi x)}$
+e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico 
+dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato 
+in 1000 punti l'intervallo.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4611.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4612.pdf}
+    \end{minipage}
+    \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = e^{\sin (2\pi x)}$.}
+    \label{fig:es4_6_1_1}
+\end{figure}
+\paragraph{(b) } Si riporta in figura \ref{fig:es4_6_1_2} il grafico della funzione $f(x) = \log [2+ \sin (3 \pi x ) ]$
+e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico
+dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato
+in 1000 punti l'intervallo.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4613.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4614.pdf}
+    \end{minipage}
+    \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = \log [2+ \sin (3 \pi x ) ]$.}
+    \label{fig:es4_6_1_2}
+\end{figure}
+
+\paragraph{(c) } Si riporta in figura \ref{fig:es4_6_1_3} il grafico della funzione $f(x) = \cos^{12}[\pi (x-0.2)]$
+e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico
+dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato
+in 1000 punti l'intervallo.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4615.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{4616.pdf}
+    \end{minipage}
+    \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = \cos^{12}[\pi (x-0.2)]$.}
+    \label{fig:es4_6_1_3}
+\end{figure}
+
+\paragraph{Osservazioni}
+Si osserva che l'errore in norma $\infty$ diminuisce all'aumentare del numero di nodi in tutti e tre i casi, 
+confermando la convergenza dell'interpolazione trigonometrica. In generale l'errore non diminuisce mai oltre
+il valore di $10^{-14}$ per motivazioni legate alla rappresentazione numerica. È interessante notare che 
+in tutti e tre i casi l'errore ha un andamento a gradino. Questo fenomeno mostra che l'aggiunta di nodi 
+non sempre migliora l'accuratezza dell'interpolazione, anche se globalmente l'errore diminuisce. \\
+Curioso infine è il comportamento dell'errore per la terza funzione, in cui per $n = 12$ si osserva una
+diminuizione drastica dell'errore. Sulle ragioni di questo fatto si è avanzata una spiegazione. 
+Osservando il grafico \ref{fig:es4_6_1_3} si nota che all'aumento di $n$ le zone che sono peggio approssimate sono 
+quelle di appiattimento della funzione, e cioè sono quelle che contribuiscono all'errore, calcolato 
+come il massimo della distanza tra la funzione e il polinomio interpolante, su tutto l'intervallo. \\
+La figura \ref{fig:es4_6_1_4} è un ingrandimento di figura \ref{fig:es4_6_1_3} nella regione interessata e 
+si osserva che per $n=12$ il polinomio interpolante si appiattisce definitivamente, con la conseguente 
+riduzione dell'errore.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4617.pdf}
+    \caption{Ingrandimento della figura \ref{fig:es4_6_1_3} nella regione di appiattimento della funzione.}
+    \label{fig:es4_6_1_4}
+\end{figure}
 
 \section{Integrazione numerica}
 \subsection{Teoria}
