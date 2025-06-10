@@ -1308,14 +1308,14 @@ Suggerimento: Studia $d_{n+1}/d_{n}$ con $d_n=-\log_{10}|x_n-r|$ per verificare 
 iniziale $x_0 = 10$. Il metodo ha restituito il valore $-6.68 \cdot 10^{-17}$ in 16 iterazioni. 
 Valore atteso: $x = 0$. \\
 
-\paragraph{(2a) } Le funzioni in forma di ricerca degli zeri sono:
+\paragraph{(2a) }\label{sec:332_2a} Le funzioni in forma di ricerca degli zeri sono:
 \begin{itemize}
     \item $f_1(x) = x^2 - e^{-x}$, con $f_1'(x) = 2x + e^{-x}$, su $[-2,2]$.
     \item $f_2(x) = 2x - \tan x$, con $f_2'(x) = 2 - \tan^2 x$, su $[-0.2,1.4]$.
     \item $f_3(x) = e^{x+1} - 2 - x$, con $f_3'(x) = e^{x+1} - 1$, su $[-2,2]$.
 \end{itemize}
 
-\paragraph{(2b) } I grafici delle funzioni sono riportati in figura \ref{fig:es3_3_2_1}, da cui si evince che:
+\paragraph{(2b) }\label{sec:332_2b} I grafici delle funzioni sono riportati in figura \ref{fig:es3_3_2_1}, da cui si evince che:
 \begin{itemize}
     \item $f_1$ ha una radice nell'intervallo $[-2,2]$.
     \item $f_2$ ha due radici nell'intervallo $[-0.2,1.4]$.
@@ -1346,9 +1346,9 @@ Valore atteso: $x = 0$. \\
 
 \paragraph{(2c) } L'algoritmo di Newton è stato applicato alle tre funzioni, con i seguenti risultati:
 \begin{itemize}
-    \item $f_1$: radice $x = -0.703$, in 8 iterazioni.
-    \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, entrambe in 7 iterazioni.
-    \item $f_3$: radice $x = -1.000$ in 29 iterazioni.
+    \item $f_1$: radice $x = 0.703$, in 8 iterazioni. Punto di partenza $x_0 = -2$.
+    \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, entrambe in 7 iterazioni. Punti di partenza $x_{0,1} = 0.65$, $x_{0,2} = 1.4$.
+    \item $f_3$: radice $x = -1.000$ in 29 iterazioni. Punto di partenza $x_0 = 2$.
 \end{itemize}
 
 \paragraph{(2d) - Prima funzione}
@@ -1586,7 +1586,48 @@ figura \ref{fig:es3_3_4_2}
     \label{fig:es3_3_4_2}
 \end{figure}
 
+\subsection{Esercizi 3.4.1, 3.4.2}
+1. Scrivi un programma che implementi il metodo della secante. \\
+2. Per ciascuna delle seguenti funzioni, esegui i seguenti passi. \\
+(a) Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$. \\
+(b) Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti nell'intervallo. \\
+(c) Per ciascuna radice determina un intervallo che la racchiuda. Poi usa il metodo della secante, 
+    partendo dagli estremi dell'intervallo, per trovare ciascuna radice.\\
+(d) Per una delle radici, usa gli errori nella sequenza della secante per determinare numericamente 
+    se la convergenza è apparentemente compresa tra lineare e quadratica.\\
+1. $x^2=e^{-x}$, su $[-2,2]$ \\
+2. $2x = \tan x$, su $[-0.2,1.4]$ \\
+3. $e^{x+1}=2+x$, su $[-2,2]$ \\
 
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementato il metodo della secante e lo si è testato con la funzione $x^2 - 1$, 
+ottenedo come radice $x = 1.0$ in 10 iterazioni. 
+
+\paragraph{(2a)-(2b) } Per questi esercizi si rimanda alle sezioni \ref{sec:332_2a} e \ref{sec:332_2b}.
+
+\paragraph{{(2c) } } L'algoritmo della secante è stato applicato alle tre funzioni, con i seguenti risultati:
+\begin{itemize}
+    \item $f_1$: radice $x = 0.703$, in 9 iterazioni. Intervallo iniziale $[1,2]$.
+    \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, in 6 e 11 iterazioni, rispettivamente. Intervalli iniziali:
+    $[-0.1,0.2]$ e $[0.9,1.3]$.
+    \item $f_3$: radice $x = -1.000$ in 42 iterazioni. Intervallo iniziale $[-2,0]$.
+\end{itemize}
+
+In generale si può notare che il numero di iterazioni nel metodo della secante è maggiore rispetto 
+a quello del metodo di Newton, nonostante gli intervalli iniziali nel caso della secante siano stati scelti 
+in modo da essere molto vicini alla radice. Ciò è dovuto al fatto che il metodo della secante converge
+con ordine del rapporto aureo, mentre il metodo di Newton converge con ordine quadratico per radici semplici. \\
+
+\paragraph{(2d) } Si è scelto di studiare l'errore della secante per la radice di $f_1$. Si riporta in figura
+\ref{fig:es3_4_2_1} il grafico della successione $d_k = |x_k - x_{k-1}|$. Come stima di $q$ si è scelto di
+considerare l'ultimo punto della successione, e si ottiene $q = 1.692$, sufficientemente in accordo con 
+$q_{atteso} = 1.618$.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3421.pdf}
+    \caption{Studio del valore di $q$ per la radice di $f_1$.}
+    \label{fig:es3_4_2_1}
+\end{figure}
 
 \section{Interpolazioni}
 \subsection{Teoria}

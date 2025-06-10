@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1749540875.21117 "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" "relazione.pdf" "relazione" 1749540877.18454 0
+["pdflatex"] 1749545249.37464 "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" "relazione.pdf" "relazione" 1749545251.45261 0
   "C:/Users/i/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749153702 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/i/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1716560345 14064 803ae188d0850707522a14983c3626d2 ""
   "C:/Users/i/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1713034034 24223199 15d92d282e7146bb281755c7a54dd0e6 ""
@@ -124,7 +124,7 @@
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/translations/translations.sty" 1644048522 44247 2188b95d0ee74e31eca4d316263c58a7 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/i/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
-  "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" 1749540874 70000 878a23ff7df3288641a4c05a2c73baa6 ""
+  "c:/ALL/Stefano/Bicocca/3terzo_anno/lab_comp/lab_computazionale1/relazione/relazione.tex" 1749545246 72713 d5c577ef760e2ffda52aa7f58638e248 ""
   "immagini/1011.pdf" 1748508215 51309 00ae035fd6a438054b37d598f0afa9ae ""
   "immagini/1211.pdf" 1748953682 76902 04710feee21a171bebfcfa20e3337602 ""
   "immagini/1212.pdf" 1748953695 320732 baa420ed4442086413237e5315e85c20 ""
@@ -153,11 +153,12 @@
   "immagini/3331.pdf" 1749497993 17981 095fdfe28ce92cda4dc8e54e6327f8fa ""
   "immagini/3341.pdf" 1749540247 42488 2d71a8b0b88c36845da2ac1d95741075 ""
   "immagini/3342.pdf" 1749540103 15201 fae2662ed62d2180fa98a275dd25aac3 ""
+  "immagini/3421.pdf" 1749545008 12150 3c02e6c7b7d850fb58cae5ee0a52afda ""
   "immagini/logo_bicocca.png" 1716552458 70070 66efddb9bac550368f3253e55585dd8f ""
-  "relazione.aux" 1749540876 19620 fcd58e62fc0d09709dd91ad7c99ed04b "pdflatex"
-  "relazione.out" 1749540876 6141 68de10dacee1d5152bc55a8e6f9056d5 "pdflatex"
-  "relazione.tex" 1749540874 70000 878a23ff7df3288641a4c05a2c73baa6 ""
-  "relazione.toc" 1749540876 6112 91a4e502fdebd7f1810f551de865f9ce "pdflatex"
+  "relazione.aux" 1749545251 20612 0ac470905cc37228d17c0332ca3a751a "pdflatex"
+  "relazione.out" 1749545251 6423 c5a5659c81d786f93c2a8cc8375849c7 "pdflatex"
+  "relazione.tex" 1749545246 72713 d5c577ef760e2ffda52aa7f58638e248 ""
+  "relazione.toc" 1749545251 6497 0edebaf2d24ef8ba479273ebd737c8a9 "pdflatex"
   (generated)
   "relazione.aux"
   "relazione.log"
