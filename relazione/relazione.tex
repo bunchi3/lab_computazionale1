@@ -1703,6 +1703,68 @@ però richiede un numero di nodi maggiore per essere interpolato con una certa a
 non derivabilità della funzione in $x=0$. Il problema è che si sta cercando di interpolare una funzione
 non derivabile con un polinomio, che notoriamente è derivabile in ogni punto.
 
+\subsection{Esercizi 4.4.1, 4.4.2}
+1. Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange 
+per il caso particolare dei nodi di Chebyshev, utilizzando i risultati analitici per i pesi. 
+Verifica la correttezza della tua implementazione confrontandola con la routine per nodi generici. \\
+
+2. (a) Per ciascun caso sotto riportato, calcola il polinomio interpolante usando $n$ nodi di Chebyshev di 
+seconda specie in $[-1,1]$ per $n=4,8,12,\ldots,60$. Per ogni valore di $n$, calcola l'errore in norma $\infty$ 
+(ossia, $||f-p||_\infty=\max_{x\in[-1,1]} |p(x)-f(x)|$ valutato su almeno 4000 valori di $x$). 
+Utilizzando una scala log-lineare, rappresenta graficamente l'errore in funzione di $n$ e determina una 
+buona approssimazione della costante $K$. \\
+- $f(x) = 1/(25x^2+1)$  \\ 
+- $f(x) = \tanh(5 x+2)$ \\ 
+- $f(x) = \cosh(\sin x)$ \\ 
+- $f(x) = \sin(\cosh x)$  \\
+
+(b) Realizza un grafico analogo utilizzando $n$ punti equidistanti per l'interpolazione.
+
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementata la formula baricentrica dell'interpolazione di Lagrange per il caso
+particolare dei nodi di Chebyshev, e la si è testata nell'esercizio 4.4.2, confrontandola con il caso di 
+nodi equidistanti. \\
+\paragraph{(2a) } Il calcolo dell'errore in norma $\infty$ è stato effettuato con un passo di campionamento
+sulle $x$ pari a $0.0005$, in modo da ottenere 4000 punti tra $-1$ e $1$. Si riportano in figura \ref{fig:es4_4_2_1} 
+i grafici dell'errore in norma $\infty$ in funzione di $n$, per i casi delle varie funzioni.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4421.pdf}
+    \caption{Grafici dell'errore in norma $\infty$ in funzione di $n$ per i vari casi.}
+    \label{fig:es4_4_2_1}
+\end{figure}
+
+La prima osservazione che si può fare è che l'errore in norma $\infty$ decresce all'aumentare di $n$,
+come ci si aspetta data la scelta dei nodi di Chebyshev. La seconda osservazione è che l'errore decresce
+con un andamento esponenziale, fino ad arrestare la sua discesa intorno al valore di $\epsilon_{mach} = 10^{-16}$. \\
+La relazione che ha consentito di stimare la costante $K$ è la seguente:
+\begin{equation}
+    |p(x)-f(x)| = C \cdot K^(-n), \qquad \log_{10}|p(x)-f(x)| = \log_{10}(C) + n(-\log_{10}(K)),
+\end{equation}
+dove si è scelto di linearizzare i dati con il logaritmo per poter stimare la costante $K$ tramite
+il coefficiente angolare della retta di regressione. I fit sono stati eseguiti scartando i punti corrispondenti
+a errori minori di $10^{-16}$, e in figura \ref{fig:es4_4_2_1} sono rappresentati dalle linee tratteggiate. \\
+Si riportano i valori di $K$ ottenuti per le varie funzioni:
+\begin{itemize}
+    \item $f_1(x) = 1/(25x^2+1)$: $K = 1.217$.
+    \item $f_2(x) = \tanh(5 x+2)$: $K = 1.391$.
+    \item $f_3(x) = \cosh(\sin x)$: $K = 5.704$.
+    \item $f_4(x) = \sin(\cosh x)$: $K = 4.598$.
+\end{itemize}
+
+\paragraph{(2b) } Si è ripetuto lo stesso procedimento con i nodi equidistanti, e si riportano in figura \ref{fig:es4_4_2_2}
+i grafici dell'errore in norma $\infty$ in funzione di $n$, per i vari casi.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4422.pdf}
+    \caption{Grafici dell'errore in norma $\infty$ in funzione di $n$ per i vari casi, con nodi equidistanti.}
+    \label{fig:es4_4_2_2}
+\end{figure}
+Come atteso, l'errore in norma $\infty$ non decresce globalmente all'aumentare di $n$. Per le prime due funzioni
+l'errore è crescente fin dall'inizio, mentre per le ultime due funzioni l'errore decresce fino a un certo punto, 
+per tornare a crescere successivamente. È un comportamento noto come \textit{fenomeno di Runge}, ed è 
+dovuto alla scelta dei nodi equidistanti. \\ 
+
 
 
 \section{Integrazione numerica}
