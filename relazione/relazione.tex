@@ -1765,7 +1765,28 @@ l'errore è crescente fin dall'inizio, mentre per le ultime due funzioni l'error
 per tornare a crescere successivamente. È un comportamento noto come \textit{fenomeno di Runge}, ed è 
 dovuto alla scelta dei nodi equidistanti. \\ 
 
+\subsection{Esercizio 4.4.3}
+I punti di Chebyshev possono essere utilizzati anche quando l'intervallo di interpolazione è $[a,b]$ 
+invece di $[-1,1]$, tramite un opportuno cambiamento di variabile. 
+Traccia il polinomio interpolante di $f(z) = \cosh(\sin z)$ su $[0,2\pi]$ utilizzando $n=40$ nodi di Chebyshev.
 
+\subsubsection{Soluzione}
+Il cambio di variabile utilizzato per passare da $[-1,1]$ a $[a,b]$ è il seguente:
+\begin{equation}
+    \label{eq:change_of_var1}
+    z = \psi(x) = a + (b-a) \frac{x+1}{2},
+\end{equation}
+dove $x$ è il nodo di Chebyshev. \\
+L'algoritmo implementato tiene conto di questo cambio di variabile. In particolare si sono calcolati i nodi 
+di Chebyshev, li si è trasformati con \ref{eq:change_of_var1} e poi si è calcolato il polinomio nei nuovi punti con 
+i soliti pesi. Si riporta in figura \ref{fig:es4_4_3_1} 
+il grafico ottenuto con $n=40$ nodi di Chebyshev, per la funzione $f(z) = \cosh(\sin z)$ su $[0,2\pi]$.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{4431.pdf}
+    \caption{$f(z) = \cosh(\sin z)$ su $[0,2\pi]$ con $n=40$ nodi di Chebyshev.}
+    \label{fig:es4_4_3_1}
+\end{figure}
 
 \section{Integrazione numerica}
 \subsection{Teoria}

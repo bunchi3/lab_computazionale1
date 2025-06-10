@@ -287,6 +287,7 @@ function lag_fit(n::Int, f::Function)
     #Using first kind Chebyshev nodes to avoid possible infinities
     #change of coordinates inside xn declaration
     xn = [cos((2j-1)pi/(2n)) for j in 1:1:n]
+    #Now zn is on the real line.
     zn = ChangeOfVar.(xn)
     weights = [wj(j, n, :c1) for j in 1:1:n]
 
