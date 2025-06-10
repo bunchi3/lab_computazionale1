@@ -1540,6 +1540,53 @@ all'esercizio 3.3.2, ma è comunque piccola: ciò significa che il metodo di New
 non necessariamente alla radice più vicina. \\
 
 \subsection{Esercizio 3.3.4}
+Le proprietà più facilmente osservabili dell'orbita di un corpo celeste attorno al Sole sono il periodo $\tau$ 
+e l'eccentricità ellittica $\epsilon$. (Un cerchio ha $\epsilon=0$.) Da questi parametri è possibile determinare, 
+in ogni istante $t$, la \textit{vera anomalia} $\theta(t)$. Questa è l'angolo tra la direzione del perielio 
+(il punto dell'orbita più vicino al Sole) e la posizione attuale del corpo, visto dal fuoco principale 
+dell'ellisse (dove si trova il Sole). Questo si ottiene tramite
+
+\begin{equation}
+    \label{eq:eq-kepler1}
+    \tan \frac{\theta}{2} = \sqrt{\frac{1+\epsilon}{1-\epsilon}}\,
+    \tan \frac{\psi}{2}\,
+\end{equation}
+dove l'\textit{anomalia eccentrica} $\psi(t)$ soddisfa l'equazione di Keplero:
+\begin{equation}
+    \label{eq:eq-kepler2}
+    \psi - \epsilon \sin \psi - \frac{2\pi t}{\tau} = 0\,.
+\end{equation}
+L'equazione \ref{eq:eq-kepler2} deve essere risolta numericamente per trovare $\psi(t)$, 
+e poi la \ref{eq:eq-kepler1} può essere risolta analiticamente per ottenere $\theta(t)$.
+L'asteroide Eros ha $\tau=1.7610$ anni e $\epsilon=0.2230$. Utilizzando il metodo di Newton per la \ref{eq:eq-kepler2}, 
+realizza un grafico di $\theta(t)$ per 100 valori di $t$ compresi tra $0$ e $\tau$, cioè per un'orbita completa.\\
+(Nota: usa $\verb|mod|(\theta,2\pi)$ per riportare l'angolo tra 0 e $2\pi$ se vuoi che il risultato 
+sia una funzione continua.)
+
+\subsection{Soluzione}
+Per prima cosa si è risolta l'equazione \ref{eq:eq-kepler2} con il metodo di Newton. Per capire meglio il 
+procedimento si riporta l'equazione \ref{eq:eq-kepler2} nel grafico \ref{fig:es3_3_4_1}, dove si osserva che 
+la funzione ha un solo zero nell'intervallo $[0,2\pi]$. Il metodo di Newton è stato applicato al variare
+del tempo $t$, cioè è stato applicato alla stessa funzione ma traslata in verticale, come si può vedere
+nella figura. \\
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3341.pdf}
+    \caption{Grafico di $\psi$ in corrispondeza di due tempi.}
+    \label{fig:es3_3_4_1}    
+\end{figure}
+\\
+Ottenuti i valori di $\psi$ in corrispondenza dei 100 valori di $t$ compresi tra $0$ e $\tau$, si è calcolata
+la vera anomalia $\theta$ tramite la relazione \ref{eq:eq-kepler1}. Si riporta il grafico di $\theta(t)$ in
+figura \ref{fig:es3_3_4_2}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{3342.pdf}
+    \caption{Grafico della vera anomalia $\theta(t)$ per l'asteroide Eros.}
+    \label{fig:es3_3_4_2}
+\end{figure}
+
+
 
 \section{Interpolazioni}
 \subsection{Teoria}
