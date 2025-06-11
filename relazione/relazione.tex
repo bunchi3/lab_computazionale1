@@ -1916,6 +1916,118 @@ riduzione dell'errore.
 \section{Integrazione numerica}
 \subsection{Teoria}
 
+\subsection{Esercizi 5.1.1, 5.1.2}
+1. Scrivi un programma che implementi la regola del trapezio composta per un intervallo generico $[a,b]$. \\
+2. Per ciascuno dei seguenti integrali, utilizza la regola del trapezio per stimare il valore dell'integrale 
+con $m=10\cdot 2^k$ nodi, per $k=1,2,\ldots,10$. Per ogni caso, rappresenta in scala log-log l'errore in funzione 
+di $m$ e verifica se la convergenza è di secondo ordine.
+
+\begin{itemize}
+    \item[(a)] $\displaystyle \int_0^1 x\log(1+x)\, dx = \frac{1}{4}$
+    \item[(b)] $\displaystyle \int_0^1 x^2 \tan^{-1}x\, dx = \frac{\pi-2+2\log 2}{12}$
+    \item[(c)] $\displaystyle \int_0^{\pi/2}e^x \cos x\, dx = \frac{e^{\pi/2}-1}{2}$
+    \item[(d)] $\displaystyle \int_0^1 \frac{\tan^{-1}(\sqrt{2+x^2})}{(1+x^2)\sqrt{2+x^2}}\,dx = \frac{5\pi^2}{96}$
+    \item[(e)] $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$ \\
+        \textit{Suggerimento:} Sebbene l'integranda abbia limite zero per $x\to 0$, non può essere valutata direttamente in $x=0$. 
+        Una possibilità è iniziare l'integrale da $x=\epsilon_{\rm mach}$. In alternativa, puoi definire una 
+        funzione wrapper $g(x)$ che restituisce $g(0)=0$ e $g(x)=\sqrt{x}\log(x)$ altrimenti.
+    \item[(f)] $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$
+\end{itemize}
+
+\subsubsection{Soluzione}
+\paragraph{(1) } Si è implementata la regola del trapezio composta per un intervallo generico $[a,b]$,
+e la si è testata nell'esercizio 5.1.2. \\
+\paragraph{(2) } Si è calcolato l'integrale con la regola del trapezio per tutti i casi, al variare del numero di
+nodi. Oltre alla rappresentazione grafica dell'errore, si sono rappresentate le derivate seconde dell'integranda,
+in modo da poter verificare la convergenza di ordine secondo della regola del trapezio. La motivazione
+di tale scelta è che l'errore della regola del trapezio scala al secondo ordine con il passo di campionamento,
+ma ha per coefficiente la derivata seconda dell'integranda, calcolata in un certo $\xi$ appartenente all'intervallo
+in considerazione. In formule:
+\[
+R_T(h) = -\frac{(b-a)^3 }{12}h^2 f''(\xi)
+\]
+Si riportano nelle figure \ref{fig:es5_1_2_1}, \ref{fig:es5_1_2_2}, \ref{fig:es5_1_2_3}, 
+\ref{fig:es5_1_2_4}, \ref{fig:es5_1_2_5}, \ref{fig:es5_1_2_6} gli studi dei vari casi.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5121.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5121_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^1 x\log(1+x)\, dx$.}
+    \label{fig:es5_1_2_1}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5122.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5122_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^1 x^2 \tan^{-1}x\, dx$.}
+    \label{fig:es5_1_2_2}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5123.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5123_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^{\pi/2}e^x \cos x\, dx$.}
+    \label{fig:es5_1_2_3}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5124.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5124_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^1 \frac{\tan^{-1}(\sqrt{2+x^2})}{(1+x^2)\sqrt{2+x^2}}\,dx$.}
+    \label{fig:es5_1_2_4}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5125.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5125_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^1 \sqrt{x} \log(x) \, dx$.}
+    \label{fig:es5_1_2_5}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5126.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5126_2.pdf}
+    \end{minipage}
+    \caption{Studio della regola del trapezio per l'integrale $\int_0^1 \sqrt{1-x^2}\, dx$.}
+    \label{fig:es5_1_2_6}
+\end{figure}
+
+Nei grafici viene riportata la pendenza dell'interpolante dell'errore e nei primi quattro casi l'errore 
+decresce con un andamento quadratico nel passo $h$, come atteso. Nel quinto e sesto caso l'errore decresce 
+con un ordine inferiore. Come già accennato, questo è dovuto al fatto che l'integranda ha derivata seconda 
+non derivabile nel dominio di integrazione.
+
+
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
 
