@@ -1,0 +1,14 @@
+Vediamo tecniche migliori per la soluzione di eqz differenziali. Solitamente in input si mette la tolleranza, non 
+il numero di passi.
+
+Il discorso dell'aggiustamento dei passi si può fare anche per gli integrali in linea di principio.
+Non lo abbiamo fatto perche per gli integrali ci sono tecniche più potenti. Per le equazioni differenziali non ci 
+sono queste tecniche.
+Lo step size inizial come delta ^(1/3) / 2 è perrchè ci aspettiamo ordine dell'errore h^3, e lo prendiamo un 
+po' più piccolo.
+Prendere epsilon come delta(1 + ||u||) serve per riscalare l'errore correttamente.
+E' meglio controllare q per evitare che ci sia un cambio di passi troppo grande.
+
+I metodi a multistep tengono conto di approssimazioni precedenti, è lo stesso che nella ricerca degli zeri
+del metodo della funzione inversa.
+Lo svantaggio è che i metodi adattivi sono più difficili da implementare, perchè a ogni passo lo step size cambia.

@@ -16,10 +16,11 @@
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage[table]{xcolor} 
-\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+% \usepackage[margin=1in,letterpaper]{geometry} % decreases margins
 \usepackage{cite} % takes care of citations
 \usepackage[hidelinks]{hyperref} % adds hyper links inside the generated pdf file
 \usepackage{blindtext}
+\usepackage[a4paper, left=3cm, right=3cm, top=2.5cm, bottom=2.5cm]{geometry}
 
 % Setup hyperref
 \hypersetup{
@@ -232,7 +233,7 @@ elementi di tipo Float64. Il primo contiene solo numeri $1$, il secondo contiene
 da una distribuzione uniforme, il terzo numeri generati a partiere da una distribuzione normale. I valori sono 
 riportati in tabella \ref{tab:varianza_test}.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Risultati del test della formula \ref{eq:varianza_naive} su tre vettori di tipo Float64}
 \label{tab:varianza_test}
@@ -253,7 +254,7 @@ I risultati di tabella \ref{tab:varianza_test} mostrano che l'implementazione de
 Si è testato il codice che implementa la formula \ref{eq:varianza_eff} su quattro vettori contenenti
 elementi di tipo Float32, Float64 e Long Double. I risultati sono riportati in tabella \ref{tab:varianza_precisioni}.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Valori di varianza. Metodo 1: equazione \ref{eq:varianza_naive}. Metodo 2: equazione \ref{eq:varianza_eff}.}
 \label{tab:varianza_precisioni}
@@ -287,7 +288,7 @@ cancellazione. Per verificare questa affermazione, si riportano in tabella \ref{
 differenza \( u - \frac{v^2}{n} \)
 per la formula \ref{eq:varianza_eff}.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Differenza \( u - \frac{v^2}{n} \) per ciascun dataset.}
 \label{tab:errore_varianza}
@@ -655,7 +656,7 @@ con elementi diagonali unitari, si ha che:
 Per il calcolo del determinante delle matrici proposte si è eseguito il prodotto degli elementi della diagonale
 principale della matrice $\mathbf{U}$. A titolo di confronto si è calcolato il determinante delle matrici con 
 la funzione \texttt{det} di Julia. I risultati sono riportati in tabella \ref{tab:determinanti}.
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Determinanti delle matrici dell'esercizio 2.}
 \label{tab:determinanti}
@@ -980,7 +981,7 @@ Le forumle generali per il numero di condizionamento delle matrici $\mathbf{L}$ 
 
 In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 
-\begin{table}[h!]
+\begin{table}[!ht]
 \centering
 \caption{Valori dei parametri \( L \) e \( U \) per diverse tolleranze \( \varepsilon \)}
 \label{tab:LU_epsilon}
@@ -1203,7 +1204,7 @@ dove $a$ e $b$ sono gli estremi dell'intervallo. Il metodo ha prodotto i seguent
 \paragraph{(2a) } Si è implementato il metodo di bisezione per la funzione $f(x) = x^3 - 7x^2 + 14x - 6$. \\
 Il metodo ha restituito un valore della radice $r = 0.5857864376269051$ con $f(r) = 0.0$, in $50$ iterazioni. In
 figura \ref{fig:es3_2_2_1} si riporta il grafico della funzione e delle radici successive trovate.
-\begin{figure}
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{3221.pdf}
     \caption{Grafico della funzione $f(x) = x^3 - 7x^2 + 14x - 6$ e della radice trovata con il metodo di bisezione.}
@@ -1649,7 +1650,7 @@ le radici stimate.
 
 Si riportano in tabella \ref{tab:es3_4_3_1} le radici stimate, i punti iniziali scelti e il numero di iterazioni
 necessarie per la convergenza.
-\begin{table}
+\begin{table}[!ht]
     \centering
     \begin{tabular}{|c|c|c|c|}
         \hline
