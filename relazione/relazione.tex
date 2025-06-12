@@ -2166,6 +2166,7 @@ la relazione
 permette di ottenere il peso corrispondente tramite:
 
 \begin{equation}
+    \label{eq:gauss_legendre_weight}
     w_k= {2\over (1-x_k^2)[P'_n(x_k)]^2}\,.
 \end{equation}
 
@@ -2173,7 +2174,38 @@ permette di ottenere il peso corrispondente tramite:
 
 \subsubsection{Soluzione}
 Per comodità di implementazione la soluzione riporta i quattro passaggi nel seguente ordine: (b), (a), (c), (d).
-\paragraph{(b) } Si è sviluppato un algoritmo che calcola 
+\paragraph{(b) } Si è sviluppato un algoritmo che calcola sia i polinomi di Legendre $P_n(x)$ che le loro derivate $P'_n(x)$
+utilizzando la relazione di ricorrenza indicata nell'esercizio. Si riporta in figura \ref{fig:es5_3_1_1} il grafico 
+dei polinomi e delle loro derivate fino ad ordine $n = 4$.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{5311.pdf}
+    \caption{Polinomi di Legendre $P_n(x)$ e le loro derivate $P'_n(x)$ fino ad ordine $n=4$.}
+    \label{fig:es5_3_1_1}
+\end{figure}
+\paragraph{(a) (b) } Si è implementato il metodo di Newton per trovare le radici dei polinomi di Legendre $P_n(x)$ 
+e dei pesi associati. Una volta calcolati gli zeri di $P_n(x)$, si sono trovati i pesi associati utilizzando 
+la formula \ref{eq:gauss_legendre_weight}.
+Si riporta in tabella \ref{tab:legendre_ordine4} il confronto tra i nodi e pesi calcolati con i 
+corrispettivi valori tabulati, con ordine del polinomio $n = 4$. 
+
+\begin{table}[ht]
+\centering
+\caption{Confronto tra zeri e pesi del polinomio di Legendre di ordine 4}
+\label{tab:legendre_ordine4}
+\begin{tabular}{|c|c!{\vrule width 1.2pt}c|c|}
+\hline
+\( x_i \) & \( x_i^{\text{tab}} \) & \( w_i \) & \( w_i^{\text{tab}} \) \\
+\hline
+ 0.86114  &  0.86114 & 0.65215 & 0.65215 \\
+ 0.33998  &  0.33998 & 0.34785 & 0.34785 \\
+-0.33998  & -0.33998 & 0.34785 & 0.34785 \\
+-0.86114  & -0.86114 & 0.65215 & 0.65215 \\
+\hline
+\end{tabular}
+\end{table}
+
+
 
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
