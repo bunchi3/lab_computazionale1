@@ -2135,6 +2135,46 @@ inferiore. Nei casi in cui l'errore decresce con un ordine quartico, si osserva 
 fino a valore di $\epsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente l'interpolazione
 dell'errore è stata eseguita solo sui punti che si trovano al di sopra di questo valore.
 
+\subsection{Esercizio 5.3.1}
+1. Scrivi un programma che calcoli i nodi e i pesi per la quadratura di Gauss-Legendre nell’intervallo $[-1,1]$. 
+Di seguito alcuni suggerimenti per l'implementazione. \\
+(a) Per trovare le radici $x_k$, con $k=1,\ldots,n$, del polinomio di Legendre $P_n(x)$ di ordine $n$, 
+usa il metodo di Newton. Come condizione iniziale per la $k$-esima radice, utilizza
+
+\begin{equation}
+    x^{(0)}_k=\cos(\phi_k)\,,
+    \qquad
+    \phi_k={4k-1\over 4n+2}\pi\,.
+\end{equation}
+    
+(b) Per applicare il metodo di Newton è necessario valutare $P_n(x_k^{(i)})$ e la derivata $P'_n(x_k^{(i)})$, 
+dove $x_k^{(i)}$ è la $i$-esima iterazione nella ricerca della $k$-esima radice $x_k$. 
+Puoi ottenerle risolvendo la relazione di ricorrenza
+
+\begin{equation}
+    (m+1)P_{m+1}(x) = (2m+1)xP_{m}(x) - mP_{m-1}(x)\,,
+\end{equation}
+
+per $m=1,\ldots,n-1$, dove $P_0(x) = 1$ e $P_1(x) = x$, con $x=x^{(i)}_k$. La derivata si calcola poi tramite 
+la relazione
+
+\begin{equation}
+    (x^{2}-1)P'_{n}(x)=n[xP_{n}(x)-P_{n-1}(x)]\,. 
+\end{equation}
+
+(c) Una volta raggiunta la radice $x_k$ entro una certa tolleranza, il valore della derivata $P'_n(x_k)$ 
+permette di ottenere il peso corrispondente tramite:
+
+\begin{equation}
+    w_k= {2\over (1-x_k^2)[P'_n(x_k)]^2}\,.
+\end{equation}
+
+(d) Verifica i tuoi risultati confrontandoli con quelli tabulati.
+
+\subsubsection{Soluzione}
+Per comodità di implementazione la soluzione riporta i quattro passaggi nel seguente ordine: (b), (a), (c), (d).
+\paragraph{(b) } Si è sviluppato un algoritmo che calcola 
+
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
 

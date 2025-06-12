@@ -48,81 +48,73 @@ function h_search(ODE_func1::Function, ODE_func2::Function, f::Vector, u0::Vecto
     return abs((b - a)/(2^(iter)*n))
 end
 
-#This function computes the next solution point given h
-function BS2(f::Vector, ui::Vector, ti::Number, h::Float64)
+#This function computes the next solution point given h, for two different methods, BS2 and BS3
+function BS23(f::Vector, ui::Vector, ti::Number, h::Float64)
     m = length(f)
     if m != length(ui)
         throw(DomainError(ui, "euler_ode says: the two parameters must be of the same length."))
     end
 
-    u = zeros(m)
+    u2, u3 = zeros(m), zeros(m)     #2 and 3 because of the solution order
 
     #j will be used as index for the diff_equations  
     #Defining a vector containing all the entries for the known function      
-    v = [ui[j] for j in 1:1:m]
-    k1 = [h*f[j](ti, v...) for j in 1:1:m]
-    v_stage1 = [ui[j] + 0.5*k1[j] for j in 1:1:m]
-    k2 = [h*f[j](ti + 0.5*h, v_stage1...) for j in 1:1:m]  
-    v_stage2 = [ui[j] + (3.0/4.0)*k2[j] for j in 1:1:m]
-    k3 = [h*f[j](ti + (3.0/4.0)*h, v_stage2...) for j in 1:1:m]
-    v_stage3 = [ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j] for j in 1:1:m]
-    k4 = [h*f[j](ti + h, v_stage3...) for j in 1:1:m] 
+    v = ui
+    k1 = [h*f[j](ti, v...) for j in 1:m]
+    k2 = [h*f[j](ti + 0.5*h, (ui .+ 0.5 .* k1)...) for j in 1:m]
+    k3 = [h*f[j](ti + 0.75*h, (ui .+ 0.75 .* k2)...) for j in 1:m]
+    k4 = [h*f[j](ti + h, (ui .+ (2/9).*k1 .+ (1/3).*k2 .+ (4/9).*k3)...) for j in 1:m]
+    for j in 1:1:m         
+        u3[j] = ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j]
+    end
     for j in 1:1:m    
-        u[j] = ui[j] + (7/24)*k1[j] + (1/4)*k2[j] + (1/3)*k3[j] + (1/8)*k4[j]
+        u2[j] = ui[j] + (7/24)*k1[j] + (1/4)*k2[j] + (1/3)*k3[j] + (1/8)*k4[j]
     end 
 
-    #u contains m vectors, each of length n+1
-    return u
+    #u3, u2 contains m vectors, each of length n+1
+    return u3, u2
 end
 
-#This function computes the next solution point given h
-function BS3(f::Vector, ui::Vector, ti::Number, h::Float64)
+function adaptive_bs23(f::Vector, ui::Vector, ti::Number, h::Float64, δ::Float64)
     m = length(f)
     if m != length(ui)
         throw(DomainError(ui, "euler_ode says: the two parameters must be of the same length."))
     end
-
-    u = zeros(m)   
-
-    #j will be used as index for the diff_equations
-    #Defining a vector containing all the entries for the known function      
-    v = [ui[j] for j in 1:1:m]
-    k1 = [h*f[j](ti, v...) for j in 1:1:m]
-    v_stage1 = [ui[j] + 0.5*k1[j] for j in 1:1:m]  
-    k2 = [h*f[j](ti + 0.5*h, v_stage1...) for j in 1:1:m]   
-    v_stage2 = [ui[j] + (3.0/4.0)*k2[j] for j in 1:1:m]
-    k3 = [h*f[j](ti + (3.0/4.0)*h, v_stage2...) for j in 1:1:m]
-    v_stage3 = [ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j] for j in 1:1:m]
-    #k4 = [h*f[j](ti + h, v_stage3...) for j in 1:1:m]
-    for j in 1:1:m         
-        u[j] = ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j]
-    end
-
-    #u contains m vectors, each of length n+1
-    return u
-end
-
-function adaptive_bs23(f::Vector, ui::Vector, ti::Number, δ::Float64)
     exit = false
-    h = δ^(1.0/3.0) / 2.0
     q = 1.0
     H = q*h
-    u_num1::Vector = []
-    u_num2::Vector = []
+    u_num2 = zeros(m)  #u_num2 is u_{i+1} for the second order method
+    u_num3 = zeros(m)
+    iter = 0
+    v = ui
+    k1 = [H*f[j](ti, v...) for j in 1:m]
     while exit == false
-        H = q*h
         #u_num is u_{i+1}
-        u_num1 = BS2(f, ui, ti, H)    #computing the next point vector of the solution for every equation
-        u_num2 = BS3(f, ui, ti, H)    #computing the next point vector of the solution for every equation
+        k2 = [H*f[j](ti + 0.5*H, (ui .+ 0.5 .* k1)...) for j in 1:m]
+        k3 = [H*f[j](ti + 0.75*H, (ui .+ 0.75 .* k2)...) for j in 1:m]
+        k4 = [H*f[j](ti + H, (ui .+ (2/9).*k1 .+ (1/3).*k2 .+ (4/9).*k3)...) for j in 1:m]
+        k1 = k4 #k1 is the last k4, so it can be used for the next iteration
+        for j in 1:1:m         
+            u_num3[j] = ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j]
+        end
+        for j in 1:1:m    
+            u_num2[j] = ui[j] + (7/24)*k1[j] + (1/4)*k2[j] + (1/3)*k3[j] + (1/8)*k4[j]
+        end
         ϵi = δ*(1 + maximum(abs.(ui)))
-        Ei = maximum(abs.(u_num1 - u_num2))
+        Ei = maximum(abs.(u_num2 .- u_num3))
         if Ei < ϵi
             exit = true
         end
         q = 0.8 * (ϵi/Ei)^(1.0/3.0)
         q = min(q, 4)
+        H = q*H
+        iter += 1
+        if iter > 1000
+            println("Max iterations reached")
+            break
+        end
     end
-    return u_num2, H
+    return u_num3, H
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #SOLUTION LONG STEADY STATE
@@ -337,7 +329,7 @@ function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Fl
     m = length(f)
     u = [[] for _ in 1:1:m]     #n+1 because we need to include the initial point
     t = [a]
-    h = []
+    h = [δ^(1.0/3.0) / 2.0]
     #i index of the solution Number
     #j index of the equations
     for j in 1:1:m
@@ -346,22 +338,28 @@ function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Fl
 
     #ui_1 is u_{i+1} and hi1 is the time step to reach t_{i+1}
     while t[end] < b
-        ui_1, hi_1 = adaptive_bs23(f, [u[j][end] for j in 1:1:m], t[end], δ) 
-        push!(h, hi_1) 
+        ui_1, hi_1 = adaptive_bs23(f, [u[j][end] for j in 1:1:m], t[end], h[end], δ) 
         ti = t[end]
+        if ti + hi_1 > b
+            for j in 1:1:m
+                u_last_forced = BS23(f, [u[j][end] for j in 1:1:m], t[end], (b-ti))[1]
+                push!(u[j], u_last_forced[j])
+                
+            end
+            push!(t, b)
+            push!(h, b-ti)
+            return t, u, h
+        end
+        push!(h, hi_1) 
         #Interrupting the routine if h doesn't make the time grow.
         if ti == ti + hi_1
-            return t, u
+            return t, u, h
         end
         for j in 1:1:m
             push!(u[j], ui_1[j])            
         end  
         push!(t, ti + hi_1)
-    end
-        
-    return t, u, h
-    
-    
+    end   
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 println("diff_equations.jl loaded correctly")
