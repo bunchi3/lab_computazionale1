@@ -75,46 +75,58 @@ function BS23(f::Vector, ui::Vector, ti::Number, h::Float64)
     return u3, u2
 end
 
-function adaptive_bs23(f::Vector, ui::Vector, ti::Number, h::Float64, δ::Float64)
+function adaptive_bs23(f::Vector, ui::Vector, ti::Number, h::Float64, δ::Float64, k1_prec = nothing)
     m = length(f)
+    k4 = []
+    ti_1 = 0.0
     if m != length(ui)
         throw(DomainError(ui, "euler_ode says: the two parameters must be of the same length."))
     end
-    exit = false
     q = 1.0
     H = q*h
     u_num2 = zeros(m)  #u_num2 is u_{i+1} for the second order method
     u_num3 = zeros(m)
     iter = 0
     v = ui
-    k1 = [H*f[j](ti, v...) for j in 1:m]
-    while exit == false
+    #if k1_prec is nothing k1 will be the first expression, else will be k1_prec
+    k1 = isnothing(k1_prec) ? [H*f[j](ti, v...) for j in 1:m] : k1_prec
+    while true 
         #u_num is u_{i+1}
         k2 = [H*f[j](ti + 0.5*H, (ui .+ 0.5 .* k1)...) for j in 1:m]
         k3 = [H*f[j](ti + 0.75*H, (ui .+ 0.75 .* k2)...) for j in 1:m]
-        k4 = [H*f[j](ti + H, (ui .+ (2/9).*k1 .+ (1/3).*k2 .+ (4/9).*k3)...) for j in 1:m]
-        k1 = k4 #k1 is the last k4, so it can be used for the next iteration
+        k4 = [H*f[j](ti + H, (ui .+ (2.0/9.0).*k1 .+ (1.0/3.0).*k2 .+ (4.0/9.0).*k3)...) for j in 1:m]
+
         for j in 1:1:m         
             u_num3[j] = ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j]
         end
         for j in 1:1:m    
-            u_num2[j] = ui[j] + (7/24)*k1[j] + (1/4)*k2[j] + (1/3)*k3[j] + (1/8)*k4[j]
+            u_num2[j] = ui[j] + (7.0/24.0)*k1[j] + (1.0/4.0)*k2[j] + (1.0/3.0)*k3[j] + (1.0/8.0)*k4[j]
         end
         ϵi = δ*(1 + maximum(abs.(ui)))
         Ei = maximum(abs.(u_num2 .- u_num3))
         if Ei < ϵi
-            exit = true
+            ti_1 = ti+H
+            q = 0.8 * (ϵi/Ei)^(1.0/3.0)
+            q = min(q, 4)
+            f4 = k4/H
+            H = q*H         #this is the H which will be the guess for the next step 
+            k4 = H*f4       #this means that k4 won't be exactly the k1 for the next step, but needs to be re-escalate
+            return u_num3, ti_1, H, k4
+        else
+
         end
+        
         q = 0.8 * (ϵi/Ei)^(1.0/3.0)
         q = min(q, 4)
         H = q*H
+        k1 = [H*f[j](ti, v...) for j in 1:m]
+        
         iter += 1
         if iter > 1000
             println("Max iterations reached")
             break
         end
     end
-    return u_num3, H
 end
 #-------------------------------------------------------------------------------------------------------------------------------
 #SOLUTION LONG STEADY STATE
@@ -325,22 +337,26 @@ function BS3(f::Vector, u0::Vector, n::Int, a::Number, b::Number)
     return u
 end =#
 #-------------------------------------------------------------------------------------------------------------------------------
+#The key in understanding the process was to separate h of the step from the h of the guess
 function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Float64)
     m = length(f)
     u = [[] for _ in 1:1:m]     #n+1 because we need to include the initial point
     t = [a]
-    h = [δ^(1.0/3.0) / 2.0]
+    h = []
+    h_guess = δ^(1.0/3.0) / 2.0
     #i index of the solution Number
     #j index of the equations
     for j in 1:1:m
         push!(u[j],  u0[j])        
     end
 
+    k1 = nothing
+
     #ui_1 is u_{i+1} and hi1 is the time step to reach t_{i+1}
     while t[end] < b
-        ui_1, hi_1 = adaptive_bs23(f, [u[j][end] for j in 1:1:m], t[end], h[end], δ) 
+        ui_1, ti_1, h_guess, k1 = adaptive_bs23(f, [u[j][end] for j in 1:1:m], t[end], h_guess, δ, k1) 
         ti = t[end]
-        if ti + hi_1 > b
+        if ti_1 > b
             for j in 1:1:m
                 u_last_forced = BS23(f, [u[j][end] for j in 1:1:m], t[end], (b-ti))[1]
                 push!(u[j], u_last_forced[j])
@@ -350,15 +366,15 @@ function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Fl
             push!(h, b-ti)
             return t, u, h
         end
-        push!(h, hi_1) 
+        push!(h, ti_1 - ti) 
         #Interrupting the routine if h doesn't make the time grow.
-        if ti == ti + hi_1
+        if ti == ti + h_guess
             return t, u, h
         end
         for j in 1:1:m
             push!(u[j], ui_1[j])            
         end  
-        push!(t, ti + hi_1)
+        push!(t, ti_1)
     end   
 end
 #-------------------------------------------------------------------------------------------------------------------------------
