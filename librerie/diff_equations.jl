@@ -95,15 +95,17 @@ function adaptive_bs23(f::Vector, ui::Vector, ti::Number, h::Float64, δ::Float6
         k2 = [H*f[j](ti + 0.5*H, (ui .+ 0.5 .* k1)...) for j in 1:m]
         k3 = [H*f[j](ti + 0.75*H, (ui .+ 0.75 .* k2)...) for j in 1:m]
         k4 = [H*f[j](ti + H, (ui .+ (2.0/9.0).*k1 .+ (1.0/3.0).*k2 .+ (4.0/9.0).*k3)...) for j in 1:m]
-
+        
         for j in 1:1:m         
             u_num3[j] = ui[j] + (2.0/9.0)*k1[j] + (1.0/3.0)*k2[j] + (4.0/9.0)*k3[j]
         end
         for j in 1:1:m    
             u_num2[j] = ui[j] + (7.0/24.0)*k1[j] + (1.0/4.0)*k2[j] + (1.0/3.0)*k3[j] + (1.0/8.0)*k4[j]
         end
+        
         ϵi = δ*(1 + maximum(abs.(ui)))
         Ei = maximum(abs.(u_num2 .- u_num3))
+        
         if Ei < ϵi
             ti_1 = ti+H
             q = 0.8 * (ϵi/Ei)^(1.0/3.0)
@@ -112,10 +114,8 @@ function adaptive_bs23(f::Vector, ui::Vector, ti::Number, h::Float64, δ::Float6
             H = q*H         #this is the H which will be the guess for the next step 
             k4 = H*f4       #this means that k4 won't be exactly the k1 for the next step, but needs to be re-escalate
             return u_num3, ti_1, H, k4
-        else
-
         end
-        
+
         q = 0.8 * (ϵi/Ei)^(1.0/3.0)
         q = min(q, 4)
         H = q*H
@@ -355,6 +355,7 @@ function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Fl
     #ui_1 is u_{i+1} and hi1 is the time step to reach t_{i+1}
     while t[end] < b
         ui_1, ti_1, h_guess, k1 = adaptive_bs23(f, [u[j][end] for j in 1:1:m], t[end], h_guess, δ, k1) 
+        
         ti = t[end]
         if ti_1 > b
             for j in 1:1:m
@@ -371,10 +372,12 @@ function solution_adapt_bs23(f::Vector, u0::Vector, a::Number, b::Number, δ::Fl
         if ti == ti + h_guess
             return t, u, h
         end
+        
         for j in 1:1:m
             push!(u[j], ui_1[j])            
         end  
         push!(t, ti_1)
+
     end   
 end
 #-------------------------------------------------------------------------------------------------------------------------------
