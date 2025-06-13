@@ -131,5 +131,7 @@
 \contentsline {subsection}{\numberline {6.1}Teoria}{54}{subsection.6.1}%
 \contentsline {subsection}{\numberline {6.2}Esercizi 6.2.1, 6.2.2}{54}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}Soluzione}{54}{subsubsection.6.2.1}%
-\contentsline {section}{\numberline {7}Appendice}{55}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Dati}{55}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6.3}Esercizio 6.2.3}{55}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}Soluzione}{56}{subsubsection.6.3.1}%
+\contentsline {section}{\numberline {7}Appendice}{57}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dati}{57}{subsection.7.1}%

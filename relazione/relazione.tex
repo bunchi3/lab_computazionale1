@@ -2482,6 +2482,99 @@ Nel nostro caso, la soluzione dell'equazione (a) smorza gli errori avanzando nel
 errore non si raggiunge all'istante finale. La diretta conseguenza è che le rette sono distinte.
 Negli altri due casi invece la soluzione amplifica gli errori, portando a rette sovrapposte.
 
+\subsection{Esercizio 6.2.3}
+Risolvi i seguenti problemi ai valori iniziali (IVP) con il metodo di Eulero utilizzando $n=1000$ passi. 
+Traccia in un unico grafico la soluzione e la sua derivata prima, e in un altro grafico rappresenta l'errore 
+in ciascuna componente in funzione del tempo.\\
+\begin{enumerate}[label=(\alph*)]
+    \item $y''+ 9y = \sin(2t)$, \quad $0< t< 2\pi$, \quad $y(0) = 2$, \ $y'(0) = 1$;\\[2pt]
+    \hspace*{1.5em} $\hat{y}(t) = \dfrac{1}{5} \sin(3t) + 2 \cos (3t) + \dfrac{1}{5} \sin (2t)$
+    \item $y''- 4y = 4t$, \quad $0< t< 1.5$, \quad $y(0) = 2$, \ $y'(0) = -1$;\\[2pt]
+    \hspace*{1.5em} $\hat{y}(t) = e^{2t} + e^{-2t} - t$
+    \item $y''+ 4y'+ 4y = t$, \quad $0< t< 4$, \quad $y(0) = 1$, \ $y'(0) = \dfrac{3}{4}$;\\[2pt]
+    \hspace*{1.5em} $\hat{y}(t) = (3t+\frac{5}{4})e^{-2t} + \frac{t-1}{4}$
+\end{enumerate}
+
+\subsubsection{Soluzione}
+Fissato $n = 1000$ si è risolto il problema ai valori iniziali (IVP) con il metodo di Eulero. Per prima cosa
+si sono riscritte le equazioni differenziali di secondo ordine come un sistema di equazioni differenziali
+di primo ordine, in modo da poter utilizzare il metodo di Eulero:
+\begin{align*}
+\left\{
+\begin{array}{rl}
+    z_1' &= z_2 \\
+    z_2' &= -9z_1 + \sin(2t) \\
+    z_1(0) &= 2 \\
+    z_2(0) &= 1
+\end{array}
+\right.
+\qquad
+\left\{
+\begin{array}{rl}
+    z_1' &= z_2 \\
+    z_2' &= 4z_1 + 4t \\
+    z_1(0) &= 2 \\
+    z_2(0) &= -1
+\end{array}
+\right.
+\qquad
+\left\{
+\begin{array}{rl}
+    z_1' &= z_2 \\
+    z_2' &= -4z_1 - 4z_2 + t \\
+    z_1(0) &= 1 \\
+    z_2(0) &= \dfrac{3}{4}
+\end{array}
+\right.
+\end{align*}
+
+Scritte così si è potuto utilizzare il metodo di Eulero per sistemi di equazioni differenziali.
+Si riportano in figura \ref{fig:es6_2_3_1}, \ref{fig:es6_2_3_2}, \ref{fig:es6_2_3_3} i grafici delle soluzioni
+e delle loro derivate prime, insieme ai grafici degli errori per i tre casi richiesti. Gli errori rappresentano 
+la distanza tra la soluzione calcolata e quella esatta, in ciascuna componente del sistema.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6231.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6232.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso (a). Errori.}
+    \label{fig:es6_2_3_1}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6233.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6234.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso (b). Errori.}
+    \label{fig:es6_2_3_2}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6235.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6236.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso (c). Errori.}
+    \label{fig:es6_2_3_3}
+\end{figure}
+
+Nelle figure \ref{fig:es6_2_3_1} e \ref{fig:es6_2_3_2} è possibile notare che gli errori aumentano insieme al 
+tempo. Infatti nel caso (a) la soluzione esatta è una combinazione di funzioni trigonometriche, per cui 
+le perturbazioni iniziali si amplificano nel tempo. Nel caso (b) si ha lo stesso comportamento perchè a tempi 
+più grandi domina l'esponenziale $e^{2t}$, che amplifica le perturbazioni iniziali. \\
+Al contrario in figura \ref{fig:es6_2_3_3} si osserva che gli errori decrescono nel tempo, questo perchè la 
+soluzione esatta è esponenziale decrescente, e così smorza l'errore.
 
 \section{Appendice}
 \subsection{Dati}
