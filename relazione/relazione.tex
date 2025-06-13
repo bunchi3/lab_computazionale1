@@ -2576,6 +2576,39 @@ più grandi domina l'esponenziale $e^{2t}$, che amplifica le perturbazioni inizi
 Al contrario in figura \ref{fig:es6_2_3_3} si osserva che gli errori decrescono nel tempo, questo perchè la 
 soluzione esatta è esponenziale decrescente, e così smorza l'errore.
 
+\subsection{Esercizio 6.3.1}
+(a) Scrivi un programma che risolva un sistema di equazioni differenziali utilizzando il metodo IE2 
+(Eulero implicito esplicito di ordine 2).\\
+(b) Scrivi un programma che risolva un sistema di equazioni differenziali utilizzando il metodo RK4 
+(Runge-Kutta del quarto ordine).\\
+(c) Testa la tua implementazione dei metodi IE2 e RK4 sul problema ai valori iniziali\\
+
+$u' = -2t u$, $\ 0 \le t \le 2$, $\ u(0) = 2$; \\
+$\hat{u}(t) = 2e^{-t^2}$ \\
+
+Risolvi per $n=30,60,90,\ldots,300$ e rappresenta graficamente l'errore massimo 
+$||u-\hat{u}||_\infty=\max_{0\leq i\leq n} |u_i-\hat{u}(t_i)|$ in funzione del numero di valutazioni 
+di funzione in un grafico log-log, insieme a una retta che mostri il tasso di convergenza atteso.
+
+\subsubsection{Soluzione}
+Si sono implementati i due metodi richiesti e applicati al problema ai valori iniziali (IVP) presentato.
+In figura \ref{fig:es6_3_1} si riportano i grafici degli errori per i due metodi,
+calcolati per $n=30,60,90,\ldots,300$.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6311.pdf}
+    \caption{Confronto tra gli errori dei metodi IE2 e RK4.}
+    \label{fig:es6_3_1}
+\end{figure}
+Nel grafico sono state tracciate le rette interpolanti degli errori, ottenute con il metodo dei minimi quadrati. 
+Di tali rette sono riportate sul grafico le pendenze, in accordo con la teoria. Il metodo IE2 infatti deve avere 
+un ordine di convergenza pari a $2$, mentre il metodo RK4 deve avere un ordine di convergenza pari a $4$. \\
+I grafici sono stati realizzati in funzione del numero di valutazioni della funzione. Sapendo che IE2 richiede $2$
+valutazioni della funzione per ogni passo, e che RK4 richiede $4$ valutazioni della funzione per ogni passo,
+si può spiegare il fatto che i punti del grafico si trovano incolonnati uno ogni due passi di IE2. \\
+Infine si può notare che a parità di numero di valutazioni della funzione, il metodo RK4 ha un errore molto più 
+piccolo rispetto al metodo IE2, evidenziandone l'efficacia.
+
 \section{Appendice}
 \subsection{Dati}
 
