@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  13 JUN 2025 14:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.4.13)  13 JUN 2025 18:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -536,7 +536,7 @@ Package hyperref Info: Link coloring OFF on input line 46.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 (relazione.toc
-<immagini/logo_bicocca.png, id=330, 501.875pt x 401.5pt>
+<immagini/logo_bicocca.png, id=338, 501.875pt x 401.5pt>
 File: immagini/logo_bicocca.png Graphic file (type png)
 <use immagini/logo_bicocca.png>
 Package pdftex.def Info: immagini/logo_bicocca.png  used on input line 56.
@@ -547,8 +547,8 @@ Package pdftex.def Info: immagini/logo_bicocca.png  used on input line 56.
 \tf@toc=\write4
 \openout4 = `relazione.toc'.
 
- [2]
-<immagini/1011.pdf, id=392, 803.0pt x 602.25pt>
+ [2] [3]
+<immagini/1011.pdf, id=406, 803.0pt x 602.25pt>
 File: immagini/1011.pdf Graphic file (type pdf)
 <use immagini/1011.pdf>
 Package pdftex.def Info: immagini/1011.pdf  used on input line 91.
@@ -558,8 +558,8 @@ Overfull \hbox (19.21303pt too wide) in paragraph at lines 96--106
 \OT1/cmr/m/n/12 La sec-onda con-sid-er-azione ^^Re che le fun-zioni $^^A$ e $[]$ si avvic-i-nano tra loro all'aumentare
  []
 
-[3]
-<immagini/1211.pdf, id=413, 602.25pt x 401.5pt>
+[4]
+<immagini/1211.pdf, id=427, 602.25pt x 401.5pt>
 File: immagini/1211.pdf Graphic file (type pdf)
 <use immagini/1211.pdf>
 Package pdftex.def Info: immagini/1211.pdf  used on input line 140.
@@ -569,8 +569,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 145--173
 
  []
 
-[4 <./immagini/1011.pdf>]
-<immagini/1212.pdf, id=430, 602.25pt x 401.5pt>
+[5 <./immagini/1011.pdf>]
+<immagini/1212.pdf, id=444, 602.25pt x 401.5pt>
 File: immagini/1212.pdf Graphic file (type pdf)
 <use immagini/1212.pdf>
 Package pdftex.def Info: immagini/1212.pdf  used on input line 183.
@@ -580,23 +580,23 @@ Overfull \hbox (18.30797pt too wide) in paragraph at lines 188--193
 \OT1/cmr/m/n/12 ile a quello di figura []2[] dovremmo rag-giun-gere val-ori di $\OML/cmm/m/it/12 N \OT1/cmr/m/n/12 = 2[]$. In-fatti l'approssimazione
  []
 
-[5 <./immagini/1211.pdf>] [6 <./immagini/1212.pdf>]
+[6 <./immagini/1211.pdf>] [7 <./immagini/1212.pdf>]
 Overfull \hbox (35.70903pt too wide) in paragraph at lines 261--276
  [][] 
  []
 
-[7] [8]
-<immagini/1421.pdf, id=490, 602.25pt x 401.5pt>
+[8] [9]
+<immagini/1421.pdf, id=504, 602.25pt x 401.5pt>
 File: immagini/1421.pdf Graphic file (type pdf)
 <use immagini/1421.pdf>
 Package pdftex.def Info: immagini/1421.pdf  used on input line 365.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-<immagini/1422.pdf, id=495, 602.25pt x 401.5pt>
+<immagini/1422.pdf, id=509, 602.25pt x 401.5pt>
 File: immagini/1422.pdf Graphic file (type pdf)
 <use immagini/1422.pdf>
 Package pdftex.def Info: immagini/1422.pdf  used on input line 375.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-<immagini/1423.pdf, id=496, 602.25pt x 401.5pt>
+<immagini/1423.pdf, id=510, 602.25pt x 401.5pt>
 File: immagini/1423.pdf Graphic file (type pdf)
 <use immagini/1423.pdf>
 Package pdftex.def Info: immagini/1423.pdf  used on input line 381.
@@ -606,19 +606,19 @@ Overfull \hbox (7.50418pt too wide) in paragraph at lines 386--407
 []\OT1/cmr/m/n/12 Per quanto riguarda il com-por-ta-mento della fun-zione $\OML/cmm/m/it/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$ cal-co-lata con l'algoritmo
  []
 
-[9 <./immagini/1421.pdf> <./immagini/1422.pdf>]
-<immagini/1424.pdf, id=516, 602.25pt x 401.5pt>
+[10 <./immagini/1421.pdf> <./immagini/1422.pdf>]
+<immagini/1424.pdf, id=530, 602.25pt x 401.5pt>
 File: immagini/1424.pdf Graphic file (type pdf)
 <use immagini/1424.pdf>
 Package pdftex.def Info: immagini/1424.pdf  used on input line 412.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [10 <./immagini/1423.pdf>]
-<immagini/1425.pdf, id=526, 602.25pt x 401.5pt>
+ [11 <./immagini/1423.pdf>]
+<immagini/1425.pdf, id=540, 602.25pt x 401.5pt>
 File: immagini/1425.pdf Graphic file (type pdf)
 <use immagini/1425.pdf>
 Package pdftex.def Info: immagini/1425.pdf  used on input line 430.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [11 <./immagini/1424.pdf> <./immagini/1425.pdf>]
+ [12 <./immagini/1424.pdf> <./immagini/1425.pdf>]
 Overfull \hbox (3.16058pt too wide) in paragraph at lines 453--475
 []$[]$  $[]$ 
  []
@@ -628,12 +628,12 @@ Overfull \hbox (3.16058pt too wide) in paragraph at lines 482--502
 []$[]$  $[]$ 
  []
 
-[12]
+[13]
 Underfull \hbox (badness 10000) in paragraph at lines 580--583
 
  []
 
-[13] [14]
+[14] [15]
 Overfull \hbox (26.85324pt too wide) detected at line 856
 [] \OT1/cmr/m/n/12 = []
  []
@@ -648,7 +648,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 885--888
 
  []
 
-[15]
+[16]
 Overfull \hbox (176.76039pt too wide) in paragraph at lines 968--972
 \OT1/cmr/m/n/12 cun val-ore di $\OML/cmm/m/it/12 ^^O$\OT1/cmr/m/n/12 . I cal-coli det-tagliati sono disponi-bili nella cartella git [][]\OT1/cmtt/m/n/12 lab\computazionale1\esercizi\pen_and_paper[]\OT1/cmr/m/n/12 ,
  []
@@ -658,13 +658,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 968--972
 
  []
 
-[16] [17] [18]
-<immagini/2621.pdf, id=613, 602.25pt x 401.5pt>
+[17] [18] [19]
+<immagini/2621.pdf, id=628, 602.25pt x 401.5pt>
 File: immagini/2621.pdf Graphic file (type pdf)
 <use immagini/2621.pdf>
 Package pdftex.def Info: immagini/2621.pdf  used on input line 1105.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [19 <./immagini/2621.pdf>]
+ [20 <./immagini/2621.pdf>]
 Overfull \hbox (11.22948pt too wide) detected at line 1154
 [][][][] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ;  [] \OT1/cmr/m/n/12 = [] \OML/cmm/m/it/12 ;
  []
@@ -674,23 +674,23 @@ Overfull \hbox (1.47546pt too wide) in paragraph at lines 1158--1159
 []\OT1/cmr/m/n/12 Coefficienti del poli-nomio: $[0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 712; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 351; 2\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 225; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 538; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 074; 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 033; \OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 0\OML/cmm/m/it/12 :\OT1/cmr/m/n/12 003]$ 
  []
 
-<immagini/2631.pdf, id=631, 602.25pt x 401.5pt>
+<immagini/2631.pdf, id=645, 602.25pt x 401.5pt>
 File: immagini/2631.pdf Graphic file (type pdf)
 <use immagini/2631.pdf>
 Package pdftex.def Info: immagini/2631.pdf  used on input line 1165.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-[20 <./immagini/2631.pdf>]
+[21 <./immagini/2631.pdf>]
 Overfull \hbox (12.58344pt too wide) in paragraph at lines 1193--1200
 \OT1/cmr/m/n/12 Il metodo si in-ter-rompe quando la dis-tanza tra gli es-tremi risulta mi-nore di $[](\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 a\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 b\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^A
  []
 
-<immagini/3221.pdf, id=644, 602.25pt x 401.5pt>
+<immagini/3221.pdf, id=658, 602.25pt x 401.5pt>
 File: immagini/3221.pdf Graphic file (type pdf)
 <use immagini/3221.pdf>
 Package pdftex.def Info: immagini/3221.pdf  used on input line 1209.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-[21]
-<immagini/3222.pdf, id=654, 803.0pt x 501.875pt>
+[22]
+<immagini/3222.pdf, id=668, 803.0pt x 501.875pt>
 File: immagini/3222.pdf Graphic file (type pdf)
 <use immagini/3222.pdf>
 Package pdftex.def Info: immagini/3222.pdf  used on input line 1253.
@@ -700,8 +700,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 1258--1266
 
  []
 
-[22 <./immagini/3221.pdf>]
-<immagini/3223.pdf, id=669, 602.25pt x 401.5pt>
+[23 <./immagini/3221.pdf>]
+<immagini/3223.pdf, id=683, 602.25pt x 401.5pt>
 File: immagini/3223.pdf Graphic file (type pdf)
 <use immagini/3223.pdf>
 Package pdftex.def Info: immagini/3223.pdf  used on input line 1275.
@@ -711,7 +711,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1294--1302
 
  []
 
-[23 <./immagini/3222.pdf>]
+[24 <./immagini/3222.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1302--1303
 
  []
@@ -731,39 +731,39 @@ Underfull \hbox (badness 10000) in paragraph at lines 1308--1311
 
  []
 
-[24 <./immagini/3223.pdf>]
-<immagini/3321.pdf, id=688, 602.25pt x 401.5pt>
+[25 <./immagini/3223.pdf>]
+<immagini/3321.pdf, id=703, 602.25pt x 401.5pt>
 File: immagini/3321.pdf Graphic file (type pdf)
 <use immagini/3321.pdf>
 Package pdftex.def Info: immagini/3321.pdf  used on input line 1329.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3322.pdf, id=689, 602.25pt x 401.5pt>
+<immagini/3322.pdf, id=704, 602.25pt x 401.5pt>
 File: immagini/3322.pdf Graphic file (type pdf)
 <use immagini/3322.pdf>
 Package pdftex.def Info: immagini/3322.pdf  used on input line 1334.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3323.pdf, id=690, 602.25pt x 401.5pt>
+<immagini/3323.pdf, id=705, 602.25pt x 401.5pt>
 File: immagini/3323.pdf Graphic file (type pdf)
 <use immagini/3323.pdf>
 Package pdftex.def Info: immagini/3323.pdf  used on input line 1341.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
- [25 <./immagini/3321.pdf> <./immagini/3322.pdf> <./immagini/3323.pdf>]
-<immagini/3321_q.pdf, id=705, 602.25pt x 401.5pt>
+ [26 <./immagini/3321.pdf> <./immagini/3322.pdf> <./immagini/3323.pdf>]
+<immagini/3321_q.pdf, id=719, 602.25pt x 401.5pt>
 File: immagini/3321_q.pdf Graphic file (type pdf)
 <use immagini/3321_q.pdf>
 Package pdftex.def Info: immagini/3321_q.pdf  used on input line 1367.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3321_C.pdf, id=706, 602.25pt x 401.5pt>
+<immagini/3321_C.pdf, id=720, 602.25pt x 401.5pt>
 File: immagini/3321_C.pdf Graphic file (type pdf)
 <use immagini/3321_C.pdf>
 Package pdftex.def Info: immagini/3321_C.pdf  used on input line 1371.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3322_q1.pdf, id=708, 602.25pt x 401.5pt>
+<immagini/3322_q1.pdf, id=722, 602.25pt x 401.5pt>
 File: immagini/3322_q1.pdf Graphic file (type pdf)
 <use immagini/3322_q1.pdf>
 Package pdftex.def Info: immagini/3322_q1.pdf  used on input line 1406.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3322_C1.pdf, id=709, 602.25pt x 401.5pt>
+<immagini/3322_C1.pdf, id=723, 602.25pt x 401.5pt>
 File: immagini/3322_C1.pdf Graphic file (type pdf)
 <use immagini/3322_C1.pdf>
 Package pdftex.def Info: immagini/3322_C1.pdf  used on input line 1410.
@@ -773,13 +773,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1423--1428
 
  []
 
-[26 <./immagini/3321_q.pdf> <./immagini/3321_C.pdf>]
-<immagini/3322_q2.pdf, id=726, 602.25pt x 401.5pt>
+[27 <./immagini/3321_q.pdf> <./immagini/3321_C.pdf>]
+<immagini/3322_q2.pdf, id=740, 602.25pt x 401.5pt>
 File: immagini/3322_q2.pdf Graphic file (type pdf)
 <use immagini/3322_q2.pdf>
 Package pdftex.def Info: immagini/3322_q2.pdf  used on input line 1435.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3322_C2.pdf, id=727, 602.25pt x 401.5pt>
+<immagini/3322_C2.pdf, id=741, 602.25pt x 401.5pt>
 File: immagini/3322_C2.pdf Graphic file (type pdf)
 <use immagini/3322_C2.pdf>
 Package pdftex.def Info: immagini/3322_C2.pdf  used on input line 1439.
@@ -794,24 +794,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 1460--1462
 
  []
 
-[27 <./immagini/3322_q1.pdf> <./immagini/3322_C1.pdf> <./immagini/3322_q2.pdf> <./immagini/3322_C2.pdf>]
-<immagini/3323_q.pdf, id=741, 602.25pt x 401.5pt>
+[28 <./immagini/3322_q1.pdf> <./immagini/3322_C1.pdf> <./immagini/3322_q2.pdf> <./immagini/3322_C2.pdf>]
+<immagini/3323_q.pdf, id=755, 602.25pt x 401.5pt>
 File: immagini/3323_q.pdf Graphic file (type pdf)
 <use immagini/3323_q.pdf>
 Package pdftex.def Info: immagini/3323_q.pdf  used on input line 1465.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-<immagini/3323_C1.pdf, id=743, 602.25pt x 401.5pt>
+<immagini/3323_C1.pdf, id=757, 602.25pt x 401.5pt>
 File: immagini/3323_C1.pdf Graphic file (type pdf)
 <use immagini/3323_C1.pdf>
 Package pdftex.def Info: immagini/3323_C1.pdf  used on input line 1475.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/3323_C2.pdf, id=744, 602.25pt x 401.5pt>
+<immagini/3323_C2.pdf, id=758, 602.25pt x 401.5pt>
 File: immagini/3323_C2.pdf Graphic file (type pdf)
 <use immagini/3323_C2.pdf>
 Package pdftex.def Info: immagini/3323_C2.pdf  used on input line 1479.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
- [28 <./immagini/3323_q.pdf> <./immagini/3323_C1.pdf> <./immagini/3323_C2.pdf>]
-<immagini/3331.pdf, id=757, 602.25pt x 401.5pt>
+ [29 <./immagini/3323_q.pdf> <./immagini/3323_C1.pdf> <./immagini/3323_C2.pdf>]
+<immagini/3331.pdf, id=771, 602.25pt x 401.5pt>
 File: immagini/3331.pdf Graphic file (type pdf)
 <use immagini/3331.pdf>
 Package pdftex.def Info: immagini/3331.pdf  used on input line 1511.
@@ -821,38 +821,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 1537--1543
 
  []
 
-[29 <./immagini/3331.pdf>]
-<immagini/3341.pdf, id=772, 602.25pt x 401.5pt>
+[30 <./immagini/3331.pdf>]
+<immagini/3341.pdf, id=786, 602.25pt x 401.5pt>
 File: immagini/3341.pdf Graphic file (type pdf)
 <use immagini/3341.pdf>
 Package pdftex.def Info: immagini/3341.pdf  used on input line 1576.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-<immagini/3342.pdf, id=775, 602.25pt x 401.5pt>
+<immagini/3342.pdf, id=789, 602.25pt x 401.5pt>
 File: immagini/3342.pdf Graphic file (type pdf)
 <use immagini/3342.pdf>
 Package pdftex.def Info: immagini/3342.pdf  used on input line 1586.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [30 <./immagini/3341.pdf>]
+ [31 <./immagini/3341.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1592--1603
 
  []
 
-[31 <./immagini/3342.pdf>]
+[32 <./immagini/3342.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1618--1622
 
  []
 
-<immagini/3421.pdf, id=797, 602.25pt x 401.5pt>
+<immagini/3421.pdf, id=811, 602.25pt x 401.5pt>
 File: immagini/3421.pdf Graphic file (type pdf)
 <use immagini/3421.pdf>
 Package pdftex.def Info: immagini/3421.pdf  used on input line 1629.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-<immagini/3431.pdf, id=799, 602.25pt x 401.5pt>
+<immagini/3431.pdf, id=813, 602.25pt x 401.5pt>
 File: immagini/3431.pdf Graphic file (type pdf)
 <use immagini/3431.pdf>
 Package pdftex.def Info: immagini/3431.pdf  used on input line 1646.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
-[32 <./immagini/3421.pdf>]
+[33 <./immagini/3421.pdf>]
 Overfull \hbox (4.60648pt too wide) in paragraph at lines 1677--1685
 \OT1/cmr/m/n/12 2. In cias-cun caso, in-ter-pola la fun-zione data us-ando $\OML/cmm/m/it/12 n$ \OT1/cmr/m/n/12 nodi eq-ui-s-paziati nell'intervallo
  []
@@ -862,8 +862,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 1677--1685
 
  []
 
-[33 <./immagini/3431.pdf>]
-<immagini/4221.pdf, id=818, 602.25pt x 401.5pt>
+[34 <./immagini/3431.pdf>]
+<immagini/4221.pdf, id=832, 602.25pt x 401.5pt>
 File: immagini/4221.pdf Graphic file (type pdf)
 <use immagini/4221.pdf>
 Package pdftex.def Info: immagini/4221.pdf  used on input line 1697.
@@ -873,7 +873,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1708--1711
 
  []
 
-[34 <./immagini/4221.pdf>]
+[35 <./immagini/4221.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1712--1721
 
  []
@@ -888,7 +888,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1725--1728
 
  []
 
-<immagini/4421.pdf, id=828, 602.25pt x 401.5pt>
+<immagini/4421.pdf, id=842, 602.25pt x 401.5pt>
 File: immagini/4421.pdf Graphic file (type pdf)
 <use immagini/4421.pdf>
 Package pdftex.def Info: immagini/4421.pdf  used on input line 1733.
@@ -898,8 +898,8 @@ Overfull \hbox (20.05pt too wide) in paragraph at lines 1738--1742
 []\OT1/cmr/m/n/12 La prima os-ser-vazione che si pu^^Ro fare ^^Re che l'errore in norma $\OMS/cmsy/m/n/12 1$ \OT1/cmr/m/n/12 de-cresce all'aumentare
  []
 
-[35 <./immagini/4421.pdf>]
-<immagini/4422.pdf, id=839, 602.25pt x 401.5pt>
+[36 <./immagini/4421.pdf>]
+<immagini/4422.pdf, id=853, 602.25pt x 401.5pt>
 File: immagini/4422.pdf Graphic file (type pdf)
 <use immagini/4422.pdf>
 Package pdftex.def Info: immagini/4422.pdf  used on input line 1760.
@@ -909,14 +909,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 1756--1768
 
  []
 
-[36 <./immagini/4422.pdf>]
-<immagini/4431.pdf, id=850, 602.25pt x 401.5pt>
+[37 <./immagini/4422.pdf>]
+<immagini/4431.pdf, id=865, 602.25pt x 401.5pt>
 File: immagini/4431.pdf Graphic file (type pdf)
 <use immagini/4431.pdf>
 Package pdftex.def Info: immagini/4431.pdf  used on input line 1787.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [37 <./immagini/4431.pdf>]
-<immagini/4441.pdf, id=863, 602.25pt x 401.5pt>
+ [38 <./immagini/4431.pdf>]
+<immagini/4441.pdf, id=877, 602.25pt x 401.5pt>
 File: immagini/4441.pdf Graphic file (type pdf)
 <use immagini/4441.pdf>
 Package pdftex.def Info: immagini/4441.pdf  used on input line 1826.
@@ -931,172 +931,172 @@ Underfull \hbox (badness 10000) in paragraph at lines 1832--1839
 
  []
 
-[38 <./immagini/4441.pdf>]
-<immagini/4611.pdf, id=872, 602.25pt x 401.5pt>
+[39 <./immagini/4441.pdf>]
+<immagini/4611.pdf, id=886, 602.25pt x 401.5pt>
 File: immagini/4611.pdf Graphic file (type pdf)
 <use immagini/4611.pdf>
 Package pdftex.def Info: immagini/4611.pdf  used on input line 1852.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4612.pdf, id=873, 602.25pt x 401.5pt>
+<immagini/4612.pdf, id=887, 602.25pt x 401.5pt>
 File: immagini/4612.pdf Graphic file (type pdf)
 <use immagini/4612.pdf>
 Package pdftex.def Info: immagini/4612.pdf  used on input line 1856.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4613.pdf, id=875, 602.25pt x 401.5pt>
+<immagini/4613.pdf, id=889, 602.25pt x 401.5pt>
 File: immagini/4613.pdf Graphic file (type pdf)
 <use immagini/4613.pdf>
 Package pdftex.def Info: immagini/4613.pdf  used on input line 1868.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4614.pdf, id=876, 602.25pt x 401.5pt>
+<immagini/4614.pdf, id=890, 602.25pt x 401.5pt>
 File: immagini/4614.pdf Graphic file (type pdf)
 <use immagini/4614.pdf>
 Package pdftex.def Info: immagini/4614.pdf  used on input line 1872.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4615.pdf, id=878, 602.25pt x 401.5pt>
+<immagini/4615.pdf, id=892, 602.25pt x 401.5pt>
 File: immagini/4615.pdf Graphic file (type pdf)
 <use immagini/4615.pdf>
 Package pdftex.def Info: immagini/4615.pdf  used on input line 1885.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4616.pdf, id=879, 602.25pt x 401.5pt>
+<immagini/4616.pdf, id=893, 602.25pt x 401.5pt>
 File: immagini/4616.pdf Graphic file (type pdf)
 <use immagini/4616.pdf>
 Package pdftex.def Info: immagini/4616.pdf  used on input line 1889.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/4617.pdf, id=883, 602.25pt x 401.5pt>
+<immagini/4617.pdf, id=897, 602.25pt x 401.5pt>
 File: immagini/4617.pdf Graphic file (type pdf)
 <use immagini/4617.pdf>
 Package pdftex.def Info: immagini/4617.pdf  used on input line 1911.
 (pdftex.def)             Requested size: 341.43437pt x 227.6321pt.
- [39 <./immagini/4611.pdf> <./immagini/4612.pdf>] [40 <./immagini/4613.pdf> <./immagini/4614.pdf> <./immagini/4615.pdf> <./immagini/4616.pdf>] [41 <./immagini/4617.pdf>]
+ [40 <./immagini/4611.pdf> <./immagini/4612.pdf>] [41 <./immagini/4613.pdf> <./immagini/4614.pdf> <./immagini/4615.pdf> <./immagini/4616.pdf>] [42 <./immagini/4617.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 1938--1940
 
  []
 
-<immagini/5121.pdf, id=919, 602.25pt x 401.5pt>
+<immagini/5121.pdf, id=933, 602.25pt x 401.5pt>
 File: immagini/5121.pdf Graphic file (type pdf)
 <use immagini/5121.pdf>
 Package pdftex.def Info: immagini/5121.pdf  used on input line 1955.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5121_2.pdf, id=920, 602.25pt x 401.5pt>
+<immagini/5121_2.pdf, id=934, 602.25pt x 401.5pt>
 File: immagini/5121_2.pdf Graphic file (type pdf)
 <use immagini/5121_2.pdf>
 Package pdftex.def Info: immagini/5121_2.pdf  used on input line 1959.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5122.pdf, id=921, 602.25pt x 401.5pt>
+<immagini/5122.pdf, id=935, 602.25pt x 401.5pt>
 File: immagini/5122.pdf Graphic file (type pdf)
 <use immagini/5122.pdf>
 Package pdftex.def Info: immagini/5122.pdf  used on input line 1967.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5122_2.pdf, id=922, 602.25pt x 401.5pt>
+<immagini/5122_2.pdf, id=936, 602.25pt x 401.5pt>
 File: immagini/5122_2.pdf Graphic file (type pdf)
 <use immagini/5122_2.pdf>
 Package pdftex.def Info: immagini/5122_2.pdf  used on input line 1971.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5123.pdf, id=923, 602.25pt x 401.5pt>
+<immagini/5123.pdf, id=937, 602.25pt x 401.5pt>
 File: immagini/5123.pdf Graphic file (type pdf)
 <use immagini/5123.pdf>
 Package pdftex.def Info: immagini/5123.pdf  used on input line 1979.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5123_2.pdf, id=924, 602.25pt x 401.5pt>
+<immagini/5123_2.pdf, id=938, 602.25pt x 401.5pt>
 File: immagini/5123_2.pdf Graphic file (type pdf)
 <use immagini/5123_2.pdf>
 Package pdftex.def Info: immagini/5123_2.pdf  used on input line 1983.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5124.pdf, id=925, 602.25pt x 401.5pt>
+<immagini/5124.pdf, id=939, 602.25pt x 401.5pt>
 File: immagini/5124.pdf Graphic file (type pdf)
 <use immagini/5124.pdf>
 Package pdftex.def Info: immagini/5124.pdf  used on input line 1991.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5124_2.pdf, id=926, 602.25pt x 401.5pt>
+<immagini/5124_2.pdf, id=940, 602.25pt x 401.5pt>
 File: immagini/5124_2.pdf Graphic file (type pdf)
 <use immagini/5124_2.pdf>
 Package pdftex.def Info: immagini/5124_2.pdf  used on input line 1995.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5125.pdf, id=927, 602.25pt x 401.5pt>
+<immagini/5125.pdf, id=941, 602.25pt x 401.5pt>
 File: immagini/5125.pdf Graphic file (type pdf)
 <use immagini/5125.pdf>
 Package pdftex.def Info: immagini/5125.pdf  used on input line 2003.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5125_2.pdf, id=928, 602.25pt x 401.5pt>
+<immagini/5125_2.pdf, id=942, 602.25pt x 401.5pt>
 File: immagini/5125_2.pdf Graphic file (type pdf)
 <use immagini/5125_2.pdf>
 Package pdftex.def Info: immagini/5125_2.pdf  used on input line 2007.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5126.pdf, id=929, 602.25pt x 401.5pt>
+<immagini/5126.pdf, id=943, 602.25pt x 401.5pt>
 File: immagini/5126.pdf Graphic file (type pdf)
 <use immagini/5126.pdf>
 Package pdftex.def Info: immagini/5126.pdf  used on input line 2015.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5126_2.pdf, id=930, 602.25pt x 401.5pt>
+<immagini/5126_2.pdf, id=944, 602.25pt x 401.5pt>
 File: immagini/5126_2.pdf Graphic file (type pdf)
 <use immagini/5126_2.pdf>
 Package pdftex.def Info: immagini/5126_2.pdf  used on input line 2019.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-[42 <./immagini/5121.pdf> <./immagini/5121_2.pdf> <./immagini/5122.pdf> <./immagini/5122_2.pdf>]
+[43 <./immagini/5121.pdf> <./immagini/5121_2.pdf> <./immagini/5122.pdf> <./immagini/5122_2.pdf>]
 
-LaTeX Warning: Text page 43 contains only floats.
+LaTeX Warning: Text page 44 contains only floats.
 
-[43 <./immagini/5123.pdf> <./immagini/5123_2.pdf> <./immagini/5124.pdf> <./immagini/5124_2.pdf> <./immagini/5125.pdf> <./immagini/5125_2.pdf> <./immagini/5126.pdf> <./immagini/5126_2.pdf>]
+[44 <./immagini/5123.pdf> <./immagini/5123_2.pdf> <./immagini/5124.pdf> <./immagini/5124_2.pdf> <./immagini/5125.pdf> <./immagini/5125_2.pdf> <./immagini/5126.pdf> <./immagini/5126_2.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 2046--2048
 
  []
 
-<immagini/5141.pdf, id=966, 602.25pt x 401.5pt>
+<immagini/5141.pdf, id=980, 602.25pt x 401.5pt>
 File: immagini/5141.pdf Graphic file (type pdf)
 <use immagini/5141.pdf>
 Package pdftex.def Info: immagini/5141.pdf  used on input line 2062.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5141_2.pdf, id=967, 602.25pt x 401.5pt>
+<immagini/5141_2.pdf, id=981, 602.25pt x 401.5pt>
 File: immagini/5141_2.pdf Graphic file (type pdf)
 <use immagini/5141_2.pdf>
 Package pdftex.def Info: immagini/5141_2.pdf  used on input line 2066.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5142.pdf, id=968, 602.25pt x 401.5pt>
+<immagini/5142.pdf, id=982, 602.25pt x 401.5pt>
 File: immagini/5142.pdf Graphic file (type pdf)
 <use immagini/5142.pdf>
 Package pdftex.def Info: immagini/5142.pdf  used on input line 2074.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5142_2.pdf, id=969, 602.25pt x 401.5pt>
+<immagini/5142_2.pdf, id=983, 602.25pt x 401.5pt>
 File: immagini/5142_2.pdf Graphic file (type pdf)
 <use immagini/5142_2.pdf>
 Package pdftex.def Info: immagini/5142_2.pdf  used on input line 2078.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5143.pdf, id=970, 602.25pt x 401.5pt>
+<immagini/5143.pdf, id=984, 602.25pt x 401.5pt>
 File: immagini/5143.pdf Graphic file (type pdf)
 <use immagini/5143.pdf>
 Package pdftex.def Info: immagini/5143.pdf  used on input line 2086.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5143_2.pdf, id=971, 602.25pt x 401.5pt>
+<immagini/5143_2.pdf, id=985, 602.25pt x 401.5pt>
 File: immagini/5143_2.pdf Graphic file (type pdf)
 <use immagini/5143_2.pdf>
 Package pdftex.def Info: immagini/5143_2.pdf  used on input line 2090.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5144.pdf, id=972, 602.25pt x 401.5pt>
+<immagini/5144.pdf, id=986, 602.25pt x 401.5pt>
 File: immagini/5144.pdf Graphic file (type pdf)
 <use immagini/5144.pdf>
 Package pdftex.def Info: immagini/5144.pdf  used on input line 2098.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5144_2.pdf, id=973, 602.25pt x 401.5pt>
+<immagini/5144_2.pdf, id=987, 602.25pt x 401.5pt>
 File: immagini/5144_2.pdf Graphic file (type pdf)
 <use immagini/5144_2.pdf>
 Package pdftex.def Info: immagini/5144_2.pdf  used on input line 2102.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5145.pdf, id=974, 602.25pt x 401.5pt>
+<immagini/5145.pdf, id=988, 602.25pt x 401.5pt>
 File: immagini/5145.pdf Graphic file (type pdf)
 <use immagini/5145.pdf>
 Package pdftex.def Info: immagini/5145.pdf  used on input line 2110.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5145_2.pdf, id=975, 602.25pt x 401.5pt>
+<immagini/5145_2.pdf, id=989, 602.25pt x 401.5pt>
 File: immagini/5145_2.pdf Graphic file (type pdf)
 <use immagini/5145_2.pdf>
 Package pdftex.def Info: immagini/5145_2.pdf  used on input line 2114.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5146.pdf, id=976, 602.25pt x 401.5pt>
+<immagini/5146.pdf, id=990, 602.25pt x 401.5pt>
 File: immagini/5146.pdf Graphic file (type pdf)
 <use immagini/5146.pdf>
 Package pdftex.def Info: immagini/5146.pdf  used on input line 2122.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5146_2.pdf, id=977, 602.25pt x 401.5pt>
+<immagini/5146_2.pdf, id=991, 602.25pt x 401.5pt>
 File: immagini/5146_2.pdf Graphic file (type pdf)
 <use immagini/5146_2.pdf>
 Package pdftex.def Info: immagini/5146_2.pdf  used on input line 2126.
@@ -1106,69 +1106,69 @@ Overfull \hbox (4.29134pt too wide) in paragraph at lines 2139--2143
 \OT1/cmr/m/n/12 Legendre nell'intervallo $[\OMS/cmsy/m/n/12 ^^@\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1]$. Di se-guito al-cuni sug-ger-i-menti per l'implementazione. 
  []
 
-[44]
+[45]
 
-LaTeX Warning: Text page 45 contains only floats.
+LaTeX Warning: Text page 46 contains only floats.
 
-[45 <./immagini/5141.pdf> <./immagini/5141_2.pdf> <./immagini/5142.pdf> <./immagini/5142_2.pdf> <./immagini/5143.pdf> <./immagini/5143_2.pdf> <./immagini/5144.pdf> <./immagini/5144_2.pdf>] [46 <./immagini/5145.pdf> <./immagini/5145_2.pdf> <./immagini/5146.pdf> <./immagini/5146_2.pdf>]
-<immagini/5311.pdf, id=1017, 602.25pt x 301.125pt>
+[46 <./immagini/5141.pdf> <./immagini/5141_2.pdf> <./immagini/5142.pdf> <./immagini/5142_2.pdf> <./immagini/5143.pdf> <./immagini/5143_2.pdf> <./immagini/5144.pdf> <./immagini/5144_2.pdf>] [47 <./immagini/5145.pdf> <./immagini/5145_2.pdf> <./immagini/5146.pdf> <./immagini/5146_2.pdf>]
+<immagini/5311.pdf, id=1031, 602.25pt x 301.125pt>
 File: immagini/5311.pdf Graphic file (type pdf)
 <use immagini/5311.pdf>
 Package pdftex.def Info: immagini/5311.pdf  used on input line 2182.
 (pdftex.def)             Requested size: 341.43437pt x 170.72406pt.
- [47 <./immagini/5311.pdf>]
-<immagini/5411.pdf, id=1030, 602.25pt x 401.5pt>
+ [48 <./immagini/5311.pdf>]
+<immagini/5411.pdf, id=1044, 602.25pt x 401.5pt>
 File: immagini/5411.pdf Graphic file (type pdf)
 <use immagini/5411.pdf>
 Package pdftex.def Info: immagini/5411.pdf  used on input line 2233.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5412.pdf, id=1031, 602.25pt x 401.5pt>
+<immagini/5412.pdf, id=1045, 602.25pt x 401.5pt>
 File: immagini/5412.pdf Graphic file (type pdf)
 <use immagini/5412.pdf>
 Package pdftex.def Info: immagini/5412.pdf  used on input line 2238.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5415.pdf, id=1032, 602.25pt x 401.5pt>
+<immagini/5415.pdf, id=1046, 602.25pt x 401.5pt>
 File: immagini/5415.pdf Graphic file (type pdf)
 <use immagini/5415.pdf>
 Package pdftex.def Info: immagini/5415.pdf  used on input line 2242.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5413.pdf, id=1035, 602.25pt x 401.5pt>
+<immagini/5413.pdf, id=1049, 602.25pt x 401.5pt>
 File: immagini/5413.pdf Graphic file (type pdf)
 <use immagini/5413.pdf>
 Package pdftex.def Info: immagini/5413.pdf  used on input line 2261.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5414.pdf, id=1036, 602.25pt x 401.5pt>
+<immagini/5414.pdf, id=1050, 602.25pt x 401.5pt>
 File: immagini/5414.pdf Graphic file (type pdf)
 <use immagini/5414.pdf>
 Package pdftex.def Info: immagini/5414.pdf  used on input line 2266.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
- [48 <./immagini/5411.pdf> <./immagini/5412.pdf> <./immagini/5415.pdf>]
+ [49 <./immagini/5411.pdf> <./immagini/5412.pdf> <./immagini/5415.pdf>]
 Underfull \hbox (badness 10000) in paragraph at lines 2287--2299
 
  []
 
-[49 <./immagini/5413.pdf> <./immagini/5414.pdf>]
-<immagini/5421.pdf, id=1059, 602.25pt x 401.5pt>
+[50 <./immagini/5413.pdf> <./immagini/5414.pdf>]
+<immagini/5421.pdf, id=1073, 602.25pt x 401.5pt>
 File: immagini/5421.pdf Graphic file (type pdf)
 <use immagini/5421.pdf>
 Package pdftex.def Info: immagini/5421.pdf  used on input line 2319.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5422.pdf, id=1060, 602.25pt x 401.5pt>
+<immagini/5422.pdf, id=1074, 602.25pt x 401.5pt>
 File: immagini/5422.pdf Graphic file (type pdf)
 <use immagini/5422.pdf>
 Package pdftex.def Info: immagini/5422.pdf  used on input line 2324.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5423.pdf, id=1061, 602.25pt x 401.5pt>
+<immagini/5423.pdf, id=1075, 602.25pt x 401.5pt>
 File: immagini/5423.pdf Graphic file (type pdf)
 <use immagini/5423.pdf>
 Package pdftex.def Info: immagini/5423.pdf  used on input line 2328.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5424.pdf, id=1062, 602.25pt x 401.5pt>
+<immagini/5424.pdf, id=1076, 602.25pt x 401.5pt>
 File: immagini/5424.pdf Graphic file (type pdf)
 <use immagini/5424.pdf>
 Package pdftex.def Info: immagini/5424.pdf  used on input line 2332.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5425.pdf, id=1064, 602.25pt x 401.5pt>
+<immagini/5425.pdf, id=1078, 602.25pt x 401.5pt>
 File: immagini/5425.pdf Graphic file (type pdf)
 <use immagini/5425.pdf>
 Package pdftex.def Info: immagini/5425.pdf  used on input line 2343.
@@ -1178,52 +1178,83 @@ Overfull \hbox (3.36798pt too wide) in paragraph at lines 2356--2359
 \OT1/cmr/m/n/12 di Gauss-Legendre con $\OML/cmm/m/it/12 n \OT1/cmr/m/n/12 = 4\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 6\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 8\OML/cmm/m/it/12 ; [] ; \OT1/cmr/m/n/12 60$ e la re-gola di quadratura double-exponential
  []
 
-[50]
-<immagini/5431.pdf, id=1073, 602.25pt x 401.5pt>
+[51]
+<immagini/5431.pdf, id=1087, 602.25pt x 401.5pt>
 File: immagini/5431.pdf Graphic file (type pdf)
 <use immagini/5431.pdf>
 Package pdftex.def Info: immagini/5431.pdf  used on input line 2374.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5432.pdf, id=1074, 602.25pt x 401.5pt>
+<immagini/5432.pdf, id=1088, 602.25pt x 401.5pt>
 File: immagini/5432.pdf Graphic file (type pdf)
 <use immagini/5432.pdf>
 Package pdftex.def Info: immagini/5432.pdf  used on input line 2379.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5433.pdf, id=1075, 602.25pt x 401.5pt>
+<immagini/5433.pdf, id=1089, 602.25pt x 401.5pt>
 File: immagini/5433.pdf Graphic file (type pdf)
 <use immagini/5433.pdf>
 Package pdftex.def Info: immagini/5433.pdf  used on input line 2383.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5434.pdf, id=1076, 602.25pt x 401.5pt>
+<immagini/5434.pdf, id=1090, 602.25pt x 401.5pt>
 File: immagini/5434.pdf Graphic file (type pdf)
 <use immagini/5434.pdf>
 Package pdftex.def Info: immagini/5434.pdf  used on input line 2387.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
-<immagini/5435.pdf, id=1077, 602.25pt x 401.5pt>
+<immagini/5435.pdf, id=1091, 602.25pt x 401.5pt>
 File: immagini/5435.pdf Graphic file (type pdf)
 <use immagini/5435.pdf>
 Package pdftex.def Info: immagini/5435.pdf  used on input line 2391.
 (pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
- [51 <./immagini/5421.pdf> <./immagini/5422.pdf> <./immagini/5423.pdf> <./immagini/5424.pdf> <./immagini/5425.pdf>] [52 <./immagini/5431.pdf> <./immagini/5432.pdf> <./immagini/5433.pdf> <./immagini/5434.pdf> <./immagini/5435.pdf>] [53] (relazione.aux)
+ [52 <./immagini/5421.pdf> <./immagini/5422.pdf> <./immagini/5423.pdf> <./immagini/5424.pdf> <./immagini/5425.pdf>] [53 <./immagini/5431.pdf> <./immagini/5432.pdf> <./immagini/5433.pdf> <./immagini/5434.pdf> <./immagini/5435.pdf>]
+<immagini/6221.pdf, id=1114, 602.25pt x 401.5pt>
+File: immagini/6221.pdf Graphic file (type pdf)
+<use immagini/6221.pdf>
+Package pdftex.def Info: immagini/6221.pdf  used on input line 2436.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+<immagini/6222.pdf, id=1115, 602.25pt x 401.5pt>
+File: immagini/6222.pdf Graphic file (type pdf)
+<use immagini/6222.pdf>
+Package pdftex.def Info: immagini/6222.pdf  used on input line 2440.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+<immagini/6223.pdf, id=1116, 602.25pt x 401.5pt>
+File: immagini/6223.pdf Graphic file (type pdf)
+<use immagini/6223.pdf>
+Package pdftex.def Info: immagini/6223.pdf  used on input line 2448.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+<immagini/6224.pdf, id=1117, 602.25pt x 401.5pt>
+File: immagini/6224.pdf Graphic file (type pdf)
+<use immagini/6224.pdf>
+Package pdftex.def Info: immagini/6224.pdf  used on input line 2452.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+<immagini/6225.pdf, id=1118, 602.25pt x 401.5pt>
+File: immagini/6225.pdf Graphic file (type pdf)
+<use immagini/6225.pdf>
+Package pdftex.def Info: immagini/6225.pdf  used on input line 2460.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+<immagini/6226.pdf, id=1119, 602.25pt x 401.5pt>
+File: immagini/6226.pdf Graphic file (type pdf)
+<use immagini/6226.pdf>
+Package pdftex.def Info: immagini/6226.pdf  used on input line 2464.
+(pdftex.def)             Requested size: 200.59245pt x 133.7268pt.
+ [54 <./immagini/6221.pdf> <./immagini/6222.pdf>] [55 <./immagini/6223.pdf> <./immagini/6224.pdf> <./immagini/6225.pdf> <./immagini/6226.pdf>] [56] (relazione.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `relazione.out' has not changed.
-(rerunfilecheck)             Checksum: 1125A3C9E9C19D1500D610F123661972;9543.
+(rerunfilecheck)             Checksum: E72F9C281D1065E8A2B7A9C8F98BC0C9;9825.
  ) 
 Here is how much of TeX's memory you used:
- 18367 strings out of 474485
- 359839 string characters out of 5745622
+ 18434 strings out of 474485
+ 361343 string characters out of 5745622
  1954542 words of memory out of 5000000
- 40136 multiletter control sequences out of 15000+600000
+ 40195 multiletter control sequences out of 15000+600000
  570739 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,16n,80p,392b,1042s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\i\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Users/i/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on relazione.pdf (53 pages, 2835751 bytes).
+Output written on relazione.pdf (56 pages, 2976948 bytes).
 PDF statistics:
- 1244 PDF objects out of 1440 (max. 8388607)
- 316 named destinations out of 1000 (max. 500000)
- 1008 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1286 PDF objects out of 1440 (max. 8388607)
+ 324 named destinations out of 1000 (max. 500000)
+ 1054 words of extra memory for PDF output out of 10000 (max. 10000000)
 

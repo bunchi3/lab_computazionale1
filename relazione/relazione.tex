@@ -2408,6 +2408,81 @@ l'efficienza.
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
 
+\subsection{Esercizi 6.2.1, 6.2.2}
+1. Scrivi un programma che implementi il metodo di Eulero per risolvere un \textit{sistema} 
+di equazioni differenziali.\\
+2. Per ciascun problema ai valori iniziali (IVP), risolvi il problema usando il metodo di Eulero. \\
+(i) Traccia il grafico della soluzione per $n=320$. \\
+(ii) Per $n=10\cdot2^k$, $k=2,3,\ldots,10$, calcola l'errore come 
+$||u-\hat{u}||_\infty=\max_{0\leq i\leq n} |u_i-\hat{u}(t_i)|$ e all'istante finale, $|u_n-\hat{u}(t_n)|$. 
+Realizza un grafico di convergenza log-log, includendo una retta di riferimento per la convergenza del 
+primo ordine.\\
+(a) $u' = -2t u$, $\ 0 \le t \le 2$, $\ u(0) = 2$;  
+$\quad$ $\hat{u}(t) = 2e^{-t^2}$ \\
+(b) $u' = u + t$, $\ 0 \le t \le 1$, $\ u(0) = 2$;  
+$\quad$ $\hat{u}(t) = -1-t+3e^t$ \\
+(c) $(1+t^3)uu' = t^2$, $\ 0 \le t \le 3$, $\ u(0) =1$; 
+$\quad$ $\hat{u}(t) = [1+(2/3)\ln (1+t^3)]^{1/2}$
+
+\subsubsection{Soluzione}
+Si è implementato il metodo di Eulero per risolvere un sistema di equazioni differenziali. La funzione che 
+sviluppa il metodo viene testata nei prossimi esercizi, sia nel caso di equazioni che di sistemi di equazioni.\\
+Si riportano nelle figure \ref{fig:es6_2_1_1}, \ref{fig:es6_2_1_2}, \ref{fig:es6_2_1_3} i grafici delle soluzioni, 
+uniti ai grafici degli errori per i tre casi richiesti. Le soluzioni sono calcolate per $n = 320$ come richiesto,
+i grafici degli errori corrispondono a più soluzioni con $n$ che varia da $10\cdot2^k$ con $k=2,3,\ldots,10$.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6221.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6222.pdf}
+    \end{minipage}
+    \caption{Soluzione e errore per il caso (a).}
+    \label{fig:es6_2_1_1}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6223.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6224.pdf}
+    \end{minipage}
+    \caption{Soluzione e errore per il caso (b).}
+    \label{fig:es6_2_1_2}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6225.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6226.pdf}
+    \end{minipage}
+    \caption{Soluzione e errore per il caso (c).}
+    \label{fig:es6_2_1_3}
+\end{figure}
+
+La prima osservazione che si può fare riguarda la convergenza del metodo di Eulero. In tutti i grafici
+gli errori sono stati calcolati sia come $||u-\hat{u}||_\infty=\max_{0\leq i\leq n} |u_i-\hat{u}(t_i)|$ che come
+$|u_n-\hat{u}(t_n)|$. In entrambi i casi si osserva che gli errori decrescono con un ordine di grandezza
+prossimo a $O(h)$, come atteso per il metodo di Eulero. Nei grafici infatti è stato riportato il coefficiente
+angolare dell'interpolazione degli errori con il metodo dei minimi quadrati. In tutti e tre i casi, per ciascuna
+tipologia di errore, il coefficiente angolare è prossimo a $-1$. \\
+La seconda osservazione riguarda la differenza tra i due tipi di errore. Si osserva che solo nel primo grafico 
+le due rette degli errori sono distinte, mentre negli altri due casi sono sovrapposte. Questo è lo stesso 
+comportamento che si è studiato nella teoria, in cui perturbazioni del valore iniziale influenzano la soluzione.
+L'esempio fatto riguardava le due equazioni differenziali lineari $u' = u$ e $u' = -u $, in cui la soluzione
+della prima equazione amplifica gli errori, mentre la soluzione della seconda equazione li smorza. 
+Nel nostro caso, la soluzione dell'equazione (a) smorza gli errori avanzando nel tempo, per cui il massimo 
+errore non si raggiunge all'istante finale. La diretta conseguenza è che le rette sono distinte.
+Negli altri due casi invece la soluzione amplifica gli errori, portando a rette sovrapposte.
+
+
 \section{Appendice}
 \subsection{Dati}
 
