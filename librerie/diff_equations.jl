@@ -14,10 +14,8 @@ function h_bool(u1::Vector, u2::Vector, err_tol::Number)
     end
     norm_inf = maximum(abs.(u1 .- u2))
     if norm_inf > err_tol
-        println("Norma infinito: ", norm_inf)
         return false
     else
-        println("Norma infinito: ", norm_inf)
         return true
     end
 end
@@ -34,14 +32,12 @@ function h_search(ODE_func1::Function, ODE_func2::Function, f::Vector, u0::Vecto
         u2 = ODE_func2(f, u0, 2^(iter)*n, a, b)
         for j in 1:1:m
             u2_comparison = [u2[j][i] for i in 1:2:length(u2[j])]
-            println("$j ° solution: ")
             stability[j] = h_bool(u1[j], u2_comparison, err_tol)
         end
         
         iter += 1
         u1 = u2         #I use u2 as the new u1 for the next iteration
     end
-    println("Iterations: ", iter)
     if all(!x for x in stability) && iter == 10
         throw(DomainError(n, "h_search says: the two methods are not stable."))
     end

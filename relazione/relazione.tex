@@ -2609,6 +2609,103 @@ si può spiegare il fatto che i punti del grafico si trovano incolonnati uno ogn
 Infine si può notare che a parità di numero di valutazioni della funzione, il metodo RK4 ha un errore molto più 
 piccolo rispetto al metodo IE2, evidenziandone l'efficacia.
 
+\subsection{Esercizio 6.3.2}
+In ciascuno dei seguenti casi, utilizza l'integratore RK4 per risolvere il sistema di ODE per $0\le t \le 10$ 
+con le condizioni iniziali indicate. (A tal fine, devi trovare una procedura sensata per scegliere il 
+numero di passi $n$ da utilizzare.) Rappresenta i risultati come curve nel piano delle fasi, cioè con $x$ e $y$ 
+come assi del grafico.
+\begin{align*}
+\text{(a)}\quad 
+\begin{cases}
+x' = -4y + x(1 - x^2 - y^2) \\
+y' = 4x + y(1 - x^2 - y^2)
+\end{cases}
+\quad 
+\\
+\vspace{2em}
+\text{con } [x(0), y(0)] = [0.1, 0],\ [0, 1.9]
+\end{align*}
+\begin{align*}
+\text{(b)}\quad 
+\begin{cases}
+x' = -4y - \dfrac{1}{4}x(1 - x^2 - y^2)(4 - x^2 - y^2) \\
+y' = 4x - \dfrac{1}{4}y(1 - x^2 - y^2)(4 - x^2 - y^2)
+\end{cases}
+\\
+\vspace{2em}
+\text{con } [x(0), y(0)] = [0.95, 0],\quad [0, 1.05],\quad [-2.5, 0]
+\end{align*}
+
+\subsubsection{Soluzione}
+Si sono risolti i due sistemi di equazioni differenziali con il metodo RK4, per ciascuna delle condizioni iniziali
+indicate. Al fine di stimare un valore per il passo h, si è scelto di utilizzare il seguente algoritmo:
+\begin{enumerate}
+    \item Si sceglie un numero di passi iniziale $n$.
+    \item Si calcola la soluzione per $n$ passi, ottenendo la soluzione $u$.
+    \item Si calcola la soluzione per $2n$ passi, ottenendo la soluzione $\tilde{u}$.
+    \item Si calcola l'errore come $||u - \tilde{u}||_\infty$, dove di $\tilde{u}$ si scelgono 
+    solo i punti che corrispondono a $u$.
+    \item Se l'errore è maggiore di una tolleranza $\epsilon$, si raddoppia il passo e si torna al punto 2,
+    altrimenti l'algoritmo si interrompe, restituisce $n$ e $h = \frac{b-a}{n}$.
+\end{enumerate}
+
+Per tutte le condizioni iniziali si è scelto come tolleranza $\epsilon = 10^{-6}$, e come numero di punti iniziali
+$n = 1000$. \\
+Da notare che nell'algoritmo presentato ad ogni passo bisogna calcolare solamente una nuova soluzione perchè si 
+riutilizza quella precedente. Con l'algoritmo proposto si riesce a stimare un valore di $h$ che garantisca
+un errore inferiore alla tolleranza, ma non è certamente paragonabile al metodo adattivo, che permette 
+di scegliere il passo in maniera più efficiente, a ogni passaggio. \\
+Si riportano in figura \ref{fig:es6_3_2_1}, \ref{fig:es6_3_2_2} i grafici delle soluzioni ottenute,
+rappresentate come curve nel piano delle fasi, per i due casi richiesti. Inoltre si sono rappresentate le 
+soluzioni in tre dimensioni, con il tempo come terza coordinata.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{632A1.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{632A2.pdf}
+    \end{minipage}
+    \caption{Soluzioni del sistema di ODE (a).}
+    \label{fig:es6_3_2_1}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{632B1.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{632B2.pdf}
+    \end{minipage}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{632B3.pdf}
+    \end{minipage}
+    \caption{Soluzioni del sistema di ODE (b).}
+    \label{fig:es6_3_2_2}
+\end{figure}
+
+Infine si riportano in tabella \ref{tab:valori_h} i valori di $h$ ottenuti tramite il metodo precedentemente descritto.
+\begin{table}[!ht]
+    \centering
+    \caption{Valori di $h$ ottenuti per i due sistemi di ODE}
+    \label{tab:valori_h}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Sistema} & \textbf{Condizioni iniziali} & \textbf{$h$} \\
+        \hline
+        (a) & $[0.1, 0]$ & 0.0025 \\
+        (a) & $[0, 1.9]$ & 0.0025 \\
+        (b) & $[0.95, 0]$ & 0.0025 \\
+        (b) & $[0, 1.05]$ & 0.00125 \\
+        (b) & $[-2.5, 0]$ & 0.00125 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+
 \section{Appendice}
 \subsection{Dati}
 
