@@ -2610,6 +2610,7 @@ Infine si può notare che a parità di numero di valutazioni della funzione, il 
 piccolo rispetto al metodo IE2, evidenziandone l'efficacia.
 
 \subsection{Esercizio 6.3.2}
+\label{es:6_3_2}
 In ciascuno dei seguenti casi, utilizza l'integratore RK4 per risolvere il sistema di ODE per $0\le t \le 10$ 
 con le condizioni iniziali indicate. (A tal fine, devi trovare una procedura sensata per scegliere il 
 numero di passi $n$ da utilizzare.) Rappresenta i risultati come curve nel piano delle fasi, cioè con $x$ e $y$ 
@@ -2703,6 +2704,41 @@ Infine si riportano in tabella \ref{tab:valori_h} i valori di $h$ ottenuti trami
         \hline
     \end{tabular}
 \end{table}
+
+\subsection{Esercizio 6.3.3}
+Una malattia endemica in una popolazione può essere modellata tracciando la frazione di popolazione suscettibile 
+all'infezione, $v(t)$, e la frazione infetta, $w(t)$. (Il resto della popolazione si considera guarito e immune.) 
+Un modello tipico è il \textit{modello SIR}:
+
+\begin{equation}
+    \frac{dv}{dt} = 0.2(1-v) - 3vw\,, \qquad \frac{dw}{dt} = (3v-1)w\,.
+\end{equation}
+Partendo da $v(0) = 0.95$ e $w(0) = 0.05$, utilizza il metodo RK4 per trovare i valori stazionari a lungo termine 
+di $v(t)$ e $w(t)$. Rappresenta graficamente entrambe le componenti della soluzione in funzione del tempo.
+
+\subsubsection{Soluzione}
+Si è risolto il sistema di equazioni differenziali con il metodo RK4, partendo dalle condizioni iniziali
+$v(0) = 0.95$ e $w(0) = 0.05$. Il passo $h$ è stato stimato allo stesso modo dell'esercizio \ref{es:6_3_2}, in 
+particolare si è ottenuto $h = 0.015625$ con un numero di step iniziali $n = 100$. Si riporta in figura
+\ref{fig:es6_3_3} il grafico della soluzione, in cui si osserva che le due componenti 
+convergono a un valore stazionario. \\
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{6331.pdf}
+    \caption{Soluzione del modello SIR.}
+    \label{fig:es6_3_3}
+\end{figure}
+Per valutare i valori stazionari, una volta ottenute le soluzioni si sono calcolate le differenze
+tra i valori successivi di $v$ e $w$, fino a quando non si è raggiunta la tolleranza di $10^{-9}$. \\
+Si è poi scelto il valore di tempo più grande tra quelli ottenuti per le due soluzioni, detto
+$t_{steady}$. È importante notare che il valore di $t_{steady}$ dipende fortemente dal metodo 
+scelto per stimarlo e perciò potrebbe essere una sovrastima. Certamente la valutazione della distanza
+tra due valori successivi è una condizione molto stringente perchè non tiene conto del cambiamento globale 
+della soluzione, inoltre suppone che la soluzione raggiunga un valore stazionario. Per 
+quanto riguarda il caso in esame, poco importa: l'esercizio suppone che il sistema raggiunga un valore stazionario
+e, se anche il metodo adottato portasse a una sovrastima di $t_{steady}$, ciò non influenzerebbe 
+la valutazione degli stati stazionari. Il valore degli stessi è riportato nel grafico, 
+insieme al valore di $t_{steady}$.
 
 
 
