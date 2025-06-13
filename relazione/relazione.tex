@@ -2352,6 +2352,58 @@ double-exponential, ma in un caso con l'utilizzo del cambio di variabile apposit
 nell'altro senza. Si può notare che nel primo caso l'errore ha una convergenza molto più rapida, raggiungendo 
 l'ordine di $\epsilon_{mach}$.
 
+\subsection{Esercizio 5.4.3}
+Per ciascun integrale, calcola le approssimazioni utilizzando la regola di quadratura di Gauss-Legendre 
+con $n=4,6,8,\ldots,60$ e la regola di quadratura double-exponential appropriata con $N=n/2$. 
+Rappresenta graficamente gli errori in funzione di $n$ su una scala semi-logaritmica.
+
+\begin{itemize}
+    \item[(a)] $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$
+    \item[(b)] $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$
+    \item[(c)] $\displaystyle \int_0^1 (\log x)^2\, dx = 2$
+    \item[(d)] $\displaystyle \int_0^{\pi/2} \log(\cos(x))\, dx = -\frac{\pi}{2}\log(2)$
+    \item[(e)] $\displaystyle \int_0^{\pi/2} \sqrt{\tan(x)}\, dx = \dfrac{\pi}{\sqrt{2}}$
+\end{itemize}
+
+\subsubsection{Soluzione}
+Si riportano in figura \ref{fig:es5_4_3_1} gli studi degli errori per gli integrali con la regola di quadratura 
+di Gauss-Legendre, insieme agli errori della regola di quadratura double-exponential.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5431.pdf}
+        \caption*{(a)}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5432.pdf}
+        \caption*{(b)}
+    \end{minipage}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5433.pdf}
+        \caption*{(c)}
+    \end{minipage}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5434.pdf}
+        \caption*{(d)}
+    \end{minipage}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5435.pdf}
+        \caption*{(e)}
+    \end{minipage}
+    \caption{Studio degli errori per gli integrali con la regola di quadratura di Gauss-Legendre e double-exponential.}
+    \label{fig:es5_4_3_1}
+\end{figure}
+
+RIVEDI QUESTE CONSIDERAZIONI: \\
+Dai grafici risulta evidente che gli errori della regola di quadratura di Gauss-Legendre decrescono molto
+più rapidamente rispetto a quelli della regola di quadratura double-exponential. Con questo esercizio, unitamente
+agli esercizi 5.4.1 e 5.4.2, giungiamo alla conclusione che la regola di Gauss-Legendre è l'algoritmo più
+rapido per il calcolo di integrali di funzioni regolari, almeno per la nostra implementazione. 
+Lo svantaggio è che non riesce a integrare tutte le funzioni, per cui bisogna ricorrere alla quadratura 
+double-exponential nel caso di funzioni con singolarità, nonostante sia molto più lento. In generale però
+si può considerare l'algoritmo di Clenshaw-Curtis con l'uso della "fast Fourier transform" (FFT), aumentandone
+l'efficienza.
 
 \section{Equazioni differenziali ordinarie}
 \subsection{Teoria}
