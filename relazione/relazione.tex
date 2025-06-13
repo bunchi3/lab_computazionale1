@@ -2144,7 +2144,7 @@ usa il metodo di Newton. Come condizione iniziale per la $k$-esima radice, utili
 \begin{equation}
     x^{(0)}_k=\cos(\phi_k)\,,
     \qquad
-    \phi_k={4k-1\over 4n+2}\pi\,.
+    \phi_k= \frac{4k-1}{4n+2}\pi\,.
 \end{equation}
     
 (b) Per applicare il metodo di Newton è necessario valutare $P_n(x_k^{(i)})$ e la derivata $P'_n(x_k^{(i)})$, 
@@ -2167,7 +2167,7 @@ permette di ottenere il peso corrispondente tramite:
 
 \begin{equation}
     \label{eq:gauss_legendre_weight}
-    w_k= {2\over (1-x_k^2)[P'_n(x_k)]^2}\,.
+    w_k= \frac{2}{(1-x_k^2)[P'_n(x_k)]^2}\,.
 \end{equation}
 
 (d) Verifica i tuoi risultati confrontandoli con quelli tabulati.
@@ -2205,6 +2205,97 @@ corrispettivi valori tabulati, con ordine del polinomio $n = 4$.
 \end{tabular}
 \end{table}
 
+\subsection{Esercizio 5.4.1}
+Per ciascun integrale, calcola le approssimazioni utilizzando le regole di quadratura di Gauss-Legendre e 
+Clenshaw-Curtis con $n=4,6,8,\ldots,40$. Rappresenta graficamente gli errori $|I_n-I|$ di entrambi i metodi 
+in funzione di $n$ su una scala semi-logaritmica. (Suggerimento: considera di implementare la regola di 
+Clenshaw-Curtis solo per $n$ pari.)
+
+\begin{itemize}
+    \item[(a)] $\displaystyle\int_{-1}^1 e^{-4x}\, dx = \frac{1}{2}\sinh(4)$
+    \item[(b)] $\displaystyle\int_{-1}^1 e^{-9x^2}\, dx = \frac{\sqrt{\pi}}{3}\, \operatorname{erf}(3)$
+    \item[(c)] $\displaystyle\int_{-1}^1 \operatorname{sech}(x) \, dx = 2 \tan^{-1} [ \sinh (1) ]$
+    \item[(d)] $\displaystyle\int_{-1}^1 \frac{1}{1+9x^2}\, dx = \frac{2}{3} \tan^{-1}(3)$
+    \item[(e)] $\displaystyle\int_{\pi/2}^{\pi} x^2 \sin 8x \, d x = -\frac{3 \pi^2}{32}$
+\end{itemize}
+
+\subsubsection{Soluzione}
+Per ciascun integrale, sono state calcolate le approssimazioni utilizzando le regole di quadratura di 
+Gauss-Legendre e Clenshaw-Curtis con $n=4,6,8,\ldots,40$. Gli errori $|I_n-I|$ di entrambi i metodi 
+sono stati rappresentati graficamente in funzione di $n$ su una scala semi-logaritmica.\\
+I grafici saranno presentati non nell'ordine in cui sono stati richiesti, ma dapprima gli integrali di
+funzioni olomorfe, poi quelli di funzioni non olomorfe. \\
+Si riportano in figura \ref{fig:es5_4_1_1}, gli studi degli errori per gli integrali di funzioni olomorfe.
+
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5411.pdf}
+        \caption*{(a)}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5412.pdf}
+        \caption*{(b)}
+    \end{minipage}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5415.pdf}
+        \caption*{(e)}
+    \end{minipage}
+    \caption{Studio degli errori per gli integrali di funzioni olomorfe.}
+    \label{fig:es5_4_1_1}
+\end{figure}
+
+I grafici di figura \ref{fig:es5_4_1_1} mostrano che gli errori decrescono in maniera molto rapida all'aumentare
+di $n$, raggiungendo l'ordine di grandezza di $\epsilon_{mach}$ per $n$ piccoli. Questo fenomeno è legato 
+alla regolarità dell'integranda, che è olomorfa in tutto l'intervallo di integrazione. \\
+Un'altro comportamento degno di nota è che gli errori del metodo di Clenshaw-Curtis sono più grandi di quelli
+del metodo di Gauss-Legendre, questo è legato al fatto che il metodo di Clenshaw-Curtis integra esattamente 
+polinomi di grado $n-1$ mentre il metodo di Gauss-Legendre integra esattamente polinomi di grado $2n-1$. \\
+Infine si può mostrare matematicamente che inizialmente gli errori del metodo di Clenshaw-Curtis coincidono
+con gli errori del metodo di Gauss-Legendre. \\
+Si riportano in figura \ref{fig:es5_4_1_2}, gli studi degli errori per gli integrali di funzioni non olomorfe.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5413.pdf}
+        \caption*{(c)}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{5414.pdf}
+        \caption*{(d)}
+    \end{minipage}
+    \caption{Studio degli errori per gli integrali di funzioni non olomorfe.}
+    \label{fig:es5_4_1_2}
+\end{figure}
+
+Nei casi di figura \ref{fig:es5_4_1_2} si è potuto studiare l'errore in maniera più accurata tramite le ellissi
+di Bernstein. Dalla teoria è noto che la più grande ellissi nel piano complesso che non contiene singolarità e 
+definita da: 
+\begin{equation}
+    E_\rho = \left\{ z \in C : z = \frac{1}{2} \left( \rho e^{i\theta} + \rho^{-1} e^{-i\theta} \right), \; \theta \in [0, 2\pi) \right\}\,.
+\end{equation}
+
+determina il parametro $\rho$ delle seguenti maggiorazioni:
+
+\begin{equation}
+    \label{eq:errors_CC_GL}
+    |I[f]-I_n[f]| \leq {64\over 15} {M\rho^{1-n}\over \rho^2-1}\,, \qquad |I[f]-I_n[f]| \leq {64\over 15} {M\rho^{-2n}\over \rho^2-1}\,.
+    \end{equation}
+
+dove la prima riguarda Clenshaw-Curtis, la seconda Gauss-Legendre.\\
+Si è perciò calcolato il parametro $\rho$ in entrambi i casi, sapendo che le singolarità delle integrande estese
+al piano complesso si trovano in $\frac{i \pi}{2} + ik\pi$ per $k \in N$ nel primo caso, in $\pm i\frac{1}{3}$
+nel secondo. Tramite $\rho$ si sono stimati i limiti superiori degli errori al variare di $n$. Nei grafici 
+vengono riportate le rette, ma dato che in \ref{eq:errors_CC_GL} è presente anche la maggiorazione con $M$, 
+il grafico si concentra sulla pendenza e non sulla traslazione verticale. Si può notare che nel caso (c) 
+le rette ricalcano precisamente la pendenza degli errori. Nel caso (d) l'andamento di Curtis è rispettato, mentre 
+Legendre necessita di più punti per poter entrare nel regime in cui l'errore scala come $O(n^2)$. D'altra parte, 
+l'accuratezza massima raggiunta nel caso del metodo (d) è dell'ordine di $10^{-11}$, molto più alta rispetto
+agli altri casi. Infine, per i valori di $n$ considerati, i due metodi non escono dalla regione in cui gli
+errori sono gli stessi. Per queste ragioni nel caso (d) la pendenza della retta nel caso di Gauss-Legendre
+non coincide con quella degli errori. \\
 
 
 \section{Equazioni differenziali ordinarie}
