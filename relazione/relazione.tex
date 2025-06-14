@@ -2740,6 +2740,151 @@ e, se anche il metodo adottato portasse a una sovrastima di $t_{steady}$, ciò n
 la valutazione degli stati stazionari. Il valore degli stessi è riportato nel grafico, 
 insieme al valore di $t_{steady}$.
 
+\subsection{Esercizio 6.3.5}
+\label{es:6_3_5}
+\begin{itemize}
+    \item[\textbf{(a)}] Scrivi un programma che risolva un sistema di equazioni differenziali utilizzando 
+    il metodo adattivo BS23.
+    \item[\textbf{(b)}] Testa la tua implementazione risolvendo
+    \[
+        u' = -2t u, \quad 0 \le t \le 2, \quad u(0) = 2; \qquad \hat{u}(t) = 2e^{-t^2}
+    \]
+    Rappresenta graficamente la soluzione in funzione del tempo per $\delta=10^{-8}$ in un grafico e il 
+    valore del passo in un altro. Determina inoltre il passo minimo e medio, escludendo il primo e l'ultimo passo.
+    \item[\textbf{(c)}] Considera $\delta=10^{-6},10^{-5},\ldots,10^{-12}$ e studia come l'errore sulla 
+    soluzione all'istante finale, $|u_n-\hat{u}(t_n)|$, dipende dalla tolleranza in input $\delta$.
+\end{itemize}
+
+\subsubsection{Soluzione}
+Si è implementato il metodo adattivo BS23 per risolvere un sistema di equazioni differenziali, e si riporta in 
+figura \ref{fig:es6_3_5_1} il grafico della soluzione ottenuta, insieme al grafico del passo $h$ in funzione del
+tempo. \\
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6351.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6352.pdf}
+    \end{minipage}
+    \caption{Soluzione e passo del metodo BS23.}
+    \label{fig:es6_3_5_1}
+\end{figure}
+Si è scelto di togliere il primo e l'ultimo passo perchè il primo è arbitrario, scelto dall'utente, e l'ultimo
+è forzato in modo da raggiungere l'estremo $b$, quindi non è scelto dall'algoritmo. Così facendo si ottiene
+un passo minimo di $h_{min} = 0.0043$ e un passo medio di $h_{med} = 0.0054$. Lo studio del passo è interessante
+perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Infatti se avessimo
+scelto passo fisso pari a $h_{med}$ avremmo ottenuto un numero di punti maggiore perchè nel metodo adattivo
+il passo può anche diminuire. Nel caso in esame il guadagno non è molto significativo, ma in generale se la 
+differenza fra il passo minimo e il passo medio è molto grande, si possono ottenere integrazioni migliori. \\
+In figura \ref{fig:es6_3_5_2} si riporta il grafico dell'errore all'istante finale,
+$|u_n-\hat{u}(t_n)|$, in funzione della tolleranza $\delta$ scelta. Si osserva che l'errore cresce all'aumentare
+della tolleranza. Infatti la media dei passi $h$ cresce all'aumentare della tolleranza, e la soluzione 
+viene integrata da un numero minore di punti.
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.8\textwidth]{6353.pdf}
+    \caption{Errore all'istante finale in funzione della tolleranza $\delta$.}
+    \label{fig:es6_3_5_2}
+\end{figure}
+
+\subsection{Esercizio 6.3.6}
+Utilizzando il metodo BS23 con tolleranza sull'errore $\delta=10^{-8}$, risolvi il problema 
+$y'' +(1+y')^3 y = 0$ nell'intervallo $0 \le t \le 4\pi$ per le seguenti condizioni iniziali. 
+Rappresenta graficamente $y(t)$ e $y'(t)$ in funzione di $t$ e, separatamente, il passo $h$ in funzione di $t$. 
+Determina inoltre il passo minimo e medio, escludendo il primo e l'ultimo valore.
+\begin{itemize}
+    \item $y(0) = 0.1,\quad y'(0) = 0$
+    \item $y(0) = 0.5,\quad y'(0) = 0$
+    \item $y(0) = 0.75,\quad y'(0) = 0$
+    \item $y(0) = 0.95,\quad y'(0) = 0$
+\end{itemize}
+
+\subsubsection{Soluzione}
+Il sistema di equazioni differenziali del primo ordine associato all'equazione differenziale di secondo ordine è 
+\begin{align*}
+\left\{
+\begin{array}{rl}
+    z_1' &= z_2 \\
+    z_2' &= - (1+z_2)^3 z_1 \\
+\end{array}
+\right.
+\end{align*}
+dove $z_1 = y$ e $z_2 = y'$. Nelle figure \ref{fig:es6_3_6_1}, \ref{fig:es6_3_6_2}, \ref{fig:es6_3_6_3}, \ref{fig:es6_3_6_4} 
+sono riportati i grafici delle soluzioni ottenute, insieme ai grafici del passo $h$ in funzione del tempo.
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6361.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6362.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso $y(0) = 0.1$, $y'(0) = 0$. Passo del metodo BS23.}
+    \label{fig:es6_3_6_1}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6363.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6364.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso $y(0) = 0.5$, $y'(0) = 0$. Passo del metodo BS23.}
+    \label{fig:es6_3_6_2}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6365.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6366.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso $y(0) = 0.75$, $y'(0) = 0$. Passo del metodo BS23.}
+    \label{fig:es6_3_6_3}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6367.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6368.pdf}
+    \end{minipage}
+    \caption{Soluzione e derivata prima per il caso $y(0) = 0.95$, $y'(0) = 0$. Passo del metodo BS23.}
+    \label{fig:es6_3_6_4}
+\end{figure}
+
+Nei vari casi si osserva che tanto più la soluzione presenta picchi accentuati, tanto più il metodo BS23
+sceglie un passo piccolo. In tabella \ref{tab:passi} sono riportati i valori di passo minimo e medio. 
+Si rimanda all'esercizio \ref{es:6_3_5} la dicussione sull'importanza dello studio del passo. \\
+\begin{table}[!ht]
+    \centering
+    \caption{Valori di passo minimo e medio per i quattro casi}
+    \label{tab:passi}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Caso} & \textbf{$h_{min}$} & \textbf{$h_{med}$} \\
+        \hline
+        \textbf{a} & $4.3 \times 10^{-3}$ & $1.41 \times 10^{-2}$ \\
+        \textbf{b} & $2.4 \times 10^{-3}$ & $6.9 \times 10^{-3}$ \\
+        \textbf{c} & $6.97 \times 10^{-4}$ & $4.48 \times 10^{-3}$ \\
+        \textbf{d} & $5.56 \times 10^{-5}$ & $2.49 \times 10^{-3}$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+La tabella \ref{tab:passi} mostra il guadagno rispetto a un metodo non adattivo è molto significativo negli 
+ultimi due casi, dove le soluzioni presentano picchi molto accentuati, perchè il metodo BS23, nonostante abbia 
+passo medio dell'ordine di $10^{-3}$, raggiunge passi minimi dell'ordine di $10^{-4}$ e $10^{-5}$. 
+
 
 
 \section{Appendice}

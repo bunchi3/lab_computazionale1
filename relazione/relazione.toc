@@ -139,5 +139,9 @@
 \contentsline {subsubsection}{\numberline {6.5.1}Soluzione}{56}{subsubsection.6.5.1}%
 \contentsline {subsection}{\numberline {6.6}Esercizio 6.3.3}{57}{subsection.6.6}%
 \contentsline {subsubsection}{\numberline {6.6.1}Soluzione}{58}{subsubsection.6.6.1}%
-\contentsline {section}{\numberline {7}Appendice}{59}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Dati}{59}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6.7}Esercizio 6.3.5}{59}{subsection.6.7}%
+\contentsline {subsubsection}{\numberline {6.7.1}Soluzione}{59}{subsubsection.6.7.1}%
+\contentsline {subsection}{\numberline {6.8}Esercizio 6.3.6}{60}{subsection.6.8}%
+\contentsline {subsubsection}{\numberline {6.8.1}Soluzione}{60}{subsubsection.6.8.1}%
+\contentsline {section}{\numberline {7}Appendice}{62}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dati}{62}{subsection.7.1}%
