@@ -57,29 +57,30 @@
 \begin{abstract} 
 	\begin{adjustwidth}{-1cm}{-1cm}
 	\end{adjustwidth}
+    \begin{center}
+        La presente relazione contiene gli esercizi svolti durante il corso di Fisica Computazionale. \\
+        Gli esercizi sono stati svolti in Julia e sono raccolti in una cartella git, di cui si riporta il link: \\
+        \url{https://github.com/bunchi3/lab_computazionale1.git} \\
+
+	\end{center}
 \end{abstract}
 \tableofcontents
 \newpage
 
 \section{Analisi dell'errore}
-\subsection{Teoria}
-Nella presente sezione analizziamo le due principali fonti di errore in contesti computazionali: 
-\begin{enumerate}
-    \item Errori di arrotondamento: dovuti alla rappresentazione di numeri reali con numero finito di digits.
-    \item Errori di approssimazione: dovuti alla modalità stessa con cui affrontiamo il problema, 
-          per questo motivo sono presenti anche nel caso ideale. 
-\end{enumerate}
-
 \subsection{Esercizio 1.0.1}
-Considera la funzione $f(x)=e^x$ nell'intervallo $x\in [0,1]$. Scrivi un programma che calcoli la serie approssimante:
+Considera la funzione $f(x)=e^x$ nell'intervallo $x\in [0,1]$. Scrivi un programma che calcoli
+la serie approssimante:
 
 \begin{equation}
     g_N(x)=\sum_{n=0}^N \frac{x^n}{n!}\,.
 \end{equation}
 
 \begin{enumerate}
-    \item Verifica che l'errore assoluto $\Delta=|f(x)-g_N(x)|$ scala approssimativamente come $x^{N+1}/(N+1)!$ per $N=1,2,3,4$.
-    \item L'errore $\Delta$, nell'intervallo dato di $x$, differisce da $x^{N+1}/(N+1)!$. Perché accade questo e per quali valori di $x$?
+    \item Verifica che l'errore assoluto $\Delta=|f(x)-g_N(x)|$ scala approssimativamente come \\ 
+    $x^{N+1}/(N+1)!$ per $N=1,2,3,4$.
+    \item L'errore $\Delta$, nell'intervallo dato di $x$, differisce da $x^{N+1}/(N+1)!$. 
+    Perché accade questo e per quali valori di $x$?
 \end{enumerate}
 
 \subsubsection{Soluzione}
@@ -117,13 +118,10 @@ Calcolare la seguente somma
 \end{equation}
 
 \begin{enumerate}
-    \item Calcolare la somma in single precision utilizzando l'ordinamento normale,\\
-    $n=1,2,3,\ldots,N$.
-    \item Calcolare la somma in single precision utilizzando l'ordinamento inverso,\\
-    $n=N,\ldots,2,1$.
+    \item Calcolarla in single precision utilizzando l'ordinamento normale, $n=1,2,3,\ldots,N$.
+    \item Calcolarla  in single precision utilizzando l'ordinamento inverso, $n=N,\ldots,2,1$.
     \item Studiare la convergenza di entrambe le implementazioni in funzione di $N$ tracciando il grafico di $|S(N)-\pi^2/6|$.
     \item Ripetere i punti da 1 a 3 utilizzando double precision.
-    \item Sai spiegare cosa succede?
 \end{enumerate}
 
 \subsubsection{Soluzione}
@@ -167,7 +165,7 @@ Si può mostrare matematicamente che gli errori $\Delta = |S(N)-\pi^2/6|$ scalan
 affermazione possiamo interpolare la curva degli errori con un metodo che vedremo nella sezione \ref{sistemi_lineari}.
 Sulla base delle considerazioni di questa sezione, possiamo aspettarci che sia più conveniente interpolare la curva 
 con ordinamento inverso, perchè i valori che la compongono sono meno affetti da errori di tipo numerico. Utilizzando 
-il modello linearizzato $log(\Delta) = -c*log(N)$ con $c = 1$ si ottiene per l'ordinamento inverso 
+il modello linearizzato $log(\Delta) = -c log(N)$ con $c = 1$ si ottiene per l'ordinamento inverso 
 $c_{fit} = 1.00003$ e per quello diretto $c_{fit} = 0.986$. Come atteso il caso di ordinamento diretto restituisce un
 risultato peggiore di quello inverso.
 
@@ -185,8 +183,8 @@ con variabili di tipo Float64 (double precision).
     \label{fig:es1_2_1_2}
 \end{figure}
 
-Nel caso di figura \ref{fig:es1_2_1_2} possiamo notare che le due curve sono sovrapposte, nonostante l'ingrandimento a 
-valori di $N \in [5000, 10000]$. Per osservare un fenomeno simile a quello di 
+Nel caso di figura \ref{fig:es1_2_1_2} possiamo notare che le due curve sono sovrapposte, 
+nonostante l'ingrandimento a valori di $N \in [5000, 10000]$. Per osservare un fenomeno simile a quello di 
 figura \ref{fig:es1_2_1_1} dovremmo raggiungere valori di $N = 2^{26}$. Infatti l'approssimazione non migliora
 quando vengono sommati numeri dell'ordine di $\epsilon_{mach}$ per double precision, cioè
  $\frac{1}{N^2} \simeq 2^{-52}$.
@@ -205,10 +203,8 @@ Scrivi una funzione che prenda in input un vettore $x$ di lunghezza arbitraria e
 con la formula sopra. 
 Dovresti testare la funzione con $x=[1,1,\ldots,1]$ e con alcuni vettori casuali.
 
-\paragraph{(b)} Uno svantaggio della formula "naive" è che bisogna prima calcolare una somma per $\overline{x}$ prima di eseguire la somma per calcolare $\sigma^2$. 
-Questo significa che bisogna scorrere due volte i dati. 
-Ciò è indesiderabile per grandi insiemi di dati o quando la varianza campionaria deve essere calcolata mentre i dati vengono generati. 
-Alcuni libri di testo riportano una formula a singolo ciclo:
+\paragraph{(b)} La formula \ref{eq:varianza_naive} ha lo svantaggio di scorrere due volte il vettore dei dati. 
+Considera la formula \ref{eq:varianza_eff} a un ciclo:
 
 \begin{equation}
     \sigma^2 = \frac{1}{n-1} \left( u - \frac{1}{n}v^2 \right),\\
@@ -219,13 +215,14 @@ Alcuni libri di testo riportano una formula a singolo ciclo:
 \end{equation}
 
 Prova entrambe le formule per i seguenti dataset, ciascuno dei quali ha varianza esattamente uguale a 1. 
-Esegui i calcoli sia in single che in double precision. \\
-$ x_1 = [ 1e3, 1+1e3, 2+1e3 ]$ \\
-$ x_2 = [ 1e6, 1+1e6, 2+1e6 ]$ \\
-$ x_3 = [ 1e7, 1+1e7, 2+1e7 ]$ \\
-$ x_4 = [ 1e8, 1+1e8, 2+1e8 ]$ 
+Esegui i calcoli sia in single che in double precision. 
+\begin{align}
+    x_1 &= [ 1\cdot 10^3,\ 1+10^3,\ 2+10^3 ] \qquad
+    x_2 = [ 1\cdot 10^6,\ 1+10^6,\ 2+10^6 ] \notag \\
+    x_3 &= [ 1\cdot 10^7,\ 1+10^7,\ 2+10^7 ] \qquad
+    x_4 = [ 1\cdot 10^8,\ 1+10^8,\ 2+10^8 ]
+\end{align}
 
-Sai spiegare i risultati?
 
 \subsubsection{Soluzione}
 \paragraph{(a) } Si è testato il codice che implementa la formula \ref{eq:varianza_naive} su tre vettori contenenti
@@ -326,7 +323,7 @@ Sia $f(x) = \frac{e^x-1}{x}$.
 
 per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
 
-(c) Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Maclaurin, cioè
+(c) Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Mc Laurin, cioè
 
 \begin{equation}
     p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
@@ -367,40 +364,43 @@ con la serie di Maclaurin, fino al termine $n$.
     \label{fig:es1_4_2_1}
 \end{figure}
 
-Per uno studio più accurato, si riporta in figura \ref{fig:es1_4_2_2} un ingrandimento per piccoli valori di x 
-(range $[10^{-15}, 10^{-14}]$) della figura \ref{fig:es1_4_2_1} e in figura \ref{fig:es1_4_2_3} un ingrandimento 
-per valori di x (range $[10^{-2}, 10^{-1}]$) della figura \ref{fig:es1_4_2_1}.
+Per uno studio più accurato, si riportano nelle figure \ref{fig:es1_4_2_2} e \ref{fig:es1_4_2_3} ingrandimenti 
+delle curve di figura \ref{fig:es1_4_2_1}.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{1422.pdf}
-    \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per piccoli valori di x.}
-    \label{fig:es1_4_2_2}
-\end{figure}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{1423.pdf}
-    \caption{Ingrandimento di $f(x)$ e $p_n(x)$ per valori di x nell'intervallo $[10^{-2}, 10^{-1}]$.}
-    \label{fig:es1_4_2_3}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{1422.pdf}
+        \caption{Ingrandimento. $x \in [10^{-15}, 10^{-14}]$.}
+        \label{fig:es1_4_2_2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{1423.pdf}
+        \caption{Ingrandimento. $x \in [10^{-2}, 10^{-1}]$.}
+        \label{fig:es1_4_2_3}
+    \end{minipage}
 \end{figure}
 
 Per quanto riguarda il comportamento della funzione $f(x)$ calcolata con l'algoritmo \ref{eq:algoritmo_naive},
-possiamo notare che per valori di $x$ piccoli, in particolare nella regione rappresentata in figura 
-\ref{fig:es1_4_2_2}, la funzione assume valori non corretti, nonostante $\kappa_f(x)$ abbia un massimo non molto
+possiamo notare che per valori di $x$ piccoli la funzione assume valori non corretti, nonostante $\kappa_f(x)$ 
+abbia un massimo non molto
 grande e peraltro non assunto nell'intorno di zero. La spiegazione di questo fenomeno è che l'algoritmo
 \ref{eq:algoritmo_naive}, nonostante non abbia $\kappa_f(x)$ complessivo molto grande, è affetto da errori 
 di cancellazione numerica a causa della forma in cui è scritta la funzione, ma non a causa del fatto che 
 il problema sia intrinsecamente instabile. Di fatto possiamo intuire che esista una possibile riscrittura
 della funzione che non sia affetta da cancellazione numerica, e che sia più stabile, proprio perchè 
 sappiamo che il massimo di $\kappa_f(x)$ non è molto grande. Tale riscrittura è quella che utilizza la
-serie di Maclaurin, implementata nell'algoritmo $p_n(x)$. \\
+serie di Mc Laurin, implementata nell'algoritmo $p_n(x)$. \\
 Possiamo notare che l'algoritmo \ref{eq:algoritmo_maclaurin}, per valori di $x$ piccoli, restituisce il 
 valore corretto, dato che non è affetto da cancellazione numerica. Al contrario, nella regione ingradita di 
 figura \ref{fig:es1_4_2_3}, l'algoritmo \ref{eq:algoritmo_maclaurin} comincia a restituire valori errati
-perchè ci allontaniamo dalla regione di convergenza della serie di Maclaurin. \\
+perchè ci allontaniamo dalla regione di convergenza della serie di Mc Laurin. \\
 Osservando la figura \ref{fig:es1_4_2_3}, notiamo che, per valori di $x$ fissati, l'algoritmo 
 \ref{eq:algoritmo_maclaurin} è stabile, cioè le curve che descrivono i valori di $p_n(x)$ sono sempre più 
 vicine tra loro all'aumentare di $n$, fino a sovrapporsi. Per stimare un buon valore di $n$ da utilizzare
-per calcolare $p_n(x)$, possiamo osservare che la serie di Maclaurin è tanto meno stabile quanto più ci si
+per calcolare $p_n(x)$, possiamo osservare che la serie di Mc Laurin è tanto meno stabile quanto più ci si
 allontana da zero. Nel caso di studio valutiamo la distanza tra i valori di $p_n(x)$ al variare di $n$,
 fissato $x = 0.1$. Si è rappresentato in figura \ref{fig:es1_4_2_4} l'andamento della distanza tra i valori
 di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
@@ -443,8 +443,6 @@ grandi.
 
 \section{Sistemi lineari}
 \label{sistemi_lineari}
-\subsection{Teoria}
-
 \subsection{Esercizi 2.1.1, 2.1.2, 2.1.3, 2.1.4}
 Scrivi una funzione che esegua la sostituzione in avanti su una matrice triangolare inferiore $n\times n$.
 
@@ -502,8 +500,6 @@ Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathb
 
 Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{U}\mathbf{x} - \mathbf{b}$.
 
-
-
 \subsubsection{Soluzione}
 Per risolvere i sistemi lineari proposti, si sono implementate le funzioni di sostituzione in avanti e all'indietro. 
 Di seguito sono riportati i risultati delle soluzioni.
@@ -534,11 +530,11 @@ I risultati confermano la correttezza delle implementazioni delle funzioni di so
 
 2. Per ciascuna matrice, calcola la fattorizzazione LU e verifica la correttezza.
 
-    \begin{center}
+\begin{center}
     \begin{minipage}{0.32\textwidth}
     \centering
-    (a)
     \[
+    \textbf{(A)}\quad
     \begin{bmatrix}
     2 & 3 & 4 \\
     4 & 5 & 10 \\
@@ -549,8 +545,8 @@ I risultati confermano la correttezza delle implementazioni delle funzioni di so
     \hfill
     \begin{minipage}{0.32\textwidth}
     \centering
-    (b)
     \[
+    \textbf{(B)}\quad
     \begin{bmatrix}
     6 & -2 & -4 & 4\\
     3 & -3 & -6 & 1 \\
@@ -562,8 +558,8 @@ I risultati confermano la correttezza delle implementazioni delle funzioni di so
     \hfill
     \begin{minipage}{0.32\textwidth}
     \centering
-    (c)
     \[
+    \textbf{(C)}\quad
     \begin{bmatrix}
     1 & 4 & 5 & -5 \\
     -1 & 0 & -1 & -5 \\
@@ -572,18 +568,15 @@ I risultati confermano la correttezza delle implementazioni delle funzioni di so
     \end{bmatrix}
     \]
     \end{minipage}
-    \end{center}
+\end{center}
 
-4. Calcola il determinante delle matrici dell'Esercizio 2 utilizzando la loro fattorizzazione LU.
+4. Calcola il determinante delle matrici dell'Esercizio 2 tramite la fattorizzazione LU.
 
 \subsubsection{Soluzione}
 \paragraph{(Punti 1 e 2: )} Si sono implementati gli algoritmi di fattorizzazione LU, e si sono testati 
-sui tre sistemi proposti. \\
-Le scomposizioni ottenute sono le seguenti: \newline
-    \begin{center}
-    
+sui tre sistemi proposti. Le scomposizioni ottenute sono le seguenti: 
+\begin{center}
     \[
-    \textbf{(A)    }
     \mathbf{L}_A =
     \begin{bmatrix}
     1.0  & 0.0 & 0.0 \\
@@ -601,7 +594,6 @@ Le scomposizioni ottenute sono le seguenti: \newline
     \]
 
     \[
-    \textbf{(B)   }
     \mathbf{L}_B =
     \begin{bmatrix}
     1.0  & 0.0   & 0.0  & 0.0 \\
@@ -621,7 +613,6 @@ Le scomposizioni ottenute sono le seguenti: \newline
     \]
 
     \[
-    \textbf{(C)   }
     \mathbf{L}_C =
     \begin{bmatrix}
     1.0  & 0.0   & 0.0  & 0.0 \\
@@ -639,7 +630,7 @@ Le scomposizioni ottenute sono le seguenti: \newline
     \end{bmatrix}
     \qquad
     \]
-    \end{center}
+\end{center}
 
 Per verificare la correttezza delle scomposizioni, si è calcolato il prodotto $\mathbf{L}\mathbf{U}$ per ciascuna 
 matrice e lo si è sottratto alla matrice originale. Si sono ottenute matrici di zeri, in tutti i casi, 
@@ -650,7 +641,7 @@ fattorizzazione LU. Ricordando le proprietà del determinante e che la matrice $
 con elementi diagonali unitari, si ha che:
 
 \begin{equation}
-    \det(M) = det(LU) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
+    \det(\mathbf{M}) = det(\mathbf{LU}) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
 \end{equation}
 
 Per il calcolo del determinante delle matrici proposte si è eseguito il prodotto degli elementi della diagonale
@@ -731,10 +722,8 @@ Si ottiene, con le dovute approssimazioni:
         2.0 \\ 
         2.0 \\ 
         1.0
-    \end{bmatrix}.
-\end{equation}
-La differenza tra $\mathbf{x}$ e $\mathbf{z}$ è:
-\begin{equation}
+    \end{bmatrix},
+    \qquad
     \mathbf{x} - \mathbf{z} = \begin{bmatrix}
         -2.22 \cdot 10^{-16}  \\
         -4.44 \cdot 10^{-16}  \\
@@ -878,8 +867,7 @@ Quanto è accurato il risultato? \\
 (e) Calcola il numero di condizionamento della matrice $\mathbf{A}$; puoi scegliere la norma che preferisci. 
 Il sistema $\mathbf{Ax}=\mathbf{b}$ è mal condizionato? \\
 (f) Calcola le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di $\mathbf{A}=\mathbf{LU}$ a mano. \\
-(g) Calcola i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$. I sistemi triangolari 
-$\mathbf{L}\mathbf{z}=\mathbf{b}$ e $\mathbf{U}\mathbf{x}=\mathbf{z}$ sono mal condizionati? \\
+(g) Calcola i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$. 
 
 \subsubsection{Soluzione}
 Per poter operare un confronto tra i risultati ottenuti con $\epsilon = 10^{-12}$ e $\epsilon = 10^{-20}$, si è
@@ -900,7 +888,8 @@ a meno di arrotondamenti, i vettori:
     \end{bmatrix}.
 \end{equation}
 
-\paragraph{(b) } \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
+\paragraph{(b) } \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, 
+ottenendo:
 \begin{equation}
     \mathbf{L_1} = \begin{bmatrix}
     1.0      &  0.0 \\
@@ -966,9 +955,9 @@ Come si può notare, in entrambi i casi il numero di condizionamento non è molt
 $\mathbf{Ax} = \mathbf{b}$ non è mal condizionato. 
 
 \paragraph{(f) } Si sono calcolate a mano le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di
-$\mathbf{A}$ per ciascun valore di $\epsilon$. I calcoli dettagliati sono disponibili nella cartella git
-\verb|lab\computazionale1\esercizi\pen_and_paper|, il cui link è stato fornito in precedenza. Ad ogni modo le 
-matrici ottenute sono già state riportate al punto \ref{par:fattorizzazione_LU}. \\
+$\mathbf{A}$ per ciascun valore di $\epsilon$. I calcoli dettagliati sono disponibili nella cartella git,
+nel percorso \\ \verb|lab\computazionale1\esercizi\pen_and_paper|. Ad ogni modo le
+matrici ottenute sono già state riportate al punto \ref{par:fattorizzazione_LU}. 
 
 \paragraph{(g) } Si sono calcolati i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$, utilizzando sia 
 la norma 1 che la norma infinito, ancora una volta ottenendo lo stesso numero. \\
@@ -1039,8 +1028,6 @@ Keplero ha scoperto che il periodo orbitale $\tau$ di un pianeta dipende dalla s
 secondo la legge $\tau = c R^{\alpha}$, dove $\alpha$ è un semplice numero razionale. \\
 (a) Esegui un fit lineare ai minimi quadrati utilizzando la tabella \ref{tab:pianeti} per determinare il valore 
 più probabile e semplice di $\alpha$. \\
-Il risultato è in accordo con le tue aspettative? 
-[Suggerimento: ricorda le leggi del moto planetario di Keplero.] \\
 (b) Realizza un grafico dei dati e del risultato del fit.
 
 \subsubsection{Soluzione}
@@ -1053,44 +1040,33 @@ Non è il caso del problema proposto, dato che $\alpha$ si trova ad esponente. P
 \end{equation}
 Da qui in poi si è implementato il metodo dei minimi quadrati, applicando la scomposizione di Cholesky alla 
 matrice $n \times n$ ottenuta dal prodotto della matrice di design e la sua trasposta. Per chiarezza si riporta
-la matrice di design:
+la matrice di design trasposta:
 \begin{equation}
-    \mathbf{A} = \begin{bmatrix}
-        1 & \ln(57.59) \\
-        1 & \ln(108.11) \\
-        1 & \ln(149.57) \\
-        1 & \ln(227.84) \\
-        1 & \ln(778.14) \\
-        1 & \ln(1427) \\
-        1 & \ln(2870.3) \\
-        1 & \ln(4499.9)
+    \mathbf{A}^T = \begin{bmatrix}
+        1 & 1 & \cdots & 1 \\
+        \ln(57.59) & \ln(108.11) & \cdots & \ln(4499.9)
     \end{bmatrix}.
 \end{equation}
+
 La matrice di regressione è stata costruita in modo che la prima colonna fosse composta da 1, per poter calcolare
 il termine noto della retta, e la seconda colonna fosse composta dai logaritmi naturali delle
 distanze dei pianeti dal Sole. \\
 La legge di Keplero prevista è la seguente:
 \begin{equation}
     \label{eq:keplero}
-    \tau = c R^{3/2}\,,
-\end{equation}
-dove $\alpha = 3/2$. \\
-È necessario un ulteriore commento su \ref{eq:keplero}, prima di riportare i risultati. Fino ad ora abbiamo
-assunto che la costante $c$ fosse indipendente dal pianeta, ma in realtà la sua espressione è:
-\begin{equation}
-    c = \frac{2\pi}{\sqrt{G (M+m)}}\,,
+    \tau = c R^{3/2}\,, \text{ con } \qquad \alpha = \frac{3}{2}\, \qquad c = \frac{2\pi}{\sqrt{G (M+m)}}
 \end{equation}
 dove $G$ è la costante di gravitazione universale, $M$ è la massa del Sole, $m$ è la massa del pianeta. \\
+La regressione lineare che si vuole effetturare considera $c$ costante, nonostante dipenda dalla massa del pianeta.
 Consideriamo Giove, il pianeta più massivo di quelli presi in esame ($m \approx 1.90 \cdot 10^{27} \, \text{kg}$). Si ha:
 \begin{align}
     c_1 &= \frac{2\pi}{\sqrt{G (M+m)}} = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}  \\
     c_2 &= \frac{2\pi}{\sqrt{G M}}   = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}    \\
     \frac{c_1}{c_2} &\approx 1.0
 \end{align}
-
 Possiamo quindi affermare che la costante $c$ è indipendente dalla massa del pianeta, entro la precisione 
 necessaria per il nostro scopo. \\
-Si è quindi calcolato il valore di $\alpha$ e della costante $c$, ottenendo:
+Si sono quindi stimati il valore di $\alpha$ e della costante $c$, tramite la regressione, ottenendo:
 \begin{equation}
     c = 0.206 \frac{days}{Mkm^{3/2}}
     \qquad
@@ -1177,8 +1153,6 @@ solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il m
 è indice della natura periodica del fenomeno osservato. 
 
 \section{Radici di equazioni non lineari}
-\subsection{Teoria}
-
 \subsection{Esercizi 3.2.1, 3.2.2}
 1. Implementa il metodo di bisezione e testalo con una funzione semplice, ad esempio $f(x)=x$. \\
 2. (a) Usa il metodo di bisezione per trovare le soluzioni di $x^3 - 7x^2 + 14x - 6 = 0$ su $[0,1]$.\\
@@ -1245,14 +1219,22 @@ La seconda si ottiene iterando la relazione  $ |x_{k+1} - r|= C |x_{k} - r|$:
     |x_{k+1} - r|= C^{k+1} |x_{0} - r|
 \end{equation}
 
-\subparagraph{Stima di $q$} Per stimare $q$ si è calcolato il rapporto tra i valori di $d_n$ e $d_{n+1}$ e lo si
+\subparagraph{Stima di $q$ e $C$} Per stimare $q$ si è calcolato il rapporto tra i valori di $d_n$ e $d_{n+1}$ e lo si
 è messo in grafico in funzione di $n$, ottenendo la figura \ref{fig:es3_2_2_2}, in cui è presente un ingrandimento
 per i valori più alti di n.
 \begin{figure}[!ht]
+    \begin{minipage}[b]{0.54\textwidth}
     \centering
     \includegraphics[width=0.8\textwidth]{3222.pdf}
-    \caption{Rapporto tra i valori di $d_n$ e $d_{n+1}$ in funzione di $n$.}
+    \caption{Stima di $q$}
     \label{fig:es3_2_2_2}
+    \end{minipage}
+    \begin{minipage}[b]{0.54\textwidth}
+    \centering
+    \includegraphics[width=0.8\textwidth]{3223.pdf}
+    \caption{Stima di $C$}
+    \label{fig:es3_2_2_3}
+    \end{minipage}
 \end{figure}
 
 Il rapporto tende a 1, come atteso. Si vuole ora quantificare tale valore. \\
@@ -1264,18 +1246,13 @@ fluttuare attorno a 1. Per l'interpolazione si sono considerati gli ultimi 20 pu
 nell'ingrandimento di \ref{fig:es3_2_2_2}. Il fit su tali punti restituisce
 un valore di $q = 1.02$. \\  
 
-\subparagraph{Stima di $C$}
 Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello:
 \begin{equation}
     log |x_{k+1}-r| = (k+1)log(C) + log|x_0 - r|   \rightarrow   y(x) = x log(C) + A ,
 \end{equation}
-avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il grafico del fit in figura \ref{fig:es3_2_2_3}.
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{3223.pdf}
-    \caption{Fit lineare del logaritmo decimale della distanza tra la radice e le stime successive.}
-    \label{fig:es3_2_2_3}
-\end{figure}
+avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il grafico del fit in 
+figura \ref{fig:es3_2_2_3}. \\
+
 Il fit ha restituito i seguenti valori:
 \begin{equation}
     C = 0.5,
@@ -1424,7 +1401,7 @@ Ci si può chiedere cosa succede se, non conoscendo l'andamento della funzione, 
 precedenti. In particolare cosa succede se si fissa $q = 2$ e si stima $C$ come l'ultimo elemento della successione
 $C_n = \frac{|x_{n+1}-r|}{|x_n-r|^2}$. L'aspettativa è che $C$ risulti nullo, dato che la derivata seconda
 è nulla. Il grafico corrispondente può essere trovato nella cartella git
-\verb|lab\computazionale1\esercizi\3_3_2.ipynb|, e mostra che il valore di $C$ è effettivamente nullo. \\ 
+\verb|lab_computazionale1\esercizi\3_3_2.ipynb|, e mostra che il valore di $C$ è effettivamente nullo. \\ 
 
 \subparagraph{Seconda radice, $x = 1.166$: } la seconda radice di $f_2$ non presenta problemi, così le formule
 sono quelle viste inizialmente. I valori attesi sono $q = 2$ e $C = 3.383$. 
@@ -1457,28 +1434,33 @@ Come è noto dalla teoria, il metodo di Newton in caso di radici multiple conver
 $ \epsilon_{n+1} = C (\epsilon_n)^q $ ci aspettiamo $q = 1$. Inoltre in caso di radici multiple
 la costante d'errore asintotica diviene $(1-{\frac{1}{m}})$. \\
 
-Il primo passo è verificare il valore di $q$. Si riporta in figura \ref{fig:es3_3_2_5} il grafico 
+Il primo passo è verificare il valore di $q$. Si riporta in figura \ref{fig:es3_3_2_6} il grafico 
 della successione $q_n$, da cui possiamo confermare stimare $q = 1.067$. \\
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{3323_q.pdf}
-    \caption{Studio del valore di $q$ per $f_3$.}
-    \label{fig:es3_3_2_5}
-\end{figure}
 
 Si riportano in figura \ref{fig:es3_3_2_6} i grafici della successione $C_n$, una volta senza considerare 
 la molteplicità della radice, e una volta considerando la molteplicità della radice.
 \begin{figure}[!ht]
     \centering
+    \begin{minipage}[b]{0.6\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{3323_q.pdf}
+        \caption*{}
+    \end{minipage}
+    \vspace{0.5cm}
+
     \begin{minipage}[b]{0.47\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{3323_C1.pdf}
+        \caption*{}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[b]{0.47\textwidth}
+        \centering
         \includegraphics[width=\textwidth]{3323_C2.pdf}
+        \caption*{}
     \end{minipage}
-    \caption{Studio del valore di $C$ per $f_3$.}
+
+    \caption{Studio del valore di $q$ (sopra) e $C$ (sotto) per $f_3$.}
     \label{fig:es3_3_2_6}
 \end{figure}
 
@@ -1514,8 +1496,7 @@ $[0.5,10]$, con i punti di partenza del metodo di Newton.
 \end{figure}
 
 Applicando il metodo di Newton con i valori iniziali, non sempre si ottengono le radici più vicine al valore
-di partenza. \\
-Si riportano i risultati in tabella \ref{tab:es3_3_3_1}.
+di partenza. Si riportano i risultati in tabella \ref{tab:es3_3_3_1}.
 
 \begin{table}[!ht]
 \centering
@@ -1567,26 +1548,31 @@ sia una funzione continua.)
 
 \subsection{Soluzione}
 Per prima cosa si è risolta l'equazione \ref{eq:eq-kepler2} con il metodo di Newton. Per capire meglio il 
-procedimento si riporta l'equazione \ref{eq:eq-kepler2} nel grafico \ref{fig:es3_3_4_1}, dove si osserva che 
+procedimento si riporta l'equazione \ref{eq:eq-kepler2} nel grafico sinistro di \ref{fig:es3_3_4_1}, 
+dove si osserva che 
 la funzione ha un solo zero nell'intervallo $[0,2\pi]$. Il metodo di Newton è stato applicato al variare
 del tempo $t$, cioè è stato applicato alla stessa funzione ma traslata in verticale, come si può vedere
 nella figura. \\
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{3341.pdf}
-    \caption{Grafico di $\psi$ in corrispondeza di due tempi.}
+    \begin{minipage}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3341.pdf}
+        \caption*{}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3342.pdf}
+        \caption*{}
+    \end{minipage}
+    \caption{Grafico dell'equazione \ref{eq:eq-kepler2} (sinistra) e $\theta(t)$ (destra).}
     \label{fig:es3_3_4_1}    
 \end{figure}
 \\
 Ottenuti i valori di $\psi$ in corrispondenza dei 100 valori di $t$ compresi tra $0$ e $\tau$, si è calcolata
 la vera anomalia $\theta$ tramite la relazione \ref{eq:eq-kepler1}. Si riporta il grafico di $\theta(t)$ in
-figura \ref{fig:es3_3_4_2}
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{3342.pdf}
-    \caption{Grafico della vera anomalia $\theta(t)$ per l'asteroide Eros.}
-    \label{fig:es3_3_4_2}
-\end{figure}
+figura sinistra di \ref{fig:es3_3_4_1}.
 
 \subsection{Esercizi 3.4.1, 3.4.2}
 1. Scrivi un programma che implementi il metodo della secante. \\
@@ -1669,8 +1655,6 @@ Possiamo osservare che le radici trovate sono in accordo con quelle stimate nell
 con metodo di Newton.
 
 \section{Interpolazioni}
-\subsection{Teoria}
-
 %Se hai tempo inserisci l'esercizio 4.1.1, matrice di Vandermonde.
 
 \subsection{Esercizi 4.2.1, 4.2.2}
@@ -1726,12 +1710,21 @@ buona approssimazione della costante $K$. \\
 particolare dei nodi di Chebyshev, e la si è testata nell'esercizio 4.4.2, confrontandola con il caso di 
 nodi equidistanti. \\
 \paragraph{(2a) } Il calcolo dell'errore in norma $\infty$ è stato effettuato con un passo di campionamento
-sulle $x$ pari a $0.0005$, in modo da ottenere 4000 punti tra $-1$ e $1$. Si riportano in figura \ref{fig:es4_4_2_1} 
-i grafici dell'errore in norma $\infty$ in funzione di $n$, per i casi delle varie funzioni.
+sulle $x$ pari a $0.0005$, in modo da ottenere 4000 punti tra $-1$ e $1$. Si riportano in figura 
+\ref{fig:es4_4_2_1} a sinistra i grafici dell'errore in norma $\infty$ in funzione di $n$, 
+per i casi delle varie funzioni.
 \begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{4421.pdf}
-    \caption{Grafici dell'errore in norma $\infty$ in funzione di $n$ per i vari casi.}
+    \begin{minipage}[b]{0.50\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{4421.pdf}
+        \caption*{}
+    \end{minipage}
+    \begin{minipage}[b]{0.50\textwidth}
+        \centering
+        \includegraphics[width=0.9\textwidth]{4422.pdf}
+        \caption*{}
+    \end{minipage}
+    \caption{Errori per nodi di Chebyshev (sinistra) e nodi equidistanti (destra).}
     \label{fig:es4_4_2_1}
 \end{figure}
 
@@ -1753,14 +1746,9 @@ Si riportano i valori di $K$ ottenuti per le varie funzioni:
     \item $f_4(x) = \sin(\cosh x)$: $K = 4.598$.
 \end{itemize}
 
-\paragraph{(2b) } Si è ripetuto lo stesso procedimento con i nodi equidistanti, e si riportano in figura \ref{fig:es4_4_2_2}
+\paragraph{(2b) } Si è ripetuto lo stesso procedimento con i nodi equidistanti, e si riportano in 
+figura \ref{fig:es4_4_2_1} a destra
 i grafici dell'errore in norma $\infty$ in funzione di $n$, per i vari casi.
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{4422.pdf}
-    \caption{Grafici dell'errore in norma $\infty$ in funzione di $n$ per i vari casi, con nodi equidistanti.}
-    \label{fig:es4_4_2_2}
-\end{figure}
 Come atteso, l'errore in norma $\infty$ non decresce globalmente all'aumentare di $n$. Per le prime due funzioni
 l'errore è crescente fin dall'inizio, mentre per le ultime due funzioni l'errore decresce fino a un certo punto, 
 per tornare a crescere successivamente. È un comportamento noto come \textit{fenomeno di Runge}, ed è 
@@ -1784,7 +1772,7 @@ i soliti pesi. Si riporta in figura \ref{fig:es4_4_3_1}
 il grafico ottenuto con $n=40$ nodi di Chebyshev, per la funzione $f(z) = \cosh(\sin z)$ su $[0,2\pi]$.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{4431.pdf}
+    \includegraphics[width=0.7\textwidth]{4431.pdf}
     \caption{$f(z) = \cosh(\sin z)$ su $[0,2\pi]$ con $n=40$ nodi di Chebyshev.}
     \label{fig:es4_4_3_1}
 \end{figure}
@@ -1823,8 +1811,8 @@ con $n=30$ nodi di Chebyshev. Per motivi di rappresentazione grafica l'intervall
 si noti infatti che il numero di nodi in grafico è pari a venti: i dieci restanti sono al di fuori dell'intervallo.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{4441.pdf}
-    \caption{Grafico della funzione $f(z)=(z^2-2z+2)^{-1}$ e della sua interpolazione con $n=30$ nodi di Chebyshev.}
+    \includegraphics[width=0.7\textwidth]{4441.pdf}
+    \caption{$f(z)=(z^2-2z+2)^{-1}$ e relativa interpolazione con $30$ nodi di Chebyshev.}
     \label{fig:es4_4_4_1}
 \end{figure}
 
@@ -1914,8 +1902,6 @@ riduzione dell'errore.
 \end{figure}
 
 \section{Integrazione numerica}
-\subsection{Teoria}
-
 \subsection{Esercizi 5.1.1, 5.1.2}
 1. Scrivi un programma che implementi la regola del trapezio composta per un intervallo generico $[a,b]$. \\
 2. Per ciascuno dei seguenti integrali, utilizza la regola del trapezio per stimare il valore dell'integrale 
@@ -2406,8 +2392,6 @@ si può considerare l'algoritmo di Clenshaw-Curtis con l'uso della "fast Fourier
 l'efficienza.
 
 \section{Equazioni differenziali ordinarie}
-\subsection{Teoria}
-
 \subsection{Esercizi 6.2.1, 6.2.2}
 1. Scrivi un programma che implementi il metodo di Eulero per risolvere un \textit{sistema} 
 di equazioni differenziali.\\
