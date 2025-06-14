@@ -2885,7 +2885,56 @@ La tabella \ref{tab:passi} mostra il guadagno rispetto a un metodo non adattivo 
 ultimi due casi, dove le soluzioni presentano picchi molto accentuati, perchè il metodo BS23, nonostante abbia 
 passo medio dell'ordine di $10^{-3}$, raggiunge passi minimi dell'ordine di $10^{-4}$ e $10^{-5}$. 
 
+\subsection{Esercizio 6.3.7}
+Risolvi il problema $u'=100u^2-u^3$, $u(0)=0.0002$, $0\le t \le 100$ utilizzando il metodo BS23 e 
+realizza grafici che mostrino sia la soluzione sia i passi temporali scelti per $\delta=10^{-8}$. 
+La soluzione effettua una rapida transizione tra due stati quasi costanti. Il passo scelto dall'algoritmo 
+si comporta allo stesso modo in entrambi gli stati?
 
+\subsubsection{Soluzione}
+Si è risolto il problema ai valori iniziali (IVP) con il metodo BS23. Si riporta in figura \ref{fig:es6_3_7} 
+il grafico della soluzione ottenuta, insieme al grafico del passo $h$ in funzione del tempo. \\
+\begin{figure}[!ht]
+    \centering
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6371.pdf}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.47\textwidth}
+        \includegraphics[width=\textwidth]{6372.pdf}
+    \end{minipage}
+    \caption{Soluzione e passo del metodo BS23.}
+    \label{fig:es6_3_7}
+\end{figure}
+
+L'integrazione avviene con successo, ma il grafico del passo mostra un comportamento peculiare. Ci si potrebbe
+aspettare che, data la presenza di due zone analoghe per la soluzione, il passo scelto dall'algoritmo
+fosse simile in entrambe le zone, con una fase transiente in cui il passo diminuisce rapidamente.
+Invece si osserva che il passo è molto più grande nella zona iniziale, dove la soluzione cresce lentamente, 
+per poi rimanere costante nel tempo, e molto piccolo. Il problema descritto appartiene perciò
+alla categoria degli \textit{stiff problems}. \\
+Per studiare meglio il comportamento del passo, si è scelto di calolare i passi minimo e medio, 
+dividendo le due regioni della soluzione. La prima regione comincia da $t=0$ e termina a $t=51$, dove
+il valore finale si è scelto in modo da includere la fase transiente, e la seconda regione comincia da $t=51$ 
+e termina a $t=100$.
+In tabella \ref{tab:passi_stiff} sono riportati i valori di passo minimo e medio per le due regioni. \\
+\begin{table}[!ht]
+    \centering
+    \caption{Valori di passo minimo e medio per il problema stiff}
+    \label{tab:passi_stiff}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        \textbf{Regione} & \textbf{$h_{min}$} & \textbf{$h_{med}$} \\
+        \hline
+        Prima regione & $1.6 \times 10^{-6}$ & $0.00845$ \\
+        Seconda regione & $0.00025$ & $ 0.00025$ \\
+        \hline
+    \end{tabular}
+\end{table}
+Giustamente si osserva il minimo nella prima regione, perchè il minimo valore di $h$ viene assunto in 
+corrispondenza del salto della soluzione, in cui il metodo adattivo cerca passi molto piccoli per 
+ottenere una soluzione accurata. Ciò che è particolare è che nella seconda regione il passo si stabilizzi, 
+rimanendo costante e molto piccolo. 
 
 \section{Appendice}
 \subsection{Dati}

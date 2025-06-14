@@ -143,5 +143,7 @@
 \contentsline {subsubsection}{\numberline {6.7.1}Soluzione}{59}{subsubsection.6.7.1}%
 \contentsline {subsection}{\numberline {6.8}Esercizio 6.3.6}{60}{subsection.6.8}%
 \contentsline {subsubsection}{\numberline {6.8.1}Soluzione}{60}{subsubsection.6.8.1}%
-\contentsline {section}{\numberline {7}Appendice}{62}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Dati}{62}{subsection.7.1}%
+\contentsline {subsection}{\numberline {6.9}Esercizio 6.3.7}{62}{subsection.6.9}%
+\contentsline {subsubsection}{\numberline {6.9.1}Soluzione}{62}{subsubsection.6.9.1}%
+\contentsline {section}{\numberline {7}Appendice}{63}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Dati}{63}{subsection.7.1}%
