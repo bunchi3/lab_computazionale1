@@ -13,6 +13,7 @@
 \usepackage{caption}
 \usepackage{changepage}
 \usepackage{amsmath} 
+\usepackage{amssymb}
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage[table]{xcolor} 
@@ -31,7 +32,9 @@
 }
 \fancypagestyle{logoheader}{
     \fancyhf{}
-    \fancyhead[L]{\includegraphics[width = 3cm]{logo_bicocca.png}}
+    \fancyhead[L]{%
+        \raisebox{-1.7\height}{\includegraphics[width=3cm]{logo_bicocca.png}}
+    }
     \renewcommand{\headrulewidth}{0pt}
 }
 \setlength{\headheight}{72.63475pt} % Fix fancyhdr warning
@@ -55,14 +58,11 @@
 
 %Abstract da completare
 \begin{abstract} 
-	\begin{adjustwidth}{-1cm}{-1cm}
-	\end{adjustwidth}
-    \begin{center}
-        La presente relazione contiene gli esercizi svolti durante il corso di Fisica Computazionale. \\
-        Gli esercizi sono stati svolti in Julia e sono raccolti in una cartella git, di cui si riporta il link: \\
-        \url{https://github.com/bunchi3/lab_computazionale1.git} \\
+La presente relazione contiene gli esercizi svolti durante il corso di 
+Esperimentazioni di Fisica Computazionale. \\
+Gli esercizi sono stati svolti in Julia e sono raccolti in una cartella git, di cui si riporta il link: \\
+\url{https://github.com/bunchi3/lab_computazionale1.git} \\
 
-	\end{center}
 \end{abstract}
 \tableofcontents
 \newpage
@@ -77,7 +77,7 @@ la serie approssimante:
 \end{equation}
 
 \begin{enumerate}
-    \item Verifica che l'errore assoluto $\Delta=|f(x)-g_N(x)|$ scala approssimativamente come \\ 
+    \item Verifica che l'errore assoluto $\Delta=|f(x)-g_N(x)|$ scali approssimativamente come \\ 
     $x^{N+1}/(N+1)!$ per $N=1,2,3,4$.
     \item L'errore $\Delta$, nell'intervallo dato di $x$, differisce da $x^{N+1}/(N+1)!$. 
     Perché accade questo e per quali valori di $x$?
@@ -1896,7 +1896,7 @@ si osserva che per $n=12$ il polinomio interpolante si appiattisce definitivamen
 riduzione dell'errore.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{4617.pdf}
+    \includegraphics[width=0.7\textwidth]{4617.pdf}
     \caption{Ingrandimento della figura \ref{fig:es4_6_1_3} nella regione di appiattimento della funzione.}
     \label{fig:es4_6_1_4}
 \end{figure}
@@ -1908,27 +1908,24 @@ riduzione dell'errore.
 con $m=10\cdot 2^k$ nodi, per $k=1,2,\ldots,10$. Per ogni caso, rappresenta in scala log-log l'errore in funzione 
 di $m$ e verifica se la convergenza è di secondo ordine.
 
-\begin{itemize}
-    \item[(a)] $\displaystyle \int_0^1 x\log(1+x)\, dx = \frac{1}{4}$
-    \item[(b)] $\displaystyle \int_0^1 x^2 \tan^{-1}x\, dx = \frac{\pi-2+2\log 2}{12}$
-    \item[(c)] $\displaystyle \int_0^{\pi/2}e^x \cos x\, dx = \frac{e^{\pi/2}-1}{2}$
-    \item[(d)] $\displaystyle \int_0^1 \frac{\tan^{-1}(\sqrt{2+x^2})}{(1+x^2)\sqrt{2+x^2}}\,dx = \frac{5\pi^2}{96}$
-    \item[(e)] $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$ \\
-        \textit{Suggerimento:} Sebbene l'integranda abbia limite zero per $x\to 0$, non può essere valutata direttamente in $x=0$. 
-        Una possibilità è iniziare l'integrale da $x=\epsilon_{\rm mach}$. In alternativa, puoi definire una 
-        funzione wrapper $g(x)$ che restituisce $g(0)=0$ e $g(x)=\sqrt{x}\log(x)$ altrimenti.
-    \item[(f)] $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$
-\end{itemize}
+\begin{tabular}{@{}ll@{}}
+(a) $\displaystyle \int_0^1 x\log(1+x)\, dx = \frac{1}{4}$
+    & (b) $\displaystyle \int_0^1 x^2 \tan^{-1}x\, dx = \frac{\pi-2+2\log 2}{12}$ \\[1.5ex]
+(c) $\displaystyle \int_0^{\pi/2}e^x \cos x\, dx = \frac{e^{\pi/2}-1}{2}$
+    & (d) $\displaystyle \int_0^1 \frac{\tan^{-1}(\sqrt{2+x^2})}{(1+x^2)\sqrt{2+x^2}}\,dx = \frac{5\pi^2}{96}$ \\[1.5ex]
+(e) $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$ 
+    & (f) $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$ \\ [1.5ex]
+\end{tabular}
 
 \subsubsection{Soluzione}
-\paragraph{(1) } Si è implementata la regola del trapezio composta per un intervallo generico $[a,b]$,
-e la si è testata nell'esercizio 5.1.2. \\
-\paragraph{(2) } Si è calcolato l'integrale con la regola del trapezio per tutti i casi, al variare del numero di
-nodi. Oltre alla rappresentazione grafica dell'errore, si sono rappresentate le derivate seconde dell'integranda,
-in modo da poter verificare la convergenza di ordine secondo della regola del trapezio. La motivazione
-di tale scelta è che l'errore della regola del trapezio scala al secondo ordine con il passo di campionamento,
+\paragraph{(1)}Si è implementata la regola del trapezio composta per un intervallo generico $[a,b]$,
+e la si è testata nell'esercizio 5.1.2.
+\paragraph{(2)}Si è calcolato l'integrale con la regola del trapezio per tutti i casi, al variare del numero di
+nodi. Oltre ai grafici dell'errore, si sono rappresentate le derivate seconde delle integrande,
+in modo verificare la convergenza della regola del trapezio. Infatti l'errore della regola del trapezio 
+scala al secondo ordine con il passo di campionamento,
 ma ha per coefficiente la derivata seconda dell'integranda, calcolata in un certo $\xi$ appartenente all'intervallo
-in considerazione. In formule:
+di integrazione. In formule:
 \[
 R_T(h) = -\frac{(b-a)^3 }{12}h^2 f''(\xi)
 \]
@@ -2008,38 +2005,30 @@ Si riportano nelle figure \ref{fig:es5_1_2_1}, \ref{fig:es5_1_2_2}, \ref{fig:es5
     \label{fig:es5_1_2_6}
 \end{figure}
 
-Nei grafici viene riportata la pendenza dell'interpolante dell'errore e nei primi quattro casi l'errore 
+Nei grafici viene riportata la pendenza dell'interpolante dell'errore. Nei primi quattro casi l'errore 
 decresce con un andamento quadratico nel passo $h$, come atteso. Nel quinto e sesto caso l'errore decresce 
 con un ordine inferiore. Come già accennato, questo è dovuto al fatto che l'integranda ha derivata seconda 
-non ben definita nel dominio di integrazione.
+discontinua nel dominio di integrazione.
 
-\paragraph{Commento: } Qui e nei prossimi esercizi l'interpolazione è stata eseguita per l'errore $R_T$ (o $R_S$)
-in funzione del passo $h$, e non in funzione del numero di nodi $m$, per mostrare l'andamento quadratico 
-(o quartico) dell'errore. I grafici sono stati realizzati in funzione del numero di nodi come richiesto
-e quindi la retta di regressione è stata calcolata in funzione del numero di nodi $m$ e non del passo $h$.
-Si ricorda che il passo $h$ è legato al numero di nodi $m$ dalle relazioni:
-\begin{equation}
-    h = \frac{b-a}{m}, \qquad h = \frac{b-a}{2m},
-\end{equation}
-la prima per la regola del trapezio e la seconda per la regola di Simpson.
+\paragraph{Commento:}Qui e nei prossimi esercizi l'interpolazione per l'errore $R_T$ (o $R_S$) è stata eseguita
+in funzione del passo $h$, anche se in grafico viene riportata rispetto al numero di nodi $m$. Ciò vuole
+dire che le pendenze si riferiscono non alla retta rappresentata ma alla retta interpolata, rappresentando
+l'ordine di convergenza del metodo studiato.  
 
 \subsection{Esercizi 5.1.3, 5.1.4}
-3. Scrivi un programma che implementi la regola di Simpson composta per un intervallo generico $[a,b]$. \\
-4. Per ciascun integrale dell'Esercizio 1 sopra, applica la formula di Simpson e confronta gli errori con 
+3. Scrivi un programma che implementi la regola di Simpson composta per un intervallo $[a,b]$. \\
+4. Per ciascun integrale dell'esercizio 5.1.1, applica la formula di Simpson e confronta gli errori con 
 la convergenza di ordine quattro.
 
 \subsubsection{Soluzione}
-\paragraph{(3) } Si è implementata la regola di Simpson composta per un intervallo generico $[a,b]$,
+\paragraph{(3)}Si è implementata la regola di Simpson composta per un intervallo $[a,b]$,
 e la si è testata nell'esercizio 5.1.4. \\
-\paragraph{(4) } Si è calcolato l'integrale con la regola di Simpson per tutti i casi, al variare del numero di
-nodi. Oltre alla rappresentazione grafica dell'errore, si sono rappresentate le derivate quarte dell'integranda,
-in modo da poter verificare la convergenza di ordine quarto della regola di Simpson. La motivazione
-di tale scelta è che l'errore della regola di Simpson scala al quarto ordine con il passo di campionamento,
-ma ha per coefficiente la derivata quarta dell'integranda, calcolata in un certo $\xi$ appartenente all'intervallo
-in considerazione. In formule:
+\paragraph{(4)}Si è calcolato l'integrale con la regola di Simpson per tutti i casi, al variare del numero di
+nodi. Per le stesse ragioni dell'esercizio 5.1.2 si sono rappresentate, oltre ai grafici dell'errore, 
+le derivate quarte dell'integranda. Nel caso di Simpson la formula dell'errore è:
 \[
-R_S(h) = -\frac{(b-a)}{180}h^4 f^{(4)}(\xi)
-\]
+R_S(h) = -\frac{(b-a)}{180}h^4 f^{(4)}(\xi), \qquad \text{con } \xi \in (a, b)
+\] 
 Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5_1_4_3},
 \ref{fig:es5_1_4_4}, \ref{fig:es5_1_4_5}, \ref{fig:es5_1_4_6} gli studi dei vari casi.
 \begin{figure}[!ht]
@@ -2115,14 +2104,13 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
     \label{fig:es5_1_4_6}
 \end{figure}
 
-Si può osservare che l'errore decresce con un andamento quartico nei primi quattro casi, come atteso, ma non negli
-ultimi due casi, in cui la derivata quarta è non ben definita. In questi casi l'errore decresce con un ordine 
-inferiore. Nei casi in cui l'errore decresce con un ordine quartico, si osserva che l'errore scende rapidamente
-fino a valore di $\epsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente l'interpolazione
+Si può osservare che l'errore decresce con un andamento quartico nei primi quattro casi, e con uno di ordine 
+inferiore negli altri due. Nei primi quattro casi, si osserva che l'errore diminuisce rapidamente
+fino a $\varepsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente l'interpolazione
 dell'errore è stata eseguita solo sui punti che si trovano al di sopra di questo valore.
 
 \subsection{Esercizio 5.3.1}
-1. Scrivi un programma che calcoli i nodi e i pesi per la quadratura di Gauss-Legendre nell’intervallo $[-1,1]$. 
+1. Scrivi un programma che calcoli i nodi e i pesi per la quadratura di Gauss-Legendre nell'intervallo $[-1,1]$. 
 Di seguito alcuni suggerimenti per l'implementazione. \\
 (a) Per trovare le radici $x_k$, con $k=1,\ldots,n$, del polinomio di Legendre $P_n(x)$ di ordine $n$, 
 usa il metodo di Newton. Come condizione iniziale per la $k$-esima radice, utilizza
@@ -2138,6 +2126,7 @@ dove $x_k^{(i)}$ è la $i$-esima iterazione nella ricerca della $k$-esima radice
 Puoi ottenerle risolvendo la relazione di ricorrenza
 
 \begin{equation}
+    \label{eq:legendre_recurrence}
     (m+1)P_{m+1}(x) = (2m+1)xP_{m}(x) - mP_{m-1}(x)\,,
 \end{equation}
 
@@ -2160,8 +2149,8 @@ permette di ottenere il peso corrispondente tramite:
 
 \subsubsection{Soluzione}
 Per comodità di implementazione la soluzione riporta i quattro passaggi nel seguente ordine: (b), (a), (c), (d).
-\paragraph{(b) } Si è sviluppato un algoritmo che calcola sia i polinomi di Legendre $P_n(x)$ che le loro derivate $P'_n(x)$
-utilizzando la relazione di ricorrenza indicata nell'esercizio. Si riporta in figura \ref{fig:es5_3_1_1} il grafico 
+\paragraph{(b)}Si è sviluppato un algoritmo che calcola sia i polinomi di Legendre $P_n(x)$ che le loro derivate $P'_n(x)$
+utilizzando la relazione di ricorrenza \ref{eq:legendre_recurrence}. Si riporta in figura \ref{fig:es5_3_1_1} il grafico 
 dei polinomi e delle loro derivate fino ad ordine $n = 4$.
 \begin{figure}[!ht]
     \centering
@@ -2169,7 +2158,7 @@ dei polinomi e delle loro derivate fino ad ordine $n = 4$.
     \caption{Polinomi di Legendre $P_n(x)$ e le loro derivate $P'_n(x)$ fino ad ordine $n=4$.}
     \label{fig:es5_3_1_1}
 \end{figure}
-\paragraph{(a) (b) } Si è implementato il metodo di Newton per trovare le radici dei polinomi di Legendre $P_n(x)$ 
+\paragraph{(a) (c) (d)}Si è implementato il metodo di Newton per trovare le radici dei polinomi di Legendre $P_n(x)$ 
 e dei pesi associati. Una volta calcolati gli zeri di $P_n(x)$, si sono trovati i pesi associati utilizzando 
 la formula \ref{eq:gauss_legendre_weight}.
 Si riporta in tabella \ref{tab:legendre_ordine4} il confronto tra i nodi e pesi calcolati con i 
@@ -2192,25 +2181,24 @@ corrispettivi valori tabulati, con ordine del polinomio $n = 4$.
 \end{table}
 
 \subsection{Esercizio 5.4.1}
-Per ciascun integrale, calcola le approssimazioni utilizzando le regole di quadratura di Gauss-Legendre e 
+Per ciascun integrale, utilizza le regole di quadratura di Gauss-Legendre e 
 Clenshaw-Curtis con $n=4,6,8,\ldots,40$. Rappresenta graficamente gli errori $|I_n-I|$ di entrambi i metodi 
-in funzione di $n$ su una scala semi-logaritmica. (Suggerimento: considera di implementare la regola di 
-Clenshaw-Curtis solo per $n$ pari.)
+in funzione di $n$ su una scala semi-logaritmica. Implementa la regola di 
+Clenshaw-Curtis solo per $n$ pari.
 
-\begin{itemize}
-    \item[(a)] $\displaystyle\int_{-1}^1 e^{-4x}\, dx = \frac{1}{2}\sinh(4)$
-    \item[(b)] $\displaystyle\int_{-1}^1 e^{-9x^2}\, dx = \frac{\sqrt{\pi}}{3}\, \operatorname{erf}(3)$
-    \item[(c)] $\displaystyle\int_{-1}^1 \operatorname{sech}(x) \, dx = 2 \tan^{-1} [ \sinh (1) ]$
-    \item[(d)] $\displaystyle\int_{-1}^1 \frac{1}{1+9x^2}\, dx = \frac{2}{3} \tan^{-1}(3)$
-    \item[(e)] $\displaystyle\int_{\pi/2}^{\pi} x^2 \sin 8x \, d x = -\frac{3 \pi^2}{32}$
-\end{itemize}
+\begin{tabular}{@{}ll@{}}
+(a) $\displaystyle\int_{-1}^1 e^{-4x}\, dx = \frac{1}{2}\sinh(4)$
+    & (b) $\displaystyle\int_{-1}^1 e^{-9x^2}\, dx = \frac{\sqrt{\pi}}{3}\, \operatorname{erf}(3)$ \\[1.5ex]
+(c) $\displaystyle\int_{-1}^1 \operatorname{sech}(x) \, dx = 2 \tan^{-1} [ \sinh (1) ]$
+    & (d) $\displaystyle\int_{-1}^1 \frac{1}{1+9x^2}\, dx = \frac{2}{3} \tan^{-1}(3)$ \\[1.5ex]
+(e) $\displaystyle\int_{\pi/2}^{\pi} x^2 \sin 8x \, d x = -\frac{3 \pi^2}{32}$ & \\
+\end{tabular}
 
 \subsubsection{Soluzione}
-Per ciascun integrale, sono state calcolate le approssimazioni utilizzando le regole di quadratura di 
-Gauss-Legendre e Clenshaw-Curtis con $n=4,6,8,\ldots,40$. Gli errori $|I_n-I|$ di entrambi i metodi 
-sono stati rappresentati graficamente in funzione di $n$ su una scala semi-logaritmica.\\
-I grafici saranno presentati non nell'ordine in cui sono stati richiesti, ma dapprima gli integrali di
-funzioni olomorfe, poi quelli di funzioni non olomorfe. \\
+Per ciascun integrale sono state calcolate le approssimazioni utilizzando le regole di quadratura di 
+Gauss-Legendre e Clenshaw-Curtis con $n=4,6,8,\ldots,40$. \\
+Dato che la convergenza dei due metodi dipende dalle proprietà di olomorfia delle funzioni integrande 
+estese al piano complesso, i grafici non sono presentati nell'ordine richiesto.
 Si riportano in figura \ref{fig:es5_4_1_1}, gli studi degli errori per gli integrali di funzioni olomorfe.
 
 \begin{figure}[!ht]
@@ -2233,14 +2221,14 @@ Si riportano in figura \ref{fig:es5_4_1_1}, gli studi degli errori per gli integ
 \end{figure}
 
 I grafici di figura \ref{fig:es5_4_1_1} mostrano che gli errori decrescono in maniera molto rapida all'aumentare
-di $n$, raggiungendo l'ordine di grandezza di $\epsilon_{mach}$ per $n$ piccoli. Questo fenomeno è legato 
-alla regolarità dell'integranda, che è olomorfa in tutto l'intervallo di integrazione. \\
-Un'altro comportamento degno di nota è che gli errori del metodo di Clenshaw-Curtis sono più grandi di quelli
-del metodo di Gauss-Legendre, questo è legato al fatto che il metodo di Clenshaw-Curtis integra esattamente 
-polinomi di grado $n-1$ mentre il metodo di Gauss-Legendre integra esattamente polinomi di grado $2n-1$. \\
+di $n$, raggiungendo l'ordine di grandezza di $\varepsilon_{mach}$ per $n$ piccoli. Questo fenomeno è legato 
+all'olomorfia dell'integranda su tutto il piano complesso. \\
+Il metodo di Clenshaw-Curtis integra esattamente polinomi di ordine $n-1$, il metodo di Gauss-Legendre integra
+esattamente polinomi di ordine $2n-1$. Tale proprietà è mostrata graficamente dal fatto che gli errori
+di Clenshaw sono sempre maggiori degli errori di Gauss.\\
 Infine si può mostrare matematicamente che inizialmente gli errori del metodo di Clenshaw-Curtis coincidono
-con gli errori del metodo di Gauss-Legendre. \\
-Si riportano in figura \ref{fig:es5_4_1_2}, gli studi degli errori per gli integrali di funzioni non olomorfe.
+con gli errori del metodo di Gauss-Legendre, proprio come si nota in figura.\\
+Si riportano in figura \ref{fig:es5_4_1_2} gli studi degli errori per gli integrali di funzioni non olomorfe.
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
@@ -2257,12 +2245,12 @@ Si riportano in figura \ref{fig:es5_4_1_2}, gli studi degli errori per gli integ
 \end{figure}
 
 Nei casi di figura \ref{fig:es5_4_1_2} si è potuto studiare l'errore in maniera più accurata tramite le ellissi
-di Bernstein. Dalla teoria è noto che la più grande ellissi nel piano complesso che non contiene singolarità e 
-definita da: 
+di Bernstein. Dalla teoria è noto che la più grande ellissi nel piano complesso definita da: 
 \begin{equation}
     E_\rho = \left\{ z \in C : z = \frac{1}{2} \left( \rho e^{i\theta} + \rho^{-1} e^{-i\theta} \right), \; \theta \in [0, 2\pi) \right\}\,.
 \end{equation}
 
+non contenente singolarità 
 determina il parametro $\rho$ delle seguenti maggiorazioni:
 
 \begin{equation}
@@ -2270,34 +2258,33 @@ determina il parametro $\rho$ delle seguenti maggiorazioni:
     |I[f]-I_n[f]| \leq \frac{64}{15} \frac{M\rho^{1-n}}{\rho^2-1}\,, \qquad |I[f]-I_n[f]| \leq \frac{64}{15} \frac{M\rho^{-2n}}{\rho^2-1}\,.
     \end{equation}
 
-dove la prima riguarda Clenshaw-Curtis, la seconda Gauss-Legendre.\\
-Si è perciò calcolato il parametro $\rho$ in entrambi i casi, sapendo che le singolarità delle integrande estese
-al piano complesso si trovano in $\frac{i \pi}{2} + ik\pi$ per $k \in N$ nel primo caso, in $\pm i\frac{1}{3}$
+La prima riguarda Clenshaw-Curtis, la seconda Gauss-Legendre.\\
+Si è perciò calcolato il parametro $\rho$ per i casi (c) e (d), sapendo che le singolarità delle integrande estese
+al piano complesso si trovano in $\frac{i \pi}{2} + ik\pi$ per $k \in \mathbb{N}$ nel primo caso, in $\pm \frac{i}{3}$
 nel secondo. Tramite $\rho$ si sono stimati i limiti superiori degli errori al variare di $n$. Nei grafici 
-vengono riportate le rette, ma dato che in \ref{eq:errors_CC_GL} è presente anche la maggiorazione con $M$, 
+vengono riportate le rette, ma dato che nelle \ref{eq:errors_CC_GL} è presente anche $M$, 
 il grafico si concentra sulla pendenza e non sulla traslazione verticale. Si può notare che nel caso (c) 
-le rette ricalcano precisamente la pendenza degli errori. Nel caso (d) l'andamento di Curtis è rispettato, mentre 
-Legendre necessita di più punti per poter entrare nel regime in cui l'errore scala come $O(n^2)$. D'altra parte, 
-l'accuratezza massima raggiunta nel caso del metodo (d) è dell'ordine di $10^{-11}$, molto più alta rispetto
-agli altri casi. Infine, per i valori di $n$ considerati, i due metodi non escono dalla regione in cui gli
-errori sono gli stessi. Per queste ragioni nel caso (d) la pendenza della retta nel caso di Gauss-Legendre
-non coincide con quella degli errori. \\
+le rette ricalcano precisamente la pendenza degli errori. \\ 
+Nel caso (d) gli errori di Curtis rispettano l'andamento atteso, al contrario degli errori di Legendre. 
+Sono necessari più punti per osservare la regione in cui gli errori scalano come $O(n^2)$, infatti i grafici 
+dell'errore sono ancora nella regione in cui gli errori coincidono e la precisione non è scesa sotto $10^{-11}$.
+Per questi motivi in (d) non si osserva il comportamento atteso.
 
 \subsection{Esercizio 5.4.2}
 Per ciascun integrale improprio, calcola le approssimazioni utilizzando la regola di quadratura double-exponential 
 appropriata con $N=n/2$ e $n=4,6,8,\ldots,60$. Rappresenta graficamente gli errori in funzione di $n$ 
 su una scala semi-logaritmica.
 
-\begin{itemize}
-    \item[(a)] $\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2+x^4}\, dx = \frac{\pi}{\sqrt{3}}$
-    \item[(b)] $\displaystyle\int_{-\infty}^\infty e^{-x^2}\cos(x)\, dx = e^{-1/4}\sqrt{\pi}$
-    \item[(c)] $\displaystyle\int_{-\infty}^\infty (1+x^2)^{-2/3}\, dx = \frac{\sqrt{\pi}\,\Gamma(1/6)}{\Gamma(2/3)}$
-    \item[(d)] $\displaystyle \int_{0}^{\infty} \frac{1}{1+x^2}\,dx = \frac{\pi}{2}$
-    \item[(e)] $\displaystyle \int_0^\infty \frac{e^{-x}}{\sqrt{x}}\,dx = \sqrt{\pi}$
-\end{itemize}
+\begin{tabular}{@{}ll@{}}
+(a) $\displaystyle\int_{-\infty}^\infty \frac{1}{1+x^2+x^4}\, dx = \frac{\pi}{\sqrt{3}}$
+    & (b) $\displaystyle\int_{-\infty}^\infty e^{-x^2}\cos(x)\, dx = e^{-1/4}\sqrt{\pi}$ \\[1.5ex]
+(c) $\displaystyle\int_{-\infty}^\infty (1+x^2)^{-2/3}\, dx = \frac{\sqrt{\pi}\,\Gamma(1/6)}{\Gamma(2/3)}$
+    & (d) $\displaystyle \int_{0}^{\infty} \frac{1}{1+x^2}\,dx = \frac{\pi}{2}$ \\[1.5ex]
+(e) $\displaystyle \int_0^\infty \frac{e^{-x}}{\sqrt{x}}\,dx = \sqrt{\pi}$ & \\
+\end{tabular}
 
 \subsubsection{Soluzione}
-Si riportano nelle figure \ref{fig:es5_4_2_1} e \ref{fig:es5_4_2_2} gli studi degli errori per gli integrali 
+Si riportano nella figura \ref{fig:es5_4_2_1}  gli studi degli errori per gli integrali 
 impropri, con la regola di quadratura double-exponential.
 \begin{figure}[!ht]
     \centering
@@ -2318,38 +2305,34 @@ impropri, con la regola di quadratura double-exponential.
         \includegraphics[width=\textwidth]{5424.pdf}
         \caption*{(d)}
     \end{minipage}
-    \caption{Studio degli errori per gli integrali impropri con la regola di quadratura double-exponential.}
-    \label{fig:es5_4_2_1}
-\end{figure}
-In figura \ref{fig:es5_4_1_2} possiamo notare che gli integrali convergono nonostante la presenza di singolarità
-nelle integrande, questo è uno dei vantaggi della regola di quadratura double-exponential. 
-\begin{figure}[!ht]
-    \centering
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{5425.pdf}
         \caption*{(e)}
     \end{minipage}
-    \caption{Studio degli errori per l'integrale improprio con la regola di quadratura double-exponential.}
-    \label{fig:es5_4_2_2}
+    \caption{Studio degli errori per integrali con la regola double-exponential.}
+    \label{fig:es5_4_2_1}
 \end{figure}
 
-Nella figura \ref{fig:es5_4_2_2} si sono rappresentati gli errori dell'integrazione secondo la regola di quadratura
-double-exponential, ma in un caso con l'utilizzo del cambio di variabile apposito per funzioni con $e^-x$, 
-nell'altro senza. Si può notare che nel primo caso l'errore ha una convergenza molto più rapida, raggiungendo 
-l'ordine di $\epsilon_{mach}$.
+In figura \ref{fig:es5_4_2_1} possiamo notare che si sono riusciti a integrare correttamente integrali
+definiti su intervalli non limitati, grazie al cambio di varaiabile della quadratura double-exponential. \\
+Nell'ultimo grafico si sono rappresentati gli errori dell'integrazione con il cambio di variabile standard e 
+con l'utilizzo del cambio di variabile apposito per funzioni con $e^{-x}$. Si può notare che nel secondo caso 
+l'errore ha una convergenza molto più rapida, raggiungendo l'ordine di $\varepsilon_{mach}$. Infine il caso
+(e) è particolarmente adatto all'integrazione doppio esponenziale poichè presenta singolarità all'estremo di 
+integrazione.
 
 \subsection{Esercizio 5.4.3}
 Per ciascun integrale, calcola le approssimazioni utilizzando la regola di quadratura di Gauss-Legendre 
 con $n=4,6,8,\ldots,60$ e la regola di quadratura double-exponential appropriata con $N=n/2$. 
 Rappresenta graficamente gli errori in funzione di $n$ su una scala semi-logaritmica.
 
-\begin{itemize}
-    \item[(a)] $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$
-    \item[(b)] $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$
-    \item[(c)] $\displaystyle \int_0^1 (\log x)^2\, dx = 2$
-    \item[(d)] $\displaystyle \int_0^{\pi/2} \log(\cos(x))\, dx = -\frac{\pi}{2}\log(2)$
-    \item[(e)] $\displaystyle \int_0^{\pi/2} \sqrt{\tan(x)}\, dx = \dfrac{\pi}{\sqrt{2}}$
-\end{itemize}
+\begin{tabular}{@{}ll@{}}
+(a) $\displaystyle \int_0^1 \sqrt{x} \log(x) \, dx = -\frac{4}{9}$
+    & (b) $\displaystyle \int_0^1 \sqrt{1-x^2}\, dx = \frac{\pi}{4}$ \\[1.5ex]
+(c) $\displaystyle \int_0^1 (\log x)^2\, dx = 2$
+    & (d) $\displaystyle \int_0^{\pi/2} \log(\cos(x))\, dx = -\frac{\pi}{2}\log(2)$ \\[1.5ex]
+(e) $\displaystyle \int_0^{\pi/2} \sqrt{\tan(x)}\, dx = \dfrac{\pi}{\sqrt{2}}$ & \\
+\end{tabular}
 
 \subsubsection{Soluzione}
 Si riportano in figura \ref{fig:es5_4_3_1} gli studi degli errori per gli integrali con la regola di quadratura 
@@ -2381,15 +2364,15 @@ di Gauss-Legendre, insieme agli errori della regola di quadratura double-exponen
     \label{fig:es5_4_3_1}
 \end{figure}
 
-RIVEDI QUESTE CONSIDERAZIONI: \\
-Dai grafici risulta evidente che gli errori della regola di quadratura di Gauss-Legendre decrescono molto
-più rapidamente rispetto a quelli della regola di quadratura double-exponential. Con questo esercizio, unitamente
-agli esercizi 5.4.1 e 5.4.2, giungiamo alla conclusione che la regola di Gauss-Legendre è l'algoritmo più
-rapido per il calcolo di integrali di funzioni regolari, almeno per la nostra implementazione. 
-Lo svantaggio è che non riesce a integrare tutte le funzioni, per cui bisogna ricorrere alla quadratura 
-double-exponential nel caso di funzioni con singolarità, nonostante sia molto più lento. In generale però
-si può considerare l'algoritmo di Clenshaw-Curtis con l'uso della "fast Fourier transform" (FFT), aumentandone
-l'efficienza.
+Dai grafici si osserva la rapidità del metodo di quadratura double-exponential. Lo svantaggio di tale tecnica
+di integrazione è il costo computazionale elevato perchè il cambio di variabile richiede un numero
+maggiore di valutazioni di funzione rispetto all'algoritmo di Gauss-Legendre. Ricordando i risultati
+degli esercizi precedenti si conclude che Gauss-Legendre è un algoritmo migliore nel caso di integrande 
+regolari, mentre la quadratura double-exponential è migliore nel caso di singolarità nell'intervallo di 
+integrazione. Clenshaw-Curtis, per come è stato sviluppato nel corso, converge più lentamente di Gauss e 
+si sarebbe tentati di affermare che sia peggiore degli altri due metodi. Ciò non è vero nel momento in cui
+il calcolo dei pesi di Clenshaw-Curtis viene unito all'algoritmo della \textit{fast Fourier transform},
+che abbassa di molto il costo computazionale.
 
 \section{Equazioni differenziali ordinarie}
 \subsection{Esercizi 6.2.1, 6.2.2}
@@ -2410,7 +2393,7 @@ $\quad$ $\hat{u}(t) = [1+(2/3)\ln (1+t^3)]^{1/2}$
 
 \subsubsection{Soluzione}
 Si è implementato il metodo di Eulero per risolvere un sistema di equazioni differenziali. La funzione che 
-sviluppa il metodo viene testata nei prossimi esercizi, sia nel caso di equazioni che di sistemi di equazioni.\\
+sviluppa il metodo viene testata nei prossimi esercizi.\\
 Si riportano nelle figure \ref{fig:es6_2_1_1}, \ref{fig:es6_2_1_2}, \ref{fig:es6_2_1_3} i grafici delle soluzioni, 
 uniti ai grafici degli errori per i tre casi richiesti. Le soluzioni sono calcolate per $n = 320$ come richiesto,
 i grafici degli errori corrispondono a più soluzioni con $n$ che varia da $10\cdot2^k$ con $k=2,3,\ldots,10$.
@@ -2451,20 +2434,20 @@ i grafici degli errori corrispondono a più soluzioni con $n$ che varia da $10\c
     \label{fig:es6_2_1_3}
 \end{figure}
 
-La prima osservazione che si può fare riguarda la convergenza del metodo di Eulero. In tutti i grafici
-gli errori sono stati calcolati sia come $||u-\hat{u}||_\infty=\max_{0\leq i\leq n} |u_i-\hat{u}(t_i)|$ che come
-$|u_n-\hat{u}(t_n)|$. In entrambi i casi si osserva che gli errori decrescono con un ordine di grandezza
-prossimo a $O(h)$, come atteso per il metodo di Eulero. Nei grafici infatti è stato riportato il coefficiente
+La prima osservazione che si può fare riguarda la convergenza del metodo di Eulero.
+Gli errori decrescono come $O(h)$, come atteso. 
+Nei grafici infatti è stato riportato il coefficiente
 angolare dell'interpolazione degli errori con il metodo dei minimi quadrati. In tutti e tre i casi, per ciascuna
 tipologia di errore, il coefficiente angolare è prossimo a $-1$. \\
 La seconda osservazione riguarda la differenza tra i due tipi di errore. Si osserva che solo nel primo grafico 
-le due rette degli errori sono distinte, mentre negli altri due casi sono sovrapposte. Questo è lo stesso 
+le due rette degli errori sono distinte, mentre negli altri due casi sono sovrapposte. Lo stesso 
 comportamento che si è studiato nella teoria, in cui perturbazioni del valore iniziale influenzano la soluzione.
-L'esempio fatto riguardava le due equazioni differenziali lineari $u' = u$ e $u' = -u $, in cui la soluzione
+L'esempio riguardava le due equazioni $u' = u$ e $u' = -u $, in cui la soluzione
 della prima equazione amplifica gli errori, mentre la soluzione della seconda equazione li smorza. 
-Nel nostro caso, la soluzione dell'equazione (a) smorza gli errori avanzando nel tempo, per cui il massimo 
-errore non si raggiunge all'istante finale. La diretta conseguenza è che le rette sono distinte.
-Negli altri due casi invece la soluzione amplifica gli errori, portando a rette sovrapposte.
+Nel nostro caso, la soluzione dell'equazione (a) smorza gli errori avanzando nel tempo, il massimo 
+errore non si raggiunge all'istante finale e quindi le rette sono distinte.
+Negli altri due casi la soluzione amplifica gli errori, il massimo si raggiunge all'istante finale e le rette
+risultano sovrapposte.
 
 \subsection{Esercizio 6.2.3}
 Risolvi i seguenti problemi ai valori iniziali (IVP) con il metodo di Eulero utilizzando $n=1000$ passi. 
@@ -2512,7 +2495,6 @@ di primo ordine, in modo da poter utilizzare il metodo di Eulero:
 \right.
 \end{align*}
 
-Scritte così si è potuto utilizzare il metodo di Eulero per sistemi di equazioni differenziali.
 Si riportano in figura \ref{fig:es6_2_3_1}, \ref{fig:es6_2_3_2}, \ref{fig:es6_2_3_3} i grafici delle soluzioni
 e delle loro derivate prime, insieme ai grafici degli errori per i tre casi richiesti. Gli errori rappresentano 
 la distanza tra la soluzione calcolata e quella esatta, in ciascuna componente del sistema.
@@ -2556,9 +2538,9 @@ la distanza tra la soluzione calcolata e quella esatta, in ciascuna componente d
 Nelle figure \ref{fig:es6_2_3_1} e \ref{fig:es6_2_3_2} è possibile notare che gli errori aumentano insieme al 
 tempo. Infatti nel caso (a) la soluzione esatta è una combinazione di funzioni trigonometriche, per cui 
 le perturbazioni iniziali si amplificano nel tempo. Nel caso (b) si ha lo stesso comportamento perchè a tempi 
-più grandi domina l'esponenziale $e^{2t}$, che amplifica le perturbazioni iniziali. \\
-Al contrario in figura \ref{fig:es6_2_3_3} si osserva che gli errori decrescono nel tempo, questo perchè la 
-soluzione esatta è esponenziale decrescente, e così smorza l'errore.
+grandi domina l'esponenziale $e^{2t}$, amplificando le perturbazioni iniziali. \\
+Al contrario in figura \ref{fig:es6_2_3_3} si osservano gli errori decrescere nel tempo perchè la 
+soluzione esponenziale decrescente smorza l'errore.  
 
 \subsection{Esercizio 6.3.1}
 (a) Scrivi un programma che risolva un sistema di equazioni differenziali utilizzando il metodo IE2 
@@ -2567,8 +2549,7 @@ soluzione esatta è esponenziale decrescente, e così smorza l'errore.
 (Runge-Kutta del quarto ordine).\\
 (c) Testa la tua implementazione dei metodi IE2 e RK4 sul problema ai valori iniziali\\
 
-$u' = -2t u$, $\ 0 \le t \le 2$, $\ u(0) = 2$; \\
-$\hat{u}(t) = 2e^{-t^2}$ \\
+$u' = -2t u$, $\ 0 \le t \le 2$, $\ u(0) = 2; \qquad \hat{u}(t) = 2e^{-t^2}$ \\
 
 Risolvi per $n=30,60,90,\ldots,300$ e rappresenta graficamente l'errore massimo 
 $||u-\hat{u}||_\infty=\max_{0\leq i\leq n} |u_i-\hat{u}(t_i)|$ in funzione del numero di valutazioni 
@@ -2585,12 +2566,12 @@ calcolati per $n=30,60,90,\ldots,300$.
     \label{fig:es6_3_1}
 \end{figure}
 Nel grafico sono state tracciate le rette interpolanti degli errori, ottenute con il metodo dei minimi quadrati. 
-Di tali rette sono riportate sul grafico le pendenze, in accordo con la teoria. Il metodo IE2 infatti deve avere 
-un ordine di convergenza pari a $2$, mentre il metodo RK4 deve avere un ordine di convergenza pari a $4$. \\
+Di tali rette sono riportate sul grafico le pendenze. Il metodo IE2 ha ordine di convergenza pari a $2$, 
+il metodo RK4 ha ordine di convergenza pari a $4$. Tali valori teorici sono in accordo con le pendenze trovate.\\
 I grafici sono stati realizzati in funzione del numero di valutazioni della funzione. Sapendo che IE2 richiede $2$
 valutazioni della funzione per ogni passo, e che RK4 richiede $4$ valutazioni della funzione per ogni passo,
 si può spiegare il fatto che i punti del grafico si trovano incolonnati uno ogni due passi di IE2. \\
-Infine si può notare che a parità di numero di valutazioni della funzione, il metodo RK4 ha un errore molto più 
+Infine, a parità di numero di valutazioni della funzione il metodo RK4 ha un errore molto più 
 piccolo rispetto al metodo IE2, evidenziandone l'efficacia.
 
 \subsection{Esercizio 6.3.2}
@@ -2605,20 +2586,18 @@ come assi del grafico.
 x' = -4y + x(1 - x^2 - y^2) \\
 y' = 4x + y(1 - x^2 - y^2)
 \end{cases}
-\quad 
-\\
-\vspace{2em}
-\text{con } [x(0), y(0)] = [0.1, 0],\ [0, 1.9]
+\qquad
+[x(0),\, y(0)] = [0.1,\, 0],\quad [0,\, 1.9]
 \end{align*}
+
 \begin{align*}
 \text{(b)}\quad 
 \begin{cases}
 x' = -4y - \dfrac{1}{4}x(1 - x^2 - y^2)(4 - x^2 - y^2) \\
 y' = 4x - \dfrac{1}{4}y(1 - x^2 - y^2)(4 - x^2 - y^2)
 \end{cases}
-\\
-\vspace{2em}
-\text{con } [x(0), y(0)] = [0.95, 0],\quad [0, 1.05],\quad [-2.5, 0]
+\hspace{0.3cm}
+[x(0),\, y(0)] = [0.95,\, 0], [0,\, 1.05], [-2.5,\, 0]
 \end{align*}
 
 \subsubsection{Soluzione}
@@ -2626,23 +2605,21 @@ Si sono risolti i due sistemi di equazioni differenziali con il metodo RK4, per 
 indicate. Al fine di stimare un valore per il passo h, si è scelto di utilizzare il seguente algoritmo:
 \begin{enumerate}
     \item Si sceglie un numero di passi iniziale $n$.
-    \item Si calcola la soluzione per $n$ passi, ottenendo la soluzione $u$.
-    \item Si calcola la soluzione per $2n$ passi, ottenendo la soluzione $\tilde{u}$.
-    \item Si calcola l'errore come $||u - \tilde{u}||_\infty$, dove di $\tilde{u}$ si scelgono 
-    solo i punti che corrispondono a $u$.
-    \item Se l'errore è maggiore di una tolleranza $\epsilon$, si raddoppia il passo e si torna al punto 2,
+    \item Si calcolano le soluzioni per $n$ e $2n$ passi, ottenendo rispettivamente $u$ e $\tilde{u}$.
+    \item Si calcola l'errore come $||u - \tilde{u}||_\infty$, scegliendo per $\tilde{u}$ punti alterni.
+    \item Se l'errore è maggiore di una tolleranza $\varepsilon$, si raddoppia il passo e si torna al punto 2,
     altrimenti l'algoritmo si interrompe, restituisce $n$ e $h = \frac{b-a}{n}$.
 \end{enumerate}
 
-Per tutte le condizioni iniziali si è scelto come tolleranza $\epsilon = 10^{-6}$, e come numero di punti iniziali
+Per tutte le condizioni iniziali si è scelto come tolleranza $\varepsilon = 10^{-6}$, e come numero di punti iniziali
 $n = 1000$. \\
 Da notare che nell'algoritmo presentato ad ogni passo bisogna calcolare solamente una nuova soluzione perchè si 
 riutilizza quella precedente. Con l'algoritmo proposto si riesce a stimare un valore di $h$ che garantisca
 un errore inferiore alla tolleranza, ma non è certamente paragonabile al metodo adattivo, che permette 
 di scegliere il passo in maniera più efficiente, a ogni passaggio. \\
-Si riportano in figura \ref{fig:es6_3_2_1}, \ref{fig:es6_3_2_2} i grafici delle soluzioni ottenute,
-rappresentate come curve nel piano delle fasi, per i due casi richiesti. Inoltre si sono rappresentate le 
-soluzioni in tre dimensioni, con il tempo come terza coordinata.
+Si riportano in figura \ref{fig:es6_3_2_1} e \ref{fig:es6_3_2_2} i grafici delle soluzioni ottenute,
+rappresentate come curve nel piano delle fasi. Si sono rappresentate inoltre le 
+soluzioni in tre dimensioni.
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
@@ -2712,17 +2689,16 @@ convergono a un valore stazionario. \\
     \caption{Soluzione del modello SIR.}
     \label{fig:es6_3_3}
 \end{figure}
-Per valutare i valori stazionari, una volta ottenute le soluzioni si sono calcolate le differenze
-tra i valori successivi di $v$ e $w$, fino a quando non si è raggiunta la tolleranza di $10^{-9}$. \\
+Per valutare i valori stazionari si sono calcolate le differenze
+tra i valori successivi di $v$ e $w$, fino a che non si è raggiunta la tolleranza di $10^{-9}$. Il 
+loro valore è riportato in grafico. \\
 Si è poi scelto il valore di tempo più grande tra quelli ottenuti per le due soluzioni, detto
-$t_{steady}$. È importante notare che il valore di $t_{steady}$ dipende fortemente dal metodo 
-scelto per stimarlo e perciò potrebbe essere una sovrastima. Certamente la valutazione della distanza
-tra due valori successivi è una condizione molto stringente perchè non tiene conto del cambiamento globale 
-della soluzione, inoltre suppone che la soluzione raggiunga un valore stazionario. Per 
-quanto riguarda il caso in esame, poco importa: l'esercizio suppone che il sistema raggiunga un valore stazionario
-e, se anche il metodo adottato portasse a una sovrastima di $t_{steady}$, ciò non influenzerebbe 
-la valutazione degli stati stazionari. Il valore degli stessi è riportato nel grafico, 
-insieme al valore di $t_{steady}$.
+$t_{steady}$. È importante notare che il valore di $t_{steady}$ potrebbe essere una sovrastima, 
+infatti la valutazione della distanza
+tra due valori successivi è un metodo ingenuo perchè non tiene conto del cambiamento globale 
+della soluzione. Per quanto riguarda il caso in esame, poco importa: se anche il metodo adottato portasse a 
+una sovrastima di $t_{steady}$ ciò non influenzerebbe 
+la valutazione degli stati stazionari. 
 
 \subsection{Esercizio 6.3.5}
 \label{es:6_3_5}
@@ -2755,13 +2731,13 @@ tempo. \\
     \caption{Soluzione e passo del metodo BS23.}
     \label{fig:es6_3_5_1}
 \end{figure}
-Si è scelto di togliere il primo e l'ultimo passo perchè il primo è arbitrario, scelto dall'utente, e l'ultimo
-è forzato in modo da raggiungere l'estremo $b$, quindi non è scelto dall'algoritmo. Così facendo si ottiene
+Si è scelto di togliere il primo e l'ultimo passo perchè il primo è scelto dall'utente e l'ultimo
+è forzato in modo da raggiungere l'estremo $b$. Così facendo si ottiene
 un passo minimo di $h_{min} = 0.0043$ e un passo medio di $h_{med} = 0.0054$. Lo studio del passo è interessante
-perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Infatti se avessimo
-scelto passo fisso pari a $h_{med}$ avremmo ottenuto un numero di punti maggiore perchè nel metodo adattivo
-il passo può anche diminuire. Nel caso in esame il guadagno non è molto significativo, ma in generale se la 
-differenza fra il passo minimo e il passo medio è molto grande, si possono ottenere integrazioni migliori. \\
+perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Se si fosse
+scelto passo fisso pari a $h_{med}$ si sarebbe persa risoluzione perchè nel metodo adattivo
+si può raggiungere un passo minore. Nel caso in esame il guadagno non è molto significativo, in generale però
+si possono ottenere integrazioni migliori se la differenza fra il passo minimo e il passo medio è molto grande. \\
 In figura \ref{fig:es6_3_5_2} si riporta il grafico dell'errore all'istante finale,
 $|u_n-\hat{u}(t_n)|$, in funzione della tolleranza $\delta$ scelta. Si osserva che l'errore cresce all'aumentare
 della tolleranza. Infatti la media dei passi $h$ cresce all'aumentare della tolleranza, e la soluzione 
@@ -2786,7 +2762,7 @@ Determina inoltre il passo minimo e medio, escludendo il primo e l'ultimo valore
 \end{itemize}
 
 \subsubsection{Soluzione}
-Il sistema di equazioni differenziali del primo ordine associato all'equazione differenziale di secondo ordine è 
+Il sistema associato all'equazione differenziale in esame è 
 \begin{align*}
 \left\{
 \begin{array}{rl}
@@ -2794,9 +2770,10 @@ Il sistema di equazioni differenziali del primo ordine associato all'equazione d
     z_2' &= - (1+z_2)^3 z_1 \\
 \end{array}
 \right.
+\qquad \text{con } z_1 = y, \quad z_2 = y'
 \end{align*}
-dove $z_1 = y$ e $z_2 = y'$. Nelle figure \ref{fig:es6_3_6_1}, \ref{fig:es6_3_6_2}, \ref{fig:es6_3_6_3}, \ref{fig:es6_3_6_4} 
-sono riportati i grafici delle soluzioni ottenute, insieme ai grafici del passo $h$ in funzione del tempo.
+Nelle figure \ref{fig:es6_3_6_1}, \ref{fig:es6_3_6_2}, \ref{fig:es6_3_6_3}, \ref{fig:es6_3_6_4} 
+sono riportati $y(t)$, $y'(t)$ e $h(t)$.
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
@@ -2846,9 +2823,9 @@ sono riportati i grafici delle soluzioni ottenute, insieme ai grafici del passo 
     \label{fig:es6_3_6_4}
 \end{figure}
 
-Nei vari casi si osserva che tanto più la soluzione presenta picchi accentuati, tanto più il metodo BS23
+Nei vari casi si osserva che, tanto più la soluzione presenta picchi accentuati, tanto più il metodo BS23
 sceglie un passo piccolo. In tabella \ref{tab:passi} sono riportati i valori di passo minimo e medio. 
-Si rimanda all'esercizio \ref{es:6_3_5} la dicussione sull'importanza dello studio del passo. \\
+Si rimanda alla sezione \ref{es:6_3_5} la dicussione sull'importanza dello studio del passo. \\
 \begin{table}[!ht]
     \centering
     \caption{Valori di passo minimo e medio per i quattro casi}
@@ -2865,7 +2842,8 @@ Si rimanda all'esercizio \ref{es:6_3_5} la dicussione sull'importanza dello stud
     \end{tabular}
 \end{table}
 
-La tabella \ref{tab:passi} mostra il guadagno rispetto a un metodo non adattivo è molto significativo negli 
+La tabella \ref{tab:passi} mostra che il guadagno in risoluzione rispetto a un metodo non adattivo è 
+molto significativo negli 
 ultimi due casi, dove le soluzioni presentano picchi molto accentuati, perchè il metodo BS23, nonostante abbia 
 passo medio dell'ordine di $10^{-3}$, raggiunge passi minimi dell'ordine di $10^{-4}$ e $10^{-5}$. 
 
@@ -2893,11 +2871,9 @@ il grafico della soluzione ottenuta, insieme al grafico del passo $h$ in funzion
 
 L'integrazione avviene con successo, ma il grafico del passo mostra un comportamento peculiare. Ci si potrebbe
 aspettare che, data la presenza di due zone analoghe per la soluzione, il passo scelto dall'algoritmo
-fosse simile in entrambe le zone, con una fase transiente in cui il passo diminuisce rapidamente.
-Invece si osserva che il passo è molto più grande nella zona iniziale, dove la soluzione cresce lentamente, 
-per poi rimanere costante nel tempo, e molto piccolo. Il problema descritto appartiene perciò
-alla categoria degli \textit{stiff problems}. \\
-Per studiare meglio il comportamento del passo, si è scelto di calolare i passi minimo e medio, 
+sia simile in entrambe le zone, con una fase transiente in cui il passo diminuisce rapidamente.
+Questo non è il caso della figura \ref{fig:es6_3_7} a destra.\\
+Per studiare meglio il comportamento del passo, si è scelto di calcolarne il minimo e il medio, 
 dividendo le due regioni della soluzione. La prima regione comincia da $t=0$ e termina a $t=51$, dove
 il valore finale si è scelto in modo da includere la fase transiente, e la seconda regione comincia da $t=51$ 
 e termina a $t=100$.
@@ -2918,7 +2894,8 @@ In tabella \ref{tab:passi_stiff} sono riportati i valori di passo minimo e medio
 Giustamente si osserva il minimo nella prima regione, perchè il minimo valore di $h$ viene assunto in 
 corrispondenza del salto della soluzione, in cui il metodo adattivo cerca passi molto piccoli per 
 ottenere una soluzione accurata. Ciò che è particolare è che nella seconda regione il passo si stabilizzi, 
-rimanendo costante e molto piccolo. 
+rimanendo costante e molto piccolo. Tale comportamento rende l'equazione presa in esame appartenente alla 
+categoria dei cosiddetti \textit{stiff problems}. 
 
 \section{Appendice}
 \subsection{Dati}
