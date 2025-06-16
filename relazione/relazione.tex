@@ -22,6 +22,10 @@
 \usepackage[hidelinks]{hyperref} % adds hyper links inside the generated pdf file
 \usepackage{blindtext}
 \usepackage[a4paper, left=2cm, right=2cm, top=0.05cm, bottom=4.0cm]{geometry}
+\numberwithin{equation}{section}    %to numerate equations accordingly to section
+\counterwithin{figure}{section}
+\counterwithin{table}{section}
+
 
 % Setup hyperref
 \hypersetup{
@@ -219,12 +223,12 @@ Considera la formula \ref{eq:varianza_eff} a un ciclo:
 
 Prova entrambe le formule per i seguenti dataset, ciascuno dei quali ha varianza esattamente uguale a 1. 
 Esegui i calcoli sia in single che in double precision. 
-\begin{align}
+\begin{align*}
     x_1 &= [ 1\cdot 10^3,\ 1+10^3,\ 2+10^3 ] \qquad
     x_2 = [ 1\cdot 10^6,\ 1+10^6,\ 2+10^6 ] \notag \\
     x_3 &= [ 1\cdot 10^7,\ 1+10^7,\ 2+10^7 ] \qquad
     x_4 = [ 1\cdot 10^8,\ 1+10^8,\ 2+10^8 ]
-\end{align}
+\end{align*}
 
 
 \subsubsection{Soluzione}
@@ -337,18 +341,18 @@ e perché?
 \subsubsection{Soluzione}
 
 \paragraph{(a) } Il numero di condizionamento di una funzione $f$ è definito come:
-\begin{equation}
+\begin{equation*}
     \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right|\,.
-\end{equation}
+\end{equation*}
 
 Per la funzione $f(x) = \frac{e^x-1}{x}$, calcoliamo la derivata:
-\begin{equation}
+\begin{equation*}
     f'(x) = \frac{e^x x - (e^x - 1)}{x^2} = \frac{e^x (x-1) + 1}{x^2}\,.
-\end{equation}
+\end{equation*}
 Quindi il numero di condizionamento diventa:
-\begin{equation}
+\begin{equation*}
     \kappa_f(x) = \left| \frac{x \left( \frac{e^x (x-1) + 1}{x^2} \right)}{\frac{e^x - 1}{x}} \right| = \left| \frac{e^x (x-1) + 1}{(e^x - 1)x} \right| = \left| \frac{e^x x}{(e^x - 1)} - 1 \right|\,.
-\end{equation}
+\end{equation*}
 La derivata di $k_f(x)$ non si annulla mai nell'intervallo $-1 \leq x \leq 1$, e $\kappa_f(0) = 0$. Dato che
 $\kappa_f(x)$ è monotona crescente per $x \geq 0$ e monotona decrescente per $x < 0$, il massimo si ha in $x = 1$,
 dove assume il valore $\kappa_f(1) = 0.58198$.
@@ -407,7 +411,7 @@ fissato $x = 0.1$, punto sufficientemente lontano dall'origine.
 Si è rappresentato in figura \ref{fig:es1_4_2_4} l'andamento della distanza tra i valori
 di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
 \begin{equation}
-    \Delta_n = |p_n(0.1) - p_{n+1}(0.1)|\,.
+    \Delta_{pn} = |p_n(0.1) - p_{n+1}(0.1)|\,.
 \end{equation}
 \begin{figure}[!ht]
     \centering
@@ -418,8 +422,8 @@ di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
 
 Ai fini di questo esercizio possiamo dire che $n = 2$ è già un buon valore perchè le distanze tra i 
 polinomi successivi non sono apprezzabili nel range $[1, 1.06]$, caratteristico della figura \ref{fig:es1_4_2_3}.
-È chiaro che volendo raggiungere precisione massima occorrerà scegliere $n = 10$, dato che $\Delta_n$ 
-corrispondente è più piccolo di $\epsilon{mach}$
+È chiaro che volendo raggiungere precisione massima occorrerà scegliere $n = 10$, dato che $\Delta_{pn}$ 
+corrispondente è più piccolo di $\varepsilon_{mach}$
 
 \paragraph{(d):}Come confronto tra i due algoritmi si riporta in figura \ref{fig:es1_4_2_5} il grafico 
 dell'errore tra i due algoritmi, cioè
@@ -632,9 +636,9 @@ confermando la correttezza dell'algoritmo.
 fattorizzazione LU. Ricordando le proprietà del determinante e che la matrice $\mathbf{L}$ è triangolare inferiore 
 con elementi diagonali unitari, si ha che:
 
-\begin{equation}
+\begin{equation*}
     \det(\mathbf{M}) = \det(\mathbf{LU}) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
-\end{equation}
+\end{equation*}
 
 Per il calcolo del determinante delle matrici proposte si è eseguito il prodotto degli elementi della diagonale
 principale della matrice $\mathbf{U}$. A titolo di confronto si è calcolato il determinante delle matrici con 
@@ -684,16 +688,16 @@ sono usate per rappresentare traslazioni e rotazioni di punti del piano in compu
 \end{enumerate}
 
 \subsubsection{Soluzione}
-\paragraph{(a)}Si calcola il prodotto tra le matrici $\mathbf{A}$ e $\mathbf{z}$, ottenendo:
-\begin{equation}
+\paragraph{(a)}Si è calcolato il prodotto tra le matrici $\mathbf{A}$ e $\mathbf{z}$, ottenendo:
+\begin{equation*}
     \mathbf{b} = \mathbf{A}\mathbf{z} = \begin{bmatrix}
         3.95 \\
         2.01 \\
         1.0
     \end{bmatrix}. 
-\end{equation}
-\paragraph{(b)}Si calcola la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
-\begin{equation}
+\end{equation*}
+\paragraph{(b)}Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
+\begin{equation*}
     \mathbf{L} = \begin{bmatrix}
         1.0  &     0.0  & 0.0 \\
         -0.8  &  1.0  & 0.0 \\
@@ -704,10 +708,10 @@ sono usate per rappresentare traslazioni e rotazioni di punti del piano in compu
         0.0       &  1.24   &  2.42 \\
         0.0       &  0.0       &  1.0
     \end{bmatrix}.
-\end{equation}
-\paragraph{(c)}Si risolve il sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ utilizzando le sostituzioni triangolari.
+\end{equation*}
+\paragraph{(c)}Si è risolto il sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ utilizzando le sostituzioni triangolari.
 Si ottiene, con le dovute approssimazioni:
-\begin{equation}
+\begin{equation*}
     \mathbf{x} = \begin{bmatrix}
         2.0 \\ 
         2.0 \\ 
@@ -719,7 +723,7 @@ Si ottiene, con le dovute approssimazioni:
         -4.44 \cdot 10^{-16}  \\
         0.0
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 \subsection{Esercizi 2.4.1, 2.4.2}
 1. Scrivi un programma che esegua la decomposizione di Cholesky di una matrice $n\times n$. \\
@@ -868,7 +872,7 @@ scelto di trattare il punto (d) insieme ai punti (a), (b) e (c). Il pedice 1 è 
 il pedice 2 al caso $\epsilon = 10^{-20}$. 
 \paragraph{(a)}Si è calcolato il prodotto tra la matrice $\mathbf{A}$ e il vettore $\mathbf{x}$, ottenendo, 
 a meno di arrotondamenti, i vettori:
-\begin{equation}
+\begin{equation*}
     \mathbf{b_1} = \begin{bmatrix}
          1.0 \\
          0.0
@@ -878,11 +882,11 @@ a meno di arrotondamenti, i vettori:
          1.0\\
          0.0
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 \paragraph{(b)} \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, 
 ottenendo:
-\begin{equation}
+\begin{equation*}
     \mathbf{L_1} = \begin{bmatrix}
     1.0      &  0.0 \\
     -1.0 \cdot 10^{12}  &  1.0 
@@ -891,8 +895,8 @@ ottenendo:
     -1.0 \cdot 10^{-12}  &  1.0               \\
      0.0                 &  1.0 \cdot 10^{12}
     \end{bmatrix},
-\end{equation}
-\begin{equation}
+\end{equation*}
+\begin{equation*}
     \mathbf{L_2} = \begin{bmatrix}
     1.0                 &  0.0 \\
     -1.0 \cdot 10^{20}  &  1.0
@@ -901,10 +905,10 @@ ottenendo:
     -1.0 \cdot 10^{-20}  &  1.0 \\
      0.0                 &  1.0 \cdot 10^{20}
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 Si è risolto il sistema $\mathbf{Ax} = \mathbf{b}$ utilizzando le sostituzioni triangolari, ottenendo:
-\begin{equation}
+\begin{equation*}
     \mathbf{x_1} = \begin{bmatrix}
         1.0 \\
         1.0
@@ -914,11 +918,11 @@ Si è risolto il sistema $\mathbf{Ax} = \mathbf{b}$ utilizzando le sostituzioni 
         0.0 \\
         1.0
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 \paragraph{(c)}Si è calcolato il prodotto tra le matrici $\mathbf{L}$ e $\mathbf{U}$, in seguito lo si è 
 sottratto ad $\mathbf{A}$ ottenendo:
-\begin{equation}
+\begin{equation*}
     \mathbf{A_1} - \mathbf{(LU)_1} = \begin{bmatrix}
         0.0 & 0.0 \\
         0.0 & 0.0
@@ -928,18 +932,18 @@ sottratto ad $\mathbf{A}$ ottenendo:
         0.0 & 0.0 \\
         0.0 & 1.0
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 È evidente che il risultato per $\epsilon = 10^{-12}$ è accurato contrariamente al risultato ottenuto per
 $\epsilon = 10^{-20}$, in cui la verifica della fattorizzazione LU non porta alla matrice di zeri.
 \paragraph{(e)}Si è calcolato $\kappa(A)$ utilizzando sia la norma 1 che la norma infinito, ottenendo lo stesso
 risultato a causa della natura simmetrica della matrice $\mathbf{A}$. La formula generale per il numero di
 condizionamento della matrice $\mathbf{A}$ presa in esame è $ \kappa(A) = \frac{4}{1 - \epsilon}$.
-\begin{equation}
+\begin{equation*}
     \kappa_1(A) = \kappa_\infty(A) =  4.000000000004\,,
     \qquad
     \kappa_1(A) = \kappa_\infty(A) =  4.0\,.
-\end{equation}
+\end{equation*}
 
 Come si può notare, in entrambi i casi il numero di condizionamento non è molto grande, quindi il sistema
 $\mathbf{Ax} = \mathbf{b}$ non è mal condizionato. 
@@ -950,11 +954,11 @@ matrici ottenute sono già state riportate al punto \ref{par:fattorizzazione_LU}
 \paragraph{(g)}Si sono calcolati i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$, utilizzando sia 
 la norma 1 che la norma infinito, ancora una volta ottenendo lo stesso numero. \\
 Le forumle generali per il numero di condizionamento delle matrici $\mathbf{L}$ e $\mathbf{U}$ sono:
-\begin{equation}
+\begin{equation*}
     \kappa_1(L) = \kappa_\infty(L) = \left(1 + \frac{1}{\epsilon}\right)^2\,,
     \qquad
     \kappa_1(U) = \kappa_\infty(U) = \frac{1}{\epsilon^2}\,.
-\end{equation}
+\end{equation*}
 
 In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 
@@ -1006,12 +1010,12 @@ per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle
 \subsubsection{Soluzione}
 Si è implementato l'algoritmo per il metodo dei minimi quadrati e lo si è testato sulle matrici proposte, 
 ottenendo:
-\begin{equation}
+\begin{equation*}
     \mathbf{x} = \begin{bmatrix}
         -2.0 \\
         -1.0
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 \subsection{Esercizio 2.6.2}
 Keplero ha scoperto che il periodo orbitale $\tau$ di un pianeta dipende dalla sua distanza media $R$ dal Sole 
@@ -1033,12 +1037,12 @@ Non è il caso del problema proposto, dato che $\alpha$ si trova ad esponente. P
 Da qui in poi si è implementato il metodo dei minimi quadrati, applicando la scomposizione di Cholesky alla 
 matrice $n \times n$ ottenuta dal prodotto della matrice di design e la sua trasposta. Per chiarezza si riporta
 la matrice di design trasposta:
-\begin{equation}
+\begin{equation*}
     \mathbf{A}^T = \begin{bmatrix}
         1 & 1 & \cdots & 1 \\
         \ln(57.59) & \ln(108.11) & \cdots & \ln(4499.9)
     \end{bmatrix}.
-\end{equation}
+\end{equation*}
 
 La matrice di regressione è stata costruita in modo che la prima colonna fosse composta da 1 per poter calcolare
 il termine noto della retta e la seconda colonna fosse composta dai logaritmi naturali delle
@@ -1079,17 +1083,17 @@ I risultati sono in accordo con quanto atteso.
 In questo esercizio si vuole trovare un'approssimazione della funzione periodica $g(t)=e^{\sin(t-1)}$ su un 
 periodo, $0 < t \le 2\pi$. Come dati, si definiscono
 
-\begin{equation}
+\begin{equation*}
     t_i = \frac{2\pi i}{60}\,,
     \quad  
     y_i = g(t_i)\,,
     \quad i=1,\ldots,60.
-\end{equation}
+\end{equation*}
 
 \begin{enumerate}
 \item [(a)] Trova i coefficienti del fit ai minimi quadrati    
     \begin{equation}
-    \label{eq:fit_pol}    
+        \label{eq:fit_pol}    
         y(t) \approx c_1 + c_2 t + \cdots + c_7 t^6.
     \end{equation}        
 Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il fit. \\
@@ -1106,7 +1110,7 @@ Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il
 Dopo avere generato i dati richiesti, si è eseguito il metodo dei minimi quadrati con le seguenti 
 matrici di regressione:
 
-\begin{equation}
+\begin{equation*}
     \mathbf{D_{pol}} = \begin{bmatrix}
         1 & t_1 & \hdots & t_1^6 \\
         1 & t_2 & \hdots & t_2^6 \\
@@ -1120,7 +1124,7 @@ matrici di regressione:
         \vdots & \vdots & \vdots & \vdots & \vdots \\
         1 & \cos(t_{60}) & \sin(t_{60}) & \cos(2t_{60}) & \sin(2t_{60})
     \end{bmatrix},
-\end{equation}
+\end{equation*}
 
 ottenendo i coefficienti delle formule \ref{eq:fit_pol} e \ref{eq:fit_fourier}:
 \begin{itemize}
@@ -1139,7 +1143,7 @@ Si riportano i grafici dei dati e dei fit in figura \ref{fig:es2_6_3_1}.
 \subsubsection{Conclusioni}
 In figura \ref{fig:es2_6_3_1} si osserva che il fit meglio riuscito è quello di Fourier, nonostante
 richieda meno parametri. Il motivo è che la funzione $g(t)$ è periodica, di conseguenza il fit con modello 
-\ref{eq:fit_fourier} riesce a catturare meglio la periodicità della funzione rispetto al fit esguito con 
+\ref{eq:fit_fourier} riesce a catturare meglio la periodicità della funzione rispetto al fit eseguito con 
 \ref{eq:fit_pol}. \\
 In un contesto sperimentale la funzione $g(t)$ non è nota a priori, anzi lo scopo dell'esperimento è 
 solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il modello di Fourier riesca meglio
