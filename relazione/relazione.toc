@@ -24,64 +24,64 @@
 \contentsline {paragraph}{Sostituzione all'indietro:}{12}{section*.22}%
 \contentsline {subsection}{\numberline {2.2}Esercizi 2.3.1, 2.3.2, 2.3.4}{12}{subsection.2.2}%
 \contentsline {subsubsection}{\numberline {2.2.1}Soluzione}{12}{subsubsection.2.2.1}%
-\contentsline {paragraph}{(Punti 1 e 2: )}{12}{section*.23}%
-\contentsline {paragraph}{(Punto 4: )}{13}{section*.24}%
+\contentsline {paragraph}{Punti 1 e 2:}{12}{section*.23}%
+\contentsline {paragraph}{Punto 4:}{13}{section*.24}%
 \contentsline {subsection}{\numberline {2.3}Esercizio 2.3.3}{13}{subsection.2.3}%
 \contentsline {subsubsection}{\numberline {2.3.1}Soluzione}{13}{subsubsection.2.3.1}%
-\contentsline {paragraph}{(a) }{13}{section*.26}%
-\contentsline {paragraph}{(b) }{13}{section*.27}%
-\contentsline {paragraph}{(c) }{14}{section*.28}%
+\contentsline {paragraph}{(a)}{13}{section*.26}%
+\contentsline {paragraph}{(b)}{13}{section*.27}%
+\contentsline {paragraph}{(c)}{14}{section*.28}%
 \contentsline {subsection}{\numberline {2.4}Esercizi 2.4.1, 2.4.2}{14}{subsection.2.4}%
 \contentsline {subsubsection}{\numberline {2.4.1}Soluzione}{14}{subsubsection.2.4.1}%
 \contentsline {subsection}{\numberline {2.5}Esercizio 2.5.1}{14}{subsection.2.5}%
 \contentsline {subsubsection}{\numberline {2.5.1}Soluzione}{15}{subsubsection.2.5.1}%
-\contentsline {paragraph}{(a) }{15}{section*.29}%
-\contentsline {paragraph}{(b) }{15}{section*.30}%
-\contentsline {paragraph}{(c) }{15}{section*.31}%
-\contentsline {paragraph}{(e) }{15}{section*.32}%
-\contentsline {paragraph}{(f) }{15}{section*.33}%
-\contentsline {paragraph}{(g) }{15}{section*.34}%
+\contentsline {paragraph}{(a)}{15}{section*.29}%
+\contentsline {paragraph}{(b)}{15}{section*.30}%
+\contentsline {paragraph}{(c)}{15}{section*.31}%
+\contentsline {paragraph}{(e)}{15}{section*.32}%
+\contentsline {paragraph}{(f)}{15}{section*.33}%
+\contentsline {paragraph}{(g)}{16}{section*.34}%
 \contentsline {subsubsection}{\numberline {2.5.2}Conclusioni}{16}{subsubsection.2.5.2}%
 \contentsline {subsection}{\numberline {2.6}Esercizio 2.6.1}{16}{subsection.2.6}%
 \contentsline {subsubsection}{\numberline {2.6.1}Soluzione}{16}{subsubsection.2.6.1}%
 \contentsline {subsection}{\numberline {2.7}Esercizio 2.6.2}{16}{subsection.2.7}%
-\contentsline {subsubsection}{\numberline {2.7.1}Soluzione}{16}{subsubsection.2.7.1}%
-\contentsline {paragraph}{(a) }{16}{section*.36}%
-\contentsline {paragraph}{(b) }{17}{section*.37}%
+\contentsline {subsubsection}{\numberline {2.7.1}Soluzione}{17}{subsubsection.2.7.1}%
+\contentsline {paragraph}{(a)}{17}{section*.36}%
+\contentsline {paragraph}{(b)}{17}{section*.37}%
 \contentsline {subsection}{\numberline {2.8}Esercizio 2.6.3}{17}{subsection.2.8}%
 \contentsline {subsubsection}{\numberline {2.8.1}Soluzione}{18}{subsubsection.2.8.1}%
-\contentsline {subsubsection}{\numberline {2.8.2}Conclusioni}{18}{subsubsection.2.8.2}%
+\contentsline {subsubsection}{\numberline {2.8.2}Conclusioni}{19}{subsubsection.2.8.2}%
 \contentsline {section}{\numberline {3}Radici di equazioni non lineari}{19}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Esercizi 3.2.1, 3.2.2}{19}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Soluzione}{19}{subsubsection.3.1.1}%
 \contentsline {paragraph}{(1) }{19}{section*.40}%
-\contentsline {paragraph}{(2a) }{19}{section*.41}%
+\contentsline {paragraph}{(2a) }{20}{section*.41}%
 \contentsline {paragraph}{(2b) }{20}{section*.43}%
-\contentsline {subparagraph}{Stima di $q$ e $C$}{20}{section*.44}%
+\contentsline {subparagraph}{Stima di $q$ e $C$}{21}{section*.44}%
 \contentsline {subparagraph}{Commento: }{21}{section*.46}%
-\contentsline {subsection}{\numberline {3.2}Esercizi 3.3.1, 3.3.2}{21}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Esercizi 3.3.1, 3.3.2}{22}{subsection.3.2}%
 \contentsline {subsubsection}{\numberline {3.2.1}Soluzione}{22}{subsubsection.3.2.1}%
 \contentsline {paragraph}{(1) }{22}{section*.47}%
 \contentsline {paragraph}{(2a) }{22}{section*.48}%
 \contentsline {paragraph}{(2b) }{22}{section*.49}%
 \contentsline {paragraph}{(2c) }{22}{section*.51}%
-\contentsline {paragraph}{(2d) - Prima funzione}{22}{section*.52}%
-\contentsline {paragraph}{(2d) - Seconda funzione}{23}{section*.54}%
-\contentsline {subparagraph}{Prima radice, $x = 0.0$: }{23}{section*.55}%
+\contentsline {paragraph}{(2d) - Prima funzione}{23}{section*.52}%
+\contentsline {paragraph}{(2d) - Seconda funzione}{24}{section*.54}%
+\contentsline {subparagraph}{Prima radice, $x = 0.0$: }{24}{section*.55}%
 \contentsline {subparagraph}{Seconda radice, $x = 1.166$: }{24}{section*.57}%
 \contentsline {paragraph}{(2d) - Terza funzione}{25}{section*.59}%
-\contentsline {subsection}{\numberline {3.3}Esercizio 3.3.3}{26}{subsection.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.1}Soluzione}{26}{subsubsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3}Esercizio 3.3.3}{25}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Soluzione}{25}{subsubsection.3.3.1}%
 \contentsline {subsection}{\numberline {3.4}Esercizio 3.3.4}{27}{subsection.3.4}%
 \contentsline {subsection}{\numberline {3.5}Soluzione}{27}{subsection.3.5}%
-\contentsline {subsection}{\numberline {3.6}Esercizi 3.4.1, 3.4.2}{27}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.6}Esercizi 3.4.1, 3.4.2}{28}{subsection.3.6}%
 \contentsline {subsubsection}{\numberline {3.6.1}Soluzione}{28}{subsubsection.3.6.1}%
 \contentsline {paragraph}{(1) }{28}{section*.64}%
 \contentsline {paragraph}{(2a)-(2b) }{28}{section*.65}%
 \contentsline {paragraph}{{(2c) } }{28}{section*.66}%
-\contentsline {paragraph}{(2d) }{28}{section*.67}%
-\contentsline {subsection}{\numberline {3.7}Esercizio 3.4.3}{28}{subsection.3.7}%
-\contentsline {subsubsection}{\numberline {3.7.1}Soluzione}{28}{subsubsection.3.7.1}%
+\contentsline {paragraph}{(2d) }{29}{section*.67}%
+\contentsline {subsection}{\numberline {3.7}Esercizio 3.4.3}{29}{subsection.3.7}%
+\contentsline {subsubsection}{\numberline {3.7.1}Soluzione}{29}{subsubsection.3.7.1}%
 \contentsline {section}{\numberline {4}Interpolazioni}{30}{section.4}%
 \contentsline {subsection}{\numberline {4.1}Esercizi 4.2.1, 4.2.2}{30}{subsection.4.1}%
 \contentsline {subsubsection}{\numberline {4.1.1}Soluzione}{30}{subsubsection.4.1.1}%
@@ -93,26 +93,26 @@
 \contentsline {paragraph}{(2a) }{31}{section*.75}%
 \contentsline {paragraph}{(2b) }{32}{section*.77}%
 \contentsline {subsection}{\numberline {4.3}Esercizio 4.4.3}{32}{subsection.4.3}%
-\contentsline {subsubsection}{\numberline {4.3.1}Soluzione}{32}{subsubsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.4}Esercizio 4.4.4}{32}{subsection.4.4}%
+\contentsline {subsubsection}{\numberline {4.3.1}Soluzione}{33}{subsubsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.4}Esercizio 4.4.4}{33}{subsection.4.4}%
 \contentsline {subsubsection}{\numberline {4.4.1}Soluzione}{33}{subsubsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.5}Esercizio 4.6.1}{33}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.5}Esercizio 4.6.1}{34}{subsection.4.5}%
 \contentsline {subsubsection}{\numberline {4.5.1}Soluzione}{34}{subsubsection.4.5.1}%
-\contentsline {paragraph}{(a) }{34}{section*.80}%
+\contentsline {paragraph}{(a) }{35}{section*.80}%
 \contentsline {paragraph}{(b) }{35}{section*.82}%
 \contentsline {paragraph}{(c) }{35}{section*.84}%
 \contentsline {paragraph}{Osservazioni}{35}{section*.86}%
 \contentsline {section}{\numberline {5}Integrazione numerica}{36}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Esercizi 5.1.1, 5.1.2}{36}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Soluzione}{36}{subsubsection.5.1.1}%
-\contentsline {paragraph}{(1)}{36}{section*.88}%
-\contentsline {paragraph}{(2)}{36}{section*.89}%
-\contentsline {paragraph}{Commento:}{37}{section*.96}%
-\contentsline {subsection}{\numberline {5.2}Esercizi 5.1.3, 5.1.4}{38}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.1.1}Soluzione}{37}{subsubsection.5.1.1}%
+\contentsline {paragraph}{(1)}{37}{section*.88}%
+\contentsline {paragraph}{(2)}{37}{section*.89}%
+\contentsline {paragraph}{Commento:}{38}{section*.96}%
+\contentsline {subsection}{\numberline {5.2}Esercizi 5.1.3, 5.1.4}{39}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Soluzione}{39}{subsubsection.5.2.1}%
 \contentsline {paragraph}{(3)}{39}{section*.97}%
 \contentsline {paragraph}{(4)}{39}{section*.98}%
-\contentsline {subsection}{\numberline {5.3}Esercizio 5.3.1}{39}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.3}Esercizio 5.3.1}{40}{subsection.5.3}%
 \contentsline {subsubsection}{\numberline {5.3.1}Soluzione}{41}{subsubsection.5.3.1}%
 \contentsline {paragraph}{(b)}{41}{section*.105}%
 \contentsline {paragraph}{(a) (c) (d)}{42}{section*.107}%
@@ -121,23 +121,23 @@
 \contentsline {subsection}{\numberline {5.5}Esercizio 5.4.2}{44}{subsection.5.5}%
 \contentsline {subsubsection}{\numberline {5.5.1}Soluzione}{44}{subsubsection.5.5.1}%
 \contentsline {subsection}{\numberline {5.6}Esercizio 5.4.3}{44}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Soluzione}{44}{subsubsection.5.6.1}%
-\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{46}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Esercizi 6.2.1, 6.2.2}{46}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.1}Soluzione}{45}{subsubsection.5.6.1}%
+\contentsline {section}{\numberline {6}Equazioni differenziali ordinarie}{47}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Esercizi 6.2.1, 6.2.2}{47}{subsection.6.1}%
 \contentsline {subsubsection}{\numberline {6.1.1}Soluzione}{47}{subsubsection.6.1.1}%
 \contentsline {subsection}{\numberline {6.2}Esercizio 6.2.3}{48}{subsection.6.2}%
 \contentsline {subsubsection}{\numberline {6.2.1}Soluzione}{48}{subsubsection.6.2.1}%
 \contentsline {subsection}{\numberline {6.3}Esercizio 6.3.1}{49}{subsection.6.3}%
 \contentsline {subsubsection}{\numberline {6.3.1}Soluzione}{50}{subsubsection.6.3.1}%
-\contentsline {subsection}{\numberline {6.4}Esercizio 6.3.2}{50}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}Esercizio 6.3.2}{51}{subsection.6.4}%
 \contentsline {subsubsection}{\numberline {6.4.1}Soluzione}{51}{subsubsection.6.4.1}%
-\contentsline {subsection}{\numberline {6.5}Esercizio 6.3.3}{51}{subsection.6.5}%
-\contentsline {subsubsection}{\numberline {6.5.1}Soluzione}{52}{subsubsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5}Esercizio 6.3.3}{52}{subsection.6.5}%
+\contentsline {subsubsection}{\numberline {6.5.1}Soluzione}{53}{subsubsection.6.5.1}%
 \contentsline {subsection}{\numberline {6.6}Esercizio 6.3.5}{53}{subsection.6.6}%
-\contentsline {subsubsection}{\numberline {6.6.1}Soluzione}{53}{subsubsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.1}Soluzione}{54}{subsubsection.6.6.1}%
 \contentsline {subsection}{\numberline {6.7}Esercizio 6.3.6}{54}{subsection.6.7}%
-\contentsline {subsubsection}{\numberline {6.7.1}Soluzione}{55}{subsubsection.6.7.1}%
+\contentsline {subsubsection}{\numberline {6.7.1}Soluzione}{54}{subsubsection.6.7.1}%
 \contentsline {subsection}{\numberline {6.8}Esercizio 6.3.7}{56}{subsection.6.8}%
-\contentsline {subsubsection}{\numberline {6.8.1}Soluzione}{56}{subsubsection.6.8.1}%
+\contentsline {subsubsection}{\numberline {6.8.1}Soluzione}{57}{subsubsection.6.8.1}%
 \contentsline {section}{\numberline {7}Appendice}{57}{section.7}%
 \contentsline {subsection}{\numberline {7.1}Dati}{57}{subsection.7.1}%

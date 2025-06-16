@@ -446,62 +446,56 @@ grandi.
 \section{Sistemi lineari}
 \label{sistemi_lineari}
 \subsection{Esercizi 2.1.1, 2.1.2, 2.1.3, 2.1.4}
-Scrivi una funzione che esegua la sostituzione in avanti su una matrice triangolare inferiore $n\times n$.
-
-2. Testa il tuo codice sui seguenti sistemi lineari:
-     
-    \begin{minipage}{0.48\textwidth}
-        (a) $\; \begin{bmatrix}
-            -2 & 0 & 0 \\
-            1 & -1 & 0 \\
-            3 & 2 & 1 
-          \end{bmatrix} 
-          \mathbf{x} = \begin{bmatrix}
-            -4 \\ 2 \\ 1
-          \end{bmatrix}$
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        (b) $\;\begin{bmatrix}
-            4 & 0 & 0 & 0 \\
-            1 & -2 & 0 & 0 \\
-            -1 & 4 & 4 & 0 \\
-            2 & -5 & 5 & 1
-          \end{bmatrix} 
-          \mathbf{x} = \begin{bmatrix}
-            -4 \\ 1 \\ -3 \\ 5
-          \end{bmatrix}$
-    \end{minipage}
-
-Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{L}\mathbf{x} - \mathbf{b}$.
-
-3. Scrivi una funzione che esegua la sostituzione all'indietro su una matrice triangolare superiore $n\times n$.
-
-4. Testa il tuo codice sui seguenti sistemi lineari:
-
-    \begin{minipage}{0.48\textwidth}
-        (a) $\;\begin{bmatrix}
-            3 & 1 & 0  \\
-            0 & -1 & -2  \\
-            0 & 0 & 3  \\
-            \end{bmatrix} \mathbf{x} = \begin{bmatrix}
-            1 \\ 1 \\ 6
-            \end{bmatrix}$
-    \end{minipage}
-    \hfill
-    \begin{minipage}{0.48\textwidth}
-        (b) $\;\begin{bmatrix}
-            3 & 1 & 0 & 6 \\
-            0 & -1 & -2 & 7 \\
-            0 & 0 & 3 & 4 \\
-            0 & 0 & 0 & 5
-            \end{bmatrix} \mathbf{x} = \begin{bmatrix}
-            4 \\ 1 \\ 1 \\ 5
-            \end{bmatrix}$
-    \end{minipage}
-
+Scrivi una funzione che esegua la sostituzione in avanti su una matrice triangolare inferiore $n\times n$. \\
+2. Testa il tuo codice sui seguenti sistemi lineari: \\
+\begin{minipage}{0.48\textwidth}
+    (a) $\; \begin{bmatrix}
+        -2 & 0 & 0 \\
+        1 & -1 & 0 \\
+        3 & 2 & 1 
+        \end{bmatrix} 
+        \mathbf{x} = \begin{bmatrix}
+        -4 \\ 2 \\ 1
+        \end{bmatrix}$
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+    (b) $\;\begin{bmatrix}
+        4 & 0 & 0 & 0 \\
+        1 & -2 & 0 & 0 \\
+        -1 & 4 & 4 & 0 \\
+        2 & -5 & 5 & 1
+        \end{bmatrix} 
+        \mathbf{x} = \begin{bmatrix}
+        -4 \\ 1 \\ -3 \\ 5
+        \end{bmatrix}$
+\end{minipage}
+\\
+Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{L}\mathbf{x} - \mathbf{b}$.\\
+3. Scrivi una funzione che esegua la sostituzione all'indietro su una matrice triangolare superiore $n\times n$.\\
+4. Testa il tuo codice sui seguenti sistemi lineari: \\
+\begin{minipage}{0.48\textwidth}
+    (a) $\;\begin{bmatrix}
+        3 & 1 & 0  \\
+        0 & -1 & -2  \\
+        0 & 0 & 3  \\
+        \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+        1 \\ 1 \\ 6
+        \end{bmatrix}$
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+    (b) $\;\begin{bmatrix}
+        3 & 1 & 0 & 6 \\
+        0 & -1 & -2 & 7 \\
+        0 & 0 & 3 & 4 \\
+        0 & 0 & 0 & 5
+        \end{bmatrix} \mathbf{x} = \begin{bmatrix}
+        4 \\ 1 \\ 1 \\ 5
+        \end{bmatrix}$
+\end{minipage}
+\\
 Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathbf{U}\mathbf{x} - \mathbf{b}$.
-
 \subsubsection{Soluzione}
 Per risolvere i sistemi lineari proposti, si sono implementate le funzioni di sostituzione in avanti e all'indietro. 
 Di seguito sono riportati i risultati delle soluzioni.
@@ -528,10 +522,8 @@ Risolvendo i sistemi a mano, i valori sono:
 I risultati confermano la correttezza delle implementazioni delle funzioni di sostituzione in avanti e all'indietro.
 
 \subsection{Esercizi 2.3.1, 2.3.2, 2.3.4}
-1. Scrivi una funzione che esegua la fattorizzazione LU di una matrice $n\times n$.
-
-2. Per ciascuna matrice, calcola la fattorizzazione LU e verifica la correttezza.
-
+1. Scrivi una funzione che esegua la fattorizzazione LU di una matrice $n\times n$.\\
+2. Per ciascuna matrice, calcola la fattorizzazione LU e verifica la correttezza.\\
 \begin{center}
     \begin{minipage}{0.32\textwidth}
     \centering
@@ -571,11 +563,9 @@ I risultati confermano la correttezza delle implementazioni delle funzioni di so
     \]
     \end{minipage}
 \end{center}
-
-4. Calcola il determinante delle matrici dell'Esercizio 2 tramite la fattorizzazione LU.
-
+4. Calcola il determinante delle matrici dell'esercizio 2.3.2 tramite la fattorizzazione LU.
 \subsubsection{Soluzione}
-\paragraph{(Punti 1 e 2: )} Si sono implementati gli algoritmi di fattorizzazione LU, e si sono testati 
+\paragraph{Punti 1 e 2:} Si sono implementati gli algoritmi di fattorizzazione LU, e si sono testati 
 sui tre sistemi proposti. Le scomposizioni ottenute sono le seguenti: 
 \begin{center}
     \[
@@ -638,17 +628,17 @@ Per verificare la correttezza delle scomposizioni, si è calcolato il prodotto $
 matrice e lo si è sottratto alla matrice originale. Si sono ottenute matrici di zeri, in tutti i casi, 
 confermando la correttezza dell'algoritmo.
 
-\paragraph{(Punto 4: )} Si è calcolato il determinante delle matrici dell'esercizio 2 utilizzando la loro
+\paragraph{Punto 4:} Si è calcolato il determinante delle matrici dell'esercizio 2.3.2 utilizzando la loro
 fattorizzazione LU. Ricordando le proprietà del determinante e che la matrice $\mathbf{L}$ è triangolare inferiore 
 con elementi diagonali unitari, si ha che:
 
 \begin{equation}
-    \det(\mathbf{M}) = det(\mathbf{LU}) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
+    \det(\mathbf{M}) = \det(\mathbf{LU}) = \det(\mathbf{L}) \cdot \det(\mathbf{U}) = \det(\mathbf{U})\,.
 \end{equation}
 
 Per il calcolo del determinante delle matrici proposte si è eseguito il prodotto degli elementi della diagonale
 principale della matrice $\mathbf{U}$. A titolo di confronto si è calcolato il determinante delle matrici con 
-la funzione \texttt{det} di Julia. I risultati sono riportati in tabella \ref{tab:determinanti}.
+la funzione \texttt{det()} di Julia. I risultati sono riportati in tabella \ref{tab:determinanti}.
 \begin{table}[!ht]
 \centering
 \caption{Determinanti delle matrici dell'esercizio 2.}
@@ -663,8 +653,6 @@ C                & 80.0                       & 80.0  \\
 \hline
 \end{tabular}
 \end{table}
-
-Si ottengono risultati identici.
 
 \subsection{Esercizio 2.3.3}
 Le matrici
@@ -696,7 +684,7 @@ sono usate per rappresentare traslazioni e rotazioni di punti del piano in compu
 \end{enumerate}
 
 \subsubsection{Soluzione}
-\paragraph{(a) } Si calcola il prodotto tra le matrici $\mathbf{A}$ e $\mathbf{z}$, ottenendo:
+\paragraph{(a)}Si calcola il prodotto tra le matrici $\mathbf{A}$ e $\mathbf{z}$, ottenendo:
 \begin{equation}
     \mathbf{b} = \mathbf{A}\mathbf{z} = \begin{bmatrix}
         3.95 \\
@@ -704,7 +692,7 @@ sono usate per rappresentare traslazioni e rotazioni di punti del piano in compu
         1.0
     \end{bmatrix}. 
 \end{equation}
-\paragraph{(b) } Si calcola la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
+\paragraph{(b)}Si calcola la fattorizzazione LU della matrice $\mathbf{A}$, ottenendo:
 \begin{equation}
     \mathbf{L} = \begin{bmatrix}
         1.0  &     0.0  & 0.0 \\
@@ -717,7 +705,7 @@ sono usate per rappresentare traslazioni e rotazioni di punti del piano in compu
         0.0       &  0.0       &  1.0
     \end{bmatrix}.
 \end{equation}
-\paragraph{(c) } Si risolve il sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ utilizzando le sostituzioni triangolari.
+\paragraph{(c)}Si risolve il sistema $\mathbf{A}\mathbf{x} = \mathbf{b}$ utilizzando le sostituzioni triangolari.
 Si ottiene, con le dovute approssimazioni:
 \begin{equation}
     \mathbf{x} = \begin{bmatrix}
@@ -858,25 +846,27 @@ Consideriamo la matrice:
 \end{bmatrix}
 \]
 
-Se $\epsilon=0$, la fattorizzazione LU senza pivoting parziale fallisce per $\mathbf{A}$. Ma se $\epsilon\neq 0$, 
+Se $\varepsilon=0$, la fattorizzazione LU senza pivoting parziale fallisce per $\mathbf{A}$. Ma se 
+$\varepsilon\neq 0$, 
 possiamo procedere senza pivoting, almeno in linea di principio. \\
-(a) Costruisci $\mathbf{b}=\mathbf{Ax}$ prendendo $\epsilon=10^{-12}$ per la matrice $\mathbf{A}$ e 
-$\mathbf{x}=[1,1]$ come soluzione. \\
-(b) Fattorizza la matrice usando la decomposizione LU senza pivoting e risolvi numericamente per $\mathbf{x}$. 
-Quanto è accurato il risultato? \\
-(c) Verifica la fattorizzazione LU calcolando $\mathbf{A}-\mathbf{LU}$. Funziona? \\
-(d) Ripeti per $\epsilon=10^{-20}$. Quanto è accurato ora il risultato? \\
-(e) Calcola il numero di condizionamento della matrice $\mathbf{A}$; puoi scegliere la norma che preferisci. 
-Il sistema $\mathbf{Ax}=\mathbf{b}$ è mal condizionato? \\
-(f) Calcola le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di $\mathbf{A}=\mathbf{LU}$ a mano. \\
-(g) Calcola i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$. 
+\begin{enumerate}[label=(\alph*)]
+    \item[(a)] Costruisci $\mathbf{b}=\mathbf{Ax}$ prendendo $\epsilon=10^{-12}$ per la matrice $\mathbf{A}$ e 
+    $\mathbf{x}=[1,1]$ come soluzione.
+    \item[(b)] Fattorizza la matrice usando la decomposizione LU senza pivoting e risolvi numericamente per $\mathbf{x}$. 
+    Quanto è accurato il risultato?
+    \item[(c)] Verifica la fattorizzazione LU calcolando $\mathbf{A}-\mathbf{LU}$. Funziona?
+    \item[(d)] Ripeti per $\epsilon=10^{-20}$. Quanto è accurato ora il risultato?
+    \item[(e)] Calcola il numero di condizionamento della matrice $\mathbf{A}$; puoi scegliere la norma che preferisci. 
+    Il sistema $\mathbf{Ax}=\mathbf{b}$ è mal condizionato?
+    \item[(f)] Calcola le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di $\mathbf{A}=\mathbf{LU}$ a mano.
+    \item[(g)] Calcola i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$.
+\end{enumerate}
 
 \subsubsection{Soluzione}
 Per poter operare un confronto tra i risultati ottenuti con $\epsilon = 10^{-12}$ e $\epsilon = 10^{-20}$, si è
 scelto di trattare il punto (d) insieme ai punti (a), (b) e (c). Il pedice 1 è legato al caso $\epsilon = 10^{-12}$,
-il pedice 2 al caso $\epsilon = 10^{-20}$. \\
-
-\paragraph{(a) } Si è calcolato il prodotto tra la matrice $\mathbf{A}$ e il vettore $\mathbf{x}$, ottenendo, 
+il pedice 2 al caso $\epsilon = 10^{-20}$. 
+\paragraph{(a)}Si è calcolato il prodotto tra la matrice $\mathbf{A}$ e il vettore $\mathbf{x}$, ottenendo, 
 a meno di arrotondamenti, i vettori:
 \begin{equation}
     \mathbf{b_1} = \begin{bmatrix}
@@ -890,7 +880,7 @@ a meno di arrotondamenti, i vettori:
     \end{bmatrix}.
 \end{equation}
 
-\paragraph{(b) } \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, 
+\paragraph{(b)} \label{par:fattorizzazione_LU} Si è calcolata la fattorizzazione LU della matrice $\mathbf{A}$, 
 ottenendo:
 \begin{equation}
     \mathbf{L_1} = \begin{bmatrix}
@@ -926,7 +916,7 @@ Si è risolto il sistema $\mathbf{Ax} = \mathbf{b}$ utilizzando le sostituzioni 
     \end{bmatrix}.
 \end{equation}
 
-\paragraph{(c) } Si è calcolato il prodotto tra le matrici $\mathbf{L}$ e $\mathbf{U}$, in seguito lo si è 
+\paragraph{(c)}Si è calcolato il prodotto tra le matrici $\mathbf{L}$ e $\mathbf{U}$, in seguito lo si è 
 sottratto ad $\mathbf{A}$ ottenendo:
 \begin{equation}
     \mathbf{A_1} - \mathbf{(LU)_1} = \begin{bmatrix}
@@ -940,12 +930,10 @@ sottratto ad $\mathbf{A}$ ottenendo:
     \end{bmatrix}.
 \end{equation}
 
-È evidente che il risultato per $\epsilon = 10^{-12}$ è accurato, al contrario del risultato ottenuto per
-$\epsilon = 10^{-20}$, in cui sia la soluzione che la verifica della fattorizzazione LU sono
-affette da errori numerici.
-
-\paragraph{(e) } Si è calcolato $\kappa(A)$, utilizzando sia la norma 1 che la norma infinito, ottenendo lo stesso
-numero a causa della natura simmetrica della matrice $\mathbf{A}$. La formula generale per il numero di
+È evidente che il risultato per $\epsilon = 10^{-12}$ è accurato contrariamente al risultato ottenuto per
+$\epsilon = 10^{-20}$, in cui la verifica della fattorizzazione LU non porta alla matrice di zeri.
+\paragraph{(e)}Si è calcolato $\kappa(A)$ utilizzando sia la norma 1 che la norma infinito, ottenendo lo stesso
+risultato a causa della natura simmetrica della matrice $\mathbf{A}$. La formula generale per il numero di
 condizionamento della matrice $\mathbf{A}$ presa in esame è $ \kappa(A) = \frac{4}{1 - \epsilon}$.
 \begin{equation}
     \kappa_1(A) = \kappa_\infty(A) =  4.000000000004\,,
@@ -955,13 +943,11 @@ condizionamento della matrice $\mathbf{A}$ presa in esame è $ \kappa(A) = \frac
 
 Come si può notare, in entrambi i casi il numero di condizionamento non è molto grande, quindi il sistema
 $\mathbf{Ax} = \mathbf{b}$ non è mal condizionato. 
-
-\paragraph{(f) } Si sono calcolate a mano le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di
+\paragraph{(f)}Si sono calcolate a mano le matrici $\mathbf{L}$ e $\mathbf{U}$ della fattorizzazione LU di
 $\mathbf{A}$ per ciascun valore di $\epsilon$. I calcoli dettagliati sono disponibili nella cartella git,
-nel percorso \\ \verb|lab\computazionale1\esercizi\pen_and_paper|. Ad ogni modo le
+nel percorso \\ \verb|lab_computazionale1\esercizi\pen_and_paper|. Ad ogni modo le
 matrici ottenute sono già state riportate al punto \ref{par:fattorizzazione_LU}. 
-
-\paragraph{(g) } Si sono calcolati i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$, utilizzando sia 
+\paragraph{(g)}Si sono calcolati i numeri di condizionamento di $\mathbf{L}$ e $\mathbf{U}$, utilizzando sia 
 la norma 1 che la norma infinito, ancora una volta ottenendo lo stesso numero. \\
 Le forumle generali per il numero di condizionamento delle matrici $\mathbf{L}$ e $\mathbf{U}$ sono:
 \begin{equation}
@@ -974,7 +960,7 @@ In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 
 \begin{table}[!ht]
 \centering
-\caption{Valori dei parametri \( L \) e \( U \) per diverse tolleranze \( \varepsilon \)}
+\caption{Valori dei numeri di condizionamento al variare di \( \varepsilon \)}
 \label{tab:LU_epsilon}
 \begin{tabular}{|c|c|c|}
 \hline
@@ -988,17 +974,19 @@ In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 
 \subsubsection{Conclusioni}
 L'esercizio ha mostrato come il numero di condizionamento di una matrice non sia un indicatore sufficiente per
-valutare l'esattezza della risoluzione del sistema lineare associato. Infatti, sebbene il numero di condizionamento
+valutare l'esattezza della risoluzione del sistema lineare associato. Sebbene il numero di condizionamento
 della matrice $\mathbf{A}$ sia relativamente basso, la risoluzione del sistema richiede il calcolo delle matrici
-$\mathbf{L}$ e $\mathbf{U}$, il cui numero di condizionamento potrebbe risultare elevato. È questo il caso
-con $\epsilon = 10^{-20}$, in cui $\kappa(A) =  4.0$ ma $\kappa(L) = 1.0 \cdot 10^{40}$ e 
+$\mathbf{L}$ e $\mathbf{U}$. Nel caso
+con $\epsilon = 10^{-20}$, in cui $\kappa(A) =  4.0$ si ha $\kappa(L) = 1.0 \cdot 10^{40}$ e 
 $\kappa(U) = 1.0 \cdot 10^{40}$. Dato che l'algoritmo utilizza le matrici $\mathbf{L}$ e $\mathbf{U}$ 
 per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle stesse.
 
 \subsection{Esercizio 2.6.1}
-(a) Scrivi un programma che prenda in input una matrice $\mathbf{A}$ e un vettore $\mathbf{b}$ e risolva 
-il problema dei minimi quadrati $\text{argmin}\| \mathbf{b}- \mathbf{A} \mathbf{x}\|_2$ utilizzando la decomposizione di Cholesky.\\
-(b) Per verificare il funzionamento del tuo codice, calcola la soluzione ai minimi quadrati quando
+\begin{enumerate}[label=(\alph*)]
+    \item[(a)] Scrivi un programma che prenda in input una matrice $\mathbf{A}$ e un vettore $\mathbf{b}$ e risolva 
+    il problema dei minimi quadrati $\text{argmin}\| \mathbf{b}- \mathbf{A} \mathbf{x}\|_2$ utilizzando la decomposizione di Cholesky.
+    \item[(b)] Per verificare il funzionamento del tuo codice, calcola la soluzione ai minimi quadrati quando
+\end{enumerate}
 \begin{center}
     \begin{minipage}{0.48\textwidth}
     \centering
@@ -1028,13 +1016,15 @@ ottenendo:
 \subsection{Esercizio 2.6.2}
 Keplero ha scoperto che il periodo orbitale $\tau$ di un pianeta dipende dalla sua distanza media $R$ dal Sole 
 secondo la legge $\tau = c R^{\alpha}$, dove $\alpha$ è un semplice numero razionale. \\
-(a) Esegui un fit lineare ai minimi quadrati utilizzando la tabella \ref{tab:pianeti} per determinare il valore 
-più probabile e semplice di $\alpha$. \\
-(b) Realizza un grafico dei dati e del risultato del fit.
+\begin{enumerate}[label=(\alph*)]
+    \item[(a)] Esegui un fit lineare ai minimi quadrati utilizzando la tabella \ref{tab:pianeti} per determinare il valore 
+    più probabile e semplice di $\alpha$. 
+    \item[(b)] Realizza un grafico dei dati e del risultato del fit.
+\end{enumerate}
 
 \subsubsection{Soluzione}
-\paragraph{(a) } Il metodo dei minimi quadrati che è stato sviluppato durante il corso è adatto a risolvere
-problemi lineari, in cui le costanti che si vogliono determinare sono coefficienti lineari di funzioni dei dati.
+\paragraph{(a)}Il metodo dei minimi quadrati sviluppato durante il corso è adatto a risolvere
+problemi lineari.
 Non è il caso del problema proposto, dato che $\alpha$ si trova ad esponente. Per risolvere la questione si 
 è scelto di linearizzare il problema tramite il logaritmo naturale. In formule:
 \begin{equation}
@@ -1050,33 +1040,33 @@ la matrice di design trasposta:
     \end{bmatrix}.
 \end{equation}
 
-La matrice di regressione è stata costruita in modo che la prima colonna fosse composta da 1, per poter calcolare
-il termine noto della retta, e la seconda colonna fosse composta dai logaritmi naturali delle
+La matrice di regressione è stata costruita in modo che la prima colonna fosse composta da 1 per poter calcolare
+il termine noto della retta e la seconda colonna fosse composta dai logaritmi naturali delle
 distanze dei pianeti dal Sole. \\
 La legge di Keplero prevista è la seguente:
 \begin{equation}
     \label{eq:keplero}
-    \tau = c R^{3/2}\,, \text{ con } \qquad \alpha = \frac{3}{2}\, \qquad c = \frac{2\pi}{\sqrt{G (M+m)}}
+    \tau = c R^{3/2}\,, \qquad \text{ con } \alpha = \frac{3}{2}\,, \hspace{0.3cm} c = \frac{2\pi}{\sqrt{G (M+m)}}
 \end{equation}
 dove $G$ è la costante di gravitazione universale, $M$ è la massa del Sole, $m$ è la massa del pianeta. \\
-La regressione lineare che si vuole effetturare considera $c$ costante, nonostante dipenda dalla massa del pianeta.
+La regressione lineare che si vuole effetturare considera $c$ costante nonostante dipenda dalla massa del pianeta.
 Consideriamo Giove, il pianeta più massivo di quelli presi in esame ($m \approx 1.90 \cdot 10^{27} \, \text{kg}$). Si ha:
-\begin{align}
+\begin{align*}
     c_1 &= \frac{2\pi}{\sqrt{G (M+m)}} = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}  \\
     c_2 &= \frac{2\pi}{\sqrt{G M}}   = 5.47 \cdot 10^{-10} \frac{\text{sec}}{m^{3/2}} = 0.203 \frac{days}{Mkm^{3/2}}    \\
     \frac{c_1}{c_2} &\approx 1.0
-\end{align}
+\end{align*}
 Possiamo quindi affermare che la costante $c$ è indipendente dalla massa del pianeta, entro la precisione 
 necessaria per il nostro scopo. \\
 Si sono quindi stimati il valore di $\alpha$ e della costante $c$, tramite la regressione, ottenendo:
-\begin{equation}
+\begin{equation*}
     c = 0.206 \frac{days}{Mkm^{3/2}}
     \qquad
     \alpha = 1.499
-\end{equation}
+\end{equation*}
 I risultati sono in accordo con quanto atteso.
 
-\paragraph{(b) } Si riporta in figura \ref{fig:es2_6_2_1} il grafico dei dati e relativo fit.
+\paragraph{(b)}Si riporta in figura \ref{fig:es2_6_2_1} il grafico dei dati e relativo fit.
 
 \begin{figure}[!ht]
     \centering
@@ -1095,21 +1085,22 @@ periodo, $0 < t \le 2\pi$. Come dati, si definiscono
     y_i = g(t_i)\,,
     \quad i=1,\ldots,60.
 \end{equation}
-    
-(a) Trova i coefficienti del fit ai minimi quadrati    
+
+\begin{enumerate}
+\item [(a)] Trova i coefficienti del fit ai minimi quadrati    
     \begin{equation}
     \label{eq:fit_pol}    
         y(t) \approx c_1 + c_2 t + \cdots + c_7 t^6.
     \end{equation}        
 Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il fit. \\
-(b) Trova i coefficienti del fit ai minimi quadrati
+\item[(b)] Trova i coefficienti del fit ai minimi quadrati
     \begin{equation}
     \label{eq:fit_fourier}
         y \approx d_1 + d_2\cos(t) + d_3\sin(t) + d_4\cos(2t) + d_5\sin(2t).
     \end{equation}
-
 A differenza del punto (a), questa funzione di fitting è essa stessa periodica. 
 Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il fit.
+\end{enumerate}
 
 \subsubsection{Soluzione}
 Dopo avere generato i dati richiesti, si è eseguito il metodo dei minimi quadrati con le seguenti 
@@ -1147,7 +1138,7 @@ Si riportano i grafici dei dati e dei fit in figura \ref{fig:es2_6_3_1}.
 
 \subsubsection{Conclusioni}
 In figura \ref{fig:es2_6_3_1} si osserva che il fit meglio riuscito è quello di Fourier, nonostante
-richieda meno parametri. Il motivo è che la funzione $g(t)$ è periodica, e quindi il fit con il modello 
+richieda meno parametri. Il motivo è che la funzione $g(t)$ è periodica, di conseguenza il fit con modello 
 \ref{eq:fit_fourier} riesce a catturare meglio la periodicità della funzione rispetto al fit esguito con 
 \ref{eq:fit_pol}. \\
 In un contesto sperimentale la funzione $g(t)$ non è nota a priori, anzi lo scopo dell'esperimento è 
