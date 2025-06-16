@@ -37,9 +37,10 @@
     }
     \renewcommand{\headrulewidth}{0pt}
 }
-\setlength{\headheight}{72.63475pt} % Fix fancyhdr warning
-\addtolength{\topmargin}{-0.75pt} % Compensate for increased headheight
-
+%\setlength{\headheight}{72.63475pt} % Fix fancyhdr warning
+%\addtolength{\topmargin}{-0.75pt} % Compensate for increased headheight
+\setlength{\headheight}{126.23375pt}
+\addtolength{\topmargin}{-53.599pt}
 \graphicspath{{immagini/}}
 %Required for inserting images
 %++++++++++++++++++++++++++++++++++++++++
@@ -84,7 +85,7 @@ la serie approssimante:
 \end{enumerate}
 
 \subsubsection{Soluzione}
-Al fine dell'esercizio vengono rappresentati nel grafico \ref{fig:es1_0_1_1} le funzioni $\Delta$ e $\frac{x^{N+1}}{(N+1)!}$, con 
+Si sono rappresentate nel grafico \ref{fig:es1_0_1_1} le funzioni $\Delta$ e $\frac{x^{N+1}}{(N+1)!}$, con 
 $N=1,2,3, 4$, al variare di $x$ nell'intervallo $[0,1]$. 
 
 \begin{figure}[!ht]
@@ -94,16 +95,20 @@ $N=1,2,3, 4$, al variare di $x$ nell'intervallo $[0,1]$.
     \label{fig:es1_0_1_1}
 \end{figure}
 
-La prima considerazione che possiamo fare è che all'aumentare di $N$ la funzione $\Delta$ 
-assume valori sempre più vicini allo zero. Questo significa che la distanza tra il valore 
+
+Una prima considerazione è che all'aumentare di $N$ la funzione $\Delta$ 
+si avvicina globalmente a zero. Questo significa che la distanza tra il valore 
 della funzione $f(x)$ presa in esame e la sua espansione di Taylor troncata all'ordine 
 $N$ diminuisce. In effetti ci aspettiamo che la funzione $\Delta$ sia 
-esattamente zero nel caso in cui $N \rightarrow \infty$. Inoltre possiamo notare che la funzione $\Delta$, in ognuno
-dei grafici, è tanto più prossima allo zero quanto più ci si avvicina all'origine, poichè l'espansione in serie 
+esattamente zero nel caso in cui $N \rightarrow \infty$. Inoltre ciascuno dei grafici mostra che la funzione 
+$\Delta$ è tanto più prossima allo zero quanto più ci si avvicina all'origine, poichè l'espansione in serie 
 richiede $x \rightarrow 0$.\\
 La seconda considerazione è che le funzioni $\Delta$ e $\frac{x^{N+1}}{(N+1)!}$ si 
-avvicinano tra loro all'aumentare di $N$. Questo risponde alla richiesta dell'esercizio, 
-cioè che l'errore scali come un polinomio di ordine $N+1$. 
+avvicinano tra loro all'aumentare di $N$. Il motivo è che la funzione $\frac{x^{N+1}}{(N+1)!}$ è 
+l'ordine successivo della serie di Taylor troncata all'ordine $N$ e può essere presa come stima per 
+l'errore commesso nell'approssimazione di $f$. Non è però una stima ottima: la serie di Taylor associata a $f$ 
+conta infiniti termini e la sola $\frac{x^{N+1}}{(N+1)!}$ non li contiene tutti. Per questa ragione essa non 
+coincide con $\Delta$ ma si avvicina, essendo all'aumentare di $N$ una stima migliore dell'errore.
 
 \subsection{Esercizio 1.2.1}
 Calcolare la seguente somma
@@ -127,40 +132,48 @@ Calcolare la seguente somma
 \subsubsection{Soluzione}
 Procediamo prendendo in esame i due casi, single precision e double precision.
 
-\paragraph{Single precision:} 
-
-Si riportano in figura \ref{fig:es1_2_1_1} gli errori di troncamento della serie 
-$\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
-con variabili di tipo Float32 (single precision).
-
 \begin{figure}[!ht]
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{1211.pdf}
+        \caption{$\Delta$ in Float32.}
+        \label{fig:es1_2_1_1}
+    \end{minipage}
     \centering
-    \includegraphics[width=0.8\textwidth]{1211.pdf}
-    \caption{$S(N)=\sum_{n=1}^N \frac{1}{n^2}$ in single precision}
-    \label{fig:es1_2_1_1}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=0.8\textwidth]{1212.pdf}
+        \caption{Ingrandimento di $\Delta$ in Float64}
+        \label{fig:es1_2_1_2}
+    \end{minipage}
 \end{figure}
 
+\paragraph{Single precision:}Si riportano in figura \ref{fig:es1_2_1_1} gli errori di troncamento della serie 
+$\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
+con variabili di tipo Float32 (single precision). \\
 In figura \ref{fig:es1_2_1_1} notiamo due comportamenti degni di nota. Il primo riguarda
 la curva blu, che arresta la sua discesa poco dopo $N = 4000$. 
-Il secondo riguarda il discostarsi delle due curve, già a partire da 
-$N \simeq 2000$, a causa dell'andamento a linea spezzata della curva blu.\\
+Il secondo riguarda il discostarsi delle due curve a causa dell'andamento a linea spezzata della curva blu.\\
 La spiegazione del primo fenomeno è la seguente: nel caso della somma con ordinamento
 diretto, all'aumento dell'indice di somma, gli addendi sono sempre più piccoli. In
-particolare la somma comincia da 1, e sappiamo che dovrà raggiungere $\frac{\pi^2}{6} \simeq 1.64$ e perciò 
+particolare la somma comincia da 1, e sappiamo che dovrà raggiungere $\frac{\pi^2}{6} \simeq 1.64$, perciò 
 per tutto il processo la somma parziale resterà nell'intervallo $[1, 2)$. In tale intervallo la distanza tra due 
-floating point numbers è $\epsilon_{mach} = 2^{-23}$. Osserviamo il grafico \ref{fig:es1_2_1_1}: la curva blu comincia ad essere 
-costante a partire da $N = 4096 = 2^{12}$. Tale numero corrisponde all'addendo $\frac{1}{N^2} = 2^{-24}$, 
-che è appena più piccolo di $\epsilon_{mach}$, ovvero della distanza tra due floating point numbers in $[1, 2)$, e quindi è
-come sommare $0$. \\
+floating point numbers è $\varepsilon_{mach} = 2^{-23}$. Osserviamo il grafico \ref{fig:es1_2_1_1}: la curva blu comincia ad essere 
+costante a partire da $N = 4096 = 2^{12}$.  L'addendo corrispondente è $\frac{1}{N^2} = 2^{-24}$.
+Essendo più piccolo di $\varepsilon_{mach}$, la distanza tra due floating point numbers in $[1, 2)$, 
+viene considerato come $0$. \\
 La spiegazione del secondo fenomeno è simile: in questo caso alla somma viene aggiunto
-un addendo che è più piccolo del precedente, ma non così tanto da essere più piccolo di $\epsilon_{mach}$. In
-questo modo la somma viene migliorata, ma il nuovo addendo è arrotondato rispetto al suo valore vero. Il successivo
+un addendo che è più piccolo del precedente, ma non così tanto da essere più piccolo di $\varepsilon_{mach}$. In
+questo modo alla somma viene aggiunto un valore arrotondato rispetto al suo valore vero. Il successivo
 addendo, pur essendo differente in teoria, a causa dell'arrotondamento risulta essere uguale al precedente. Ciò fa
 in modo che venga sommato sempre lo stesso numero, e così l'andamento della curva blu è lineare. \\
-I due fenomeni non si verificano per la somma con ordinamento inverso perchè il primo numero ad essere sommato 
-è molto piccolo. Questo fa in modo che i successivi floating point number siano molto vicini tra loro, è così sommare
-l'addendo successivo fa cadere la somma parziale vicina al floating point number che la approssima. \\
-\\
+I due fenomeni non si verificano per la somma con ordinamento inverso perchè il primo numero della somma
+è molto piccolo. Questo fa in modo che i successivi floating point number siano molto vicini tra loro, e 
+così sommare
+l'addendo successivo fa cadere la somma parziale vicina al floating point number che la approssima. 
+
+\vspace{0.5cm}
+
 Si può mostrare matematicamente che gli errori $\Delta = |S(N)-\pi^2/6|$ scalano come $O(\frac{1}{N})$. Per verificare questa
 affermazione possiamo interpolare la curva degli errori con un metodo che vedremo nella sezione \ref{sistemi_lineari}.
 Sulla base delle considerazioni di questa sezione, possiamo aspettarci che sia più conveniente interpolare la curva 
@@ -170,27 +183,18 @@ $c_{fit} = 1.00003$ e per quello diretto $c_{fit} = 0.986$. Come atteso il caso 
 risultato peggiore di quello inverso.
 
 
-\paragraph{Double precision:}
-
-Si riporta in figura \ref{fig:es1_2_1_2} un ingrandimento del grafico degli errori di troncamento della serie 
+\paragraph{Double precision:}Si riporta in figura \ref{fig:es1_2_1_2} un ingrandimento 
+del grafico degli errori di troncamento della serie 
 $\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
-con variabili di tipo Float64 (double precision).
-
-\begin{figure}[!ht]
-    \centering
-    \includegraphics[width=0.8\textwidth]{1212.pdf}
-    \caption{Ingrandimento di $S(N)=\sum_{n=1}^N \frac{1}{n^2}$ in double precision}
-    \label{fig:es1_2_1_2}
-\end{figure}
-
-Nel caso di figura \ref{fig:es1_2_1_2} possiamo notare che le due curve sono sovrapposte, 
+con variabili di tipo Float64 (double precision). 
+Nel caso di figura \ref{fig:es1_2_1_2} possiamo notare che le due curve sono sovrapposte,
 nonostante l'ingrandimento a valori di $N \in [5000, 10000]$. Per osservare un fenomeno simile a quello di 
 figura \ref{fig:es1_2_1_1} dovremmo raggiungere valori di $N = 2^{26}$. Infatti l'approssimazione non migliora
-quando vengono sommati numeri dell'ordine di $\epsilon_{mach}$ per double precision, cioè
+quando vengono sommati numeri dell'ordine di $\varepsilon_{mach}$ per double precision, cioè
  $\frac{1}{N^2} \simeq 2^{-52}$.
 
 \subsection{Esercizio 1.4.1}
-\paragraph{(a)} In statistica, definiamo la varianza di un campione di valori $x_1,\ldots,x_n$ come
+\paragraph{(a)}In statistica, definiamo la varianza di un campione di valori $x_1,\ldots,x_n$ come
 
 \begin{equation}
     \sigma^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \overline{x})^2,
@@ -201,7 +205,6 @@ quando vengono sommati numeri dell'ordine di $\epsilon_{mach}$ per double precis
 
 Scrivi una funzione che prenda in input un vettore $x$ di lunghezza arbitraria e restituisca $\sigma^2$ calcolata 
 con la formula sopra. 
-Dovresti testare la funzione con $x=[1,1,\ldots,1]$ e con alcuni vettori casuali.
 
 \paragraph{(b)} La formula \ref{eq:varianza_naive} ha lo svantaggio di scorrere due volte il vettore dei dati. 
 Considera la formula \ref{eq:varianza_eff} a un ciclo:
@@ -225,7 +228,7 @@ Esegui i calcoli sia in single che in double precision.
 
 
 \subsubsection{Soluzione}
-\paragraph{(a) } Si è testato il codice che implementa la formula \ref{eq:varianza_naive} su tre vettori contenenti
+\paragraph{(a)}Si è testato il codice che implementa la formula \ref{eq:varianza_naive} su tre vettori contenenti
 elementi di tipo Float64. Il primo contiene solo numeri $1$, il secondo contiene numeri generati a partire 
 da una distribuzione uniforme, il terzo numeri generati a partiere da una distribuzione normale. I valori sono 
 riportati in tabella \ref{tab:varianza_test}.
@@ -247,9 +250,8 @@ Normale          & $10^8$               & 1.000                    & 1.000      
 
 I risultati di tabella \ref{tab:varianza_test} mostrano che l'implementazione del codice è corretta.
 
-\paragraph{(b) }
-Si è testato il codice che implementa la formula \ref{eq:varianza_eff} su quattro vettori contenenti
-elementi di tipo Float32, Float64 e Long Double. I risultati sono riportati in tabella \ref{tab:varianza_precisioni}.
+\paragraph{(b)}Si è testato il codice che implementa la formula \ref{eq:varianza_eff} su quattro vettori contenenti
+elementi di tipo Float32, Float64 e LongDouble. I risultati sono riportati in tabella \ref{tab:varianza_precisioni}.
 
 \begin{table}[!ht]
 \centering
@@ -274,7 +276,7 @@ $x_4$ & 1.0 & 0.0      & 0.0       & 1.0      & 0.0      & 1.0      & 1.0 \\
 
 I risultati di tabella \ref{tab:varianza_precisioni} mostrano che il calcolo della varianza con la formula 
 \ref{eq:varianza_eff} è più affetto dalla mancanza di precisione della rappresentazione dei numeri durante il calcolo.
-Infatti, mano a mano che la la precisione dei numeri aumenta, il risultato della formula \ref{eq:varianza_eff} 
+All'aumento della precisione di rappresentazione, il risultato della formula \ref{eq:varianza_eff} 
 si avvicina a quello atteso. \\
 C'è da notare che anche la formula \ref{eq:varianza_naive} è affetta dalla stessa problematica, ma in maniera meno
 evidente. Basti osservare il risultato del metodo 1 per il vettore $x_4$ in Float32, che è $0.0$, contro l'atteso 
@@ -302,18 +304,17 @@ $x_4$ & 0.0       & 0.0 & 2.0 \\
 \end{table}
 
 Leggendo la tabella \ref{tab:errore_varianza} possiamo notare che per il dataset $x_1$ la differenza è esattamente
-$2.0$, che è il risultato atteso. Per il dataset $x_2$ la differenza è molto grande, $-262144.0$, il che indica un
-significativo problema di cancellazione numerica. Per il dataset $x_3$ e $x_4$, la differenza è $0.0$, indice 
-del fatto che i singoli valori \( u - \frac{v^2}{n} \) sono vicini tra loro meno di $\epsilon_mach$, e perciò la 
-loro differenza è zero. \\
+$2.0$, il risultato atteso. Per il dataset $x_2$ la differenza è molto grande, $-262144.0$, indice di un
+significativo problema di cancellazione numerica. Per il dataset $x_3$ e $x_4$ la differenza è $0.0$. Evidentemente 
+i singoli valori \( u  \text{ e } \frac{v^2}{n} \) distano tra loro meno del floating point number più vicino, 
+la loro differenza è quindi zero. \\
 Per concludere, possiamo dire che la formula \ref{eq:varianza_eff} è più efficiente in termini di tempo di calcolo,
 ma è più affetta da errori numerici rispetto alla formula \ref{eq:varianza_naive}.
 
 \subsection{Esercizio 1.4.2}
-Sia $f(x) = \frac{e^x-1}{x}$.
-  
-(a) Trova il numero di condizionamento $\kappa_f(x)$. Qual è il massimo di $\kappa_f(x)$ nell'intervallo $-1\le x \le 1$?
-  
+Sia $f(x) = \frac{e^x-1}{x}$. \\
+(a) Trova il numero di condizionamento $\kappa_f(x)$. Qual è il massimo di $\kappa_f(x)$ 
+nell'intervallo $-1\le x \le 1$? \\
 (b) Usa l'algoritmo "naive"
 
 \begin{equation}
@@ -321,18 +322,17 @@ Sia $f(x) = \frac{e^x-1}{x}$.
     \label{eq:algoritmo_naive}
 \end{equation}
 
-per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
-
+per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$. \\
 (c) Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Mc Laurin, cioè
-
 \begin{equation}
     p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
     \label{eq:algoritmo_maclaurin}
 \end{equation}
-
-Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ fin dall'inizio?
-
-(d) Confronta i risultati delle due implementazioni in funzione di $x$. Quale algoritmo pensi sia più accurato, e perché?
+Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. 
+Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ 
+fin dall'inizio?\\
+(d) Confronta i risultati delle due implementazioni in funzione di $x$. Quale algoritmo pensi sia più accurato, 
+e perché?
 
 \subsubsection{Soluzione}
 
@@ -389,20 +389,22 @@ abbia un massimo non molto
 grande e peraltro non assunto nell'intorno di zero. La spiegazione di questo fenomeno è che l'algoritmo
 \ref{eq:algoritmo_naive}, nonostante non abbia $\kappa_f(x)$ complessivo molto grande, è affetto da errori 
 di cancellazione numerica a causa della forma in cui è scritta la funzione, ma non a causa del fatto che 
-il problema sia intrinsecamente instabile. Di fatto possiamo intuire che esista una possibile riscrittura
-della funzione che non sia affetta da cancellazione numerica, e che sia più stabile, proprio perchè 
-sappiamo che il massimo di $\kappa_f(x)$ non è molto grande. Tale riscrittura è quella che utilizza la
+il problema sia intrinsecamente instabile. Si può perciò intuire l'esistenza di una possibile riformulazione
+dell'algoritmo di calcolo che non sia affetto da cancellazione numerica. 
+Una riformulazione possibile è l'utilizzo della
 serie di Mc Laurin, implementata nell'algoritmo $p_n(x)$. \\
-Possiamo notare che l'algoritmo \ref{eq:algoritmo_maclaurin}, per valori di $x$ piccoli, restituisce il 
-valore corretto, dato che non è affetto da cancellazione numerica. Al contrario, nella regione ingradita di 
-figura \ref{fig:es1_4_2_3}, l'algoritmo \ref{eq:algoritmo_maclaurin} comincia a restituire valori errati
+L'algoritmo \ref{eq:algoritmo_maclaurin} non essendo affetto da cancellazione numerica restituisce
+valori corretti per $x$ piccoli. Nella regione evidenziata da
+figura \ref{fig:es1_4_2_3} restituisce valori errati
 perchè ci allontaniamo dalla regione di convergenza della serie di Mc Laurin. \\
-Osservando la figura \ref{fig:es1_4_2_3}, notiamo che, per valori di $x$ fissati, l'algoritmo 
+Osservando la figura \ref{fig:es1_4_2_3} si nota che per valori di $x$ fissati l'algoritmo 
 \ref{eq:algoritmo_maclaurin} è stabile, cioè le curve che descrivono i valori di $p_n(x)$ sono sempre più 
-vicine tra loro all'aumentare di $n$, fino a sovrapporsi. Per stimare un buon valore di $n$ da utilizzare
-per calcolare $p_n(x)$, possiamo osservare che la serie di Mc Laurin è tanto meno stabile quanto più ci si
+vicine tra loro all'aumentare di $n$, fino a sovrapporsi. \\
+In linea di principio si sarebbe potuto stimare a priori un buon valore di $n$ da utilizzare
+per calcolare $p_n(x)$. La serie di Mc Laurin è una stima peggiore di $f$ quanto più ci si
 allontana da zero. Nel caso di studio valutiamo la distanza tra i valori di $p_n(x)$ al variare di $n$,
-fissato $x = 0.1$. Si è rappresentato in figura \ref{fig:es1_4_2_4} l'andamento della distanza tra i valori
+fissato $x = 0.1$, punto sufficientemente lontano dall'origine. 
+Si è rappresentato in figura \ref{fig:es1_4_2_4} l'andamento della distanza tra i valori
 di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
 \begin{equation}
     \Delta_n = |p_n(0.1) - p_{n+1}(0.1)|\,.
@@ -419,7 +421,7 @@ polinomi successivi non sono apprezzabili nel range $[1, 1.06]$, caratteristico 
 È chiaro che volendo raggiungere precisione massima occorrerà scegliere $n = 10$, dato che $\Delta_n$ 
 corrispondente è più piccolo di $\epsilon{mach}$
 
-\paragraph{(d): } Come confronto tra i due algoritmi si riporta in figura \ref{fig:es1_4_2_4} il grafico 
+\paragraph{(d):}Come confronto tra i due algoritmi si riporta in figura \ref{fig:es1_4_2_5} il grafico 
 dell'errore tra i due algoritmi, cioè
 \begin{equation}
     \Delta(x) = \left| f(x) - p_n(x) \right|\,.
@@ -432,12 +434,12 @@ dell'errore tra i due algoritmi, cioè
     \label{fig:es1_4_2_5}
 \end{figure}
 
-La figura \ref{fig:es1_4_2_5} mostra una evidente differenza tra i due algoritmi nella regione di instabilità
-numerica di dell'algoritmo \ref{eq:algoritmo_naive}, cioè per valori di $x$ piccoli. E' interessante notare che 
+La figura \ref{fig:es1_4_2_5} mostra un'evidente differenza tra i due algoritmi nella regione di instabilità
+numerica dell'algoritmo \ref{eq:algoritmo_naive}, cioè per valori di $x$ piccoli. E' interessante notare che 
 la distanza tra i due algoritmi diminuisce all'aumentare di $x$, ma torna ad aumentare a partire da
 $x = 10^{-5}$, laddove l'algoritmo \ref{eq:algoritmo_maclaurin} esce dalla regione di convergenza della 
-serie di Maclaurin. \\
-In conclusione, possiamo affermare che l'algoritmo \ref{eq:algoritmo_maclaurin} è più accurato
+serie di Mc Laurin. 
+\paragraph{Conclusioni}L'algoritmo \ref{eq:algoritmo_maclaurin} è più accurato
 per valori di $x$ piccoli, mentre l'algoritmo \ref{eq:algoritmo_naive} è più accurato per valori di $x$
 grandi.
 
