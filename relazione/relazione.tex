@@ -114,6 +114,12 @@ l'errore commesso nell'approssimazione di $f$. Non è però una stima ottima: la
 conta infiniti termini e la sola $\frac{x^{N+1}}{(N+1)!}$ non li contiene tutti. Per questa ragione essa non 
 coincide con $\Delta$ ma si avvicina, essendo all'aumentare di $N$ una stima migliore dell'errore.
 
+\subsubsection{Conclusioni}
+L'esercizio affrontato mirava ad analizzare una delle possibili fonti di errore in contesti numerici, 
+gli errori di approssimazione. Sono errori originati dal modo specifico con cui si risolve il problema.
+Nel caso proposto assumono la forma di errori di troncamento, perchè si rappresenta la funzione come una somma 
+troncata a un certo ordine e non come una somma di infiniti termini.
+
 \subsection{Esercizio 1.2.1}
 Calcolare la seguente somma
 
@@ -186,7 +192,6 @@ il modello linearizzato $log(\Delta) = -c log(N)$ con $c = 1$ si ottiene per l'o
 $c_{fit} = 1.00003$ e per quello diretto $c_{fit} = 0.986$. Come atteso il caso di ordinamento diretto restituisce un
 risultato peggiore di quello inverso.
 
-
 \paragraph{Double precision:}Si riporta in figura \ref{fig:es1_2_1_2} un ingrandimento 
 del grafico degli errori di troncamento della serie 
 $\sum_{n=1}^\infty \frac{1}{n^2}$, laddove $N$ è il troncamento. La somme sono state eseguite
@@ -196,6 +201,11 @@ nonostante l'ingrandimento a valori di $N \in [5000, 10000]$. Per osservare un f
 figura \ref{fig:es1_2_1_1} dovremmo raggiungere valori di $N = 2^{26}$. Infatti l'approssimazione non migliora
 quando vengono sommati numeri dell'ordine di $\varepsilon_{mach}$ per double precision, cioè
  $\frac{1}{N^2} \simeq 2^{-52}$.
+
+\subsubsection{Conclusioni}
+Lo scopo dell'esercizio è stato quello di studiare un algoritmo affetto da errori di arrotondamento. Per 
+evitare tali errori si è riformulato il problema della somma di $N$ termini utilizzando la somma inversa. In 
+alternativa si può aumentare la precisione della rappresentazione, fintantochè sia possibile.
 
 \subsection{Esercizio 1.4.1}
 \paragraph{(a)}In statistica, definiamo la varianza di un campione di valori $x_1,\ldots,x_n$ come
@@ -315,32 +325,39 @@ la loro differenza è quindi zero. \\
 Per concludere, possiamo dire che la formula \ref{eq:varianza_eff} è più efficiente in termini di tempo di calcolo,
 ma è più affetta da errori numerici rispetto alla formula \ref{eq:varianza_naive}.
 
+\subsubsection{Conclusioni}
+L'esercizio svolto è un buon esempio di come più risoluzioni dello stesso problema non siano equivalenti.
+Nel primo caso si è trovata una formula che portasse alla soluzione senza grandi errori, pur essendo costosa dal
+punto di vista computazionale. Ciò mostra che il problema non è intrinsecamente mal condizionato. Nel secondo 
+caso la formula è meno costosa dal punto di vista computazionale ma costituita da un passaggio mal condizionato,
+la sottrazione. Vediamo perciò che nel caso in cui il problema affrontato non sia instabile per natura
+è possibile riformulare l'algoritmo che lo risolve in maniera stabile.
+
 \subsection{Esercizio 1.4.2}
-Sia $f(x) = \frac{e^x-1}{x}$. \\
-(a) Trova il numero di condizionamento $\kappa_f(x)$. Qual è il massimo di $\kappa_f(x)$ 
-nell'intervallo $-1\le x \le 1$? \\
-(b) Usa l'algoritmo "naive"
-
-\begin{equation}
-    f(x)= \frac{e^x-1}{x}
-    \label{eq:algoritmo_naive}
-\end{equation}
-
-per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$. \\
-(c) Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Mc Laurin, cioè
-\begin{equation}
-    p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
-    \label{eq:algoritmo_maclaurin}
-\end{equation}
-Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. 
-Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ 
-fin dall'inizio?\\
-(d) Confronta i risultati delle due implementazioni in funzione di $x$. Quale algoritmo pensi sia più accurato, 
-e perché?
+\begin{enumerate}[label=(\alph*)]
+    \item Sia $f(x) = \frac{e^x-1}{x}$. Trova il numero di condizionamento $\kappa_f(x)$. 
+    Qual è il massimo di $\kappa_f(x)$ nell'intervallo $-1\le x \le 1$?
+    \item Usa l'algoritmo "naive"
+    \begin{equation}
+        f(x)= \frac{e^x-1}{x}
+        \label{eq:algoritmo_naive}
+    \end{equation}
+    per calcolare $f(x)$ per $x=10^{-3},10^{-4},10^{-5},\ldots,10^{-16}$.
+    \item Crea un secondo algoritmo utilizzando i primi $n$ termini della serie di Mc Laurin, cioè
+    \begin{equation}
+        p(x) = 1 + \frac{1}{2!}x + \frac{1}{3!}x^2 + \cdots + \frac{1}{(n+1)!}x^n.
+        \label{eq:algoritmo_maclaurin}
+    \end{equation}
+    Valutalo sugli stessi valori di $x$ del punto (b). Per farlo devi scegliere un valore per $n$. 
+    Verifica la stabilità del risultato al variare di $n$. Avresti potuto indovinare un buon valore di $n$ 
+    fin dall'inizio?
+    \item Confronta i risultati delle due implementazioni in funzione di $x$. 
+    Quale algoritmo pensi sia più accurato, e perché?
+\end{enumerate}
 
 \subsubsection{Soluzione}
 
-\paragraph{(a) } Il numero di condizionamento di una funzione $f$ è definito come:
+\paragraph{(a)}Il numero di condizionamento di una funzione $f$ è definito come:
 \begin{equation*}
     \kappa_f(x) = \left| \frac{x f'(x)}{f(x)} \right|\,.
 \end{equation*}
@@ -357,9 +374,9 @@ La derivata di $k_f(x)$ non si annulla mai nell'intervallo $-1 \leq x \leq 1$, e
 $\kappa_f(x)$ è monotona crescente per $x \geq 0$ e monotona decrescente per $x < 0$, il massimo si ha in $x = 1$,
 dove assume il valore $\kappa_f(1) = 0.58198$.
 
-\paragraph{(b)-(c): } Si riportano in figura \ref{fig:es1_4_2_1} i risultati dei due algoritmi. La dicitura $f(x)$ 
+\paragraph{(b)-(c):}Si riportano in figura \ref{fig:es1_4_2_1} i risultati dei due algoritmi. La dicitura $f(x)$ 
 si riferisce alla funzione calcolata con l'algoritmo "naive", mentre $p_n(x)$ si riferisce alla funzione calcolata 
-con la serie di Maclaurin, fino al termine $n$.
+con la serie di Mc Laurin, fino al termine $n$.
 
 \begin{figure}[!ht]
     \centering
@@ -443,9 +460,12 @@ numerica dell'algoritmo \ref{eq:algoritmo_naive}, cioè per valori di $x$ piccol
 la distanza tra i due algoritmi diminuisce all'aumentare di $x$, ma torna ad aumentare a partire da
 $x = 10^{-5}$, laddove l'algoritmo \ref{eq:algoritmo_maclaurin} esce dalla regione di convergenza della 
 serie di Mc Laurin. 
-\paragraph{Conclusioni}L'algoritmo \ref{eq:algoritmo_maclaurin} è più accurato
-per valori di $x$ piccoli, mentre l'algoritmo \ref{eq:algoritmo_naive} è più accurato per valori di $x$
-grandi.
+\paragraph{Conclusioni}Questo esercizio evidenzia contemporaneamente le due possibili fonti di errore 
+in contesti numerici,
+gli errori di arrotondamento per valori di $x$ piccoli, gli errori di troncamento per $x$ grandi. 
+Nel merito dell'esercizio gli errori di arrotondamento hanno luogo a causa di un passaggio 
+mal condizionato nel calcolo di $f(x)$; gli errori di troncamento hanno luogo a causa della necessità 
+di interrompere la serie a $N$ finito.
 
 \section{Sistemi lineari}
 \label{sistemi_lineari}
