@@ -1151,20 +1151,24 @@ solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il m
 
 \section{Radici di equazioni non lineari}
 \subsection{Esercizi 3.2.1, 3.2.2}
-1. Implementa il metodo di bisezione e testalo con una funzione semplice, ad esempio $f(x)=x$. \\
-2. (a) Usa il metodo di bisezione per trovare le soluzioni di $x^3 - 7x^2 + 14x - 6 = 0$ su $[0,1]$.\\
-   (b) Studia la convergenza del metodo di bisezione rispetto alla radice trovata in (a). 
-   (Puoi prendere come approssimazione per la radice $r=m_{n_{\rm max}}$, dove $n_{\rm max}$ è 
-   l'indice corrispondente all'ultima iterazione di bisezione.) \\
-   Qual è il suo ordine di convergenza $q$? Puoi stimare la costante d'errore asintotica $C$? \\
-   Suggerimento: Studia $d_n=-\log_{10}|x_{n}-r|$ come funzione di $n$.
+
+\begin{enumerate}
+    \item Scrivi un programma che implementi il metodo di bisezione e testalo con una funzione semplice, ad esempio $f(x)=x$.
+    \item 
+    \begin{enumerate}
+        \item Usa il metodo di bisezione per trovare le soluzioni di $x^3 - 7x^2 + 14x - 6 = 0$ su $[0,1]$.
+        \item Studia la convergenza del metodo di bisezione rispetto alla radice trovata in (a). (Puoi prendere come approssimazione per la radice $r=m_{n_{\rm max}}$, dove $n_{\rm max}$ è l'indice corrispondente all'ultima iterazione di bisezione.) \\
+        Qual è il suo ordine di convergenza $q$? Puoi stimare la costante d'errore asintotica $C$? \\
+        Suggerimento: Studia $d_n=-\log_{10}|x_{n}-r|$ come funzione di $n$.
+    \end{enumerate}
+\end{enumerate}
 
 %Riguarda i conti teorici. Sono giusti ma vanno formalizzati
 \subsubsection{Soluzione}
-\paragraph{(1) } Si è implementato il metodo di bisezione, e si è testato con la funzione $f(x)=x$ per due 
-intervalli: $[-1.0, 1.0]$ e $[-5.0, 1.0]$. Il motivo della scelta di questi due intervalli è che ci aspettiamo che
-il metodo restituisca $x = 0$ come soluzione e nel caso di intervallo simmetrico il numero di iterazioni 
-è pari ad 1. Con un intervallo asimmetrico il test è più efficiente perchè il numero di iterazioni aumenta. \\
+\paragraph{(1)}Si è implementato il metodo di bisezione testandolo con la funzione $f(x)=x$ per due 
+intervalli: $[-1.0, 1.0]$ e $[-5.0, 1.0]$. Ci aspettiamo 
+$x = 0$ come soluzione, nel caso di intervallo simmetrico il numero di iterazioni 
+è pari ad 1, per intervallo asimmetrico il numero di iterazioni dovrebbe aumentare. \\
 Il metodo si interrompe quando la distanza tra gli estremi risulta minore di $\max(|a|,|b|) \cdot 10^{-16}$,
 dove $a$ e $b$ sono gli estremi dell'intervallo. Il metodo ha prodotto i seguenti risultati:
 \begin{itemize}
@@ -1172,34 +1176,29 @@ dove $a$ e $b$ sono gli estremi dell'intervallo. Il metodo ha prodotto i seguent
     \item Intervallo $[-5.0, 1.0]$: $x = 1.1 \cdot 10^{-162}$ in 539 iterazioni.
 \end{itemize}
 
-\paragraph{(2a) } Si è implementato il metodo di bisezione per la funzione $f(x) = x^3 - 7x^2 + 14x - 6$. \\
-Il metodo ha restituito un valore della radice $r = 0.5857864376269051$ con $f(r) = 0.0$, in $50$ iterazioni. In
+\paragraph{(2a)}Si è implementato il metodo di bisezione per la funzione $f(x) = x^3 - 7x^2 + 14x - 6$. \\
+Il metodo ha restituito come valore della radice $r = 0.586$ con $f(r) = 0.0$, in $50$ iterazioni. In
 figura \ref{fig:es3_2_2_1} si riporta il grafico della funzione e delle radici successive trovate.
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{3221.pdf}
-    \caption{Grafico della funzione $f(x) = x^3 - 7x^2 + 14x - 6$ e della radice trovata con il metodo di bisezione.}
+    \caption{Funzione $f(x) = x^3 - 7x^2 + 14x - 6$ e radice ottenuta con metodo di bisezione.}
     \label{fig:es3_2_2_1}
 \end{figure} 
 
-\paragraph{(2b) } Per studiare la convergenza del metodo di bisezione bisogna fare alcune considerazioni 
+\paragraph{(2b)}Per studiare la convergenza del metodo di bisezione bisogna fare alcune considerazioni 
 preliminari. \\
 È noto che per il metodo di bisezione vale la relazione $ |m_n-r|< 2^{-(n+1)} (b_0-a_0) $, dove $m_n$ è 
 la stima della radice al passo $n$, $r$ è la radice cercata, $a_0$ e $b_0$ sono gli estremi dell'intervallo 
 iniziale. \\
-Ad ogni iterazione l'intervallo viene dimezzato, in modo che al passo successivo la stima della radice si trovi
-in una delle due metà dell'intervallo nella quale si trovava la stima precedente. In formule: 
-$|m_{n+1}-r| <\frac{|m_n-r|}{2}$. \\
-Unendo le due relazioni presentate sopra si ricava $\frac{|m_{n+1}-r|}{|m_n-r|} < \frac{1}{2}$, e passando al 
-limite: 
+Considerando l'espressione analoga per $ |m_{n+1}-r|$ si ricava $\frac{|m_{n+1}-r|}{|m_n-r|} < \frac{1}{2}$. 
+Al limite: 
 \begin{equation}
     \label{eq:convergenza_bisezione}
     \lim_{n\to\infty} \frac{|m_{n+1}-r|}{|m_n-r|} = \frac{1}{2}, 
 \end{equation}
 da cui si ottiene che $q$, ordine di convergenza, 
 è 1, mentre C, la costante di errore asintotico, vale $\frac{1}{2}$. \\
-Verifichiamolo numericamente, ricordando le relazioni: 
-
 Per verificare i valori teorici di $q$ e $C$ è necessario tenere a mente le seguenti relazioni. La prima si ottiene
 applicando il logaritmo decimale alla \ref{eq:convergenza_bisezione}:
 \begin{equation}
@@ -1213,12 +1212,12 @@ applicando il logaritmo decimale alla \ref{eq:convergenza_bisezione}:
 dove $d_n = -\log_{10}|m_n - r|$. \\
 La seconda si ottiene iterando la relazione  $ |x_{k+1} - r|= C |x_{k} - r|$:
 \begin{equation}
+    \label{eq:stima_C}
     |x_{k+1} - r|= C^{k+1} |x_{0} - r|
 \end{equation}
 
-\subparagraph{Stima di $q$ e $C$} Per stimare $q$ si è calcolato il rapporto tra i valori di $d_n$ e $d_{n+1}$ e lo si
-è messo in grafico in funzione di $n$, ottenendo la figura \ref{fig:es3_2_2_2}, in cui è presente un ingrandimento
-per i valori più alti di n.
+\subparagraph{Stima di $q$ e $C$:} Per stimare $q$ si è calcolato il rapporto tra i valori di $d_n$ e $d_{n+1}$ e lo si
+è messo in grafico in funzione di $n$, ottenendo la figura \ref{fig:es3_2_2_2}.
 \begin{figure}[!ht]
     \begin{minipage}[b]{0.54\textwidth}
     \centering
@@ -1235,91 +1234,94 @@ per i valori più alti di n.
 \end{figure}
 
 Il rapporto tende a 1, come atteso. Si vuole ora quantificare tale valore. \\
-La relazione \ref{eq:convergenza_bisezione_log} vale per $n\to\infty$. Ciò significa che la stima di $q$
-dovrebbe essere calcolata per l'$n$ più grande possibile. Ciononostante si
-è deciso di stimare il valore di $q$ tramite l'interpolazione con funzione costante perchè il valore di $q$ 
+La relazione \ref{eq:convergenza_bisezione_log} vale per $n\to\infty$, quindi la stima di $q$
+dovrebbe essere calcolata per l'$n$ più grande possibile. Si
+è deciso però di stimare il valore di $q$ tramite l'interpolazione con funzione costante perchè il suo valore 
 fluttua attorno a 1, ed è possibile che per $n$ maggiori di quelli disponibili il valore cercato continui a 
 fluttuare attorno a 1. Per l'interpolazione si sono considerati gli ultimi 20 punti della serie, riportati 
 nell'ingrandimento di \ref{fig:es3_2_2_2}. Il fit su tali punti restituisce
 un valore di $q = 1.02$. \\  
 
-Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello:
+Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello linearizzato di \ref{eq:stima_C}:
 \begin{equation}
-    log |x_{k+1}-r| = (k+1)log(C) + log|x_0 - r|   \rightarrow   y(x) = x log(C) + A ,
+    log |x_{k+1}-r| = (k+1)log(C) + log|x_0 - r|  \quad \Rightarrow \quad  y(x) = x log(C) + A ,
 \end{equation}
 avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il grafico del fit in 
-figura \ref{fig:es3_2_2_3}. \\
-
-Il fit ha restituito i seguenti valori:
-\begin{equation}
+figura \ref{fig:es3_2_2_3}. Il fit ha restituito i seguenti valori:
+\begin{equation*}
     C = 0.5,
     \qquad
     A = -0.1.
-\end{equation}
-Si osserva che il valore di $C$ è in accordo con quanto atteso, mentre il valore di $A$ non è significativo.
-
-\subparagraph{Commento: } È possibile stimare i valori di $q$ e $C$ anche in modo diverso, e con un solo fit.
-Interpolando la relazione \ref{eq:convergenza_bisezione_log} con un'iperbole, e ignorando il limite, 
+\end{equation*}
+Il valore di $C$ è in accordo con quanto atteso, $A$ non è significativo.
+\subparagraph{Commento:}È possibile stimare i valori di $q$ e $C$ in modo diverso, con un solo fit.
+Interpolando la relazione \ref{eq:convergenza_bisezione_log} con un'iperbole e ignorando il limite 
 si riescono a ottenere i valori di $q$ e $C$ in un colpo solo. I risultati ottenuti hanno una precisione minore 
-di quelli ottenuti  con i metodi precedenti, pertanto non sono riportati. Si rimanda alla cartella git
+di quelli presentati, perchè tale metodo non tiene conto
+del carattere asintotico delle relazioni. Per questa ragione non sono riportati. Si rimanda alla cartella git
 \verb|lab\computazionale1\esercizi\3_2_2.ipynb| per i dettagli.
 
 \subsection{Esercizi 3.3.1, 3.3.2}
-1. Scrivi un programma che implementi il metodo di Newton.\\
-2. Per ciascuna delle seguenti funzioni, esegui i seguenti passi.\\  
-(a) Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$, e calcola $f'(x)$. \\
-(b) Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti nell'intervallo. \\
-(c) Usa il metodo di Newton per trovare ciascuna radice. \\
-(d) Studia l'errore nella sequenza di Newton per determinare numericamente se la convergenza è approssimativamente quadratica per la radice trovata. \\
-Suggerimento: Studia $d_{n+1}/d_{n}$ con $d_n=-\log_{10}|x_n-r|$ per verificare il tasso di convergenza $q$. Una volta stabilito, prova a stimare la costante d'errore asintotica $C$. \\
-\begin{itemize}
-    \item $x^2=e^{-x}$, su $[-2,2]$ \\
-    \item $2x = \tan x$, su $[-0.2,1.4]$ \\
-    \item $e^{x+1}=2+x$, su $[-2,2]$ \\
-\end{itemize}
+
+\begin{enumerate}
+    \item Scrivi un programma che implementi il metodo di Newton.
+    \item Per ciascuna delle seguenti funzioni, esegui i seguenti passi:
+    \begin{enumerate}
+        \item Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$, e calcola $f'(x)$.
+        \item Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti 
+        nell'intervallo.
+        \item Usa il metodo di Newton per trovare ciascuna radice.
+        \item Studia l'errore nella sequenza di Newton per determinare numericamente se la convergenza è 
+        approssimativamente quadratica per la radice trovata.
+    \end{enumerate}
+Le funzioni da considerare sono:
+    \begin{itemize}
+        \item $x^2 = e^{-x}$, su $[-2,2]$
+        \item $2x = \tan x$, su $[-0.2,1.4]$
+        \item $e^{x+1} = 2 + x$, su $[-2,2]$
+    \end{itemize}
+\end{enumerate}
     
 \subsubsection{Soluzione}
-\paragraph{(1) } Si è implementato il metodo di Newton, e si è testato con la funzione $f(x)=e^x - 1$ con valore
+\paragraph{(1)}Si è implementato il metodo di Newton, testandolo su $f(x)=e^x - 1$ con valore
 iniziale $x_0 = 10$. Il metodo ha restituito il valore $-6.68 \cdot 10^{-17}$ in 16 iterazioni. 
-Valore atteso: $x = 0$. \\
+Valore atteso: $x = 0$. 
 
-\paragraph{(2a) }\label{sec:332_2a} Le funzioni in forma di ricerca degli zeri sono:
+\paragraph{(2a)}\label{sec:332_2a}Le funzioni in forma di ricerca degli zeri sono:
 \begin{itemize}
     \item $f_1(x) = x^2 - e^{-x}$, con $f_1'(x) = 2x + e^{-x}$, su $[-2,2]$.
     \item $f_2(x) = 2x - \tan x$, con $f_2'(x) = 2 - \tan^2 x$, su $[-0.2,1.4]$.
     \item $f_3(x) = e^{x+1} - 2 - x$, con $f_3'(x) = e^{x+1} - 1$, su $[-2,2]$.
 \end{itemize}
 
-\paragraph{(2b) }\label{sec:332_2b} I grafici delle funzioni sono riportati in figura \ref{fig:es3_3_2_1}, da cui si evince che:
+\paragraph{(2b)}\label{sec:332_2b}I grafici delle funzioni sono riportati in figura \ref{fig:es3_3_2_1}, 
+da cui si evince che:
 \begin{itemize}
-    \item $f_1$ ha una radice nell'intervallo $[-2,2]$.
+    \item $f_1$ e $f_3$ hanno una radice ciascuna nell'intervallo $[-2,2]$.
     \item $f_2$ ha due radici nell'intervallo $[-0.2,1.4]$.
-    \item $f_3$ ha una radice nell'intervallo $[-2,2]$.
 \end{itemize}
 
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{3321.pdf}
-        \caption*{(a)}
+        \caption*{}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{3322.pdf}
-        \caption*{(b)}
+        \caption*{}
     \end{minipage}
-
-    \vspace{0.5cm}
-
+    \vspace{0.001cm}
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{3323.pdf}
-        \caption*{(c)}
+        \caption*{}
     \end{minipage}
     \caption{Grafici delle funzioni $f_1$, $f_2$ e $f_3$.}
     \label{fig:es3_3_2_1}
 \end{figure}
 
-\paragraph{(2c) } L'algoritmo di Newton è stato applicato alle tre funzioni, con i seguenti risultati:
+\paragraph{(2c)}L'algoritmo di Newton è stato applicato alle tre funzioni, con i seguenti risultati:
 \begin{itemize}
     \item $f_1$: radice $x = 0.703$, in 8 iterazioni. Punto di partenza $x_0 = -2$.
     \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, entrambe in 7 iterazioni. Punti di partenza $x_{0,1} = 0.65$, $x_{0,2} = 1.4$.
@@ -1328,10 +1330,11 @@ Valore atteso: $x = 0$. \\
 
 \paragraph{(2d) - Prima funzione}
 Scopo dello studio dell'errore è verificare se i valori di $q$ e $C$ sono in accordo con quanto atteso.
-In particolare ci aspettiamo che il metodo di Newton per questo particolare zero abbia $q = 2$ e 
-$C = {\frac{1}{2}}\bigg|{\frac{f''(r)}{f'(r)}}\bigg| = 0.396$. Per determinare i valori di $q$, qui e nelle altre funzioni,
-si fa riferimento alla formula \ref{eq:convergenza_bisezione_log}, e si calcola il rapporto tra i valori di 
-$d_n$ e $d_{n+1}$; per determinare $C$, qui e nelle altre funzioni, si fa riferimento alla relazione 
+In particolare ci si aspetta che il metodo di Newton per questo particolare zero abbia $q = 2$ e 
+$C = {\frac{1}{2}}\bigg|{\frac{f''(r)}{f'(r)}}\bigg| = 0.396$. Per determinare i valori di $q$, qui e nelle altre 
+funzioni,
+si fa riferimento alla formula \ref{eq:convergenza_bisezione_log}; per determinare $C$, qui e nelle altre funzioni,
+si fa riferimento alla relazione 
 $\lim_{n\to\infty} {\frac{|x_{n+1}-r|}{|x_n-r|^q}}= \lim_{n\to\infty} {\frac{|\epsilon_{n+1}|}{|\epsilon_n|^q}}=C$ \\
 Si riportano i due grafici in figura \ref{fig:es3_3_2_2}.
 
@@ -1348,29 +1351,30 @@ Si riportano i due grafici in figura \ref{fig:es3_3_2_2}.
     \label{fig:es3_3_2_2}
 \end{figure}
 
-Per le stime di $q$ e $C$ si è scelto di considerare l'ultimo punto della successione corrispondete, a causa
-del numero limitato di iterazioni. Si ottiene:
-\begin{equation}
+Per le stime di $q$ e $C$ si è scelto di considerare l'ultimo punto della successione corrispondente a causa
+del numero limitato di iterazioni, qui e nelle altre funzioni. Si ottiene:
+\begin{equation*}
     q = 2.084,
     \qquad
     C = 0.396.
-\end{equation}
-Si osserva che i valori ottenuti sono in accordo con quanto atteso, e quindi si può concludere che il metodo di
+\end{equation*}
+Si osserva che i valori ottenuti sono in accordo con quanto atteso, il metodo di
 Newton converge in modo quadratico per la radice trovata.
 
 \paragraph{(2d) - Seconda funzione}
-\subparagraph{Prima radice, $x = 0.0$: }
-È importante notare che la funzione $f_2$ in zero ha un andamento lineare, e perciò la sua derivata seconda è 
-nulla. Questo implica che i valori di $q$ e $C$ non sono determinati dalle formule precedenti, perchè tali 
-formule sono ricavate a partire da un'espansione di Taylor al secondo ordine. Per ovviare al problema 
-si è scelto di ricavare le formule già utilizzate ma a ordine 3. I calcoli sono riportati nella cartella git
-\verb|lab\computazionale1\esercizi\pen_and_paper.| \\
-Di seguito sono riportati i valori per $q$ e $C$ con le dovute correzioni:
-\begin{equation}
+\subparagraph{Prima radice, $x = 0.0$:}
+È importante notare che la funzione $f_2$ in zero ha un andamento lineare perchè la sua derivata seconda è 
+nulla. I valori di $q$ e $C$ non sono determinati dalle formule precedenti, perchè ottenute
+a partire da espansione di Taylor al secondo ordine. Per ovviare al problema 
+si è scelto di ricavare le formule già utilizzate espandendo a ordine 3. I calcoli sono riportati nella 
+cartella git
+\verb|lab_computazionale1\esercizi\pen_and_paper.| \\
+Di seguito sono riportati i valori attesi per $q$ e $C$ con le dovute correzioni:
+\begin{equation*}
     q = 3,
     \qquad
     C = \frac{ f'''(r)}{3 f'(r)} = 0.667.
-\end{equation}
+\end{equation*}
 
 In figura \ref{fig:es3_3_2_3} si riportano i grafici delle successioni $q_n$ e $C_n$ per la prima radice di $f_2$.
 
@@ -1383,24 +1387,24 @@ In figura \ref{fig:es3_3_2_3} si riportano i grafici delle successioni $q_n$ e $
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{3322_C1.pdf}
     \end{minipage}
-    \caption{Studio del valore di $q$ e $C$ per $f_2$., prima radice.}
+    \caption{Studio del valore di $q$ e $C$ per $f_2$, prima radice.}
     \label{fig:es3_3_2_3}
 \end{figure}
 
 Si ottengono i seguenti valori:
-\begin{equation}
+\begin{equation*}
     q = 3.065,
     \qquad
     C = 0.667.
-\end{equation}
+\end{equation*}
 
 Ci si può chiedere cosa succede se, non conoscendo l'andamento della funzione, si utilizzano le formule
 precedenti. In particolare cosa succede se si fissa $q = 2$ e si stima $C$ come l'ultimo elemento della successione
 $C_n = \frac{|x_{n+1}-r|}{|x_n-r|^2}$. L'aspettativa è che $C$ risulti nullo, dato che la derivata seconda
 è nulla. Il grafico corrispondente può essere trovato nella cartella git
-\verb|lab_computazionale1\esercizi\3_3_2.ipynb|, e mostra che il valore di $C$ è effettivamente nullo. \\ 
+\verb|lab_computazionale1\esercizi\3_3_2.ipynb|, conferma le aspettative. 
 
-\subparagraph{Seconda radice, $x = 1.166$: } la seconda radice di $f_2$ non presenta problemi, così le formule
+\subparagraph{Seconda radice, $x = 1.166$:} la seconda radice di $f_2$ non presenta problemi, così le formule
 sono quelle viste inizialmente. I valori attesi sono $q = 2$ e $C = 3.383$. 
 Si riportano i grafici delle successioni $q_n$ e $C_n$ in figura \ref{fig:es3_3_2_4}.
 \begin{figure}[!ht]
@@ -1416,23 +1420,20 @@ Si riportano i grafici delle successioni $q_n$ e $C_n$ in figura \ref{fig:es3_3_
     \label{fig:es3_3_2_4}
 \end{figure}
 Si ottengono i seguenti valori:
-\begin{equation}
-    q = 2.000,
+\begin{equation*}
+    q = 1.918,
     \qquad
     C = \frac{ f''(r)}{2 f'(r)} = 3.382.
-\end{equation}
-In accordo con quanto atteso, il metodo di Newton converge in modo quadratico per la radice trovata.
+\end{equation*}
+Come atteso il metodo di Newton converge in modo quadratico per la radice trovata.
 
 \paragraph{(2d) - Terza funzione}
-Osservando il grafico della funzione $f_3$ si nota che la radice è un punto di minimo, e quindi ha una molteplicità
-$m$. D'altra parte, possiamo intuire che la radice di $f_3$ ha una molteplicità anche dal numero di iterazioni,
-molto elevato rispetto alle altre funzioni. \\
-Come è noto dalla teoria, il metodo di Newton in caso di radici multiple converge linearmente, e nella formula
-$ \epsilon_{n+1} = C (\epsilon_n)^q $ ci aspettiamo $q = 1$. Inoltre in caso di radici multiple
-la costante d'errore asintotica diviene $(1-{\frac{1}{m}})$. \\
-
+Osservando il grafico della funzione $f_3$ si nota che la radice è un punto di minimo. 
+Il numero di iterazioni molto elevato rispetto agli altri casi conferma questa supposizione. \\
+Come è noto dalla teoria, il metodo di Newton in caso di radici multiple converge linearmente, perciò vale
+$ \varepsilon_{n+1} = C \varepsilon_n $. La costante d'errore asintotica diviene $(1-{\frac{1}{m}})$. \\
 Il primo passo è verificare il valore di $q$. Si riporta in figura \ref{fig:es3_3_2_6} il grafico 
-della successione $q_n$, da cui possiamo confermare stimare $q = 1.067$. \\
+della successione $q_n$ che restituisce $q = 1.067$. \\
 
 Si riportano in figura \ref{fig:es3_3_2_6} i grafici della successione $C_n$, una volta senza considerare 
 la molteplicità della radice, e una volta considerando la molteplicità della radice.
@@ -1461,17 +1462,17 @@ la molteplicità della radice, e una volta considerando la molteplicità della r
     \label{fig:es3_3_2_6}
 \end{figure}
 
-Come si può notare da \ref{fig:es3_3_2_6}, non avendo considerato la molteplictà della radice, il valore di $C$
-si discosta molto da quello calcolato con la solita formula $C = \frac{ f''(r)}{2 f'(r)}$. Invece, nel secondo 
-grafico della stessa figura si osserva che i valori successivi di $C_n$ si stabilizzano attorno al valore 
+Non avendo considerato la molteplictà della radice il grafico a sinistra mostra che i valori 
+delle stime successive di $C$ si discostano molto da $C = \frac{ f''(r)}{2 f'(r)}$. Nel grafico
+a destra si osserva che i valori successivi di $C_n$ si stabilizzano attorno al valore 
 $C = 0.5$, per poi calare nuovamente a causa di errori di cancellazione numerica. \\
 Scegliendo $C = C_{15}$ come stima del plateau si ottengono i seguenti valori:
-\begin{equation}
-    C = 0.500,
+\begin{equation*}
+    C = 1 - \frac{1}{m} = 0.500,
     \qquad
     m = 2.000,
     \qquad
-\end{equation}
+\end{equation*}
 in accordo con quanto atteso. 
 
 \subsection{Esercizio 3.3.3}
@@ -1503,11 +1504,11 @@ di partenza. Si riportano i risultati in tabella \ref{tab:es3_3_3_1}.
 \hline
  & \( x_1 = 1 \) & \cellcolor{orange}\( x_2 = 2 \) & \( x_3 = 3 \) & \( x_4 = 4 \) & \cellcolor{orange}\( x_5 = 5 \) & \( x_6 = 6 \) & \( x_7 = 7 \) \\
 \specialrule{.1em}{0em}{0em}  % linea più spessa
-\( x_{\text{start}} \) & 1.0 & \cellcolor{orange}2.0 & 3.0 & 4.0 & \cellcolor{orange}5.0 & 6.0 & 7.0 \\
+\( x_{\text{0}} \)    & 1.0 & \cellcolor{orange}2.0 & 3.0 & 4.0 & \cellcolor{orange}5.0 & 6.0 & 7.0 \\
 \hline
-\( x_{\text{root}} \)  & 1.1 & \cellcolor{orange}6.3 & 3.0 & 3.0 & \cellcolor{orange}9.4 & 6.3 & 6.3 \\
+\( x_{\text{root}} \) & 1.1 & \cellcolor{orange}6.3 & 3.0 & 3.0 & \cellcolor{orange}9.4 & 6.3 & 6.3 \\
 \hline
-\( f'(x) \)            & -2.5 & \cellcolor{orange}0.2 & 0.9 & 0.6 & \cellcolor{orange}-0.3 & -0.9 & -0.8 \\
+\( f'(x_{0}) \)       & -2.5 & \cellcolor{orange}0.2 & 0.9 & 0.6 & \cellcolor{orange}-0.3 & -0.9 & -0.8 \\
 \hline
 \end{tabularx}
 \end{table}
@@ -1515,9 +1516,10 @@ di partenza. Si riportano i risultati in tabella \ref{tab:es3_3_3_1}.
 Le due colonne evidenziate in arancione sono i punti iniziali che non convergono alla radice più vicina. 
 Osservando il grafico della funzione è facile osservare che i punti iniziali $x_2$ e $x_5$ sono vicini a
 un minimo e a un massimo locali, rispettivamente. In effetti la derivata prima in questi punti è vicina a zero,
-come riportato in tabella. Non è esattamente zero, altrimenti il caso sarebbe quello della seconda funzione 
-all'esercizio 3.3.2, ma è comunque piccola: ciò significa che il metodo di Newton converge quadraticamente, ma
-non necessariamente alla radice più vicina. \\
+come riportato in tabella. Non è esattamente zero: ciò significa che il metodo di Newton converge, ma
+non necessariamente alla radice più vicina. La tangente infatti interseca l'asse x lontano dalla radice 
+desiderata. Se ne è presente un'altra nell'intorno del nuovo punto il metodo di Newton non riesce
+a distinguerle e converge all'una o all'altra a seconda dell'inclinazione della retta tangente.  \\
 
 \subsection{Esercizio 3.3.4}
 Le proprietà più facilmente osservabili dell'orbita di un corpo celeste attorno al Sole sono il periodo $\tau$ 
@@ -1572,25 +1574,31 @@ la vera anomalia $\theta$ tramite la relazione \ref{eq:eq-kepler1}. Si riporta i
 figura sinistra di \ref{fig:es3_3_4_1}.
 
 \subsection{Esercizi 3.4.1, 3.4.2}
-1. Scrivi un programma che implementi il metodo della secante. \\
-2. Per ciascuna delle seguenti funzioni, esegui i seguenti passi. \\
-(a) Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$. \\
-(b) Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti nell'intervallo. \\
-(c) Per ciascuna radice determina un intervallo che la racchiuda. Poi usa il metodo della secante, 
-    partendo dagli estremi dell'intervallo, per trovare ciascuna radice.\\
-(d) Per una delle radici, usa gli errori nella sequenza della secante per determinare numericamente 
-    se la convergenza è apparentemente compresa tra lineare e quadratica.\\
-1. $x^2=e^{-x}$, su $[-2,2]$ \\
-2. $2x = \tan x$, su $[-0.2,1.4]$ \\
-3. $e^{x+1}=2+x$, su $[-2,2]$ \\
+
+\begin{enumerate}
+    \item Scrivi un programma che implementi il metodo della secante.
+    \item Per ciascuna delle seguenti funzioni, esegui i seguenti passi:
+    \begin{enumerate}
+        \item Riscrivi l'equazione nella forma standard per la ricerca degli zeri, $f(x) = 0$.
+        \item Traccia il grafico di $f$ nell'intervallo indicato e determina quante radici sono presenti nell'intervallo.
+        \item Per ciascuna radice determina un intervallo che la racchiuda. Poi usa il metodo della secante, partendo dagli estremi dell'intervallo, per trovare ciascuna radice.
+        \item Per una delle radici, usa gli errori nella sequenza della secante per determinare numericamente se la convergenza è apparentemente compresa tra lineare e quadratica.
+    \end{enumerate}
+    \item Le funzioni da considerare sono:
+    \begin{enumerate}
+        \item $x^2 = e^{-x}$, su $[-2,2]$
+        \item $2x = \tan x$, su $[-0.2,1.4]$
+        \item $e^{x+1} = 2 + x$, su $[-2,2]$
+    \end{enumerate}
+\end{enumerate}
 
 \subsubsection{Soluzione}
-\paragraph{(1) } Si è implementato il metodo della secante e lo si è testato con la funzione $x^2 - 1$, 
+\paragraph{(1)} Si è implementato il metodo della secante e lo si è testato con la funzione $x^2 - 1$, 
 ottenedo come radice $x = 1.0$ in 10 iterazioni. 
 
-\paragraph{(2a)-(2b) } Per questi esercizi si rimanda alle sezioni \ref{sec:332_2a} e \ref{sec:332_2b}.
+\paragraph{(2a)-(2b)} Per questi esercizi si rimanda alle sezioni \ref{sec:332_2a} e \ref{sec:332_2b}.
 
-\paragraph{{(2c) } } L'algoritmo della secante è stato applicato alle tre funzioni, con i seguenti risultati:
+\paragraph{(2c)} L'algoritmo della secante è stato applicato alle tre funzioni, con i seguenti risultati:
 \begin{itemize}
     \item $f_1$: radice $x = 0.703$, in 9 iterazioni. Intervallo iniziale $[1,2]$.
     \item $f_2$: radici $x_1 = 0.000$, $x_2 = 1.166$, in 6 e 11 iterazioni, rispettivamente. Intervalli iniziali:
@@ -1602,7 +1610,9 @@ In generale si può notare che il numero di iterazioni nel metodo della secante 
 a quello del metodo di Newton, nonostante gli intervalli iniziali nel caso della secante siano stati scelti 
 in modo da essere molto vicini alla radice. Ciò è dovuto al fatto che il metodo della secante converge
 con ordine del rapporto aureo, mentre il metodo di Newton converge con ordine quadratico per radici semplici. \\
-
+Il vantaggio del metodo della secante rispetto al metodo di Newton è che, seppure converga meno rapidamente,
+richiede la metà delle valutazioni di funzioni, perchè al passo successivo valuta la
+funzione nel nuovo punto e riutilizza la valutazione precedente.
 \paragraph{(2d) } Si è scelto di studiare l'errore della secante per la radice di $f_1$. Si riporta in figura
 \ref{fig:es3_4_2_1} il grafico della successione $d_k = |x_k - x_{k-1}|$. Come stima di $q$ si è scelto di
 considerare l'ultimo punto della successione, e si ottiene $q = 1.692$, sufficientemente in accordo con 
@@ -1631,7 +1641,7 @@ le radici stimate.
     \label{fig:es3_4_3_1}
 \end{figure}
 
-Si riportano in tabella \ref{tab:es3_4_3_1} le radici stimate, i punti iniziali scelti e il numero di iterazioni
+Si riportano in tabella \ref{tab:es3_4_3_1} i valori delle radici stimate, i punti iniziali scelti e il numero di iterazioni
 necessarie per la convergenza.
 \begin{table}[!ht]
     \centering
@@ -1648,21 +1658,23 @@ necessarie per la convergenza.
     \caption{Radici stimate e punti iniziali per il metodo della secante.}
     \label{tab:es3_4_3_1}
 \end{table}
-Possiamo osservare che le radici trovate sono in accordo con quelle stimate nell'esercizio \ref{sec:333} 
+Le radici trovate sono in accordo con quelle stimate nell'esercizio \ref{sec:333} 
 con metodo di Newton.
 
 \section{Interpolazioni}
 %Se hai tempo inserisci l'esercizio 4.1.1, matrice di Vandermonde.
 
 \subsection{Esercizi 4.2.1, 4.2.2}
-1. Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange 
-    per nodi in posizioni generiche. \\
-2. In ciascun caso, interpola la funzione data usando $n$ nodi equispaziati nell'intervallo indicato.
-    Rappresenta graficamente ciascuna funzione interpolante insieme alla funzione esatta. \\
-(a) $f(x) = \ln (x), \quad n = 2,3,4, \quad x\in [1,10]$ \\ 
-(b) $f(x) = \tanh (x), \quad n = 2,3,4, \quad x \in [-3,2]$ \\
-(c) $f(x) = \cosh (x), \quad n = 2,3,4, \quad x \in [-1,3]$ \\
-(d) $f(x) = |x|, \quad n = 3,5,7, \quad x \in [-2,1]$ \\
+\begin{enumerate}
+    \item Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange per nodi in posizioni generiche.
+    \item In ciascun caso, interpola la funzione data usando $n$ nodi equispaziati nell'intervallo indicato. Rappresenta graficamente ciascuna funzione interpolante insieme alla funzione esatta.
+    \begin{enumerate}
+        \item $f(x) = \ln (x), \quad n = 2,3,4, \quad x\in [1,10]$
+        \item $f(x) = \tanh (x), \quad n = 2,3,4, \quad x \in [-3,2]$
+        \item $f(x) = \cosh (x), \quad n = 2,3,4, \quad x \in [-1,3]$
+        \item $f(x) = |x|, \quad n = 3,5,7, \quad x \in [-2,1]$
+    \end{enumerate}
+\end{enumerate}
 
 \subsubsection{Soluzione}
 \paragraph{(1) } Si è implementata la formula baricentrica dell'interpolazione di Lagrange 
