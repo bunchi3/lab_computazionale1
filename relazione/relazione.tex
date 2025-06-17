@@ -1695,30 +1695,36 @@ Si riportano i grafici delle funzioni interpolanti in figura \ref{fig:es4_2_2_1}
 Come si può notare, all'aumentare del numero di nodi l'interpolazione migliora. Il grafico della funzione $|x|$
 però richiede un numero di nodi maggiore per essere interpolato con una certa accuratezza, ciò è dovuto alla
 non derivabilità della funzione in $x=0$. Il problema è che si sta cercando di interpolare una funzione
-non derivabile con un polinomio, che notoriamente è derivabile in ogni punto.
+non derivabile con un polinomio, notoriamente derivabile in ogni punto.
 
 \subsection{Esercizi 4.4.1, 4.4.2}
-1. Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange 
-per il caso particolare dei nodi di Chebyshev, utilizzando i risultati analitici per i pesi. 
-Verifica la correttezza della tua implementazione confrontandola con la routine per nodi generici. \\
 
-2. (a) Per ciascun caso sotto riportato, calcola il polinomio interpolante usando $n$ nodi di Chebyshev di 
-seconda specie in $[-1,1]$ per $n=4,8,12,\ldots,60$. Per ogni valore di $n$, calcola l'errore in norma $\infty$ 
-(ossia, $||f-p||_\infty=\max_{x\in[-1,1]} |p(x)-f(x)|$ valutato su almeno 4000 valori di $x$). 
-Utilizzando una scala log-lineare, rappresenta graficamente l'errore in funzione di $n$ e determina una 
-buona approssimazione della costante $K$. \\
-- $f(x) = 1/(25x^2+1)$  \\ 
-- $f(x) = \tanh(5 x+2)$ \\ 
-- $f(x) = \cosh(\sin x)$ \\ 
-- $f(x) = \sin(\cosh x)$  \\
+\begin{enumerate}
+    \item Scrivi un programma che implementi la formula baricentrica dell'interpolazione di Lagrange 
+    per il caso particolare dei nodi di Chebyshev, utilizzando i risultati analitici per i pesi. 
+    Verifica la correttezza della tua implementazione confrontandola con la routine per nodi generici.
 
-(b) Realizza un grafico analogo utilizzando $n$ punti equidistanti per l'interpolazione.
+    \item 
+    \begin{enumerate}
+        \item Per ciascun caso sotto riportato, calcola il polinomio interpolante usando $n$ nodi di Chebyshev di 
+        seconda specie in $[-1,1]$ per $n=4,8,12,\ldots,60$. Per ogni valore di $n$, calcola l'errore in norma $\infty$ 
+        (ossia, $||f-p||_\infty=\max_{x\in[-1,1]} |p(x)-f(x)|$ valutato su almeno 4000 valori di $x$). 
+        Utilizzando una scala log-lineare, rappresenta graficamente l'errore in funzione di $n$ e determina una 
+        buona approssimazione della costante $K$. \\
+        - $f(x) = 1/(25x^2+1)$  \\ 
+        - $f(x) = \tanh(5 x+2)$ \\ 
+        - $f(x) = \cosh(\sin x)$ \\ 
+        - $f(x) = \sin(\cosh x)$  \\
+
+        \item Realizza un grafico analogo utilizzando $n$ punti equidistanti per l'interpolazione.
+    \end{enumerate}
+\end{enumerate}
 
 \subsubsection{Soluzione}
-\paragraph{(1) } Si è implementata la formula baricentrica dell'interpolazione di Lagrange per il caso
+\paragraph{(1)}Si è implementata la formula baricentrica dell'interpolazione di Lagrange per il caso
 particolare dei nodi di Chebyshev, e la si è testata nell'esercizio 4.4.2, confrontandola con il caso di 
-nodi equidistanti. \\
-\paragraph{(2a) } Il calcolo dell'errore in norma $\infty$ è stato effettuato con un passo di campionamento
+nodi equidistanti. 
+\paragraph{(2a)}Il calcolo dell'errore in norma $\infty$ è stato effettuato con un passo di campionamento
 sulle $x$ pari a $0.0005$, in modo da ottenere 4000 punti tra $-1$ e $1$. Si riportano in figura 
 \ref{fig:es4_4_2_1} a sinistra i grafici dell'errore in norma $\infty$ in funzione di $n$, 
 per i casi delle varie funzioni.
@@ -1737,16 +1743,16 @@ per i casi delle varie funzioni.
     \label{fig:es4_4_2_1}
 \end{figure}
 
-La prima osservazione che si può fare è che l'errore in norma $\infty$ decresce all'aumentare di $n$,
-come ci si aspetta data la scelta dei nodi di Chebyshev. La seconda osservazione è che l'errore decresce
-con un andamento esponenziale, fino ad arrestare la sua discesa intorno al valore di $\epsilon_{mach} = 10^{-16}$. \\
+L'errore in norma $\infty$ decresce all'aumentare di $n$,
+come ci si aspetta data la scelta dei nodi di Chebyshev. La decrescita ha andamento esponenziale, 
+fino ad arrestare la sua discesa intorno al valore di $\varepsilon_{mach} = 10^{-16}$. \\
 La relazione che ha consentito di stimare la costante $K$ è la seguente:
 \begin{equation}
-    |p(x)-f(x)| = C \cdot K^(-n), \qquad \log_{10}|p(x)-f(x)| = \log_{10}(C) + n(-\log_{10}(K)),
+    |p(x)-f(x)| = C \cdot K^{-n}, \qquad \log_{10}|p(x)-f(x)| = \log_{10}(C) + n(-\log_{10}(K)),
 \end{equation}
-dove si è scelto di linearizzare i dati con il logaritmo per poter stimare la costante $K$ tramite
-il coefficiente angolare della retta di regressione. I fit sono stati eseguiti scartando i punti corrispondenti
-a errori minori di $10^{-16}$, e in figura \ref{fig:es4_4_2_1} sono rappresentati dalle linee tratteggiate. \\
+dove si è scelto di linearizzare i dati con il logaritmo per stimare la costante $K$. 
+I fit sono stati eseguiti scartando i punti corrispondenti
+a errori minori di $10^{-16}$ e in figura \ref{fig:es4_4_2_1} sono rappresentati dalle linee tratteggiate. \\
 Si riportano i valori di $K$ ottenuti per le varie funzioni:
 \begin{itemize}
     \item $f_1(x) = 1/(25x^2+1)$: $K = 1.217$.
@@ -1755,7 +1761,7 @@ Si riportano i valori di $K$ ottenuti per le varie funzioni:
     \item $f_4(x) = \sin(\cosh x)$: $K = 4.598$.
 \end{itemize}
 
-\paragraph{(2b) } Si è ripetuto lo stesso procedimento con i nodi equidistanti, e si riportano in 
+\paragraph{(2b)}Si è ripetuto lo stesso procedimento con i nodi equidistanti, e si riportano in 
 figura \ref{fig:es4_4_2_1} a destra
 i grafici dell'errore in norma $\infty$ in funzione di $n$, per i vari casi.
 Come atteso, l'errore in norma $\infty$ non decresce globalmente all'aumentare di $n$. Per le prime due funzioni
@@ -1807,12 +1813,12 @@ Il cambio di variabile utilizzato è il seguente:
     \label{eq:change_of_var2}
     z = \phi(x) = \frac{2x}{1 - x^2},
 \end{equation}
-La funzione Julia implementata tiene conto di questo cambio di variabile. In particolare calcola i nodi 
-di Chebyshev del secondo tipo nell'intervallo $[-1, 1]$, che vengono denotati come $x_i$, e li trasformati 
+La funzione Julia di interpolazione implementata tiene conto di questo cambio di variabile. In particolare calcola i nodi 
+di Chebyshev del secondo tipo nell'intervallo $[-1, 1]$, denotati come $x_i$, e li trasforma
 con \ref{eq:change_of_var2} per ottenere i nodi di Chebyshev $z_i$, ora distribuiti sull'intera retta reale. 
 I punti per i quali passa il polinomio vengono indicati con $y_i = f(z_i)$. \\
-La funzione restituisce il polinomio interpolante $q(z)$. Per calcolarlo si utilizza la trasformazione inversa
-di \ref{eq:change_of_var2} portare i punti $z$ in cui verrà calcolato il polinomio $q$ nell'intervallo $[-1, 1]$.
+La funzione restituisce il polinomio interpolante $q(z)$. Esso è una funzione Julia che utilizza la trasformazione inversa
+di \ref{eq:change_of_var2} per portare i punti $z$ in cui verrà calcolato il polinomio $q$ nell'intervallo $[-1, 1]$.
 A questo punto avviene l'interpolazione con i nodi di Chebyshev $x_i$ e i valori $y_i$, e così il polinomio
 restituito interpola su tutto l'asse reale avendo calcolato l'interpolazione su un intervallo finito. \\
 Si riporta in figura \ref{fig:es4_4_4_1} il grafico della funzione $f(z)=(z^2-2z+2)^{-1}$ e della sua interpolazione
@@ -1829,18 +1835,21 @@ si noti infatti che il numero di nodi in grafico è pari a venti: i dieci restan
 Ognuna delle seguenti funzioni è 2-periodica. Scrivi una funzione che esegua l'interpolazione trigonometrica 
 su $[-1,1]$ e traccia la funzione insieme ai suoi interpolanti trigonometrici per $n=3,6,9$. 
 Poi, per $n=2,3,\ldots,30$, calcola l'errore in norma $\infty$ dell'interpolante trigonometrico campionando 
-in almeno $1000$ punti, e realizza un grafico di convergenza in scala semi-logaritmica. \\
-(a) $f(x) = e^{\sin (2\pi x)}\qquad$ \\
-(b) $f(x) = \log [2+ \sin (3 \pi x ) ]\qquad$ \\
-(c) $f(x) = \cos^{12}[\pi (x-0.2)]$ \\
+in almeno $1000$ punti, e realizza un grafico di convergenza in scala semi-logaritmica. 
+\begin{itemize}
+    \item[(a)] $f(x) = e^{\sin (2\pi x)}$
+    \item[(b)] $f(x) = \log [2+ \sin (3 \pi x ) ]$
+    \item[(c)] $f(x) = \cos^{12}[\pi (x-0.2)]$
+\end{itemize}
 
 \subsubsection{Soluzione}
 Ai fini dell'esercizio si è sviluppata una funzione Julia che calcola l'interpolazione trigonometrica
 su un intervallo $[-1, 1]$ per una funzione $f(x)$, e restituisce il polinomio interpolante. Dato che le funzioni
-sono 2-periodiche le si è interpolate correttamente sull'intervalo $[-1, 1]$. Per poter interpolare funzioni 
-T-periodiche bisogna inserire nell'algoritmo un cambio di variabile, proprio come per l'esercizio 4.4.3.
-\paragraph{(a) } Si riporta in figura \ref{fig:es4_6_1_1} il grafico della funzione $f(x) = e^{\sin (2\pi x)}$
-e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico 
+sono 2-periodiche le si è interpolate sull'intervalo $[-1, 1]$. Per poter interpolare funzioni 
+T-periodiche bisogna inserire nell'algoritmo un cambio di variabile, proprio come per l'esercizio 4.4.3. \\
+Si riportano nelle figure \ref{fig:es4_6_1_1}, \ref{fig:es4_6_1_2} e \ref{fig:es4_6_1_3} i grafici 
+delle varie funzioni 
+e dei loro interpolanti trigonometrici per $n=3,6,9$. A fianco si riportano i grafici 
 dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato 
 in 1000 punti l'intervallo.
 \begin{figure}[!ht]
@@ -1855,10 +1864,6 @@ in 1000 punti l'intervallo.
     \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = e^{\sin (2\pi x)}$.}
     \label{fig:es4_6_1_1}
 \end{figure}
-\paragraph{(b) } Si riporta in figura \ref{fig:es4_6_1_2} il grafico della funzione $f(x) = \log [2+ \sin (3 \pi x ) ]$
-e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico
-dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato
-in 1000 punti l'intervallo.
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
@@ -1871,11 +1876,6 @@ in 1000 punti l'intervallo.
     \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = \log [2+ \sin (3 \pi x ) ]$.}
     \label{fig:es4_6_1_2}
 \end{figure}
-
-\paragraph{(c) } Si riporta in figura \ref{fig:es4_6_1_3} il grafico della funzione $f(x) = \cos^{12}[\pi (x-0.2)]$
-e dei suoi interpolanti trigonometrici per $n=3,6,9$. A fianco si riporta anche il grafico
-dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del numero di nodi, avendo campionato
-in 1000 punti l'intervallo.
 \begin{figure}[!ht]
     \centering
     \begin{minipage}[b]{0.47\textwidth}
@@ -1895,10 +1895,10 @@ confermando la convergenza dell'interpolazione trigonometrica. In generale l'err
 il valore di $10^{-14}$ per motivazioni legate alla rappresentazione numerica. È interessante notare che 
 in tutti e tre i casi l'errore ha un andamento a gradino. Questo fenomeno mostra che l'aggiunta di nodi 
 non sempre migliora l'accuratezza dell'interpolazione, anche se globalmente l'errore diminuisce. \\
-Curioso infine è il comportamento dell'errore per la terza funzione, in cui per $n = 12$ si osserva una
+Curioso è il comportamento dell'errore della terza funzione, in cui per $n = 12$ si osserva una
 diminuizione drastica dell'errore. Sulle ragioni di questo fatto si è avanzata una spiegazione. 
 Osservando il grafico \ref{fig:es4_6_1_3} si nota che all'aumento di $n$ le zone che sono peggio approssimate sono 
-quelle di appiattimento della funzione, e cioè sono quelle che contribuiscono all'errore, calcolato 
+quelle di appiattimento della funzione. Sono quelle che contribuiscono maggiormente all'errore, calcolato
 come il massimo della distanza tra la funzione e il polinomio interpolante, su tutto l'intervallo. \\
 La figura \ref{fig:es4_6_1_4} è un ingrandimento di figura \ref{fig:es4_6_1_3} nella regione interessata e 
 si osserva che per $n=12$ il polinomio interpolante si appiattisce definitivamente, con la conseguente 
