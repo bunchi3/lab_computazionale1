@@ -997,13 +997,16 @@ In tabella \ref{tab:LU_epsilon} sono riassunti i risultati ottenuti.
 \end{table}
 
 \subsubsection{Conclusioni}
-L'esercizio ha mostrato come il numero di condizionamento di una matrice non sia un indicatore sufficiente per
-valutare l'esattezza della risoluzione del sistema lineare associato. Sebbene il numero di condizionamento
+L'esercizio ha mostrato come il numero di condizionamento di una matrice sia un indicatore globale della 
+stabilità del problema, ma non dell'algoritmo scelto. Sebbene il numero di condizionamento
 della matrice $\mathbf{A}$ sia relativamente basso, la risoluzione del sistema richiede il calcolo delle matrici
 $\mathbf{L}$ e $\mathbf{U}$. Nel caso
 con $\epsilon = 10^{-20}$, in cui $\kappa(A) =  4.0$ si ha $\kappa(L) = 1.0 \cdot 10^{40}$ e 
 $\kappa(U) = 1.0 \cdot 10^{40}$. Dato che l'algoritmo utilizza le matrici $\mathbf{L}$ e $\mathbf{U}$ 
-per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle stesse.
+per risolvere il sistema è evidente che l'errore numerico aumenta a causa delle stesse. \\
+Se ne deduce che esiste una riformulazione dell'algoritmo che permetta di evitare il calcolo di matrici mal 
+condizionate. Nel caso in esame si può affrontare il problema con l'applicazione di row-pivoting, considerando
+$\varepsilon$ molto vicino a zero. 
 
 \subsection{Esercizio 2.6.1}
 \begin{enumerate}[label=(\alph*)]
@@ -1032,8 +1035,7 @@ Si è implementato l'algoritmo per il metodo dei minimi quadrati e lo si è test
 ottenendo:
 \begin{equation*}
     \mathbf{x} = \begin{bmatrix}
-        -2.0 \\
-        -1.0
+        -2.0 & -1.0
     \end{bmatrix}.
 \end{equation*}
 
@@ -1167,7 +1169,11 @@ richieda meno parametri. Il motivo è che la funzione $g(t)$ è periodica, di co
 \ref{eq:fit_pol}. \\
 In un contesto sperimentale la funzione $g(t)$ non è nota a priori, anzi lo scopo dell'esperimento è 
 solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il modello di Fourier riesca meglio
-è indice della natura periodica del fenomeno osservato. 
+è indice della natura periodica del fenomeno osservato. \\
+Si potrebbe supporre che l'errore sulle code nel caso di interpolazione polinomiale sia di natura numerica, 
+dato che il polinomio calcolato in maniera naive come $\sum_{k=0}^{n-1} c_k x^k$ non è garante di stabilità.
+Tale supposizione è falsa perchè si è calcolato lo stesso polinomio con il metodo di Horner e il risultato 
+è lo stesso. Si rimanda a \verb|\lab_computazionale\esercizi\2_6_3.ipynb| per i dettagli. \\
 
 \section{Radici di equazioni non lineari}
 \subsection{Esercizi 3.2.1, 3.2.2}
