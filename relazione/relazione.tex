@@ -1942,10 +1942,10 @@ riduzione dell'errore.
 
 \section{Integrazione numerica}
 \subsection{Esercizi 5.1.1, 5.1.2}
-1. Scrivi un programma che implementi la regola del trapezio composta per un intervallo generico $[a,b]$. \\
-2. Per ciascuno dei seguenti integrali, utilizza la regola del trapezio per stimare il valore dell'integrale 
-con $m=10\cdot 2^k$ nodi, per $k=1,2,\ldots,10$. Per ogni caso, rappresenta in scala log-log l'errore in funzione 
-di $m$ e verifica se la convergenza è di secondo ordine.
+\begin{enumerate}
+    \item Scrivi un programma che implementi la regola del trapezio composta per un intervallo generico $[a,b]$.
+    \item Per ciascuno dei seguenti integrali, utilizza la regola del trapezio per stimare il valore dell'integrale con $m=10\cdot 2^k$ nodi, per $k=1,2,\ldots,10$. Per ogni caso, rappresenta in scala log-log l'errore in funzione di $m$ e verifica se la convergenza è di secondo ordine.
+\end{enumerate}
 
 \begin{tabular}{@{}ll@{}}
 (a) $\displaystyle \int_0^1 x\log(1+x)\, dx = \frac{1}{4}$
@@ -2044,20 +2044,22 @@ Si riportano nelle figure \ref{fig:es5_1_2_1}, \ref{fig:es5_1_2_2}, \ref{fig:es5
     \label{fig:es5_1_2_6}
 \end{figure}
 
-Nei grafici viene riportata la pendenza dell'interpolante dell'errore. Nei primi quattro casi l'errore 
+Nei grafici viene riportata la pendenza del fit dell'errore. Nei primi quattro casi l'errore 
 decresce con un andamento quadratico nel passo $h$, come atteso. Nel quinto e sesto caso l'errore decresce 
 con un ordine inferiore. Come già accennato, questo è dovuto al fatto che l'integranda ha derivata seconda 
 discontinua nel dominio di integrazione.
 
 \paragraph{Commento:}Qui e nei prossimi esercizi l'interpolazione per l'errore $R_T$ (o $R_S$) è stata eseguita
 in funzione del passo $h$, anche se in grafico viene riportata rispetto al numero di nodi $m$. Ciò vuole
-dire che le pendenze si riferiscono non alla retta rappresentata ma alla retta interpolata, rappresentando
+dire che le pendenze si riferiscono non alla retta riportata in figura ma alla retta del fit, rappresentando
 l'ordine di convergenza del metodo studiato.  
 
 \subsection{Esercizi 5.1.3, 5.1.4}
-3. Scrivi un programma che implementi la regola di Simpson composta per un intervallo $[a,b]$. \\
-4. Per ciascun integrale dell'esercizio 5.1.1, applica la formula di Simpson e confronta gli errori con 
-la convergenza di ordine quattro.
+\begin{enumerate}
+    \item[3.] Scrivi un programma che implementi la regola di Simpson composta per un intervallo $[a,b]$.
+    \item[4.] Per ciascun integrale dell'esercizio 5.1.1, applica la formula di Simpson e confronta gli errori con 
+    la convergenza di ordine quattro.
+\end{enumerate}
 
 \subsubsection{Soluzione}
 \paragraph{(3)}Si è implementata la regola di Simpson composta per un intervallo $[a,b]$,
@@ -2145,8 +2147,8 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 
 Si può osservare che l'errore decresce con un andamento quartico nei primi quattro casi, e con uno di ordine 
 inferiore negli altri due. Nei primi quattro casi, si osserva che l'errore diminuisce rapidamente
-fino a $\varepsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente l'interpolazione
-dell'errore è stata eseguita solo sui punti che si trovano al di sopra di questo valore.
+fino a $\varepsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente il fit
+dell'errore è stato eseguito solo sui punti che si trovano al di sopra di questo valore.
 
 \subsection{Esercizio 5.3.1}
 1. Scrivi un programma che calcoli i nodi e i pesi per la quadratura di Gauss-Legendre nell'intervallo $[-1,1]$. 
@@ -2399,12 +2401,15 @@ di Gauss-Legendre, insieme agli errori della regola di quadratura double-exponen
         \includegraphics[width=\textwidth]{5435.pdf}
         \caption*{(e)}
     \end{minipage}
-    \caption{Studio degli errori per gli integrali con la regola di quadratura di Gauss-Legendre e double-exponential.}
+    \caption{Studio degli errori di quadratura Gauss-Legendre e double-exponential.}
     \label{fig:es5_4_3_1}
 \end{figure}
 
-Dai grafici si osserva la rapidità del metodo di quadratura double-exponential. Lo svantaggio di tale tecnica
-di integrazione è il costo computazionale elevato perchè il cambio di variabile richiede un numero
+Dai grafici si osserva la rapidità del metodo di quadratura double-exponential rispetto a Gauss-Legendre, 
+infatti tutti gli integrali presentano singolarità al bordo del dominio di integrazione. Tale rapidità
+è garantita dal fatto che la quadratura double exponential è robusta rispetto all'integrazione su domini singolari,
+contrariamente all'integrazione di Gauss-Legendre. Lo svantaggio è il costo computazionale elevato a causa 
+del cambio di variabile che richiede un numero
 maggiore di valutazioni di funzione rispetto all'algoritmo di Gauss-Legendre. Ricordando i risultati
 degli esercizi precedenti si conclude che Gauss-Legendre è un algoritmo migliore nel caso di integrande 
 regolari, mentre la quadratura double-exponential è migliore nel caso di singolarità nell'intervallo di 
@@ -2476,10 +2481,10 @@ i grafici degli errori corrispondono a più soluzioni con $n$ che varia da $10\c
 La prima osservazione che si può fare riguarda la convergenza del metodo di Eulero.
 Gli errori decrescono come $O(h)$, come atteso. 
 Nei grafici infatti è stato riportato il coefficiente
-angolare dell'interpolazione degli errori con il metodo dei minimi quadrati. In tutti e tre i casi, per ciascuna
+angolare del fit degli errori con il metodo dei minimi quadrati. In tutti e tre i casi, per ciascuna
 tipologia di errore, il coefficiente angolare è prossimo a $-1$. \\
 La seconda osservazione riguarda la differenza tra i due tipi di errore. Si osserva che solo nel primo grafico 
-le due rette degli errori sono distinte, mentre negli altri due casi sono sovrapposte. Lo stesso 
+le due rette degli errori sono distinte, mentre negli altri due casi sono sovrapposte. È lo stesso 
 comportamento che si è studiato nella teoria, in cui perturbazioni del valore iniziale influenzano la soluzione.
 L'esempio riguardava le due equazioni $u' = u$ e $u' = -u $, in cui la soluzione
 della prima equazione amplifica gli errori, mentre la soluzione della seconda equazione li smorza. 
@@ -2654,8 +2659,8 @@ Per tutte le condizioni iniziali si è scelto come tolleranza $\varepsilon = 10^
 $n = 1000$. \\
 Da notare che nell'algoritmo presentato ad ogni passo bisogna calcolare solamente una nuova soluzione perchè si 
 riutilizza quella precedente. Con l'algoritmo proposto si riesce a stimare un valore di $h$ che garantisca
-un errore inferiore alla tolleranza, ma non è certamente paragonabile al metodo adattivo, che permette 
-di scegliere il passo in maniera più efficiente, a ogni passaggio. \\
+un errore inferiore alla tolleranza, ma non è certamente paragonabile al metodo adattivo, che a ogni passaggio
+permette di scegliere il passo in maniera efficiente. \\
 Si riportano in figura \ref{fig:es6_3_2_1} e \ref{fig:es6_3_2_2} i grafici delle soluzioni ottenute,
 rappresentate come curve nel piano delle fasi. Si sono rappresentate inoltre le 
 soluzioni in tre dimensioni.
@@ -2696,11 +2701,15 @@ Infine si riportano in tabella \ref{tab:valori_h} i valori di $h$ ottenuti trami
         \hline
         \textbf{Sistema} & \textbf{Condizioni iniziali} & \textbf{$h$} \\
         \hline
-        (a) & $[0.1, 0]$ & 0.0025 \\
-        (a) & $[0, 1.9]$ & 0.0025 \\
-        (b) & $[0.95, 0]$ & 0.0025 \\
-        (b) & $[0, 1.05]$ & 0.00125 \\
-        (b) & $[-2.5, 0]$ & 0.00125 \\
+        a & $[0.1, 0]$ & 0.0025 \\
+        \cline{2-3}
+         & $[0, 1.9]$ & 0.0025 \\
+        \hline
+        b & $[0.95, 0]$ & 0.0025 \\
+        \cline{2-3}
+         & $[0, 1.05]$ & 0.00125 \\
+        \cline{2-3}
+         & $[-2.5, 0]$ & 0.00125 \\
         \hline
     \end{tabular}
 \end{table}
@@ -2729,15 +2738,17 @@ convergono a un valore stazionario. \\
     \label{fig:es6_3_3}
 \end{figure}
 Per valutare i valori stazionari si sono calcolate le differenze
-tra i valori successivi di $v$ e $w$, fino a che non si è raggiunta la tolleranza di $10^{-9}$. Il 
-loro valore è riportato in grafico. \\
-Si è poi scelto il valore di tempo più grande tra quelli ottenuti per le due soluzioni, detto
-$t_{steady}$. È importante notare che il valore di $t_{steady}$ potrebbe essere una sovrastima, 
+tra i valori successivi di $v$ e $w$, fino a che non si è raggiunta la tolleranza di $10^{-9}$. In corrispondenza
+di tale tolleranza si sono ottenuti due valori di tempo, uno per ciascuna componente della soluzione, e se 
+ne è scelto il massimo, $t_{steady}$.
+È importante notare che il valore di $t_{steady}$ potrebbe essere una sovrastima, 
 infatti la valutazione della distanza
 tra due valori successivi è un metodo ingenuo perchè non tiene conto del cambiamento globale 
 della soluzione. Per quanto riguarda il caso in esame, poco importa: se anche il metodo adottato portasse a 
 una sovrastima di $t_{steady}$ ciò non influenzerebbe 
-la valutazione degli stati stazionari. 
+la valutazione degli stati stazionari perchè è noto che le due componenti convergono a un valore stazionario. \\
+I valori stazionari ottenuti sono riportati in grafico \ref{fig:es6_3_3}, calcolati come $v(t_{steady})$ e 
+$w(t_{steady})$.
 
 \subsection{Esercizio 6.3.5}
 \label{es:6_3_5}
@@ -2771,7 +2782,7 @@ tempo. \\
     \label{fig:es6_3_5_1}
 \end{figure}
 Si è scelto di togliere il primo e l'ultimo passo perchè il primo è scelto dall'utente e l'ultimo
-è forzato in modo da raggiungere l'estremo $b$. Così facendo si ottiene
+è forzato in modo da raggiungere l'estremo $b$. Si ottengono
 un passo minimo di $h_{min} = 0.0043$ e un passo medio di $h_{med} = 0.0054$. Lo studio del passo è interessante
 perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Se si fosse
 scelto passo fisso pari a $h_{med}$ si sarebbe persa risoluzione perchè nel metodo adattivo
@@ -2794,10 +2805,20 @@ $y'' +(1+y')^3 y = 0$ nell'intervallo $0 \le t \le 4\pi$ per le seguenti condizi
 Rappresenta graficamente $y(t)$ e $y'(t)$ in funzione di $t$ e, separatamente, il passo $h$ in funzione di $t$. 
 Determina inoltre il passo minimo e medio, escludendo il primo e l'ultimo valore.
 \begin{itemize}
-    \item $y(0) = 0.1,\quad y'(0) = 0$
-    \item $y(0) = 0.5,\quad y'(0) = 0$
-    \item $y(0) = 0.75,\quad y'(0) = 0$
-    \item $y(0) = 0.95,\quad y'(0) = 0$
+    \begin{minipage}[t]{0.45\textwidth}
+        \item $y(0) = 0.1,\quad y'(0) = 0$
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \item $y(0) = 0.5,\quad y'(0) = 0$
+    \end{minipage}
+    \begin{minipage}[t]{0.45\textwidth}
+        \item $y(0) = 0.75,\quad y'(0) = 0$
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \item $y(0) = 0.95,\quad y'(0) = 0$
+    \end{minipage}
 \end{itemize}
 
 \subsubsection{Soluzione}
@@ -2822,7 +2843,7 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{6362.pdf}
     \end{minipage}
-    \caption{Soluzione e derivata prima per il caso $y(0) = 0.1$, $y'(0) = 0$. Passo del metodo BS23.}
+    \caption{Soluzioni per il caso $y(0) = 0.1$, $y'(0) = 0$. Passo del metodo BS23.}
     \label{fig:es6_3_6_1}
 \end{figure}
 \begin{figure}[!ht]
@@ -2834,7 +2855,7 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{6364.pdf}
     \end{minipage}
-    \caption{Soluzione e derivata prima per il caso $y(0) = 0.5$, $y'(0) = 0$. Passo del metodo BS23.}
+    \caption{Soluzioni per il caso $y(0) = 0.5$, $y'(0) = 0$. Passo del metodo BS23.}
     \label{fig:es6_3_6_2}
 \end{figure}
 \begin{figure}[!ht]
@@ -2846,7 +2867,7 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{6366.pdf}
     \end{minipage}
-    \caption{Soluzione e derivata prima per il caso $y(0) = 0.75$, $y'(0) = 0$. Passo del metodo BS23.}
+    \caption{Soluzioni per il caso $y(0) = 0.75$, $y'(0) = 0$. Passo del metodo BS23.}
     \label{fig:es6_3_6_3}
 \end{figure}
 \begin{figure}[!ht]
@@ -2858,7 +2879,7 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
     \begin{minipage}[b]{0.47\textwidth}
         \includegraphics[width=\textwidth]{6368.pdf}
     \end{minipage}
-    \caption{Soluzione e derivata prima per il caso $y(0) = 0.95$, $y'(0) = 0$. Passo del metodo BS23.}
+    \caption{Soluzioni per il caso $y(0) = 0.95$, $y'(0) = 0$. Passo del metodo BS23.}
     \label{fig:es6_3_6_4}
 \end{figure}
 
@@ -2937,8 +2958,6 @@ rimanendo costante e molto piccolo. Tale comportamento rende l'equazione presa i
 categoria dei cosiddetti \textit{stiff problems}. 
 
 \section{Appendice}
-\subsection{Dati}
-
 \begin{table}[!ht]
     \centering
     \caption{Distanza dal Sole e periodo orbitale dei pianeti del Sistema Solare}
