@@ -21,7 +21,7 @@
 \usepackage{cite} % takes care of citations
 \usepackage[hidelinks]{hyperref} % adds hyper links inside the generated pdf file
 \usepackage{blindtext}
-\usepackage[a4paper, left=2cm, right=2cm, top=0.05cm, bottom=4.0cm]{geometry}
+\usepackage[a4paper, left=1.5cm, right=1.5cm, top=0.05cm, bottom=4.0cm]{geometry}
 \numberwithin{equation}{section}    %to numerate equations accordingly to section
 \counterwithin{figure}{section}
 \counterwithin{table}{section}
@@ -37,7 +37,7 @@
 \fancypagestyle{logoheader}{
     \fancyhf{}
     \fancyhead[L]{%
-        \raisebox{-1.7\height}{\includegraphics[width=3cm]{logo_bicocca.png}}
+        \raisebox{-2.7\height}{\includegraphics[width=3cm]{logo_bicocca.png}}
     }
     \renewcommand{\headrulewidth}{0pt}
 }
@@ -224,7 +224,8 @@ con la formula sopra.
 Considera la formula \ref{eq:varianza_eff} a un ciclo:
 
 \begin{equation}
-    \sigma^2 = \frac{1}{n-1} \left( u - \frac{1}{n}v^2 \right),\\
+    \sigma^2 = \frac{1}{n-1} \left( u - \frac{1}{n}v^2 \right),
+    \qquad
     u  = \sum_{i=1}^n x_i^2, 
     \qquad
     v = \sum_{i=1}^n x_i.  
@@ -380,7 +381,7 @@ con la serie di Mc Laurin, fino al termine $n$.
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{1421.pdf}
+    \includegraphics[width=0.7\textwidth]{1421.pdf}
     \caption{Confronto tra $f(x)$ e $p_n(x)$ al variare di $x$.}
     \label{fig:es1_4_2_1}
 \end{figure}
@@ -432,7 +433,7 @@ di $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$. In formula:
 \end{equation}
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{1424.pdf}
+    \includegraphics[width=0.7\textwidth]{1424.pdf}
     \caption{Distanza tra $p_n(0.1)$ e $p_{n+1}(0.1)$ al variare di $n$.}
     \label{fig:es1_4_2_4}
 \end{figure}
@@ -450,7 +451,7 @@ dell'errore tra i due algoritmi, cioè
 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{1425.pdf}
+    \includegraphics[width=0.7\textwidth]{1425.pdf}
     \caption{Distanza tra $f(x)$ e $p_n(x)$.}
     \label{fig:es1_4_2_5}
 \end{figure}
@@ -460,11 +461,13 @@ numerica dell'algoritmo \ref{eq:algoritmo_naive}, cioè per valori di $x$ piccol
 la distanza tra i due algoritmi diminuisce all'aumentare di $x$, ma torna ad aumentare a partire da
 $x = 10^{-5}$, laddove l'algoritmo \ref{eq:algoritmo_maclaurin} esce dalla regione di convergenza della 
 serie di Mc Laurin. 
-\paragraph{Conclusioni}Questo esercizio evidenzia contemporaneamente le due possibili fonti di errore 
+\subsubsection{Conclusioni}
+Questo esercizio evidenzia contemporaneamente le due possibili fonti di errore 
 in contesti numerici,
-gli errori di arrotondamento per valori di $x$ piccoli, gli errori di troncamento per $x$ grandi. 
+gli errori di arrotondamento per valori di $x \rightarrow 0$, gli errori di approssimazione per $x$ nell'intorno
+di $1$. 
 Nel merito dell'esercizio gli errori di arrotondamento hanno luogo a causa di un passaggio 
-mal condizionato nel calcolo di $f(x)$; gli errori di troncamento hanno luogo a causa della necessità 
+mal condizionato nel calcolo di $f(x)$; gli errori di approssimazione hanno luogo a causa della necessità 
 di interrompere la serie a $N$ finito.
 
 \section{Sistemi lineari}
@@ -524,25 +527,17 @@ Puoi verificare la soluzione risolvendo il sistema a mano e/o calcolando $\mathb
 Per risolvere i sistemi lineari proposti, si sono implementate le funzioni di sostituzione in avanti e all'indietro. 
 Di seguito sono riportati i risultati delle soluzioni.
 \paragraph{Sostituzione in avanti:}
-\begin{itemize}
-    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} -4.0 & 2.0 & 1.0 \end{bmatrix}$.
-    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} -4.0 & 1.0 & -3.0 & 5.0 \end{bmatrix}$.
-\end{itemize}
-Risolvendo i sistemi a mano, i valori sono:
-\begin{itemize}
-    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} -4 & 2 & 1 \end{bmatrix}$.
-    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} -4 & 1 & -3 & 5 \end{bmatrix}$.
-\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathbf{x} = \begin{bmatrix} -4.0 & 2.0 & 1.0 \end{bmatrix} \qquad \mathbf{x_{pen.paper}} = \begin{bmatrix} -4 & 2 & 1 \end{bmatrix}$.
+    \item $\mathbf{x} = \begin{bmatrix} -4.0 & 1.0 & -3.0 & 5.0 \end{bmatrix} \qquad \mathbf{x_{pen.paper}} = \begin{bmatrix} -4 & 1 & -3 & 5 \end{bmatrix}$.
+\end{enumerate}
+
 \paragraph{Sostituzione all'indietro:}
-\begin{itemize}
-    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} 1.0 & 1.0 & 6.0 \end{bmatrix}$.
-    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} 4.0 & 1.0 & 1.0 & 5.0 \end{bmatrix}$.
-\end{itemize}
-Risolvendo i sistemi a mano, i valori sono:
-\begin{itemize}
-    \item Per il sistema (a) si ha $\mathbf{x} = \begin{bmatrix} 1 & 1 & 6 \end{bmatrix}$.
-    \item Per il sistema (b) si ha $\mathbf{x} = \begin{bmatrix} 4 & 1 & 1 & 5 \end{bmatrix}$.
-\end{itemize}
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathbf{x} = \begin{bmatrix} 1.0 & 1.0 & 6.0 \end{bmatrix} \qquad \mathbf{x_{pen.paper}} = \begin{bmatrix} 1 & 1 & 6 \end{bmatrix}$.
+    \item $\mathbf{x} = \begin{bmatrix} 4.0 & 1.0 & 1.0 & 5.0 \end{bmatrix} \qquad \mathbf{x_{pen.paper}} = \begin{bmatrix} 4 & 1 & 1 & 5 \end{bmatrix}$.
+\end{enumerate}
+
 I risultati confermano la correttezza delle implementazioni delle funzioni di sostituzione in avanti e all'indietro.
 
 \subsection{Esercizi 2.3.1, 2.3.2, 2.3.4}
@@ -1093,13 +1088,21 @@ Si sono quindi stimati il valore di $\alpha$ e della costante $c$, tramite la re
 I risultati sono in accordo con quanto atteso.
 
 \paragraph{(b)}Si riporta in figura \ref{fig:es2_6_2_1} il grafico dei dati e relativo fit.
-
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{2621.pdf}
+    \includegraphics[width=0.7\textwidth]{2621.pdf}
     \caption{Fit lineare ai minimi quadrati dei dati dei pianeti del Sistema Solare.}
     \label{fig:es2_6_2_1}
 \end{figure}
+
+\subsubsection{Conclusioni}
+Il metodo dei minimi quadrati ha permesso di stimare il valore di $\alpha$ e della costante $c$
+della legge di Keplero, ottenendo risultati in accordo con quanto atteso. Tale metodo è presentato nella
+sezione di risoluzione dei sistemi lineari perchè è una delle possibili applicazioni delle loro 
+tecniche risolutive. \\
+In particolare si utilizza la scomposizione di Cholesky perchè la matrice su cui viene applicata è per 
+costruzione simmetrica e definita positiva. Tra le tecniche di scomposizione proposte nel corso, la 
+scomposizione di Cholesky è la più efficiente per risolvere problemi di questo tipo. 
 
 \subsection{Esercizio 2.6.3}
 In questo esercizio si vuole trovare un'approssimazione della funzione periodica $g(t)=e^{\sin(t-1)}$ su un 
@@ -1118,7 +1121,7 @@ periodo, $0 < t \le 2\pi$. Come dati, si definiscono
         \label{eq:fit_pol}    
         y(t) \approx c_1 + c_2 t + \cdots + c_7 t^6.
     \end{equation}        
-Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il fit. \\
+Sovrapponi un grafico dei valori dei dati come punti con una curva che mostra il fit. 
 \item[(b)] Trova i coefficienti del fit ai minimi quadrati
     \begin{equation}
     \label{eq:fit_fourier}
@@ -1157,7 +1160,7 @@ ottenendo i coefficienti delle formule \ref{eq:fit_pol} e \ref{eq:fit_fourier}:
 Si riportano i grafici dei dati e dei fit in figura \ref{fig:es2_6_3_1}.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{2631.pdf}
+    \includegraphics[width=0.7\textwidth]{2631.pdf}
     \caption{Fit polinomiale e di Fourier ai minimi quadrati della funzione $g(t)=e^{\sin(t-1)}$.}
     \label{fig:es2_6_3_1}
 \end{figure}
@@ -1170,7 +1173,8 @@ richieda meno parametri. Il motivo è che la funzione $g(t)$ è periodica, di co
 In un contesto sperimentale la funzione $g(t)$ non è nota a priori, anzi lo scopo dell'esperimento è 
 solitamente quello di risalire a tale funzione. Il fatto che il fit secondo il modello di Fourier riesca meglio
 è indice della natura periodica del fenomeno osservato. \\
-Si potrebbe supporre che l'errore sulle code nel caso di interpolazione polinomiale sia di natura numerica, 
+In alternativa si potrebbe supporre che l'errore sulle code nel caso di interpolazione polinomiale 
+sia di natura numerica, 
 dato che il polinomio calcolato in maniera naive come $\sum_{k=0}^{n-1} c_k x^k$ non è garante di stabilità.
 Tale supposizione è falsa perchè si è calcolato lo stesso polinomio con il metodo di Horner e il risultato 
 è lo stesso. Si rimanda a \verb|\lab_computazionale\esercizi\2_6_3.ipynb| per i dettagli. \\
@@ -1207,7 +1211,7 @@ Il metodo ha restituito come valore della radice $r = 0.586$ con $f(r) = 0.0$, i
 figura \ref{fig:es3_2_2_1} si riporta il grafico della funzione e delle radici successive trovate.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{3221.pdf}
+    \includegraphics[width=0.7\textwidth]{3221.pdf}
     \caption{Funzione $f(x) = x^3 - 7x^2 + 14x - 6$ e radice ottenuta con metodo di bisezione.}
     \label{fig:es3_2_2_1}
 \end{figure} 
@@ -1225,7 +1229,7 @@ Al limite:
 \end{equation}
 da cui si ottiene che $q$, ordine di convergenza, 
 è 1, mentre C, la costante di errore asintotico, vale $\frac{1}{2}$. \\
-Per verificare i valori teorici di $q$ e $C$ è necessario tenere a mente le seguenti relazioni. La prima si ottiene
+Per verificare i valori teorici di $q$ e $C$ è necessario tenere a mente due relazioni. La prima si ottiene
 applicando il logaritmo decimale alla \ref{eq:convergenza_bisezione}:
 \begin{equation}
     \label{eq:convergenza_bisezione_log}
@@ -1267,7 +1271,6 @@ fluttua attorno a 1, ed è possibile che per $n$ maggiori di quelli disponibili 
 fluttuare attorno a 1. Per l'interpolazione si sono considerati gli ultimi 20 punti della serie, riportati 
 nell'ingrandimento di \ref{fig:es3_2_2_2}. Il fit su tali punti restituisce
 un valore di $q = 1.02$. \\  
-
 Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello linearizzato di \ref{eq:stima_C}:
 \begin{equation}
     log |x_{k+1}-r| = (k+1)log(C) + log|x_0 - r|  \quad \Rightarrow \quad  y(x) = x log(C) + A ,
@@ -1275,9 +1278,9 @@ Per stimare $C$ si è eseguito il fit con metodo dei minimi quadrati sul modello
 avendo considerato $r$ come l'ultimo valore di $m_n$ calcolato. Si riporta il grafico del fit in 
 figura \ref{fig:es3_2_2_3}. Il fit ha restituito i seguenti valori:
 \begin{equation*}
-    C = 0.5,
+    C = 0.502,
     \qquad
-    A = -0.1.
+    A = -1.103.
 \end{equation*}
 Il valore di $C$ è in accordo con quanto atteso, $A$ non è significativo.
 \subparagraph{Commento:}È possibile stimare i valori di $q$ e $C$ in modo diverso, con un solo fit.
@@ -1288,7 +1291,7 @@ del carattere asintotico delle relazioni. Per questa ragione non sono riportati.
 \verb|lab\computazionale1\esercizi\3_2_2.ipynb| per i dettagli.
 
 \subsection{Esercizi 3.3.1, 3.3.2}
-
+\label{sec:332}
 \begin{enumerate}
     \item Scrivi un programma che implementi il metodo di Newton.
     \item Per ciascuna delle seguenti funzioni, esegui i seguenti passi:
@@ -1329,17 +1332,17 @@ da cui si evince che:
 
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.31\textwidth}
         \includegraphics[width=\textwidth]{3321.pdf}
         \caption*{}
     \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \hspace{0.2cm}
+    \begin{minipage}[b]{0.31\textwidth}
         \includegraphics[width=\textwidth]{3322.pdf}
         \caption*{}
     \end{minipage}
-    \vspace{0.001cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \hspace{0.2cm}
+    \begin{minipage}[b]{0.31\textwidth}
         \includegraphics[width=\textwidth]{3323.pdf}
         \caption*{}
     \end{minipage}
@@ -1508,6 +1511,14 @@ problema riformulato in questa maniera ammette la stessa radice, con il vantaggi
 Inoltre la convergenza per questo metodo è quadratica. Alla fine del notebook relativo sono mostrati 
 i risultati ottenuti.
 
+\subsubsection{Conclusioni}
+L'esercizio mostra come la convergenza del metodo di Newton sia fortemente influenzata dal comportamento che 
+la funzione assume in corrispondenza della radice. In particolare si osserva che le radici semplici portano a
+convergenza quadratica, ma possono aumentare l'ordine di convergenza nel caso in cui le derivate della
+funzione nell'intorno del punto siano nulle (posto che la funzione sia sufficientemente differenziabile). \\
+Nel caso di radici multiple la convergenza dipende dalla molteplicità della radice stessa. È possibile però
+riformulare il problema in modo da ottenere una radice semplice, e quindi una convergenza quadratica.
+
 \subsection{Esercizio 3.3.3}
 \label{sec:333}
 Traccia la funzione $f(x)=x^{-2} - \sin x$ nell'intervallo $x \in [0.5,10]$.  
@@ -1521,7 +1532,7 @@ Si riporta in figura \ref{fig:es3_3_3_1} il grafico della funzione $f(x)=x^{-2} 
 $[0.5,10]$, con i punti di partenza del metodo di Newton. 
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{3331.pdf}
+    \includegraphics[width=0.7\textwidth]{3331.pdf}
     \caption{Grafico della funzione $f(x)=x^{-2} - \sin x$ nell'intervallo $[0.5,10]$.}
     \label{fig:es3_3_3_1}
 \end{figure}
@@ -1646,16 +1657,51 @@ con ordine del rapporto aureo, mentre il metodo di Newton converge con ordine qu
 Il vantaggio del metodo della secante rispetto al metodo di Newton è che, seppure converga meno rapidamente,
 richiede la metà delle valutazioni di funzioni, perchè al passo successivo valuta la
 funzione nel nuovo punto e riutilizza la valutazione precedente.
-\paragraph{(2d) } Si è scelto di studiare l'errore della secante per la radice di $f_1$. Si riporta in figura
-\ref{fig:es3_4_2_1} il grafico della successione $d_k = |x_k - x_{k-1}|$. Come stima di $q$ si è scelto di
-considerare l'ultimo punto della successione, e si ottiene $q = 1.692$, sufficientemente in accordo con 
-$q_{atteso} = 1.618$.
+\paragraph{(2d)}Si riportano in figura
+\ref{fig:es3_4_2_1} i grafici della successioni $d_{k+1}/d_{k} $. Nel caso della funzione $f_2$ si 
+è scelta la radice $x_1 = 0$. Come stima di $q$ si è considerato l'ultimo punto della successione. \\
+Da teoria $q_{atteso} = 1.618$. Si sono ottenuti i seguenti valori:
+\begin{equation*}
+    q_1 = 1.692,
+    \qquad
+    q_2 = 1.588,
+    \qquad
+    q_3 = 1.063
+\end{equation*}
+
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{3421.pdf}
-    \caption{Studio del valore di $q$ per la radice di $f_1$.}
+    \begin{minipage}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3421.pdf}
+        \caption*{(a)}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3422.pdf}
+        \caption*{(b)}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.32\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{3423.pdf}
+        \caption*{(c)}
+    \end{minipage}
+    \caption{Studio del valore di $q$ per la radice delle tre funzioni: (a) $f_1$, (b) $f_2$, (c) $f_3$.}
     \label{fig:es3_4_2_1}
 \end{figure}
+
+Si può notare che nei primi due casi la stima di $q$ si avvicina a quella teorica ma non è esatta. Il motivo
+è il numero limitato di punti. Per la terza funzione il valore ottenuto è molto lontano da quello atteso a causa 
+della molteplicità della radice: la convergenza è approssimativamente lineare.
+
+\subsubsection{Conclusioni}
+L'esercizio, messo a confronto con l'esercizio \ref{sec:332}, mostra come il metodo della secante sia 
+meno efficiente del metodo di Newton. Tale conclusione è però valida solo nel caso in cui si conosca
+la derivata della funzione, in caso contrario il metodo di Newton non è nemmeno applicabile. \\
+L'algoritmo della secante è preferibile a Newton nel caso in cui la funzione sia frutto di calcoli numerici
+e la sua derivata non sia facilmente calcolabile.
 
 \subsection{Esercizio 3.4.3}
 Utilizza un grafico per localizzare approssimativamente tutte le radici di $f(x)=x^{-2}-\sin(x)$ 
@@ -1669,7 +1715,7 @@ $[0.5,10]$, da cui si evince che la funzione ha 4 radici nell'intervallo. In fig
 le radici stimate.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{3431.pdf}
+    \includegraphics[width=0.7\textwidth]{3431.pdf}
     \caption{Grafico della funzione $f(x)=x^{-2}-\sin(x)$ nell'intervallo $[0.5,10]$.}
     \label{fig:es3_4_3_1}
 \end{figure}
@@ -1720,7 +1766,7 @@ chiede la natura dei nodi e restituisce la funzione baricentrica corrispondente,
 Si riportano i grafici delle funzioni interpolanti in figura \ref{fig:es4_2_2_1}.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{4221.pdf}
+    \includegraphics[width=0.7\textwidth]{4221.pdf}
     \caption{Grafici delle funzioni interpolanti per i vari casi.}
     \label{fig:es4_2_2_1}
 \end{figure}
@@ -1728,8 +1774,13 @@ Si riportano i grafici delle funzioni interpolanti in figura \ref{fig:es4_2_2_1}
 Come si può notare, all'aumentare del numero di nodi l'interpolazione migliora. Il grafico della funzione $|x|$
 però richiede un numero di nodi maggiore per essere interpolato con una certa accuratezza, ciò è dovuto alla
 non derivabilità della funzione in $x=0$. Il problema è che si sta cercando di interpolare una funzione
-non derivabile con un polinomio, notoriamente derivabile in ogni punto.
+non derivabile con un polinomio, notoriamente derivabile in ogni punto. \\
+È importante notare che il miglioramento dell'interpolazione all'aumento del numero di nodi non è sempre
+garantito a causa del fenomeno di Runge. In questo esercizio non si è considerato
+nonostante l'uso di nodi equispaziati perchè il numero dei nodi è al massimo 7. Ci sarà modo di studiare tale 
+fenomeno in esercizi successivi.
 
+\newpage
 \subsection{Esercizi 4.4.1, 4.4.2}
 
 \begin{enumerate}
@@ -1887,11 +1938,11 @@ dell'errore in norma $\infty$ dell'interpolante trigonometrica al variare del nu
 in 1000 punti l'intervallo.
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4611.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4612.pdf}
     \end{minipage}
     \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = e^{\sin (2\pi x)}$.}
@@ -1899,11 +1950,11 @@ in 1000 punti l'intervallo.
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4613.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4614.pdf}
     \end{minipage}
     \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = \log [2+ \sin (3 \pi x ) ]$.}
@@ -1911,14 +1962,14 @@ in 1000 punti l'intervallo.
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4615.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4616.pdf}
     \end{minipage}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{4617.pdf}
     \end{minipage}
     \caption{Studio delle interpolazioni trigonometriche per la funzione $f(x) = \cos^{12}[\pi (x-0.2)]$.}
@@ -1939,6 +1990,17 @@ come il massimo della distanza tra la funzione e il polinomio interpolante, su t
 La figura in basso a figura \ref{fig:es4_6_1_3} si ha un ingrandimento della regione di plateau e 
 si osserva che per $n=12$ il polinomio interpolante si appiattisce definitivamente, con la conseguente 
 riduzione dell'errore.
+
+\subsubsection{Conclusioni}
+L'esercizio mostra come nel caso di funzioni periodiche l'interpolazione trigonometrica sia una scelta
+valida. Come si è visto l'errore in norma $\infty$ diminuisce all'aumentare di $n$, senza 
+l'utilizzo di particolari scelte di nodi. È possibile infatti mostrare che la convergenza 
+dell'interpolazione trigonometrica è di ordine esponenziale nel caso in cui la funzione $f$ sia 
+$C^{\infty}$; nel caso dell'interpolazione polinomiale la convergenza è determinata dalla seguente relazione:
+\begin{equation}
+    ||p(x)-f(x)||_{\infty} \leq \frac{1}{n!} ||f^{(n)}(x)||_{\infty} ||\Phi_n||_{\infty},
+\end{equation}
+in dipendenza evidente dalla tipologia di nodi utilizzati. \\
 
 \section{Integrazione numerica}
 \subsection{Esercizi 5.1.1, 5.1.2}
@@ -2074,11 +2136,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \ref{fig:es5_1_4_4}, \ref{fig:es5_1_4_5}, \ref{fig:es5_1_4_6} gli studi dei vari casi.
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5141.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5141_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^1 x\log(1+x)\, dx$.}
@@ -2086,11 +2148,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5142.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5142_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^1 x^2 \tan^{-1}x\, dx$.}
@@ -2098,11 +2160,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5143.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5143_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^{\pi/2}e^x \cos x\, dx$.}
@@ -2110,11 +2172,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5144.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5144_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^1 \frac{\tan^{-1}(\sqrt{2+x^2})}{(1+x^2)\sqrt{2+x^2}}\,dx$.}
@@ -2122,11 +2184,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5145.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5145_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^1 \sqrt{x} \log(x) \, dx$.}
@@ -2134,11 +2196,11 @@ Si riportano nelle figure \ref{fig:es5_1_4_1}, \ref{fig:es5_1_4_2}, \ref{fig:es5
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5146.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.42\textwidth}
         \includegraphics[width=\textwidth]{5146_2.pdf}
     \end{minipage}
     \caption{Studio della regola di Simpson per l'integrale $\int_0^1 \sqrt{1-x^2}\, dx$.}
@@ -2149,6 +2211,8 @@ Si può osservare che l'errore decresce con un andamento quartico nei primi quat
 inferiore negli altri due. Nei primi quattro casi, si osserva che l'errore diminuisce rapidamente
 fino a $\varepsilon_{mach}$, per poi stabilizzarsi per motivazioni numeriche. Chiaramente il fit
 dell'errore è stato eseguito solo sui punti che si trovano al di sopra di questo valore.
+
+\newpage
 
 \subsection{Esercizio 5.3.1}
 1. Scrivi un programma che calcoli i nodi e i pesi per la quadratura di Gauss-Legendre nell'intervallo $[-1,1]$. 
@@ -2195,7 +2259,7 @@ utilizzando la relazione di ricorrenza \ref{eq:legendre_recurrence}. Si riporta 
 dei polinomi e delle loro derivate fino ad ordine $n = 4$.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{5311.pdf}
+    \includegraphics[width=0.7\textwidth]{5311.pdf}
     \caption{Polinomi di Legendre $P_n(x)$ e le loro derivate $P'_n(x)$ fino ad ordine $n=4$.}
     \label{fig:es5_3_1_1}
 \end{figure}
@@ -2362,6 +2426,8 @@ l'errore ha una convergenza molto più rapida, raggiungendo l'ordine di $\vareps
 (e) è particolarmente adatto all'integrazione doppio esponenziale poichè presenta singolarità all'estremo di 
 integrazione.
 
+\newpage
+
 \subsection{Esercizio 5.4.3}
 Per ciascun integrale, calcola le approssimazioni utilizzando la regola di quadratura di Gauss-Legendre 
 con $n=4,6,8,\ldots,60$ e la regola di quadratura double-exponential appropriata con $N=n/2$. 
@@ -2380,24 +2446,24 @@ Si riportano in figura \ref{fig:es5_4_3_1} gli studi degli errori per gli integr
 di Gauss-Legendre, insieme agli errori della regola di quadratura double-exponential.
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{5431.pdf}
         \caption*{(a)}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{5432.pdf}
         \caption*{(b)}
     \end{minipage}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{5433.pdf}
         \caption*{(c)}
     \end{minipage}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{5434.pdf}
         \caption*{(d)}
     \end{minipage}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{5435.pdf}
         \caption*{(e)}
     \end{minipage}
@@ -2406,7 +2472,7 @@ di Gauss-Legendre, insieme agli errori della regola di quadratura double-exponen
 \end{figure}
 
 Dai grafici si osserva la rapidità del metodo di quadratura double-exponential rispetto a Gauss-Legendre, 
-infatti tutti gli integrali presentano singolarità al bordo del dominio di integrazione. Tale rapidità
+nonostante tutti gli integrali presentino singolarità al bordo del dominio di integrazione. Tale rapidità
 è garantita dal fatto che la quadratura double exponential è robusta rispetto all'integrazione su domini singolari,
 contrariamente all'integrazione di Gauss-Legendre. Lo svantaggio è il costo computazionale elevato a causa 
 del cambio di variabile che richiede un numero
@@ -2586,6 +2652,11 @@ grandi domina l'esponenziale $e^{2t}$, amplificando le perturbazioni iniziali. \
 Al contrario in figura \ref{fig:es6_2_3_3} si osservano gli errori decrescere nel tempo perchè la 
 soluzione esponenziale decrescente smorza l'errore.  
 
+\subsubsection{Conclusioni}
+L'esercizio permette di riflettere su come l'errore si un metodo possa propagarsi nel tempo a seconda della
+tipologia di soluzione. Si rende perciò importante considerare la natura della soluzione del problema 
+per avere un'idea di quanto sia affidabile la soluzione numerica a tempi grandi.
+
 \subsection{Esercizio 6.3.1}
 (a) Scrivi un programma che risolva un sistema di equazioni differenziali utilizzando il metodo IE2 
 (Eulero implicito esplicito di ordine 2).\\
@@ -2605,7 +2676,7 @@ In figura \ref{fig:es6_3_1} si riportano i grafici degli errori per i due metodi
 calcolati per $n=30,60,90,\ldots,300$.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{6311.pdf}
+    \includegraphics[width=0.7\textwidth]{6311.pdf}
     \caption{Confronto tra gli errori dei metodi IE2 e RK4.}
     \label{fig:es6_3_1}
 \end{figure}
@@ -2617,6 +2688,8 @@ valutazioni della funzione per ogni passo, e che RK4 richiede $4$ valutazioni de
 si può spiegare il fatto che i punti del grafico si trovano incolonnati uno ogni due passi di IE2. \\
 Infine, a parità di numero di valutazioni della funzione il metodo RK4 ha un errore molto più 
 piccolo rispetto al metodo IE2, evidenziandone l'efficacia.
+
+\newpage
 
 \subsection{Esercizio 6.3.2}
 \label{es:6_3_2}
@@ -2731,9 +2804,9 @@ $v(0) = 0.95$ e $w(0) = 0.05$. Il passo $h$ è stato stimato allo stesso modo de
 particolare si è ottenuto $h = 0.015625$ con un numero di step iniziali $n = 100$. Si riporta in figura
 \ref{fig:es6_3_3} il grafico della soluzione, in cui si osserva che le due componenti 
 convergono a un valore stazionario. \\
-\begin{figure}
+\begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{6331.pdf}
+    \includegraphics[width=0.7\textwidth]{6331.pdf}
     \caption{Soluzione del modello SIR.}
     \label{fig:es6_3_3}
 \end{figure}
@@ -2760,7 +2833,7 @@ $w(t_{steady})$.
         u' = -2t u, \quad 0 \le t \le 2, \quad u(0) = 2; \qquad \hat{u}(t) = 2e^{-t^2}
     \]
     Rappresenta graficamente la soluzione in funzione del tempo per $\delta=10^{-8}$ in un grafico e il 
-    valore del passo in un altro. Determina inoltre il passo minimo e medio, escludendo il primo e l'ultimo passo.
+    valore del passo in un altro. Determina inoltre il passo minimo e medio.
     \item[\textbf{(c)}] Considera $\delta=10^{-6},10^{-5},\ldots,10^{-12}$ e studia come l'errore sulla 
     soluzione all'istante finale, $|u_n-\hat{u}(t_n)|$, dipende dalla tolleranza in input $\delta$.
 \end{itemize}
@@ -2771,11 +2844,11 @@ figura \ref{fig:es6_3_5_1} il grafico della soluzione ottenuta, insieme al grafi
 tempo. \\
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6351.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6352.pdf}
     \end{minipage}
     \caption{Soluzione e passo del metodo BS23.}
@@ -2783,21 +2856,24 @@ tempo. \\
 \end{figure}
 Si è scelto di togliere il primo e l'ultimo passo perchè il primo è scelto dall'utente e l'ultimo
 è forzato in modo da raggiungere l'estremo $b$. Si ottengono
-un passo minimo di $h_{min} = 0.0043$ e un passo medio di $h_{med} = 0.0054$. Lo studio del passo è interessante
-perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Se si fosse
-scelto passo fisso pari a $h_{med}$ si sarebbe persa risoluzione perchè nel metodo adattivo
-si può raggiungere un passo minore. Nel caso in esame il guadagno non è molto significativo, in generale però
-si possono ottenere integrazioni migliori se la differenza fra il passo minimo e il passo medio è molto grande. \\
+un passo minimo di $h_{min} = 0.0043$ e un passo medio di $h_{med} = 0.0054$. \\
 In figura \ref{fig:es6_3_5_2} si riporta il grafico dell'errore all'istante finale,
 $|u_n-\hat{u}(t_n)|$, in funzione della tolleranza $\delta$ scelta. Si osserva che l'errore cresce all'aumentare
 della tolleranza. Infatti la media dei passi $h$ cresce all'aumentare della tolleranza, e la soluzione 
 viene integrata da un numero minore di punti.
 \begin{figure}[!ht]
     \centering
-    \includegraphics[width=0.8\textwidth]{6353.pdf}
+    \includegraphics[width=0.6\textwidth]{6353.pdf}
     \caption{Errore all'istante finale in funzione della tolleranza $\delta$.}
     \label{fig:es6_3_5_2}
 \end{figure}
+
+\subsubsection{Conclusioni}
+L'esercizio avvia allo studio del passo del metodo adattivo BS23. Lo studio del passo è interessante
+perchè permette di capire di quanto si è guadagnato rispetto a un metodo non adattivo. Se si fosse
+scelto passo fisso pari a $h_{med}$ si sarebbe persa risoluzione perchè nel metodo adattivo
+si può raggiungere un passo minore. Nel caso in esame il guadagno non è molto significativo, in generale però
+si possono ottenere integrazioni migliori se la differenza fra il passo minimo e il passo medio è molto grande. \\
 
 \subsection{Esercizio 6.3.6}
 Utilizzando il metodo BS23 con tolleranza sull'errore $\delta=10^{-8}$, risolvi il problema 
@@ -2836,11 +2912,11 @@ Nelle figure \ref{fig:es6_3_6_1}, \ref{fig:es6_3_6_2}, \ref{fig:es6_3_6_3}, \ref
 sono riportati $y(t)$, $y'(t)$ e $h(t)$.
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6361.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6362.pdf}
     \end{minipage}
     \caption{Soluzioni per il caso $y(0) = 0.1$, $y'(0) = 0$. Passo del metodo BS23.}
@@ -2848,11 +2924,11 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6363.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6364.pdf}
     \end{minipage}
     \caption{Soluzioni per il caso $y(0) = 0.5$, $y'(0) = 0$. Passo del metodo BS23.}
@@ -2860,11 +2936,11 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6365.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6366.pdf}
     \end{minipage}
     \caption{Soluzioni per il caso $y(0) = 0.75$, $y'(0) = 0$. Passo del metodo BS23.}
@@ -2872,11 +2948,11 @@ sono riportati $y(t)$, $y'(t)$ e $h(t)$.
 \end{figure}
 \begin{figure}[!ht]
     \centering
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6367.pdf}
     \end{minipage}
     \hspace{0.5cm}
-    \begin{minipage}[b]{0.47\textwidth}
+    \begin{minipage}[b]{0.40\textwidth}
         \includegraphics[width=\textwidth]{6368.pdf}
     \end{minipage}
     \caption{Soluzioni per il caso $y(0) = 0.95$, $y'(0) = 0$. Passo del metodo BS23.}
@@ -2906,6 +2982,12 @@ La tabella \ref{tab:passi} mostra che il guadagno in risoluzione rispetto a un m
 molto significativo negli 
 ultimi due casi, dove le soluzioni presentano picchi molto accentuati, perchè il metodo BS23, nonostante abbia 
 passo medio dell'ordine di $10^{-3}$, raggiunge passi minimi dell'ordine di $10^{-4}$ e $10^{-5}$. 
+
+\subsubsection{Conclusioni}
+L'esercizio mostra come il metodo BS23 si adatti alle soluzioni che presentano picchi accentuati,
+scegliendo passi molto piccoli in corrispondenza dei picchi. I metodi adattivi sono perciò molto
+utili per risolvere equazioni differenziali sfruttando tutta la precisione possibile, evitando si 
+sprecare risorse computazionali laddove non sono necessarie.
 
 \subsection{Esercizio 6.3.7}
 Risolvi il problema $u'=100u^2-u^3$, $u(0)=0.0002$, $0\le t \le 100$ utilizzando il metodo BS23 e 
@@ -2957,6 +3039,7 @@ ottenere una soluzione accurata. Ciò che è particolare è che nella seconda re
 rimanendo costante e molto piccolo. Tale comportamento rende l'equazione presa in esame appartenente alla 
 categoria dei cosiddetti \textit{stiff problems}. 
 
+\newpage
 \section{Appendice}
 \begin{table}[!ht]
     \centering
